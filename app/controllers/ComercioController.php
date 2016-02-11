@@ -110,7 +110,7 @@ class ComercioController extends ControllerBase
         show: false
     }
 }); ";
-		echo $this->view->render('themeLudicoM',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboard','pcData'=>'', 'jsScript'=>$jsScript));
+		echo $this->view->render('themeLudicoM',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>'', 'jsScript'=>$jsScript));
     }
 
     public function consultarAction()
