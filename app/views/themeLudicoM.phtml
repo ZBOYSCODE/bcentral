@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+
+		<title><?php print($this->config->appTitle)?></title>
+
+		<meta name="description" content="<?php print($this->config->appTitle)?>">
+		<meta name="author" content="<?php print($this->config->appAutor)?>">
+		<meta name="robots" content="noindex, nofollow">
+
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+
+		<!-- Icons -->
+		<!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+		<link rel="shortcut icon" href="assets/img/favicon.png">
+		<link rel="apple-touch-icon" href="assets/img/icon57.png" sizes="57x57">
+		<link rel="apple-touch-icon" href="assets/img/icon72.png" sizes="72x72">
+		<link rel="apple-touch-icon" href="assets/img/icon76.png" sizes="76x76">
+		<link rel="apple-touch-icon" href="assets/img/icon114.png" sizes="114x114">
+		<link rel="apple-touch-icon" href="assets/img/icon120.png" sizes="120x120">
+		<link rel="apple-touch-icon" href="assets/img/icon144.png" sizes="144x144">
+		<link rel="apple-touch-icon" href="assets/img/icon152.png" sizes="152x152">
+		<link rel="apple-touch-icon" href="assets/img/icon180.png" sizes="180x180">
+		<!-- END Icons -->
+
+		<!-- Stylesheets -->
+		<!-- Bootstrap is included in its original form, unaltered -->
+        <?php print($this->tag->stylesheetLink("css/bootstrap.min.css"))?>
+
+		<!-- Related styles of various icon packs and plugins -->
+        <?php print($this->tag->stylesheetLink("css/plugins.css"))?>
+
+		<!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+        <?php print($this->tag->stylesheetLink("css/main.css"))?>
+
+		<!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+        <?php print($this->tag->stylesheetLink("css/themes.css"))?>
+		<!-- END Stylesheets -->
+
+		<?php
+			if(isset($addCss)){
+				foreach($addCss as $link){
+					print($this->tag->stylesheetLink($link));
+				}
+			}
+		?>
+		
+		<!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
+		<?php print($this->tag->javascriptInclude("js/vendor/modernizr-respond.min.js"))?>
+
+		<style>
+			.icon-feliz {
+			    background-image: url("img/icon_feliz.png");
+			    background-position: center center;
+			}
+			
+#stp-trat-3.form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.widget-simple .widget-pregunta{
+	margin: 1px 0px;
+    font-size: 18px;											
+}
+.style-alt .widget, .style-alt .task-list li{
+	background-color: #5bc0de;
+}
+.h:hover{
+	background-color: #46b8da;
+}
+
+			#menu-horizontal .widget{
+				background:url('../img/template/ie8_opacity_dark_60.png') repeat !important;
+				background:rgba(0, 0, 0, 0.6) !important;
+			}
+
+#lista-solicitudes .widget{
+    max-width: 24em;
+    min-height: 10em;
+    margin: auto;
+    margin-bottom: 30px;   
+    color:white;    
+    padding-bottom: 20px;
+}
+#lista-solicitudes .block-title{
+    color:#394263;
+}
+.en-curso{
+    background-color: #5FCA0A !important;
+	border: #5FCA0A !important;
+}
+
+.pendiente-cliente{
+    background-color: #EAC50D !important;
+	border: #EAC50D !important;
+}    
+
+.pendiente-proveedor{
+    background-color: #F92626 !important;
+	border: #F92626 !important;
+}    
+
+</style>		
+	</head>
+	<body>
+		<img src="<?php print($this->url->get("img/disabilityanswerdesk_hero.png"))?>" alt="Login Full Background" class="full-bg">
+        <!-- Page Wrapper -->
+        <!-- In the PHP version you can set the following options from inc/config file -->
+        <!--
+            Available classes:
+
+            'page-loading'      enables page preloader
+        -->
+        <div id="page-wrapper">
+            <!-- Preloader -->
+            <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
+            <div class="preloader themed-background">
+                <h1 class="push-top-bottom text-light text-center"><?php print($this->config->appName)?></h1>
+                <div class="inner">
+                    <h3 class="text-light visible-lt-ie9 visible-lt-ie10"><strong>Cargando..</strong></h3>
+                    <div class="preloader-spinner hidden-lt-ie9 hidden-lt-ie10"></div>
+                </div>
+            </div>
+            <!-- END Preloader -->
+
+            <div id="page-container" class="sidebar-no-animations">
+				<!-- Main Container -->
+				<div id="main-container">
+
+					<!-- Menu Horizontal -->
+					<div class="row" id="menu-horizontal">
+					    <div class="col-sm-3">
+					        <a  href="#modal-create" data-toggle="modal" class="widget widget-hover-effect1">
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#EAC50D !important;">
+					                    <i class="fa fa-plus-circle"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                Nueva <strong>Solicitud</strong><br>
+					                </h3>
+					            </div>
+					        </a>          
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="<?php print($this->url->get('comercio/consultar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#35961C !important;">
+					                    <i class="fa fa-search"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Consultar <strong>Solicitud</strong><br>
+					                </h3>
+					            </div>
+					        </a>           
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263;" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px;">
+					                <i class="fa fa-check"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Evaluar <strong>Servicio</strong><br>
+					                </h3>
+					            </div>
+					        </a>         
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="javascript:void(0)" class="widget widget-hover-effect1" style="background-color:#394263" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 65px; background-color:#8A6D3B !important; ">
+					                    <i class="fa fa-file-text"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Formularios <strong>Instructivos</strong><br>
+					                </h3>
+					            </div>
+					        </a>         
+					    </div>
+					</div>
+
+					<!-- Page content -->
+					<div id="page-content">
+					<?php if(isset($pcView) && $pcView!=null) 
+							echo $this->view->render($pcView,array('pcData'=>$pcData));
+					?>
+					</div>
+                    <!-- END Page Content -->
+
+                    <!-- Footer -->
+                    <footer class="clearfix">
+                        <div class="pull-right">
+                            Propiedad de <?php print($this->config->appAutor)?> <i class="fa fa-heart text-danger"></i> by <a href="<?php print($this->config->appAutorLink)?>" target="_blank"><?php print($this->config->appAutor)?></a>
+                        </div>
+                        <div class="pull-left">
+                            <span id="year-copy"></span> &copy; <a href="<?php print($this->config->appAutorLink)?>" target="_blank"><?php print($this->config->appAutor)?></a>
+                        </div>
+                    </footer>
+                    <!-- END Footer -->
+
+                <!-- Large Modal -->
+                <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h3 class="modal-title">Nueva Solicitud</h3>
+                            </div>
+							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
+								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
+								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
+								<fieldset>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Destinatario:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Impacto:</label>
+										<div class="col-md-8">
+											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno" style="display: none;">
+												<option value="" selected="selected"></option>
+												<option value="ALTO">Alto</option>
+												<option value="MEDIO">Medio</option>
+												<option value="BAJO">Bajo</option>
+											</select>
+										</div>
+									</div>
+										</div>
+									</div>
+									
+																
+								</fieldset>
+								<br>         
+								
+								<fieldset>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Ubicación:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Urgencia:</label>
+										<div class="col-md-8">
+											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia" style="display: none;">
+												<option value="" selected="selected"></option>
+												<option value="ALTO">Muy Urgente</option>
+												<option value="MEDIO">Urgente</option>
+												<option value="BAJO">Poco Urgente</option>
+											</select>
+										</div>
+									</div>
+										</div>
+									</div>	 
+								</fieldset>
+								<br>
+								<fieldset>
+										<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Servicio Afectado:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">CI Afectado:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+									</div>
+										</div>
+									</div>	 						
+								</fieldset>
+								<br>
+								<div class="block-title" style="margin-top: 0px;"><h2>Información General</h2></div>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="horaInicio">Título:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+											<br>
+										</div>
+									</div>
+									<br>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="horaFin">Descripción:</label>
+										<div class="col-md-8">
+											<textarea class="form-control" rows="4" cols="50"></textarea>
+										</div>
+									</div>													
+								</fieldset>	
+
+							</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-sm btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="modal-info" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h3 class="modal-title">Información de la Solicitud</h3>
+                            </div>
+							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
+								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
+								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
+								<fieldset>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Destinatario:</label>
+										<div class="col-md-8">
+											<p>Alexis Videla</p>
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Impacto:</label>
+										<div class="col-md-8">
+											<p>Alto</p>
+										</div>
+									</div>
+										</div>
+									</div>
+									
+																
+								</fieldset>
+								<br>         
+								
+								<fieldset>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Ubicación:</label>
+										<div class="col-md-8">
+											<p>Piso 1, Oficina 23</p>
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Urgencia:</label>
+										<div class="col-md-8">
+											<p>Muy Urgente</p>
+										</div>
+									</div>
+										</div>
+									</div>	 
+								</fieldset>
+								<br>
+								<fieldset>
+										<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">Servicio Afectado:</label>
+										<div class="col-md-8">
+											<p>Cuenta de Usuario</p>
+										</div>
+									</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">CI Afectado:</label>
+										<div class="col-md-8">
+											<p>--</p>
+										</div>
+									</div>
+										</div>
+									</div>	 						
+								</fieldset>
+								<br>
+								<div class="block-title" style="margin-top: 0px;"><h2>Información General</h2></div>
+								<fieldset>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="horaInicio">Título:</label>
+										<div class="col-md-8">
+											<p>Usuario desconfigurado</p>
+											<br>
+										</div>
+									</div>
+									<br>
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="horaFin">Descripción:</label>
+										<div class="col-md-8">
+											<p>Usuario no ha podido entrar a su cuenta de usuario en los últimos días, le aparece que la cuenta expiró.</p>
+										</div>
+									</div>													
+								</fieldset>	
+
+							</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>	
+                <!-- END Large Modal -->
+				
+
+<div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <!-- Updates Title -->
+            <div class="block-title" style=" margin: 0px;">
+                <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2><strong>Encuesta</strong></h2>
+            </div>
+            <!-- END Updates Title -->
+            <div class="modal-body">
+
+				<div class="progress progress-striped active">
+					<div id="barra-progreso" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
+				</div>	
+            	<!-- Pregunta 1 -->
+
+				<div class="stp-trat"  id="stp-trat-pregunta1">
+			
+					<h3 class="text-center" style="padding-bottom:50px;">
+						¿Cómo considera su desempeño?
+					</h3>
+					<div class="form-group row text-center">
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn h" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<i class="icon-feliz"></i>
+									<h1 class="widget-pregunta text-
+									Center animation-pullDown">
+									Bueno
+									</h1>
+								</div>
+							</a>
+						</div>	
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<h1 class="widget-pregunta text-
+									Center animation-pullDown">
+									Regular
+									</h1>
+								</div>
+							</a>
+						</div>	
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<h1 class="widget-pregunta text-
+									Center animation-pullDown">
+									Malo
+									</h1>
+								</div>
+							</a>
+						</div>													
+                    </div>
+					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+						<div class="btn-group" style="width: 100%;">
+							<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+							<a href="#" class="btn btn-primary" style="width: 33%;" disabled>Pregunta 2</a>
+							<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
+						</div>
+                    </div>                    
+				</div>
+
+				<!-- Pregunta 2 -->
+
+				<div class="stp-trat"  id="stp-trat-pregunta2" style="display:none;">
+					<h3 class="text-center" style="padding-bottom:50px;">
+						¿Cómo considera el desempeño de sus compañeros?	
+					</h3>				
+					<div class="form-group row text-center">
+							<div class="col-lg-12">
+								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+									<div class="widget-simple">
+										<h1 class="widget-pregunta text-Center animation-pullDown">
+											Bueno
+										</h1>
+									</div>
+								</a>
+							</div>														
+							<div class="col-lg-12">
+								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+									<div class="widget-simple">
+										<h1 class="widget-pregunta text-Center animation-pullDown">
+											Regular
+										</h1>
+									</div>
+								</a>
+							</div>	
+							<div class="col-lg-12">
+								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+									<div class="widget-simple">
+										<h1 class="widget-pregunta text-Center animation-pullDown">
+											Malo
+										</h1>
+									</div>
+								</a>
+							</div>														
+					</div>
+					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+						<div class="btn-group" style="width: 100%;">
+							<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+							<a href="#" class="btn btn-primary active" style="width: 33%;">Pregunta 2</a>
+							<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
+						</div>
+					</div>															
+				</div>	
+
+				<!-- Pregunta 3 -->
+
+				<div class="stp-trat"  id="stp-trat-pregunta3" style="display:none;">
+					<h3 class="text-center" style="padding-bottom:50px;">
+						¿Cómo considera el desempeño de sus superiores?
+					</h3>				
+					<div class="form-group row text-center">
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="OD" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<h1 class="widget-pregunta text-Center animation-pullDown">
+										Bueno
+									</h1>
+								</div>
+							</a>
+						</div>												
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<h1 class="widget-pregunta text-Center animation-pullDown">
+										Regular
+									</h1>
+								</div>
+							</a>
+						</div>												
+					</div>	
+					<div class="form-group row text-center">
+						<div class="col-lg-12">
+							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+								<div class="widget-simple">
+									<h1 class="widget-pregunta text-Center animation-pullDown">
+										Malo
+									</h1>
+								</div>
+							</a>
+						</div>												
+					</div>
+					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+						<div class="btn-group" style="width: 100%;">
+							<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+							<a href="#" class="btn btn-primary stp-trat-btn-menu" style="width: 33%;" data-next="pregunta2">Pregunta 2</a>
+							<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 3</a>
+						</div>
+					</div>																		
+				</div>	
+
+				<!-- Resultado -->		
+
+				<div class="stp-trat"  id="stp-trat-resultado" style="display:none;">
+					<div class="form-group row text-center" style="margin-top: -15px;">
+						<div class="col-lg-12"  style="margin-top:20%">
+							<h2><i class="fa fa-hand-peace-o"></i>¡<strong>Gracias</strong> por responder!</h2> <br>
+						</div>
+					</div>
+				</div>																							
+            </div>
+
+
+
+		
+            <div class="modal-footer">
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-sm btn-default pull-right" data-dismiss="modal" href=""> Cerrar</a>
+                </div>
+            </div>
+		</div>
+	</div>
+	</div>
+                </div>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
+        </div>
+		<!-- END Page Wrapper -->
+
+		<a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+
+		<!-- Remember to include excanvas for IE8 chart support -->
+		<!--[if IE 8]><?php print($this->tag->javascriptInclude("js/helpers/excanvas.min.js"))?><![endif]-->
+
+		<!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+		<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
+		<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
+		<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
+		<?php print($this->tag->javascriptInclude("js/app.js"))?>
+		<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
+		
+		<!--<script src="<?php //print($this->config->item('socketServer'))?>/socket.io/socket.io.js"></script>-->
+		<script>
+			/*var nodeServer = '<?php //print($this->config->item('socketServer'))?>';
+			var socket = io(nodeServer);*/
+		</script>		
+
+			
+		<?php
+		if(isset($jsScript) && $jsScript!=null){
+		?>
+		<script>
+		<?php print($jsScript)?>
+		</script>
+		<?php
+			}
+		?>		
+		<?php
+			if(isset($addJs) && $addJs!=null){
+				foreach($addJs as $link){
+		?>
+		<?php print($this->tag->javascriptInclude($link))?>
+		<?php
+				}
+			}
+		?>
+		<?php
+		if(isset($jsPosScrt) && $jsPosScrt!=null){
+		?>
+		<script>
+		<?php print($jsPosScrt)?>
+		</script>
+		<?php
+			}
+		?>		
+	</body>
+</html>

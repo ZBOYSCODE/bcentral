@@ -170,7 +170,10 @@ class ComercioController extends ControllerBase
         echo $this->view->render('themeLudico', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
 
-
+    public function migueloAction()
+    {
+    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+    }
 
 
 }
