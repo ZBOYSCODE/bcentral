@@ -223,18 +223,43 @@
                 <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div id="modal_header_1" class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title">Nueva Solicitud</h3>
+                                <h3 class="modal-title_1">Nueva Solicitud</h3>
                             </div>
-							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
+							<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto; height: 250px;">
 								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
 								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
+								<fieldset id="tipoSolicitudContainer">
+									<div class="row">
+										<div class="col-md-4 text-center">
+											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Hardware"><i class="fa fa-desktop fa-5x"></i></a>
+											<br>
+											<h4>Hardware</h4>
+										</div>
+										<div class="col-md-4 text-center">
+											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Software"><i class="fa fa-database fa-5x"></i></a>
+											<br>
+											<h4>Software</h4>
+										</div>
+										<div class="col-md-4 text-center">
+											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Otros"><i class="fa fa-envelope fa-5x"></i></a>
+											<br>
+											<h4>Otros</h4>
+										</div>
+									</div>
+								</fieldset>
+								<br>
+								<div id="formPrincipal" style="display:none">
+									
+
 								<fieldset>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Destinatario:</label>
+
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" >
 										</div>
@@ -242,7 +267,8 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Impacto:</label>
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
 										<div class="col-md-8">
 											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno" style="display: none;">
 												<option value="" selected="selected"></option>
@@ -263,7 +289,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Ubicación:</label>
+										<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" >
 										</div>
@@ -271,7 +297,8 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Urgencia:</label>
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
 										<div class="col-md-8">
 											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia" style="display: none;">
 												<option value="" selected="selected"></option>
@@ -289,7 +316,8 @@
 										<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Servicio Afectado:</label>
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" >
 										</div>
@@ -297,7 +325,8 @@
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">CI Afectado:</label>
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" >
 										</div>
@@ -309,7 +338,8 @@
 								<div class="block-title" style="margin-top: 0px;"><h2>Información General</h2></div>
 								<fieldset>
 									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaInicio">Título:</label>
+										<label class="col-md-4 control-label" for="horaInicio">
+											<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
 										<div class="col-md-8">
 											<input type="text" class="form-control" >
 											<br>
@@ -317,7 +347,8 @@
 									</div>
 									<br>
 									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaFin">Descripción:</label>
+										<label class="col-md-4 control-label" for="horaFin">
+											<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
 										<div class="col-md-8">
 											<textarea class="form-control" rows="4" cols="50"></textarea>
 										</div>
@@ -330,6 +361,7 @@
                                 <button type="button" class="btn btn-sm btn-primary">Guardar</button>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -338,7 +370,10 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title">Información de la Solicitud</h3>
+                                <div class="row">
+                                	<div class="col-md-10"><h3 class="modal-title">Información de la Solicitud de Hardware</h3></div>
+                                	<div class="col-md-1"></div>
+                                </div>
                             </div>
 							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
 								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
@@ -436,8 +471,24 @@
                 </div>	
                 <!-- END Large Modal -->
 				
+<style>
+#stp-trat-3.form-horizontal .form-group {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.widget-simple .widget-pregunta{
+	margin: 1px 0px;
+    font-size: 18px;											
+}
+.style-alt .widget, .style-alt .task-list li{
+	background-color: #5bc0de;
+}
+.h:hover{
+	background-color: #46b8da;
+}
 
-<div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+</style>
+	<div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
             <!-- Updates Title -->
@@ -462,31 +513,21 @@
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn h" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<i class="icon-feliz"></i>
-									<h1 class="widget-pregunta text-
-									Center animation-pullDown">
-									Bueno
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>	
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<h1 class="widget-pregunta text-
-									Center animation-pullDown">
-									Regular
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>	
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<h1 class="widget-pregunta text-
-									Center animation-pullDown">
-									Malo
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>													
@@ -510,27 +551,21 @@
 							<div class="col-lg-12">
 								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 									<div class="widget-simple">
-										<h1 class="widget-pregunta text-Center animation-pullDown">
-											Bueno
-										</h1>
+										<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
 									</div>
 								</a>
 							</div>														
 							<div class="col-lg-12">
 								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 									<div class="widget-simple">
-										<h1 class="widget-pregunta text-Center animation-pullDown">
-											Regular
-										</h1>
+										<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
 									</div>
 								</a>
 							</div>	
 							<div class="col-lg-12">
 								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 									<div class="widget-simple">
-										<h1 class="widget-pregunta text-Center animation-pullDown">
-											Malo
-										</h1>
+										<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
 									</div>
 								</a>
 							</div>														
@@ -554,18 +589,14 @@
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="OD" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<h1 class="widget-pregunta text-Center animation-pullDown">
-										Bueno
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>												
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<h1 class="widget-pregunta text-Center animation-pullDown">
-										Regular
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>												
@@ -574,9 +605,7 @@
 						<div class="col-lg-12">
 							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
 								<div class="widget-simple">
-									<h1 class="widget-pregunta text-Center animation-pullDown">
-										Malo
-									</h1>
+									<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
 								</div>
 							</a>
 						</div>												

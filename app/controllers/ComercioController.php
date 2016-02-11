@@ -11,9 +11,21 @@ class ComercioController extends ControllerBase
     {   
         $jsScript = "
             $('#tipoSolicitud').on('change', function() {
-                $('#modal_header_1').html('<h3>Nueva Solicitud de '+$(this).val()+'</h3>');
-                $('#modal_header_1').append('<i id=icono-pc class=fa></i>');
-                $('#icono-pc').addClass('fa-desktop');
+                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).val()+'</h3></div></div>');
+                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
+                if($(this).val() == 'Hardware'){
+                   $('#icono-pc').addClass('fa-desktop');
+                   $('#icono-pc').addClass('fa-3x'); 
+                }
+                if($(this).val() == 'Software'){
+                   $('#icono-pc').addClass('fa-database');
+                   $('#icono-pc').addClass('fa-3x');  
+                }
+                if($(this).val() == 'Otros'){
+                    $('#icono-pc').addClass('fa-envelope');
+                    $('#icono-pc').addClass('fa-3x'); 
+                }
+
             });
 
             // Get the elements where we will attach the charts
@@ -120,13 +132,52 @@ class ComercioController extends ControllerBase
     }
 
     public function consultarAction()
-    {
-    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+    {   
+        $jsScript = "$('.tipoSolicitudes').on('click', function() {
+                console.log($(this).val());
+                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
+                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
+                if($(this).data('val') == 'Hardware'){
+                   $('#icono-pc').addClass('fa-desktop');
+                   $('#icono-pc').addClass('fa-3x'); 
+                }
+                if($(this).data('val') == 'Software'){
+                   $('#icono-pc').addClass('fa-database');
+                   $('#icono-pc').addClass('fa-3x');  
+                }
+                if($(this).data('val') == 'Otros'){
+                    $('#icono-pc').addClass('fa-envelope');
+                    $('#icono-pc').addClass('fa-3x'); 
+                }
+                
+                $('#formPrincipal').css('display', 'block');
+                $('#tipoSolicitudContainer').css('display', 'none');
+                $('#modalBodyCreate').css('height', '500px');
+            });";
+    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
 
     public function evaluarAction()
     {
-        $jsScript = "$('.stp-trat-btn').click(
+        $jsScript = "
+        $('#tipoSolicitud').on('change', function() {
+                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).val()+'</h3></div></div>');
+                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
+                if($(this).val() == 'Hardware'){
+                   $('#icono-pc').addClass('fa-desktop');
+                   $('#icono-pc').addClass('fa-3x'); 
+                }
+                if($(this).val() == 'Software'){
+                   $('#icono-pc').addClass('fa-database');
+                   $('#icono-pc').addClass('fa-3x');  
+                }
+                if($(this).val() == 'Otros'){
+                    $('#icono-pc').addClass('fa-envelope');
+                    $('#icono-pc').addClass('fa-3x'); 
+                }
+
+            });
+        $('.stp-trat-btn').click(
             function(){
 
                 $('#stp-trat-'+$(this).data('stp')+' .stp-trat-btn').removeClass('active');
