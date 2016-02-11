@@ -30,6 +30,7 @@ class ComercioController extends ControllerBase
                 $('#formPrincipal').css('display', 'block');
                 $('#tipoSolicitudContainer').css('display', 'none');
                 $('#modalBodyCreate').css('height', '500px');
+                $('#btnGuardar').css('display', '');
             });
 
             // Get the elements where we will attach the charts
@@ -157,6 +158,7 @@ class ComercioController extends ControllerBase
                 $('#formPrincipal').css('display', 'block');
                 $('#tipoSolicitudContainer').css('display', 'none');
                 $('#modalBodyCreate').css('height', '500px');
+                $('#btnGuardar').css('display', '');
             });";
     	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
@@ -184,6 +186,7 @@ class ComercioController extends ControllerBase
                 $('#formPrincipal').css('display', 'block');
                 $('#tipoSolicitudContainer').css('display', 'none');
                 $('#modalBodyCreate').css('height', '500px');
+                $('#btnGuardar').css('display', '');
             });
         $('.stp-trat-btn').click(
             function(){
