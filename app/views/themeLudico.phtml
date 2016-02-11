@@ -136,7 +136,58 @@
 					</header>
 					<!-- END Header -->
 
-
+					<!-- Menu Horizontal -->
+					<div class="row" id="menu-horizontal">
+					    <div class="col-sm-3">
+					        <a  href="#modal-create" data-toggle="modal" class="widget widget-hover-effect1" style="background-color:#394263"  >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#EAC50D !important;">
+					                    <i class="fa fa-plus-circle"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                Nueva <strong>Solicitud</strong><br>
+					                </h3>
+					            </div>
+					        </a>          
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="<?php print($this->url->get('comercio/consultar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#35961C !important;">
+					                    <i class="fa fa-search"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Consultar <strong>Solicitud</strong><br>
+					                </h3>
+					            </div>
+					        </a>           
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263;" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px;">
+					                <i class="fa fa-check"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Evaluar <strong>Servicio</strong><br>
+					                </h3>
+					            </div>
+					        </a>         
+					    </div>
+					    <div class="col-sm-3">
+					        <a href="javascript:void(0)" class="widget widget-hover-effect1" style="background-color:#394263" >
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 65px; background-color:#8A6D3B !important; ">
+					                    <i class="fa fa-file-text"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                    Formularios <strong>Instructivos</strong><br>
+					                </h3>
+					            </div>
+					        </a>         
+					    </div>
+					</div>
+					<!-- END Menu Horizontal -->
 					<!-- Page content -->
 					<div id="page-content">
 					<?php if(isset($pcView) && $pcView!=null) 
@@ -388,6 +439,33 @@
 .h:hover{
 	background-color: #46b8da;
 }
+
+#menu-horizontal a.widget{
+    background-color: white !important;
+}
+
+#lista-solicitudes .widget{
+    max-width: 24em;
+    min-height: 10em;
+    margin: auto;
+    margin-bottom: 30px;   
+    color:white;    
+    padding-bottom: 20px;
+}
+#lista-solicitudes .block-title{
+    color:#394263;
+}
+.en-curso{
+    background-color: #5FCA0A !important;
+}
+
+.pendiente-cliente{
+    background-color: #EAC50D !important;
+}    
+
+.pendiente-proveedor{
+    background-color: #F92626 !important;
+}    
 
 </style>
 <div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">

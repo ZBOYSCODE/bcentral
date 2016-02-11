@@ -1,12 +1,77 @@
+
 <div class="content-header">
     <div class="header-section">  
-<h1>
-	<img class="pull-right" style="width:9%; margin-top:-27px;height:100px;width:150px"src="<?php echo $this->url->get("/img/bc-chile.png"); ?>" alt="">
-		Consultar <strong>Solicitud</strong><br> 
-		<small>Sistema de Solicitudes</small>
-</h1>     
+        <h1>
+        	<img class="pull-right" style="width:9%; margin-top:-27px;height:100px;width:150px"src="<?php echo $this->url->get("/img/bc-chile.png"); ?>" alt="">
+        		Consultar <strong>Solicitud</strong><br> 
+        		<small>Sistema de Solicitudes</small>
+        </h1>     
     </div>
 </div>
+
+
+
+<div class="row" id="lista-solicitudes">
+    <div class="col-sm-4 text-center">
+        <div class="widget-simple">
+            <h4>Solicitudes <strong>En Curso</strong></h4>
+        </div>
+        <a href="#modal-info" data-toggle="modal" class="widget block en-curso widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Soporte Técnico</strong></h2></div>
+                <h5>Necesito un técnico ahora</h5>
+                <small>Hace 30 minutos</small>
+        </a>  
+        <a href="#modal-info" data-toggle="modal" class="widget block en-curso widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Compra Notebook</strong></h2></div>
+                <h5>Necesito un equipo</h5>
+                <small>Hace 55 minutos</small>
+        </a>          
+        <a href="#modal-info" data-toggle="modal" class="widget block en-curso widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Interfaz de Comunicación</strong></h2></div>
+                <h5>Corrupción en interfaz de comunicaciones</h5>
+                <small>Ayer</small>
+        </a>          
+        <a href="#modal-info" data-toggle="modal" class="widget block en-curso widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Instalación Sistema Operativo</strong></h2></div>
+                <h5>Necesito instalar Windows</h5>
+                <small>12-12-2015</small>
+        </a>          
+
+    </div>
+    <div class="col-sm-4 text-center">
+        <div class="widget-simple">
+            <h4>Solicitudes <strong>Pendiente Cliente</strong></h4>
+        </div>
+        <a href="#modal-info" data-toggle="modal" class="widget block pendiente-cliente widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Renovación de Notebook</strong></h2></div>
+                <h5>Devolución del antiguo pendiente.</h5>
+                <small>Hace 10 minutos</small>
+        </a>        
+
+        <a href="#modal-info" data-toggle="modal" class="widget block pendiente-cliente widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Tarjeta de Identificación</strong></h2></div>
+                <h5>Se necesita renovar la tarjeta de identifación por pérdida de ésta.</h5>
+                <small>Hace 40 minutos</small>
+        </a>                
+    </div>
+    <div class="col-sm-4 text-center">
+        <div class="widget-simple">
+            <h4>Solicitudes <strong>Pendiente Proveedor</strong></h4>
+        </div>
+        <a href="#modal-info" data-toggle="modal" class="widget block pendiente-proveedor widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Usuario Desconfigurado</strong></h2></div>
+                <h5>Usuario no ha podido cambiar el sistema, puesto que está bloqueado el acceso.</h5>
+                <small>Ahora</small>
+        </a> 
+        <a href="#modal-info" data-toggle="modal" class="widget block pendiente-proveedor widget-hover-effect2"> 
+                <div class="block-title"><h2> <strong>Iphone sin batería</strong></h2></div>
+                <h5>El proveedor requiere de un cargador de Iphone para continuar reunión.</h5>
+                <small>Hace 2 minutos</small>
+        </a>         
+    </div>
+</div>
+
+
 <div class="row">
 
   <!-- Messages List -->
@@ -183,7 +248,6 @@
             <!-- END Messages List Block -->
         </div>
         <!-- END Messages List -->
-
             
                 
 </div>
