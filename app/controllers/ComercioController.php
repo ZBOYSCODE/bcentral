@@ -110,12 +110,12 @@ class ComercioController extends ControllerBase
         show: false
     }
 }); ";
-		echo $this->view->render('themeLudico',array('lmView'=>'menu/leftMenu','pcView'=>'solicitudes/dashboard','pcData'=>'', 'jsScript'=>$jsScript));
+		echo $this->view->render('themeLudicoM',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboard','pcData'=>'', 'jsScript'=>$jsScript));
     }
 
     public function consultarAction()
     {
-    	echo $this->view->render('themeLudico', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
     }
 
     public function evaluarAction()
@@ -167,7 +167,7 @@ class ComercioController extends ControllerBase
                 $('#stp-trat-'+$(this).data('next')).css('display','block');
             }
         );      ";
-        echo $this->view->render('themeLudico', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
+        echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
 
     public function migueloAction()
