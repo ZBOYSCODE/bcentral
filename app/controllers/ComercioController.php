@@ -243,6 +243,9 @@ class ComercioController extends ControllerBase
     {
     	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard', 'pcView'=>'solicitudes/dashboardM', 'pcData'=>''));    
     }	
-
+public function dashboardM2Action()
+    {
+    	echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard', 'pcView'=>'solicitudes/dashboardM', 'pcData'=>''));    
+    }	
 
 }
