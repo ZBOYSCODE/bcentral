@@ -10,22 +10,26 @@ class ComercioController extends ControllerBase
     public function indexAction()
     {   
         $jsScript = "
-            $('#tipoSolicitud').on('change', function() {
-                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).val()+'</h3></div></div>');
+            $('.tipoSolicitudes').on('click', function() {
+                console.log($(this).val());
+                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
                 $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
-                if($(this).val() == 'Hardware'){
+                if($(this).data('val') == 'Hardware'){
                    $('#icono-pc').addClass('fa-desktop');
                    $('#icono-pc').addClass('fa-3x'); 
                 }
-                if($(this).val() == 'Software'){
+                if($(this).data('val') == 'Software'){
                    $('#icono-pc').addClass('fa-database');
                    $('#icono-pc').addClass('fa-3x');  
                 }
-                if($(this).val() == 'Otros'){
+                if($(this).data('val') == 'Otros'){
                     $('#icono-pc').addClass('fa-envelope');
                     $('#icono-pc').addClass('fa-3x'); 
                 }
-
+                
+                $('#formPrincipal').css('display', 'block');
+                $('#tipoSolicitudContainer').css('display', 'none');
+                $('#modalBodyCreate').css('height', '500px');
             });
 
             // Get the elements where we will attach the charts
@@ -160,22 +164,26 @@ class ComercioController extends ControllerBase
     public function evaluarAction()
     {
         $jsScript = "
-        $('#tipoSolicitud').on('change', function() {
-                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).val()+'</h3></div></div>');
+        $('.tipoSolicitudes').on('click', function() {
+                console.log($(this).val());
+                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
                 $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
-                if($(this).val() == 'Hardware'){
+                if($(this).data('val') == 'Hardware'){
                    $('#icono-pc').addClass('fa-desktop');
                    $('#icono-pc').addClass('fa-3x'); 
                 }
-                if($(this).val() == 'Software'){
+                if($(this).data('val') == 'Software'){
                    $('#icono-pc').addClass('fa-database');
                    $('#icono-pc').addClass('fa-3x');  
                 }
-                if($(this).val() == 'Otros'){
+                if($(this).data('val') == 'Otros'){
                     $('#icono-pc').addClass('fa-envelope');
                     $('#icono-pc').addClass('fa-3x'); 
                 }
-
+                
+                $('#formPrincipal').css('display', 'block');
+                $('#tipoSolicitudContainer').css('display', 'none');
+                $('#modalBodyCreate').css('height', '500px');
             });
         $('.stp-trat-btn').click(
             function(){
