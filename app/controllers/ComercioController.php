@@ -110,7 +110,7 @@ class ComercioController extends ControllerBase
         show: false
     }
 }); ";
-		echo $this->view->render('themeLudico',array('lmView'=>'menu/leftMenu','pcView'=>'solicitudes/dashboard','pcData'=>'', 'jsScript'=>$jsScript));
+		echo $this->view->render('themeLudicoM',array('lmView'=>'menu/leftMenu','pcView'=>'solicitudes/dashboard','pcData'=>'', 'jsScript'=>$jsScript));
     }
 
     public function consultarAction()
@@ -174,6 +174,10 @@ class ComercioController extends ControllerBase
     {
     	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
     }
+    public function dashboardMAction()
+    {
+    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'pcView'=>'solicitudes/dashboardM', 'pcData'=>''));    
+    }	
 
 
 }
