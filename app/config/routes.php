@@ -9,6 +9,11 @@ $router->add('/login', array(
     'action' => 'login'
 ));
 
+$router->add('/', array(
+    'controller' => 'comercio',
+    'action' => 'index'
+));
+
 $router->add('/logout', array(
     'controller' => 'session',
     'action' => 'logout'

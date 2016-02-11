@@ -72,10 +72,16 @@
 	background-color: #46b8da;
 }
 
-			#menu-horizontal .widget{
-				background:url('../img/template/ie8_opacity_dark_60.png') repeat !important;
-				background:rgba(0, 0, 0, 0.6) !important;
-			}
+#menu-horizontal .widget{
+	background:url('../img/template/ie8_opacity_dark_60.png') repeat !important;
+	background:rgba(0, 0, 0, 0.6) !important;
+	max-height: 137px;
+	color:white;
+}
+
+#menu-horizontal .active{
+	background:rgba(205, 210, 5, 0.62) !important;
+}
 
 #lista-solicitudes .widget{
     max-width: 24em;
@@ -132,8 +138,20 @@
 
 					<!-- Menu Horizontal -->
 					<div class="row" id="menu-horizontal">
-					    <div class="col-sm-3">
-					        <a  href="#modal-create" data-toggle="modal" class="widget widget-hover-effect1">
+					    <div class="col-sm-2 col-sm-offset-1">
+					        <a  href="<?php print($this->url->get('comercio')) ?>" data-toggle="modal" class="widget <?php print($menuSel == 'dashboard'?'active':'') ?> widget-hover-effect1">
+					            <div class="widget-simple text-center">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#B3B0A1 !important;">
+					                    <i class="fa fa-tachometer"></i>
+					                </div>
+					                <h3 class="widget-content text-center animation-pullDown">
+					                 <strong>Dashboard</strong><br>
+					                </h3>
+					            </div>
+					        </a>          
+					    </div>					
+					    <div class="col-sm-2">
+					        <a  href="#modal-create" data-toggle="modal" class="widget <?php print($menuSel == 'nuevaSol'?'active':'') ?> widget-hover-effect1">
 					            <div class="widget-simple text-center">
 					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#EAC50D !important;">
 					                    <i class="fa fa-plus-circle"></i>
@@ -144,8 +162,8 @@
 					            </div>
 					        </a>          
 					    </div>
-					    <div class="col-sm-3">
-					        <a href="<?php print($this->url->get('comercio/consultar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263" >
+					    <div class="col-sm-2">
+					        <a href="<?php print($this->url->get('comercio/consultar')) ?>" class="widget <?php print($menuSel == 'consultarSol'?'active':'') ?> widget-hover-effect1" style="background-color:#394263" >
 					            <div class="widget-simple text-center">
 					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px; background-color:#35961C !important;">
 					                    <i class="fa fa-search"></i>
@@ -156,8 +174,8 @@
 					            </div>
 					        </a>           
 					    </div>
-					    <div class="col-sm-3">
-					        <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" style="background-color:#394263;" >
+					    <div class="col-sm-2">
+					        <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget <?php print($menuSel == 'evaluarSol'?'active':'') ?> widget-hover-effect1" style="background-color:#394263;" >
 					            <div class="widget-simple text-center">
 					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 45px;">
 					                <i class="fa fa-check"></i>
@@ -168,10 +186,10 @@
 					            </div>
 					        </a>         
 					    </div>
-					    <div class="col-sm-3">
-					        <a href="javascript:void(0)" class="widget widget-hover-effect1" style="background-color:#394263" >
+					    <div class="col-sm-2">
+					        <a href="javascript:void(0)" class="widget <?php print($menuSel == 'formularioIns'?'active':'') ?> widget-hover-effect1" style="background-color:#394263" >
 					            <div class="widget-simple text-center">
-					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="margin: 0 65px; background-color:#8A6D3B !important; ">
+					                <div class="widget-icon themed-background-autumn animation-fadeIn text-center" style="background-color:#8A6D3B !important; ">
 					                    <i class="fa fa-file-text"></i>
 					                </div>
 					                <h3 class="widget-content text-center animation-pullDown">
