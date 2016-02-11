@@ -211,13 +211,31 @@
                 <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div id="modal_header_1" class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title">Nueva Solicitud</h3>
+                                <h3 class="modal-title_1">Nueva Solicitud</h3>
                             </div>
-							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
+							<div class="modal-body" style="overflow: hidden; width: auto; height: 491px;">
 								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
 								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
+								<fieldset>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label class="col-md-4 control-label" for="scsl_cdg">Tipo de Solicitud:</label>
+												<div class="col-md-8">
+													<select id="tipoSolicitud" name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de solicitud" style="display: none;">
+														<option value="" selected="selected"></option>
+														<option value="Hardware">Hardware</option>
+														<option value="Software">Software</option>
+														<option value="Otros">Otros..</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</fieldset>
+								<br>
 								<fieldset>
 									<div class="row">
 										<div class="col-md-6">

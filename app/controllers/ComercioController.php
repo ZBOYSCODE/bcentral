@@ -10,6 +10,12 @@ class ComercioController extends ControllerBase
     public function indexAction()
     {   
         $jsScript = "
+            $('#tipoSolicitud').on('change', function() {
+                $('#modal_header_1').html('<h3>Nueva Solicitud de '+$(this).val()+'</h3>');
+                $('#modal_header_1').append('<i id=icono-pc class=fa></i>');
+                $('#icono-pc').addClass('fa-desktop');
+            });
+
             // Get the elements where we will attach the charts
             var dashWidgetChart = $('#dash-widget-chart');
 
