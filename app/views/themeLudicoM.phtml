@@ -219,256 +219,242 @@
                     </footer>
                     <!-- END Footer -->
 
+
+
                 <!-- Large Modal -->
                 <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
-                            <div id="modal_header_1" class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h3 class="modal-title_1">Nueva Solicitud</h3>
+                            <div  class="modal-header">
+                            	<div id="breadcrumbs">
+                            		<span id="textInicio"><strong>Inicio</strong></span>
+                            		<a id="bcInicio" href="javascript:void(0)" class="nsMenu nsBoton hidden" data-next="inicial"><strong>Inicio</strong></a> 
+									<span class="nsBoton-tecnologia nsMenu hidden">
+										<i class="fa fa-arrow-right"></i>	
+										<span id="textTecnologia">Tecnología</span>
+									</span>
+									<span class="nsBoton-aplicaciones nsMenu hidden">
+										<i class="fa fa-arrow-right"></i>	
+										<span id="textAplicaciones">Aplicaciones</span>
+									</span>
+									<span class="nsBoton-form-solicitudes nsMenu hidden">
+										<i class="fa fa-arrow-right"></i>	
+										<span id="textFormSolicitudes"></span>
+									</span>									
+                            	</div>
+                            	<div id="modal_header_1">
+	                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                                <h1 class="modal-title_1"><i class="fa fa-plus-circle"> </i> Nueva <strong>Solicitud</strong></h1>
+                            	</div>
                             </div>
-							<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto; height: 250px;">
+							<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto;">
 								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
-								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
-								<fieldset id="tipoSolicitudContainer">
-									<div class="row">
-										<div class="col-md-4 text-center">
-											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Hardware"><i class="fa fa-desktop fa-5x"></i></a>
-											<br>
-											<h4>Hardware</h4>
-										</div>
-										<div class="col-md-4 text-center">
-											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Software"><i class="fa fa-database fa-5x"></i></a>
-											<br>
-											<h4>Software</h4>
-										</div>
-										<div class="col-md-4 text-center">
-											<a href="javascript:void(0)" class="tipoSolicitudes" data-val="Otros"><i class="fa fa-envelope fa-5x"></i></a>
-											<br>
-											<h4>Otros</h4>
-										</div>
+								<h4><div class="block-title alert alert-warning" id="infoTitle">Seleccione tipo de solicitud</div></h4>
+								<!--Primera Vista-->
+								<div class="row strap nsBoton-inicial">
+									<div class="col-md-6 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-val="Tecnología" data-next="tecnologia" data-type="primeraVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-desktop fa-5x" ></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Tecnología</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
 									</div>
-								</fieldset>
-								<br>
-								<div id="formPrincipal" style="display:none">
-									
+									<div class="col-md-6 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-val="Servicios" data-type="primeraVista" data-next="form-solicitudes"style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-bullhorn fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Servicios</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>	
+								</div>
 
-								<fieldset>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
+								<!-- Segunda Vista-->
 
-										<label class="col-md-4 control-label" for="scsl_cdg">
-											<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" >
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">
-											<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
-										<div class="col-md-8">
-											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno" style="display: none;">
-												<option value="" selected="selected"></option>
-												<option value="ALTO">Alto</option>
-												<option value="MEDIO">Medio</option>
-												<option value="BAJO">Bajo</option>
-											</select>
-										</div>
-									</div>
-										</div>
-									</div>
-									
-																
-								</fieldset>
-								<br>         
-								
-								<fieldset>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" >
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">
-											<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
-										<div class="col-md-8">
-											<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia" style="display: none;">
-												<option value="" selected="selected"></option>
-												<option value="ALTO">Muy Urgente</option>
-												<option value="MEDIO">Urgente</option>
-												<option value="BAJO">Poco Urgente</option>
-											</select>
-										</div>
-									</div>
-										</div>
-									</div>	 
-								</fieldset>
-								<br>
-								<fieldset>
+								<div class="row strap nsBoton-tecnologia hidden">
+									<div class="col-md-3 text-center ">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-val="Aplicaciones" data-next="aplicaciones" data-type="segundaVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-suitcase fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Aplicaciones</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>	
+									<div class="col-md-3 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Comunicaciones" data-type="segundaVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-commenting-o fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Comunicaciones</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>	
+									<div class="col-md-3 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Correo" data-type="segundaVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-envelope fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Correo</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>											
+									<div class="col-md-3 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-users fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Cuentas y Accesos</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>			
+								</div>
+								<!--TerceraVista -->														
+								<div class="row strap nsBoton-aplicaciones hidden">
+									<div class="col-md-4 text-center ">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Desbloquear" data-type="terceraVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-unlock fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Desbloquear</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>	
+									<div class="col-md-4 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Instalar" data-type="terceraVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-key fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Instalar</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>	
+									<div class="col-md-4 text-center">
+										<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton" data-next="form-solicitudes" data-val="Solucionar Problema" data-type="terceraVista" style="padding-top:20px; border-radius: 20px; background-color: rgba(205, 210, 5, 0.62); color:#394263;"><i class="fa fa-check-square-o fa-5x"></i>
+								            <div class="widget-simple text-center">
+								                <h3 class="widget-content text-center animation-pullDown">
+								                 <strong>Solucionar Problema</strong><br>
+								                </h3>
+								            </div>
+							        	</a>
+									</div>											
+								</div>								
+
+								<!-- Formulario -->			
+								<div class="nsBoton-form-solicitudes hidden strap">
+									<fieldset>
 										<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">
-											<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" >
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">
-											<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" >
-										</div>
-									</div>
-										</div>
-									</div>	 						
-								</fieldset>
-								<br>
-								<div class="block-title" style="margin-top: 0px;"><h2>Información General</h2></div>
-								<fieldset>
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaInicio">
-											<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
-										<div class="col-md-8">
-											<input type="text" class="form-control" >
-											<br>
-										</div>
-									</div>
-									<br>
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaFin">
-											<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
-										<div class="col-md-8">
-											<textarea class="form-control" rows="4" cols="50"></textarea>
-										</div>
-									</div>													
-								</fieldset>	
+											<div class="col-md-6">
+												<div class="form-group">
 
+											<label class="col-md-4 control-label" for="scsl_cdg">
+												<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
+											<div class="col-md-8">
+												<input type="text" class="form-control" >
+											</div>
+										</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+											<label class="col-md-4 control-label" for="scsl_cdg">
+												<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
+											<div class="col-md-8">
+												<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno" style="display: none;">
+													<option value="" selected="selected"></option>
+													<option value="ALTO">Alto</option>
+													<option value="MEDIO">Medio</option>
+													<option value="BAJO">Bajo</option>
+												</select>
+											</div>
+										</div>
+											</div>
+										</div>
+									</fieldset>
+									<br>         
+								
+									<fieldset>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+											<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
+											<div class="col-md-8">
+												<input type="text" class="form-control" >
+											</div>
+										</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+											<label class="col-md-4 control-label" for="scsl_cdg">
+												<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
+											<div class="col-md-8">
+												<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia" style="display: none;">
+													<option value="" selected="selected"></option>
+													<option value="ALTO">Muy Urgente</option>
+													<option value="MEDIO">Urgente</option>
+													<option value="BAJO">Poco Urgente</option>
+												</select>
+											</div>
+										</div>
+											</div>
+										</div>	 
+									</fieldset>
+									<br>
+									<fieldset>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="col-md-4 control-label" for="scsl_cdg">
+														<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
+													<div class="col-md-8">
+														<input type="text" class="form-control" >
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+												<label class="col-md-4 control-label" for="scsl_cdg">
+													<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
+												<div class="col-md-8">
+													<input type="text" class="form-control" >
+												</div>
+												</div>
+											</div>
+										</div>	 						
+									</fieldset>
+									<br>
+								<h4><div class="block-title alert alert-warning">Información General</div></h4>
+									<fieldset>
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="horaInicio">
+												<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
+											<div class="col-md-8">
+												<input type="text" class="form-control" >
+												<br>
+											</div>
+										</div>
+										<br>
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="horaFin">
+												<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
+											<div class="col-md-8">
+												<textarea class="form-control" rows="4" cols="50"></textarea>
+											</div>
+										</div>
+									</fieldset>	
+								</div>								
 							</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cerrar</button>
-                                <button id="btnGuardar" style="display:none" type="button" class="btn btn-sm btn-primary">Guardar</button>
-                            </div>
-                        </div>
-                        </div>
+ 
+                           	<div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                                <button id="btnGuardar" type="button" class="btn btn-sm btn-primary hidden nsBoton-form-solicitudes">Guardar</button>
+                       	 	</div>                        
+                       	 </div>
                     </div>
                 </div>
-                
-                <div id="modal-info" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <div class="row">
-                                	<div class="col-md-10"><h3 class="modal-title">Información de la Solicitud de Hardware</h3></div>
-                                	<div class="col-md-1"></div>
-                                </div>
-                            </div>
-							<div class="modal-body" style="overflow: hidden; width: auto; height: 441px;">
-								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
-								<div class="block-title" id="blockSucursal"><h2>Información Específica</h2></div>
-								<fieldset>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Destinatario:</label>
-										<div class="col-md-8">
-											<p>Alexis Videla</p>
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Impacto:</label>
-										<div class="col-md-8">
-											<p>Alto</p>
-										</div>
-									</div>
-										</div>
-									</div>
-									
-																
-								</fieldset>
-								<br>         
-								
-								<fieldset>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Ubicación:</label>
-										<div class="col-md-8">
-											<p>Piso 1, Oficina 23</p>
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Urgencia:</label>
-										<div class="col-md-8">
-											<p>Muy Urgente</p>
-										</div>
-									</div>
-										</div>
-									</div>	 
-								</fieldset>
-								<br>
-								<fieldset>
-										<div class="row">
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">Servicio Afectado:</label>
-										<div class="col-md-8">
-											<p>Cuenta de Usuario</p>
-										</div>
-									</div>
-										</div>
-										<div class="col-md-6">
-											<div class="form-group">
-										<label class="col-md-4 control-label" for="scsl_cdg">CI Afectado:</label>
-										<div class="col-md-8">
-											<p>--</p>
-										</div>
-									</div>
-										</div>
-									</div>	 						
-								</fieldset>
-								<br>
-								<div class="block-title" style="margin-top: 0px;"><h2>Información General</h2></div>
-								<fieldset>
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaInicio">Título:</label>
-										<div class="col-md-8">
-											<p>Usuario desconfigurado</p>
-											<br>
-										</div>
-									</div>
-									<br>
-									<div class="form-group">
-										<label class="col-md-4 control-label" for="horaFin">Descripción:</label>
-										<div class="col-md-8">
-											<p>Usuario no ha podido entrar a su cuenta de usuario en los últimos días, le aparece que la cuenta expiró.</p>
-										</div>
-									</div>													
-								</fieldset>	
 
-							</div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>	
                 <!-- END Large Modal -->
 				
 <style>
@@ -664,7 +650,150 @@
 		<script>
 			/*var nodeServer = '<?php //print($this->config->item('socketServer'))?>';
 			var socket = io(nodeServer);*/
-		</script>		
+		</script>	
+
+	    <script>
+			$('.nsBoton').click(function(event) {
+				$('.strap').addClass('hidden');
+
+				if($(this).data('next') == 'inicial'){
+					$('#bcInicio').addClass('hidden');
+					$('#textInicio').removeClass('hidden');	
+					$('.nsMenu').addClass('hidden');
+					$('.nsBoton-inicial').removeClass('hidden');
+					$('#infoTitle').html('Seleccione tipo de solicitud');
+					$('#btnGuardar').addClass('hidden');
+				}
+				if($(this).data('next') == 'tecnologia'){
+					$('#textInicio').addClass('hidden');
+					$('#bcInicio').removeClass('hidden');
+					$('.nsBoton-tecnologia').removeClass('hidden');
+				}
+				if($(this).data('next') == 'aplicaciones'){
+					$('.nsBoton-aplicaciones').removeClass('hidden');	
+				}
+
+				if($(this).data('next') == 'form-solicitudes'){
+					$('#textFormSolicitudes').removeClass('hidden');
+					if($(this).data('type') == 'terceraVista'){
+						$('#textFormSolicitudes').html($(this).data('val'));				
+					} else if ($(this).data('type') == 'segundaVista') {
+						$('#textFormSolicitudes').html($(this).data('val'));						
+					} else if ($(this).data('type') == 'primeraVista') {
+						$('#bcInicio').removeClass('hidden');
+						$('#textInicio').addClass('hidden');
+						$('#textFormSolicitudes').html($(this).data('val'));
+					}
+					$('#infoTitle').html('Información Específica');
+					$('.nsBoton-form-solicitudes').removeClass('hidden');	
+				}
+	        });                    	
+	    </script>			
+
+		<script>
+
+
+            // Get the elements where we will attach the charts
+            var dashWidgetChart = $('#dash-widget-chart');
+
+            // Random data for the chart
+            var dataEarnings = [[1, 1560], [2, 1650], [3, 1320], [4, 1950], [5, 1800]];
+            var dataSales = [[1, 800], [2, 847], [3, 480], [4, 950], [5, 600]];
+            var dataPendientes = [[1, 583], [2, 782], [3, 749], [4, 273], [5, 356]];
+            var dataCurso = [[1, 291], [2, 385], [3, 185], [4, 592], [5, 527]];
+
+            // Array with month labels used in chart
+            var chartMonths = [[1, 'Enero'], [2, 'Febrero'], [3, 'Marzo'], [4, 'Abril'], [5, 'Mayo']];
+
+            // Initialize Dash Widget Chart
+            $.plot(dashWidgetChart,
+                [
+                    {
+                        data: dataEarnings,
+                        lines: {show: true, fill: false},
+                        points: {show: true, radius: 6, fillColor: 'green'}
+                    },
+                    {
+                        data: dataSales,
+                        lines: {show: true, fill: false},
+                        points: {show: true, radius: 6, fillColor: '#CACA08'}
+                    },
+                    {
+                        data: dataPendientes,
+                        lines: {show: true, fill: false},
+                        points: {show: true, radius: 6, fillColor: '#C30101'}
+                    },
+                    {
+                        data: dataCurso,
+                        lines: {show: true, fill: false},
+                        points: {show: true, radius: 6, fillColor: 'grey'}
+                    }                   
+                ],
+                {
+                    colors: ['#ffffff', 'white','white','white'],
+                    legend: {show: false},
+                    grid: {borderWidth: 0, hoverable: true, clickable: true},
+                    yaxis: {show: false},
+                    xaxis: {show: false, ticks: chartMonths}
+                }
+            );          
+
+            // Creating and attaching a tooltip to the widget
+            var previousPoint = null, ttlabel = null;
+            dashWidgetChart.bind('plothover', function(event, pos, item) {
+
+                if (item) {
+                    if (previousPoint !== item.dataIndex) {
+                        previousPoint = item.dataIndex;
+
+                        $('#chart-tooltip').remove();
+                        var x = item.datapoint[0], y = item.datapoint[1];
+
+                        // Get xaxis label
+                        var monthLabel = item.series.xaxis.options.ticks[item.dataIndex][1];
+
+                        if (item.seriesIndex === 1) {
+                            ttlabel = '<strong>' + y + '</strong> Cerradas en <strong>' + monthLabel + '</strong>';
+                        } else if(item.seriesIndex === 2) {
+                            ttlabel = '<strong>' + y + '</strong> Pendientes en <strong>' + monthLabel + '</strong>';
+                        } else if(item.seriesIndex === 3) {
+                            ttlabel = '<strong>' + y + '</strong> En Curso en <strong>' + monthLabel + '</strong>';
+                        } else {
+                            ttlabel = '<strong>' + y + '</strong> Abiertas en <strong>' + monthLabel + '</strong>';
+                        }
+
+
+                        $('<div id=chart-tooltip class=chart-tooltip >' + ttlabel + '</div>')
+                            .css({top: item.pageY - 50, left: item.pageX - 50}).appendTo('body').show();
+                    }
+                }
+                else {
+                    $('#chart-tooltip').remove();
+                    previousPoint = null;
+                }
+            });
+
+            $.plot('#placeholder', data, {
+					    series: {
+					        pie: { 
+					            show: true,
+					            radius: 1,
+					            label: {
+					                show: true,
+					                radius: 3/4,
+					                formatter: labelFormatter,
+					                background: { 
+					                    opacity: 0.5,
+					                    color: '#000'
+					                }
+					            }
+					        }
+					    },
+					    legend: {
+					        show: false
+					    }
+					}); 			
+		</script>
 
 			
 		<?php

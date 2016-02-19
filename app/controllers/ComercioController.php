@@ -9,185 +9,17 @@ class ComercioController extends ControllerBase
      */
     public function indexAction()
     {   
-        $jsScript = "
-            $('.tipoSolicitudes').on('click', function() {
-                console.log($(this).val());
-                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
-                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
-                if($(this).data('val') == 'Hardware'){
-                   $('#icono-pc').addClass('fa-desktop');
-                   $('#icono-pc').addClass('fa-3x'); 
-                }
-                if($(this).data('val') == 'Software'){
-                   $('#icono-pc').addClass('fa-database');
-                   $('#icono-pc').addClass('fa-3x');  
-                }
-                if($(this).data('val') == 'Otros'){
-                    $('#icono-pc').addClass('fa-envelope');
-                    $('#icono-pc').addClass('fa-3x'); 
-                }
-                
-                $('#formPrincipal').css('display', 'block');
-                $('#tipoSolicitudContainer').css('display', 'none');
-                $('#modalBodyCreate').css('height', '500px');
-                $('#btnGuardar').css('display', '');
-            });
-
-            // Get the elements where we will attach the charts
-            var dashWidgetChart = $('#dash-widget-chart');
-
-            // Random data for the chart
-            var dataEarnings = [[1, 1560], [2, 1650], [3, 1320], [4, 1950], [5, 1800]];
-            var dataSales = [[1, 800], [2, 847], [3, 480], [4, 950], [5, 600]];
-            var dataPendientes = [[1, 583], [2, 782], [3, 749], [4, 273], [5, 356]];
-            var dataCurso = [[1, 291], [2, 385], [3, 185], [4, 592], [5, 527]];
-
-            // Array with month labels used in chart
-            var chartMonths = [[1, 'Enero'], [2, 'Febrero'], [3, 'Marzo'], [4, 'Abril'], [5, 'Mayo']];
-
-            // Initialize Dash Widget Chart
-            $.plot(dashWidgetChart,
-                [
-                    {
-                        data: dataEarnings,
-                        lines: {show: true, fill: false},
-                        points: {show: true, radius: 6, fillColor: 'green'}
-                    },
-                    {
-                        data: dataSales,
-                        lines: {show: true, fill: false},
-                        points: {show: true, radius: 6, fillColor: '#CACA08'}
-                    },
-                    {
-                        data: dataPendientes,
-                        lines: {show: true, fill: false},
-                        points: {show: true, radius: 6, fillColor: '#C30101'}
-                    },
-                    {
-                        data: dataCurso,
-                        lines: {show: true, fill: false},
-                        points: {show: true, radius: 6, fillColor: 'grey'}
-                    }                   
-                ],
-                {
-                    colors: ['#ffffff', 'white','white','white'],
-                    legend: {show: false},
-                    grid: {borderWidth: 0, hoverable: true, clickable: true},
-                    yaxis: {show: false},
-                    xaxis: {show: false, ticks: chartMonths}
-                }
-            );          
-
-            // Creating and attaching a tooltip to the widget
-            var previousPoint = null, ttlabel = null;
-            dashWidgetChart.bind('plothover', function(event, pos, item) {
-
-                if (item) {
-                    if (previousPoint !== item.dataIndex) {
-                        previousPoint = item.dataIndex;
-
-                        $('#chart-tooltip').remove();
-                        var x = item.datapoint[0], y = item.datapoint[1];
-
-                        // Get xaxis label
-                        var monthLabel = item.series.xaxis.options.ticks[item.dataIndex][1];
-
-                        if (item.seriesIndex === 1) {
-                            ttlabel = '<strong>' + y + '</strong> Cerradas en <strong>' + monthLabel + '</strong>';
-                        } else if(item.seriesIndex === 2) {
-                            ttlabel = '<strong>' + y + '</strong> Pendientes en <strong>' + monthLabel + '</strong>';
-                        } else if(item.seriesIndex === 3) {
-                            ttlabel = '<strong>' + y + '</strong> En Curso en <strong>' + monthLabel + '</strong>';
-                        } else {
-                            ttlabel = '<strong>' + y + '</strong> Abiertas en <strong>' + monthLabel + '</strong>';
-                        }
-
-
-                        $('<div id=chart-tooltip class=chart-tooltip >' + ttlabel + '</div>')
-                            .css({top: item.pageY - 50, left: item.pageX - 50}).appendTo('body').show();
-                    }
-                }
-                else {
-                    $('#chart-tooltip').remove();
-                    previousPoint = null;
-                }
-            });
-
-            $.plot('#placeholder', data, {
-    series: {
-        pie: { 
-            show: true,
-            radius: 1,
-            label: {
-                show: true,
-                radius: 3/4,
-                formatter: labelFormatter,
-                background: { 
-                    opacity: 0.5,
-                    color: '#000'
-                }
-            }
-        }
-    },
-    legend: {
-        show: false
-    }
-}); ";
-		echo $this->view->render('themeLudicoM',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>'', 'jsScript'=>$jsScript));
+		echo $this->view->render('themeLudicoM2',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>''));
     }
 
     public function consultarAction()
     {   
-        $jsScript = "$('.tipoSolicitudes').on('click', function() {
-                console.log($(this).val());
-                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
-                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
-                if($(this).data('val') == 'Hardware'){
-                   $('#icono-pc').addClass('fa-desktop');
-                   $('#icono-pc').addClass('fa-3x'); 
-                }
-                if($(this).data('val') == 'Software'){
-                   $('#icono-pc').addClass('fa-database');
-                   $('#icono-pc').addClass('fa-3x');  
-                }
-                if($(this).data('val') == 'Otros'){
-                    $('#icono-pc').addClass('fa-envelope');
-                    $('#icono-pc').addClass('fa-3x'); 
-                }
-                
-                $('#formPrincipal').css('display', 'block');
-                $('#tipoSolicitudContainer').css('display', 'none');
-                $('#modalBodyCreate').css('height', '500px');
-                $('#btnGuardar').css('display', '');
-            });";
-    	echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
+    	echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
     }
 
     public function evaluarAction()
     {
         $jsScript = "
-        $('.tipoSolicitudes').on('click', function() {
-                console.log($(this).val());
-                $('#modal_header_1').html('<div id=filaSolicitud class=row><div class=col-md-10><h3>Nueva Solicitud de '+$(this).data('val')+'</h3></div></div>');
-                $('#filaSolicitud').append('<div class=col-md-1><br><i id=icono-pc class=fa height=200px width=200px></i></div>');
-                if($(this).data('val') == 'Hardware'){
-                   $('#icono-pc').addClass('fa-desktop');
-                   $('#icono-pc').addClass('fa-3x'); 
-                }
-                if($(this).data('val') == 'Software'){
-                   $('#icono-pc').addClass('fa-database');
-                   $('#icono-pc').addClass('fa-3x');  
-                }
-                if($(this).data('val') == 'Otros'){
-                    $('#icono-pc').addClass('fa-envelope');
-                    $('#icono-pc').addClass('fa-3x'); 
-                }
-                
-                $('#formPrincipal').css('display', 'block');
-                $('#tipoSolicitudContainer').css('display', 'none');
-                $('#modalBodyCreate').css('height', '500px');
-                $('#btnGuardar').css('display', '');
-            });
         $('.stp-trat-btn').click(
             function(){
 
@@ -235,7 +67,7 @@ class ComercioController extends ControllerBase
                 $('#stp-trat-'+$(this).data('next')).css('display','block');
             }
         );      ";
-        echo $this->view->render('themeLudicoM', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
+        echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
 
     public function migueloAction()
