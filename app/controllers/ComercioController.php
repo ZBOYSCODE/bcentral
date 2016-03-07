@@ -9,12 +9,18 @@ class ComercioController extends ControllerBase
      */
     public function indexAction()
     {   
-		echo $this->view->render('themeLudicoM2',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>''));
+        echo $this->view->render('theme_bcentral',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>''));
+		//echo $this->view->render('themeLudicoM2',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>''));
     }
 
     public function consultarAction()
     {   
-    	echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+        echo $this->view->render('theme_bcentral', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+    	//echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu', 'menuSel'=>'consultarSol','pcView'=>'solicitudes/consultaSolicitud', 'pcData'=>''));    
+    }
+
+    public function conocimientoAction() {
+          echo $this->view->render('theme_bcentral_conocimiento',array('lmView'=>'menu/leftMenu','menuSel'=>'dashboard','pcView'=>'solicitudes/dashboardM','pcData'=>''));
     }
 
     public function evaluarAction()
@@ -67,7 +73,7 @@ class ComercioController extends ControllerBase
                 $('#stp-trat-'+$(this).data('next')).css('display','block');
             }
         );      ";
-        echo $this->view->render('themeLudicoM2', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
+        echo $this->view->render('theme_bcentral_evaluar', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>'solicitudes/evaluarSolicitud', 'pcData'=>'', 'jsScript'=>$jsScript));    
     }
 
     public function migueloAction()

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title><?php print($this->config->appTitle)?></title>
+
+	<meta name="description" content="<?php print($this->config->appTitle)?>">
+	<meta name="author" content="<?php print($this->config->appAutor)?>">
+	<meta name="robots" content="noindex, nofollow">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+
+	<!-- Icons -->
+	<!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+	<link rel="shortcut icon" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="assets/img/icon57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="assets/img/icon72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="assets/img/icon76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="assets/img/icon114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="assets/img/icon120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="assets/img/icon144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="assets/img/icon152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="assets/img/icon180.png" sizes="180x180">
+	<!-- END Icons -->
+
+	<!-- Stylesheets -->
+	<!-- Bootstrap is included in its original form, unaltered -->
+    <?php print($this->tag->stylesheetLink("css/bootstrap.min.css"))?>
+
+	<!-- Related styles of various icon packs and plugins -->
+    <?php print($this->tag->stylesheetLink("css/plugins.css"))?>
+
+	<!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <?php print($this->tag->stylesheetLink("css/main.css"))?>
+
+	<!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+    <?php print($this->tag->stylesheetLink("css/themes.css"))?>
+
+    <!-- tema personalizado para bc -->
+    <?php print($this->tag->stylesheetLink("css/bcentral-custom.css"))?>
+	<!-- END Stylesheets -->
+
+	<?php
+		if(isset($addCss)){
+			foreach($addCss as $link){
+				print($this->tag->stylesheetLink($link));
+			}
+		}
+	?>
+	
+	<!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
+	<?php print($this->tag->javascriptInclude("js/vendor/modernizr-respond.min.js"))?>
+
+</head>
+<body class="page-loading">
+		<div id="page-container" class="style-alt">
+	        <!-- Main Container -->
+	        <div id="main-container">
+
+	            <header class="navbar navbar-default theme-banco-central ">
+	                <!-- Navbar Header -->
+		            <div class="navbar-header">
+		                <!-- Horizontal Menu Toggle + Alternative Sidebar Toggle Button, Visible only in small screens (< 768px) -->
+		                <ul class="nav navbar-nav-custom pull-right visible-xs">
+		                    <li>
+		                        <a href="javascript:void(0)" data-toggle="collapse" data-target="#horizontal-menu-collapse">Menu</a>
+		                    </li>
+		                </ul>
+		                <!-- END Horizontal Menu Toggle + Alternative Sidebar Toggle Button -->
+
+		            </div>
+		            <!-- END Navbar Header -->
+
+		            <div id="horizontal-menu-collapse" class="collapse navbar-collapse">
+
+			            <!-- Alternative Sidebar Toggle Button, Visible only in large screens (> 767px) -->
+			            <ul class="nav navbar-nav-custom pull-right hidden-xs">
+							<li class="dropdown">
+			                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+			                        <i class="gi gi-user"></i><strong> Alejandro Aguilera</strong> <i class="fa fa-angle-down"></i>
+			                    </a>
+			                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+			                        <li class="dropdown-header text-center">Opciones</li>
+			                        <li>
+			                            <a href="page_ready_timeline.php">
+			                                <i class="fa fa-ban fa-fw pull-right"></i>
+			                                Desconectarse
+			                            </a>
+			                        </li>
+
+			                    </ul>
+			                </li>
+			            </ul>
+		            </div>
+	            </header>
+	            <!-- END Header -->
+
+	            <!-- Page Content -->
+	            <div id="page-content" class="clearfix">
+	                <!-- Dashboard Header -->
+				    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+				    <div class="content-header content-header-media">
+				        <div class="header-section header-section-bc">
+				            <div class="row">
+				                <!-- Main Title (hidden on small devices for the statistics to fit) -->
+				                <div class="col-md-2 col-lg-1 col-xs-2">
+				               		<img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
+				                </div>
+				                <div class="col-md-6 col-lg-6 col-xs-6">
+				                    <h1>Bienvenido al <strong>Portal TI</strong><br><small>Banco Central de Chile</small></h1>
+				                </div>
+				                <!-- END Main Title -->
+
+				                <!-- Top Stats -->
+
+				                <!-- END Top Stats -->
+				            </div>
+				        </div>
+				        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+				        <img src="<?php print($this->url->get("img/background-encabezado2.png"))?>" alt="header image" class="" style="width: 100%;opacity: 0.9;">
+				    </div>
+				    <!-- END Dashboard Header -->
+
+				    <!-- Widgets Row -->
+				    <div class="row">
+				        <div class="col-md-7 ">
+				            <!-- Timeline Widget -->
+				            <div class="widget ">
+				                <div class="widget-extra themed-background-dark">
+				                    <div class="widget-options">
+				                    </div>
+				                    <h3 class="widget-content-light">
+				                        Nueva <strong>Solicitud</strong>
+				                        <small><a href="page_ready_timeline.php"><strong></strong></a></small>
+				                    </h3>
+				                </div>
+				                <div class="widget-extra widget-catalogo">
+
+							        <!-- Working Tabs Content -->
+							        <div class="row row-catalogo">
+					                   <ul class="nav nav-tabs fix-tabs">
+					                      <li class="active tab-bc"><a class="menu-bc" data-toggle="tab" href="#pest1">Servicios</a></li>
+					                      <li class="tab-bc  "><a class="menu-bc" data-toggle="tab" href="#pest2">Soporte</a></li>
+					                    </ul>
+
+				                        <div class="tab-content">
+					                        <div class="tab-pane fade in active" id="pest1">
+					                            <div class="modal-body">
+					                             	<ul class="nav-horizontal text-center catalogo-lista-home">
+														<li class="three-menu">
+														<a  id="btnTec" href="#modal-create" data-toggle="modal" ><i class="gi gi-display "></i> Tecnología</a>
+														</li>
+														<li class="three-menu">
+														<a id="btnServ" href="#modal-createsv" data-toggle="modal" ><i class="gi gi-bullhorn "></i> Servicios Generales</a>
+														</li>
+														<li class="three-menu">
+														<a id="btnOtros" href="#modal-createsv" data-toggle="modal"><i class="gi gi-group "></i>Otros Servicios</a>
+														</li>
+													</ul>
+					                            </div>                                                
+					                        </div>
+
+					                        <div class="tab-pane fade" id="pest2">
+												<div class="modal-body">
+								                    <div class="form-group">
+								                        <label class="col-md-3 control-label" for="example-text-input">Solicitante</label>
+								                        <div class="col-md-9">
+								                            <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Text">
+								                        </div>
+								                    </div>
+								                    <div class="form-group">
+								                        <label class="col-md-3 control-label" for="example-text-input">Destinatario</label>
+								                        <div class="col-md-9">
+								                            <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Text">
+								                        </div>
+								                    </div>
+
+								                     <div class="form-group">
+								                        <label class="col-md-3 control-label" for="example-text-input">Descripción</label>
+								                        <div class="col-md-9">
+								                            <textarea id="example-textarea-input" name="example-textarea-input" rows="9" class="form-control" placeholder="Descripcion problema.."></textarea>
+								                        </div>
+								                    </div>
+
+			                                        <div class="form-group">
+												        <label class="col-md-3 control-label" for="example-file-input">Adjunto</label>
+												        <div class="col-md-9">
+												            <input type="file" id="example-file-input" name="example-file-input">
+												        </div>
+												    </div>
+
+		    										<div class="form-group pull-right">
+														<div class="col-sm-12">
+															<button type="button" class="btn btn-success">Enviar</button>
+														</div>
+													</div>
+												</div>                                         
+					                        </div>
+				                        </div>
+							        </div>
+							        <!-- END Working Tabs Content -->
+
+								</div>
+			                </div>
+				            <!-- END Timeline Widget -->
+				        </div>
+
+				        <div class="col-md-5">
+				            <!-- Your Plan Widget -->
+				            <div class="widget">
+				                <div class="widget-extra themed-background-dark">
+				                    <h3 class="widget-content-light">
+				                       <strong>Consultar</strong> Solicitud 
+				                        <small><a href="page_ready_pricing_tables.php"><strong></strong></a></small>
+				                        <small>Ultimos tickets</small>
+				                    </h3>
+
+				                </div>
+				                <div class="widget-extra-full">
+				                    <div class="row ">
+									                                            <!-- Tickets List -->
+					                    <div class="tab-pane active" id="tickets-list">
+					                        <div class="block-content-full">
+					                            <div class="table-responsive remove-margin-bottom">
+					                                <table class="table table-bc table-striped table-vcenter remove-margin-bottom">
+					                                    <thead>
+					                                        <tr>
+					                                            <th class="">ID</th>
+					                                            <th>Estado</th>
+					                                            <th>Categoria</th>
+					                                        </tr>
+					                                    </thead>
+					                                    <tbody>
+					                                        <tr>
+					                                            <td class="text-center">#TCK420</td>
+					                                            <td><span class="label label-danger">PENDIENTE</span></td>
+					                                            <td>Cambiar Contraseña</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK421</td>
+					                                            <td><span class="label label-danger">PENDIENTE</span></td>
+					                                            <td>Comunicaciones y mensajeria</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK422</td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Insalar Configurar</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK425</td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                        </tr>
+					                                    </tbody>
+					                                </table>
+					                                <div class="col-md-12 text-center">
+					                                	<a style="font-size: 16px;" href="">Ver todos ...</a>
+					                                </div>
+					                            </div>
+					                            <div class="text-center pull-right">
+					                            <br>
+					                            		<div class="col-sm-6">
+															 <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Nº Ticket">
+														</div>
+														<div class="col-sm-6">
+															<button type="button" class="btn btn-success">Buscar tickets</button>
+														</div>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <!-- END Tickets List -->
+				                    </div>
+				                </div>
+				            </div>
+				            <!-- END Your Plan Widget -->
+
+
+
+				            <!-- Your Plan Widget -->
+
+				            <!-- END Your Plan Widget -->
+
+				            				        	<!-- Timeline Widget -->
+				            <div class="widget-eval">
+				                <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" >
+					                <div class="widget-simple">
+					                    <div class="pull-left icon-wg">
+					                       <i class="hi hi-ok"></i>
+					                    </div>
+					                    <h2 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
+					                        Evaluar <strong>Servicio</strong><br>
+					                        <small class="widget-simple-bc-leyend">Evalua las solicitudes cerradas</small>
+					                    </h2>
+					                </div>
+					            </a>
+					            <a href="<?php print($this->url->get('comercio/conocimiento')) ?>" class="widget widget-hover-effect1" >
+					                <div class="widget-simple">
+					                    <div class="pull-left icon-wg">
+					                       <i class="hi hi-search"></i>
+					                    </div>
+					                    <h4 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
+					                        Base de  <strong>Conocimiento</strong><br>
+					                        <small class="widget-simple-bc-leyend">Busca documentos </small>
+					                    </h4>
+					                </div>
+					            </a>
+				            </div>
+				            <!-- END Timeline Widget -->
+
+				        </div>
+
+				    </div>
+				    <!-- END Widgets Row -->
+
+
+	            </div>
+	            <!-- END Page Content -->
+
+	            <!-- Footer -->
+	            <footer class="clearfix">
+	                <div class="pull-right">
+	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
+	            	</div>
+		            <div class="pull-left">
+		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank">Portal TI - BCCH</a>
+		            </div>
+	            </footer>
+	            <!-- END Footer -->
+	        </div>
+       		<!-- END Main Container -->
+
+			<!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+			<a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+		</div>
+    	<!-- END Page Container -->
+
+
+
+
+        <!-- Large Modal -->
+        <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+
+                	<!-- BREADCRUMBS -->
+                    <div  class="modal-header">
+                    	<div id="breadcrumbs">
+                  
+							<span class="bcTecnologia nsMenu hidden">
+								<i class="fa fa-arrow-right"></i>	
+								<span id="textTecnologia">Tecnología</span>
+							</span>
+							<span class="bcAplicaciones nsMenu hidden">
+								<i class="fa fa-arrow-right"></i>	
+								<span id="textAplicaciones">Aplicaciones de Negocio</span>
+							</span>
+							<span class="bcFormSolicitudes nsMenu hidden">
+								<i class="fa fa-arrow-right"></i>	
+								<span id="textFormSolicitudes"></span>
+							</span>									
+                    	</div>
+                    	<div id="modal_header_1">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h1 class="modal-title_1"><i class="fa fa-plus-circle"> </i> Nueva <strong>Solicitud</strong></h1>
+                    	</div>
+                    </div>
+                    <!-- ./BREADCRUMBS -->
+
+
+
+
+					<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto;">
+						<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
+						<h4>Seleccione tipo de solicitud</h4>
+
+
+						<!-- Segunda Vista-->
+
+						<div class="row strap nsBoton-tecnologia defaultClass">
+							<div class="col-md-3 text-center ">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" ><i class="fa fa-suitcase fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Aplicaciones de Negocio</strong><br>
+						                </h3>
+						          		<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>      
+						            </div>
+					        	</a>
+							</div>	
+							<div class="col-md-3 text-center">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Comunicaciones y Mensajería" data-type="segundaVista" style=" min-height:269px;"><i class="fa fa-commenting-o fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Comunicaciones y Mensajería</strong><br>
+						                </h3>
+						                <span>Habilitar accesos a redes wifi, telefonía Lync o solución de problemas comunicacionales.</span>
+						            </div>
+					        	</a>
+							</div>	
+							<div class="col-md-3 text-center">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Correo Electrónico y Calendarios" data-type="segundaVista" ><i class="fa fa-envelope fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Correo Electrónico y Calendarios</strong><br>
+						                </h3>
+						                <span>Recuperar buzón de mensajes, habilitar correo encriptado o solución de problemas relacionados.</span>
+						            </div>
+					        	</a>
+							</div>											
+							<div class="col-md-3 text-center">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista" style="min-height:269px;"><i class="fa fa-users fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Cuentas y Accesos</strong><br>
+						                </h3>
+						                <span>Crear cuentas, habilitar accesos y permisos a usuarios o solución de problemas relacionados.</span>
+						            </div>
+					        	</a>
+							</div>			
+						</div>
+
+						<!--TerceraVista -->														
+						<div class="row strap nsBoton-aplicaciones hidden">
+							<div class="col-md-4 text-center ">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Desbloquear/Cambiar Password" data-type="terceraVista" ><i class="fa fa-unlock fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Desbloquear/Cambiar Password</strong><br>
+						                </h3>
+						                <span>Admininistrar contraseñas de aplicaciones.</span>
+						            </div>
+					        	</a>
+							</div>	
+							<div class="col-md-4 text-center">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Instalar/Configurar" data-type="terceraVista" ><i class="fa fa-key fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Instalar/Configurar</strong><br>
+						                </h3>
+						                <span>Administrar aplicaciones.</span>
+						            </div>
+					        	</a>
+							</div>	
+							<div class="col-md-4 text-center">
+								<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Solucionar Problema" data-type="terceraVista" ><i class="fa fa-check-square-o fa-5x"></i>
+						            <div class="widget-simple text-center">
+						                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+						                 <strong>Solucionar Problema</strong><br>
+						                </h3>
+						                <span>Administrar problemas de aplicaciones.</span>
+						            </div>
+					        	</a>
+							</div>											
+						</div>								
+
+						<!-- Formulario -->			
+						<div class="nsBoton-form-solicitudes hidden strap">
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+									</div>
+								</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
+									<div class="col-md-8">
+										<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno">
+											<option value="" selected="selected"></option>
+											<option value="ALTO">Alto</option>
+											<option value="MEDIO">Medio</option>
+											<option value="BAJO">Bajo</option>
+										</select>
+									</div>
+								</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>         
+						
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+									</div>
+								</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
+									<div class="col-md-8">
+										<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia">
+											<option value="" selected="selected"></option>
+											<option value="ALTO">Muy Urgente</option>
+											<option value="MEDIO">Urgente</option>
+											<option value="BAJO">Poco Urgente</option>
+										</select>
+									</div>
+								</div>
+									</div>
+								</div>	 
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="scsl_cdg">
+												<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
+											<div class="col-md-8">
+												<input type="text" class="form-control" >
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+										</div>
+									</div>
+								</div>	 						
+							</fieldset>
+							<br>
+							<h4><div class="block-title alert alert-warning">Información General</div></h4>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="horaInicio">
+										<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+										<br>
+									</div>
+								</div>
+								<br>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="horaFin">
+										<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
+									<div class="col-md-8">
+										<textarea class="form-control" rows="4" cols="50"></textarea>
+									</div>
+								</div>
+							</fieldset>	
+						</div>								
+					</div>
+
+                   	<div class="modal-footer">
+                        <button id="btnCerrar" type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                        <button id="btnGuardar" type="button" class="btn btn-sm btn-primary hidden nsBoton-form-solicitudes">Guardar</button>
+               	 	</div>                        
+               	 </div>
+            </div>
+        </div>
+
+        <!-- END Large Modal -->
+
+        <!-- Large Modal -->
+        <div id="modal-createsv" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+               	<!-- BREADCRUMBS -->
+                    <div  class="modal-header">
+                    	<div id="breadcrumbs">
+                  
+							<span class="sg">
+								<i class="fa fa-arrow-right"></i>	
+								<span id="textTecnologia">Servicios Generales</span>
+							</span>
+
+							<span class="os hidden">
+								<i class="fa fa-arrow-right"></i>	
+								<span id="textTecnologia">Otros Servicios</span>
+							</span>
+							
+                    	</div>
+                    	<div id="modal_header_1">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h1 class="modal-title_1"><i class="fa fa-plus-circle"> </i> Nueva <strong>Solicitud</strong></h1>
+                    	</div>
+                    </div>
+                    <!-- ./BREADCRUMBS -->
+
+
+					<div id="modalBodyCreatesv" class="modal-body" style="overflow: hidden; width: auto;">
+						<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
+						<h4>Seleccione tipo de solicitud</h4>
+
+						<!-- Formulario -->			
+						<div class="strapsg">
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+									</div>
+								</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
+									<div class="col-md-8">
+										<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno" >
+											<option value="" selected="selected"></option>
+											<option value="ALTO">Alto</option>
+											<option value="MEDIO">Medio</option>
+											<option value="BAJO">Bajo</option>
+										</select>
+									</div>
+								</div>
+									</div>
+								</div>
+							</fieldset>
+							<br>         
+						
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+									</div>
+								</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+									<label class="col-md-4 control-label" for="scsl_cdg">
+										<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
+									<div class="col-md-8">
+										<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia" >
+											<option value="" selected="selected"></option>
+											<option value="ALTO">Muy Urgente</option>
+											<option value="MEDIO">Urgente</option>
+											<option value="BAJO">Poco Urgente</option>
+										</select>
+									</div>
+								</div>
+									</div>
+								</div>	 
+							</fieldset>
+							<br>
+							<fieldset>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="col-md-4 control-label" for="scsl_cdg">
+												<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
+											<div class="col-md-8">
+												<input type="text" class="form-control" >
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+										<label class="col-md-4 control-label" for="scsl_cdg">
+											<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
+										<div class="col-md-8">
+											<input type="text" class="form-control" >
+										</div>
+										</div>
+									</div>
+								</div>	 						
+							</fieldset>
+							<br>
+							<h4><div class="block-title alert alert-warning">Información General</div></h4>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="horaInicio">
+										<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" >
+										<br>
+									</div>
+								</div>
+								<br>
+								<div class="form-group">
+									<label class="col-md-4 control-label" for="horaFin">
+										<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
+									<div class="col-md-8">
+										<textarea class="form-control" rows="4" cols="50"></textarea>
+									</div>
+								</div>
+							</fieldset>	
+						</div>								
+					</div>
+
+                   	<div class="modal-footer">
+                        <button id="btnCerrar2" type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Cerrar</button>
+                        <button id="btnGuardar" type="button" class="btn btn-sm btn-primary hidden nsBoton-form-solicitudes">Guardar</button>
+               	 	</div>                        
+               	 </div>
+            </div>
+        </div>
+
+        <!-- END Large Modal -->
+
+
+
+	<!-- Remember to include excanvas for IE8 chart support -->
+	<!--[if IE 8]><?php print($this->tag->javascriptInclude("js/helpers/excanvas.min.js"))?><![endif]-->
+
+	<!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+	<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
+	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
+	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
+
+    <script>
+    	$('#btnServ').click(function() {
+    		$('.sg').removeClass('hidden');
+    		$('.os').addClass('hidden');
+
+    	});
+
+    	$('#btnOtros').click(function() {
+    		$('.os').removeClass('hidden');
+    		$('.sg').addClass('hidden');
+
+    	});
+
+    	$('#btnCerrar').click(function() {
+			$('.strap').addClass('hidden');
+			$('.defaultClass').removeClass('hidden');
+			$('#textInicio').removeClass('hidden');
+			$('#bcInicio').addClass('hidden');
+			$('.nsBoton-tecnologia').removeClass('hidden');
+			$('.bcTecnologia').addClass('hidden');
+			$('.nsBoton-aplicaciones').addClass('hidden');
+			$('.bcTecnologia').addClass('hidden');
+			$('.bcAplicaciones').addClass('hidden');	
+			$('.bcTecnologia').addClass('hidden');
+			$('.bcFormSolicitudes').addClass('hidden');
+			$('#textFormSolicitudes').addClass('hidden');
+			$('#textFormSolicitudes').html("");
+		});
+
+		$('.nsBoton').click(function(event) {
+			$('.strap').addClass('hidden');
+
+			if($(this).data('next') == 'tecnologia'){
+				$('#textInicio').addClass('hidden');
+				$('#bcInicio').removeClass('hidden');
+				$('.nsBoton-tecnologia').removeClass('hidden');
+				$('.bcTecnologia').removeClass('hidden');
+			}
+			if($(this).data('next') == 'aplicaciones'){
+				$('.nsBoton-aplicaciones').removeClass('hidden');
+				$('.bcTecnologia').removeClass('hidden');
+				$('.bcAplicaciones').removeClass('hidden');	
+			}
+
+			if($(this).data('next') == 'form-solicitudes'){
+				$('.bcTecnologia').removeClass('hidden');
+				$('.bcFormSolicitudes').removeClass('hidden');
+				$('#textFormSolicitudes').removeClass('hidden');
+				if($(this).data('type') == 'terceraVista'){
+					$('#textFormSolicitudes').html($(this).data('val'));				
+				} else if ($(this).data('type') == 'segundaVista') {
+					$('#textFormSolicitudes').html($(this).data('val'));						
+				} else if ($(this).data('type') == 'primeraVista') {
+					$('#bcInicio').removeClass('hidden');
+					$('#textInicio').addClass('hidden');
+					$('#textFormSolicitudes').html($(this).data('val'));
+				}
+				$('#infoTitle').html('Información Específica');
+				$('.nsBoton-form-solicitudes').removeClass('hidden');	
+			}
+        });                    	
+    </script>	
+	<script>
+		$(document).ready(function() {
+		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+		        e.preventDefault();
+		        $(this).siblings('a.active').removeClass("active");
+		        $(this).addClass("active");
+		        var index = $(this).index();
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+		    });
+		});
+	</script>
+	<?php
+	if(isset($jsScript) && $jsScript!=null){
+	?>
+	<script>
+	<?php print($jsScript)?>
+	</script>
+	<?php
+		}
+	?>		
+	<?php
+		if(isset($addJs) && $addJs!=null){
+			foreach($addJs as $link){
+	?>
+	<?php print($this->tag->javascriptInclude($link))?>
+	<?php
+			}
+		}
+	?>
+	<?php
+	if(isset($jsPosScrt) && $jsPosScrt!=null){
+	?>
+	<script>
+	<?php print($jsPosScrt)?>
+	</script>
+	<?php
+		}
+	?>	
+</body>
+</html>

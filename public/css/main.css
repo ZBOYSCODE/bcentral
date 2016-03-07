@@ -99,7 +99,7 @@ body {
 }
 
 #page-container {
-    width: 100%;
+    width: 80%;
     padding: 0;
     margin: 0 auto;
     overflow-x: hidden;
@@ -935,7 +935,7 @@ a.sidebar-title:focus {
     right: 0;
     color: #ffffff;
     background: url('../img/template/ie8_opacity_dark_60.png') repeat;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(191, 189, 189, 0.24);
 }
 
 .content-header-media small,

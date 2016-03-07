@@ -57,96 +57,95 @@
 			    background-position: center center;
 			}
 			
-#stp-trat-3.form-horizontal .form-group {
-    margin-left: 0px;
-    margin-right: 0px;
-}
-.widget-simple .widget-pregunta{
-	margin: 1px 0px;
-    font-size: 18px;											
-}
-.style-alt .widget, .style-alt .task-list li{
-	background-color: #5bc0de;
-}
-.h:hover{
-	background-color: #46b8da;
-}
+			#stp-trat-3.form-horizontal .form-group {
+			    margin-left: 0px;
+			    margin-right: 0px;
+			}
+			.widget-simple .widget-pregunta{
+				margin: 1px 0px;
+			    font-size: 18px;											
+			}
+			.style-alt .widget, .style-alt .task-list li{
+				background-color: #5bc0de;
+			}
+			.h:hover{
+				background-color: #46b8da;
+			}
 
-.navbar-nav-custom .widget{
-	background:transparent !important;
-	max-height: 137px;
-	color:white;
-}
+			.navbar-nav-custom .widget{
+				background:transparent !important;
+				max-height: 137px;
+				color:white;
+			}
 
-.navbar-nav-custom .active{
-	background:rgba(205, 210, 5, 0.62) !important;
-}
+			.navbar-nav-custom .active{
+				background:rgba(205, 210, 5, 0.62) !important;
+			}
 
-.navbar-nav-custom a{
-	margin-bottom: 0px;
-}
+			.navbar-nav-custom a{
+				margin-bottom: 0px;
+			}
 
-.navbar-nav-custom > li i {
-    font-size: 30px;
-}
+			.navbar-nav-custom > li i {
+			    font-size: 30px;
+			}
 
-    
+			    
 
-#lista-solicitudes .widget{
-    max-width: 24em;
-    min-height: 10em;
-    margin: auto;
-    margin-bottom: 30px;   
-    color:white;    
-    padding-bottom: 20px;
-}
-#lista-solicitudes .block-title{
-    color:#394263;
-}
-.en-curso{
-    background-color: #5FCA0A !important;
-	border: #5FCA0A !important;
-}
+			#lista-solicitudes .widget{
+			    max-width: 24em;
+			    min-height: 10em;
+			    margin: auto;
+			    margin-bottom: 30px;   
+			    color:white;    
+			    padding-bottom: 20px;
+			}
+			#lista-solicitudes .block-title{
+			    color:#394263;
+			}
+			.en-curso{
+			    background-color: #5FCA0A !important;
+				border: #5FCA0A !important;
+			}
 
-.pendiente-cliente{
-    background-color: #EAC50D !important;
-	border: #EAC50D !important;
-}    
+			.pendiente-cliente{
+			    background-color: #EAC50D !important;
+				border: #EAC50D !important;
+			}    
 
-.pendiente-proveedor{
-    background-color: #F92626 !important;
-	border: #F92626 !important;
-}    
+			.pendiente-proveedor{
+			    background-color: #F92626 !important;
+				border: #F92626 !important;
+			}    
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 25px 0;
-    color: #ffffff;
-    background: url('../img/template/ie8_opacity_dark_20.png');
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    -webkit-transition: all ease-out 0.25s;
-    transition: all ease-out 0.25s;
-}
+			header {
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    right: 0;
+			    padding: 25px 0;
+			    color: #ffffff;
+			    background: url('../img/template/ie8_opacity_dark_20.png');
+			    background: rgba(0, 0, 0, 0.2);
+			    z-index: 1000;
+			    -webkit-transition: all ease-out 0.25s;
+			    transition: all ease-out 0.25s;
+			}
 
-header.header-scroll {
-    padding: 10px 0;
-    background: url('../img/template/ie8_opacity_dark_60.png');
-    background: rgba(0, 0, 0, 0.6);
-}
+			header.header-scroll {
+			    padding: 10px 0;
+			    background: url('../img/template/ie8_opacity_dark_60.png');
+			    background: rgba(0, 0, 0, 0.6);
+			}
 
-header.header-scroll:hover {
-    background: rgba(0, 0, 0, 0.8);
-}
-#page-content{
-    margin-top: 100px;
-}
-
-
-</style>		
+			header.header-scroll:hover {
+			    background: rgba(0, 0, 0, 0.8);
+			}
+			#page-content{
+			    margin-top: 100px;
+			}
+		</style>	
+			
 	</head>
 	<body>
 		<img src="<?php print($this->url->get("img/disabilityanswerdesk_hero.png"))?>" alt="Login Full Background" class="full-bg">
@@ -252,7 +251,7 @@ header.header-scroll:hover {
                     <!-- END User Dropdown -->
                 </ul>
                 <!-- END Right Header Navigation -->
-                            </header>
+            </header>
 				
 	
 					<!-- Page content -->
@@ -278,6 +277,9 @@ header.header-scroll:hover {
                 <div id="modal-create" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
+
+
+                        	<!-- BREADCRUMBS -->
                             <div  class="modal-header">
                             	<div id="breadcrumbs">
                             		<span id="textInicio"><strong>Inicio</strong></span>
@@ -300,9 +302,15 @@ header.header-scroll:hover {
 	                                <h1 class="modal-title_1"><i class="fa fa-plus-circle"> </i> Nueva <strong>Solicitud</strong></h1>
                             	</div>
                             </div>
+                            <!-- ./BREADCRUMBS -->
+
+
+
+
 							<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto;">
 								<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
 								<h4><div class="block-title alert alert-warning" id="infoTitle">Seleccione tipo de solicitud</div></h4>
+
 								<!--Primera Vista-->
 								<div class="row strap nsBoton-inicial">
 									<div class="col-md-6 text-center">
@@ -371,6 +379,7 @@ header.header-scroll:hover {
 							        	</a>
 									</div>			
 								</div>
+
 								<!--TerceraVista -->														
 								<div class="row strap nsBoton-aplicaciones hidden">
 									<div class="col-md-4 text-center ">
@@ -487,7 +496,7 @@ header.header-scroll:hover {
 										</div>	 						
 									</fieldset>
 									<br>
-								<h4><div class="block-title alert alert-warning">Información General</div></h4>
+									<h4><div class="block-title alert alert-warning">Información General</div></h4>
 									<fieldset>
 										<div class="form-group">
 											<label class="col-md-4 control-label" for="horaInicio">
@@ -536,159 +545,159 @@ header.header-scroll:hover {
 }
 
 </style>
-	<div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-            <!-- Updates Title -->
-            <div class="block-title" style=" margin: 0px;">
-                <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2><strong>Encuesta</strong></h2>
-            </div>
-            <!-- END Updates Title -->
-            <div class="modal-body">
+					<div id="modal-encuesta" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+					            <!-- Updates Title -->
+					            <div class="block-title" style=" margin: 0px;">
+					                <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
+					                <h2><strong>Encuesta</strong></h2>
+					            </div>
+					            <!-- END Updates Title -->
+					            <div class="modal-body">
 
-				<div class="progress progress-striped active">
-					<div id="barra-progreso" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
-				</div>	
-            	<!-- Pregunta 1 -->
+									<div class="progress progress-striped active">
+										<div id="barra-progreso" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
+									</div>	
+					            	<!-- Pregunta 1 -->
 
-				<div class="stp-trat"  id="stp-trat-pregunta1">
-			
-					<h3 class="text-center" style="padding-bottom:50px;">
-						¿Cómo considera su desempeño?
-					</h3>
-					<div class="form-group row text-center">
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn h" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>	
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>	
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>													
-                    </div>
-					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
-						<div class="btn-group" style="width: 100%;">
-							<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
-							<a href="#" class="btn btn-primary" style="width: 33%;" disabled>Pregunta 2</a>
-							<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
-						</div>
-                    </div>                    
-				</div>
-
-				<!-- Pregunta 2 -->
-
-				<div class="stp-trat"  id="stp-trat-pregunta2" style="display:none;">
-					<h3 class="text-center" style="padding-bottom:50px;">
-						¿Cómo considera el desempeño de sus compañeros?	
-					</h3>				
-					<div class="form-group row text-center">
-							<div class="col-lg-12">
-								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-									<div class="widget-simple">
-										<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
+									<div class="stp-trat"  id="stp-trat-pregunta1">
+								
+										<h3 class="text-center" style="padding-bottom:50px;">
+											¿Cómo considera su desempeño?
+										</h3>
+										<div class="form-group row text-center">
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn h" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>	
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>	
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta2" data-stp="" data-val="" data-type="pregunta1" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>													
+					                    </div>
+										<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+											<div class="btn-group" style="width: 100%;">
+												<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+												<a href="#" class="btn btn-primary" style="width: 33%;" disabled>Pregunta 2</a>
+												<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
+											</div>
+					                    </div>                    
 									</div>
-								</a>
-							</div>														
-							<div class="col-lg-12">
-								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-									<div class="widget-simple">
-										<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
-									</div>
-								</a>
-							</div>	
-							<div class="col-lg-12">
-								<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-									<div class="widget-simple">
-										<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
-									</div>
-								</a>
-							</div>														
-					</div>
-					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
-						<div class="btn-group" style="width: 100%;">
-							<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
-							<a href="#" class="btn btn-primary active" style="width: 33%;">Pregunta 2</a>
-							<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
+
+									<!-- Pregunta 2 -->
+
+									<div class="stp-trat"  id="stp-trat-pregunta2" style="display:none;">
+										<h3 class="text-center" style="padding-bottom:50px;">
+											¿Cómo considera el desempeño de sus compañeros?	
+										</h3>				
+										<div class="form-group row text-center">
+												<div class="col-lg-12">
+													<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+														<div class="widget-simple">
+															<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
+														</div>
+													</a>
+												</div>														
+												<div class="col-lg-12">
+													<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+														<div class="widget-simple">
+															<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
+														</div>
+													</a>
+												</div>	
+												<div class="col-lg-12">
+													<a href="#" class="widget btn-info stp-trat-btn" data-next="pregunta3" data-stp="" data-val="" data-type="pregunta2" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+														<div class="widget-simple">
+															<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
+														</div>
+													</a>
+												</div>														
+										</div>
+										<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+											<div class="btn-group" style="width: 100%;">
+												<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+												<a href="#" class="btn btn-primary active" style="width: 33%;">Pregunta 2</a>
+												<a href="#" class="btn btn-primary" style="width: 33%;border-radius: 0px;" disabled>Pregunta 3</a>
+											</div>
+										</div>															
+									</div>	
+
+									<!-- Pregunta 3 -->
+
+									<div class="stp-trat"  id="stp-trat-pregunta3" style="display:none;">
+										<h3 class="text-center" style="padding-bottom:50px;">
+											¿Cómo considera el desempeño de sus superiores?
+										</h3>				
+										<div class="form-group row text-center">
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="OD" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>												
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>												
+										</div>	
+										<div class="form-group row text-center">
+											<div class="col-lg-12">
+												<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
+													<div class="widget-simple">
+														<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
+													</div>
+												</a>
+											</div>												
+										</div>
+										<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
+											<div class="btn-group" style="width: 100%;">
+												<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
+												<a href="#" class="btn btn-primary stp-trat-btn-menu" style="width: 33%;" data-next="pregunta2">Pregunta 2</a>
+												<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 3</a>
+											</div>
+										</div>																		
+									</div>	
+
+									<!-- Resultado -->		
+
+									<div class="stp-trat"  id="stp-trat-resultado" style="display:none;">
+										<div class="form-group row text-center" style="margin-top: -15px;">
+											<div class="col-lg-12"  style="margin-top:20%">
+												<h2><i class="fa fa-hand-peace-o"></i>¡<strong>Gracias</strong> por responder!</h2> <br>
+											</div>
+										</div>
+									</div>																							
+					            </div>
+
+
+
+							
+					            <div class="modal-footer">
+					                <div class="btn-group btn-group-sm pull-right">
+					                    <a class="btn btn-sm btn-default pull-right" data-dismiss="modal" href=""> Cerrar</a>
+					                </div>
+					            </div>
+							</div>
 						</div>
-					</div>															
-				</div>	
-
-				<!-- Pregunta 3 -->
-
-				<div class="stp-trat"  id="stp-trat-pregunta3" style="display:none;">
-					<h3 class="text-center" style="padding-bottom:50px;">
-						¿Cómo considera el desempeño de sus superiores?
-					</h3>				
-					<div class="form-group row text-center">
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="OD" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_feliz.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>												
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_normal1.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>												
-					</div>	
-					<div class="form-group row text-center">
-						<div class="col-lg-12">
-							<a href="#" class="widget btn-info stp-trat-btn" data-next="resultado" data-stp="pregunta3" data-val="" data-type="pregunta3" style="-webkit-transform:translateY(-3px);transform:translateY(-3px);-webkit-box-shadow:0 5px 5px rgba(0,0,0,.1);box-shadow:0 5px 5px rgba(0,0,0,.1)">
-								<div class="widget-simple">
-									<img src="<?php echo $this->url->get("/img/icon_triste.png"); ?>"alt="" height="32px" width="32px">
-								</div>
-							</a>
-						</div>												
 					</div>
-					<div class="form-group row text-center" style="margin-top: 25px;width: auto;margin-left: -20px;margin-right: -29px;">	
-						<div class="btn-group" style="width: 100%;">
-							<a href="#" class="btn btn-primary stp-trat-btn-menu" data-next="pregunta1" style="width: 33%;border-radius: 0px;">Pregunta 1</a>
-							<a href="#" class="btn btn-primary stp-trat-btn-menu" style="width: 33%;" data-next="pregunta2">Pregunta 2</a>
-							<a href="#" class="btn btn-primary active" style="width: 33%;border-radius: 0px;">Pregunta 3</a>
-						</div>
-					</div>																		
-				</div>	
-
-				<!-- Resultado -->		
-
-				<div class="stp-trat"  id="stp-trat-resultado" style="display:none;">
-					<div class="form-group row text-center" style="margin-top: -15px;">
-						<div class="col-lg-12"  style="margin-top:20%">
-							<h2><i class="fa fa-hand-peace-o"></i>¡<strong>Gracias</strong> por responder!</h2> <br>
-						</div>
-					</div>
-				</div>																							
-            </div>
-
-
-
-		
-            <div class="modal-footer">
-                <div class="btn-group btn-group-sm pull-right">
-                    <a class="btn btn-sm btn-default pull-right" data-dismiss="modal" href=""> Cerrar</a>
-                </div>
-            </div>
-		</div>
-	</div>
-	</div>
                 </div>
                 <!-- END Main Container -->
             </div>
