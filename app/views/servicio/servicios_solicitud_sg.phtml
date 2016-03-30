@@ -1,0 +1,287 @@
+
+
+
+	<!-- BREADCRUMBS -->
+    <div  class="header-pages">
+    	<div id="modal_header_1">
+            <h3 class="modal-title_1"> Nueva Solicitud<strong> Servicios Generales</strong></h3>
+    	</div>
+    	<div id="breadcrumbs">
+  			<span class="bcTecnologia nsMenu">
+				<a href="<?php print($this->url->get("comercio"))?>"><span id="textTecnologia">Inicio</span></a>
+			</span>
+			<span class="bcTecnologia nsMenu">
+				<i class="fa fa-arrow-right"></i>	
+				<a href="<?php print($this->url->get("comercio/solicitudServicio/generales"))?>"><span id="textTecnologia">Nueva Solicitud Servicios Generales</span></a>
+			</span>
+			<span class="bcAplicaciones nsMenu hidden">
+				<i class="fa fa-arrow-right"></i>	
+				<span id="textAplicaciones">Otro</span>
+			</span>
+			<span class="bcFormSolicitudes nsMenu hidden">
+				<i class="fa fa-arrow-right"></i>	
+				<span id="textFormSolicitudes"></span>
+			</span>									
+    	</div>
+
+    </div>
+    <!-- ./BREADCRUMBS -->
+
+
+
+
+<div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto;">
+	<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
+	<h4>Seleccione tipo de solicitud</h4>
+
+
+	<!-- Segunda Vista-->
+
+	<div class="row strap nsBoton-tecnologia defaultClass">
+		<div class="col-md-3 text-center ">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-val="Articulos de Oficina" data-next="form-solicitudes" data-type="segundaVista" ><i class="gi gi-suitcase  fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Articulos de Oficina</strong><br>
+	                </h3>
+	          		<span>Solucionar Problema / Solicitar</span>      
+	            </div>
+        	</a>
+		</div>	
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Audiovisual" data-type="segundaVista"><i class="gi gi-play fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Audiovisual</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>	
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Climatización" data-type="segundaVista" ><i class="gi gi-home fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Climatización</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>											
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Electricidad Energía Respaldo" data-type="segundaVista"><i class="gi gi-electricity fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Electricidad Energía Respaldo</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Flota de Vehículos" data-type="segundaVista"><i class="gi gi-cars fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Flota de Vehículos</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Higiene" data-type="segundaVista"><i class="gi gi-circle_plus fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Higiene</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Mantemiento General/Mobiliario" data-type="segundaVista"><i class="gi gi-building fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Mantemiento General/Mobiliario</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Seguridad Electrónica" data-type="segundaVista"><i class="gi gi-warning_sign fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Seguridad Electrónica</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>	
+
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Sistema de Incendios" data-type="segundaVista"><i class="gi gi-fire fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Sistema de Incendios</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>
+
+		<div class="col-md-3 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Telecomunicaciones" data-type="segundaVista"><i class="gi gi-comments fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Telecomunicaciones</strong><br>
+	                </h3>
+	                <span>Solucionar Problema / Solicitar</span>
+	            </div>
+        	</a>
+		</div>	
+
+	</div>
+
+	<!--TerceraVista -->														
+	<div class="row strap nsBoton-aplicaciones hidden">
+		<div class="col-md-4 text-center ">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Desbloquear/Cambiar Password" data-type="terceraVista" ><i class="fa fa-unlock fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Desbloquear/Cambiar Password</strong><br>
+	                </h3>
+	                <span>Admininistrar contraseñas de aplicaciones.</span>
+	            </div>
+        	</a>
+		</div>	
+		<div class="col-md-4 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Instalar/Configurar" data-type="terceraVista" ><i class="fa fa-key fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Instalar/Configurar</strong><br>
+	                </h3>
+	                <span>Administrar aplicaciones.</span>
+	            </div>
+        	</a>
+		</div>	
+		<div class="col-md-4 text-center">
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Solucionar Problema" data-type="terceraVista" ><i class="fa fa-check-square-o fa-5x"></i>
+	            <div class="widget-simple text-center">
+	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                 <strong>Solucionar Problema</strong><br>
+	                </h3>
+	                <span>Administrar problemas de aplicaciones.</span>
+	            </div>
+        	</a>
+		</div>											
+	</div>								
+
+	<!-- Formulario -->			
+	<div class="nsBoton-form-solicitudes hidden strap">
+		<fieldset>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+
+				<label class="col-md-4 control-label" for="scsl_cdg">
+					<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control" >
+				</div>
+			</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+				<label class="col-md-4 control-label" for="scsl_cdg">
+					<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
+				<div class="col-md-8">
+					<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno">
+						<option value="" selected="selected"></option>
+						<option value="ALTO">Alto</option>
+						<option value="MEDIO">Medio</option>
+						<option value="BAJO">Bajo</option>
+					</select>
+				</div>
+			</div>
+				</div>
+			</div>
+		</fieldset>
+		<br>         
+	
+		<fieldset>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+				<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control" >
+				</div>
+			</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+				<label class="col-md-4 control-label" for="scsl_cdg">
+					<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
+				<div class="col-md-8">
+					<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia">
+						<option value="" selected="selected"></option>
+						<option value="ALTO">Muy Urgente</option>
+						<option value="MEDIO">Urgente</option>
+						<option value="BAJO">Poco Urgente</option>
+					</select>
+				</div>
+			</div>
+				</div>
+			</div>	 
+		</fieldset>
+		<br>
+		<fieldset>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="scsl_cdg">
+							<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" >
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+					<label class="col-md-4 control-label" for="scsl_cdg">
+						<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" >
+					</div>
+					</div>
+				</div>
+			</div>	 						
+		</fieldset>
+		<br>
+		<h4><div class="block-title alert alert-warning">Información General</div></h4>
+		<fieldset>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="horaInicio">
+					<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
+				<div class="col-md-8">
+					<input type="text" class="form-control" >
+					<br>
+				</div>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="horaFin">
+					<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
+				<div class="col-md-8">
+					<textarea class="form-control" rows="4" cols="50"></textarea>
+				</div>
+			</div>
+		</fieldset>	
+	</div>								
+</div>
+
+<div class="modal-footer">
+
+	<button id="btnGuardar" type="button" class="btn btn-sm btn-primary hidden nsBoton-form-solicitudes">Guardar</button>
+</div>                        

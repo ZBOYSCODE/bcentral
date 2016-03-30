@@ -18,7 +18,7 @@ body {
 }
 
 .navbar {
-    min-height: 20px;
+    min-height: 20px;	
 }
 
 
@@ -54,13 +54,13 @@ body {
 }
 
 .widget-catalogo {
-	background-color: #61B987;;
+	background-color: #93BAC0;;
 }
 
 .widget-simple-bc-bg {
 
 	background-color: white !important;
-	color:  #61B987;;
+	color:  #93BAC0;;
 
 }
 
@@ -85,7 +85,7 @@ body {
 .widget-eval > a {
 	 height: 100px;
     width: 100%;
-    background-color: #61B987 !important;
+    background-color: #93BAC0 !important;
     color: white !important;
 }
 
@@ -100,14 +100,14 @@ body {
 
 .tab-bc {
 	width: 50%;
-    background-color: #61B987;
+    background-color: #93BAC0;
     text-align: center;
     font-size: x-large;
     font-weight: 300;
 }
 
 .tab-bc a:hover{
-	color: #61B987 !important;
+	color: #93BAC0 !important;
 }
 
 .tab-bc a {
@@ -115,7 +115,7 @@ body {
 }
 
 .active.tab-bc  a {
-	color: #61B987 !important;
+	color: #93BAC0 !important;
 }
 
 .fix-tabs {
@@ -158,11 +158,11 @@ body {
 }
 
 .three-menu a, .three-menu a>i {
- color: #61B987;
+ color: #93BAC0;
 }
 
 .three-menu:hover a, .three-menu:hover a>i {
- background-color: #61B987;
+ background-color: #93BAC0;
 }
 
 
@@ -170,18 +170,27 @@ body {
     padding-top: 20px;
     border-radius: 20px;
     background-color: #f9fafc;
-    color: #61B987  ;
+    color: #93BAC0  ;
 }
 
 .modal-catalogo-op:hover, .modal-catalogo-op.active:hover, .modal-catalogo-op.active:focus   {
-    background-color: #61B987;
+    background-color: #93BAC0;
     color: #f9fafc;
     text-decoration: none;
 }
 
 .modal-header {
-	background-color: #394263;
+	background-color: #0D3862;
     color: white;
+}
+.header-pages {
+    background-color: #FFFFFF;
+    color: white;
+    color: #737C7D;
+    padding: 1px 15px 15px;
+    border-bottom: 1px solid #eeeeee;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .modal-body {
@@ -199,6 +208,14 @@ body {
     padding-bottom: 0px;
     font-size: 12px
 }
+
+
+.center-block {
+	float:none;
+	margin: 0 auto;
+}
+
+
 
 @media (max-width: 991px) {
 	#page-container {

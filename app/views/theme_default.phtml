@@ -124,12 +124,15 @@
 				    </div>
 				    <!-- END Dashboard Header -->
 
+				    <?php if(isset($pcView) && $pcView!=null) 
+							echo $this->view->render($pcView,array('pcData'=>$pcData));
+					?>
 
 
+				</div>
 
 
-			</div>
-			 				<!-- Footer -->
+ 				<!-- Footer -->
 	            <footer class="clearfix">
 	                <div class="pull-right">
 	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
@@ -139,8 +142,8 @@
 		            </div>
 	            </footer>
 	            <!-- END Footer -->
+			</div>
 		</div>
-
 
 
 	<!-- Remember to include excanvas for IE8 chart support -->

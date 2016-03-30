@@ -2912,7 +2912,7 @@ li.dropdown-header {
 }
 
 .modal-header {
-    padding: 15px 15px 14px;
+    padding: 1px 15px 15px;
     border-bottom: 1px solid #eeeeee;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -3773,7 +3773,7 @@ p, .table, .alert, .carousel {
 }
 
 .themed-background-dark {
-    background-color: #394263;
+    background-color: #0D3862;
 }
 
 /* Contextual Background Colors */

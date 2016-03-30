@@ -25,8 +25,17 @@ $router->add('/reset-password/{code}/{email}', array(
 ));
 
 $router->add('/consultar', array(
+    'controller' => 'comercio',
+    'action' => 'consultar' 
+    ));
+$router->add('/servicio', array(
+    'controller' => 'comercio',
+    'action' => 'solicitudServicio'
+    ));
+
+$router->add('/soporte', array(
 	'controller' => 'comercio',
-	'action' => 'consultar'
+	'action' => 'solicitudSoporte'
 	));
 
 

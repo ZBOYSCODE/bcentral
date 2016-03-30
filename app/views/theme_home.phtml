@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title><?php print($this->config->appTitle)?></title>
+
+	<meta name="description" content="<?php print($this->config->appTitle)?>">
+	<meta name="author" content="<?php print($this->config->appAutor)?>">
+	<meta name="robots" content="noindex, nofollow">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+
+	<!-- Icons -->
+	<!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+	<link rel="shortcut icon" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="assets/img/icon57.png" sizes="57x57">
+	<link rel="apple-touch-icon" href="assets/img/icon72.png" sizes="72x72">
+	<link rel="apple-touch-icon" href="assets/img/icon76.png" sizes="76x76">
+	<link rel="apple-touch-icon" href="assets/img/icon114.png" sizes="114x114">
+	<link rel="apple-touch-icon" href="assets/img/icon120.png" sizes="120x120">
+	<link rel="apple-touch-icon" href="assets/img/icon144.png" sizes="144x144">
+	<link rel="apple-touch-icon" href="assets/img/icon152.png" sizes="152x152">
+	<link rel="apple-touch-icon" href="assets/img/icon180.png" sizes="180x180">
+	<!-- END Icons -->
+
+	<!-- Stylesheets -->
+	<!-- Bootstrap is included in its original form, unaltered -->
+    <?php print($this->tag->stylesheetLink("css/bootstrap.min.css"))?>
+
+	<!-- Related styles of various icon packs and plugins -->
+    <?php print($this->tag->stylesheetLink("css/plugins.css"))?>
+
+	<!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <?php print($this->tag->stylesheetLink("css/main.css"))?>
+
+	<!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
+    <?php print($this->tag->stylesheetLink("css/themes.css"))?>
+
+    <!-- tema personalizado para bc -->
+    <?php print($this->tag->stylesheetLink("css/bcentral-custom.css"))?>
+	<!-- END Stylesheets -->
+
+	<?php
+		if(isset($addCss)){
+			foreach($addCss as $link){
+				print($this->tag->stylesheetLink($link));
+			}
+		}
+	?>
+	
+	<!-- Modernizr (browser feature detection library) & Respond.js (enables responsive CSS code on browsers that don't support it, eg IE8) -->
+	<?php print($this->tag->javascriptInclude("js/vendor/modernizr-respond.min.js"))?>
+
+</head>
+<body class="page-loading">
+		<div id="page-container" class="style-alt">
+	        <!-- Main Container -->
+	        <div id="main-container">
+
+	            <header class="navbar navbar-default theme-banco-central ">
+	                <!-- Navbar Header -->
+		            <div class="navbar-header">
+		                <!-- Horizontal Menu Toggle + Alternative Sidebar Toggle Button, Visible only in small screens (< 768px) -->
+		                <ul class="nav navbar-nav-custom pull-right visible-xs">
+		                    <li>
+		                        <a href="javascript:void(0)" data-toggle="collapse" data-target="#horizontal-menu-collapse">Menu</a>
+		                    </li>
+		                </ul>
+		                <!-- END Horizontal Menu Toggle + Alternative Sidebar Toggle Button -->
+
+		            </div>
+		            <!-- END Navbar Header -->
+
+		            <div id="horizontal-menu-collapse" class="collapse navbar-collapse">
+
+			            <!-- Alternative Sidebar Toggle Button, Visible only in large screens (> 767px) -->
+			            <ul class="nav navbar-nav-custom pull-right hidden-xs">
+							<li class="dropdown">
+			                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+			                        <i class="gi gi-user"></i><strong> Alejandro Aguilera</strong> <i class="fa fa-angle-down"></i>
+			                    </a>
+			                    <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+			                        <li class="dropdown-header text-center">Opciones</li>
+			                        <li>
+			                            <a href="page_ready_timeline.php">
+			                                <i class="fa fa-ban fa-fw pull-right"></i>
+			                                Desconectarse
+			                            </a>
+			                        </li>
+
+			                    </ul>
+			                </li>
+			            </ul>
+		            </div>
+	            </header>
+	            <!-- END Header -->
+
+	            <!-- Page Content -->
+	            <div id="page-content" class="clearfix">
+	                <!-- Dashboard Header -->
+				    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+				    <div class="content-header content-header-media">
+				        <div class="header-section header-section-bc">
+				            <div class="row">
+				                <!-- Main Title (hidden on small devices for the statistics to fit) -->
+				                <div class="col-md-2 col-lg-1 col-xs-2">
+				               		<img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
+				                </div>
+				                <div class="col-md-7 col-lg-7 col-xs-7">
+				                    <h1>Bienvenido al <strong>Portal de Atención de Usuarios</strong><br><small>Banco Central de Chile</small></h1>
+				                </div>
+				                <!-- END Main Title -->
+
+				                <!-- Top Stats -->
+
+				                <!-- END Top Stats -->
+				            </div>
+				        </div>
+				        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+				        <img src="<?php print($this->url->get("img/background-encabezado2.png"))?>" alt="header image" class="" style="width: 100%;opacity: 0.9;">
+				    </div>
+				    <!-- END Dashboard Header -->
+
+				    <!-- Widgets Row -->
+				    <div class="row">
+				        <div class="col-md-7 ">
+				            <!-- Timeline Widget -->
+				            <div class="widget ">
+				                <div class="widget-extra themed-background-dark">
+				                    <div class="widget-options">
+				                    </div>
+				                    <h3 class="widget-content-light">
+				                        Nueva <strong>Solicitud</strong>
+				                        <small><a href="page_ready_timeline.php"><strong></strong></a></small>
+				                    </h3>
+				                </div>
+				                <div class="widget-extra widget-catalogo">
+
+							        <!-- Working Tabs Content -->
+							        <div class="row row-catalogo">
+					                   <ul class="nav nav-tabs fix-tabs">
+					                      <li class="active tab-bc"><a class="menu-bc" data-toggle="tab" href="#pest1">Servicios</a></li>
+					                      <li class="tab-bc"><a class="menu-bc" href="<?php print($this->url->get("soporte"))?>">Soporte</a></li>
+					                    </ul>
+
+				                        <div class="tab-content">
+					                        <div class="tab-pane fade in active" id="pest1">
+					                            <div class="modal-body">
+					                             	<ul class="nav-horizontal text-center catalogo-lista-home">
+														<li class="three-menu">
+														<a  id="btnTec" href="<?php print($this->url->get("comercio/solicitudServicio/tecnologia"))?>" data-toggle="modal" ><i class="gi gi-display "></i> Tecnología</a>
+														</li>
+														<li class="three-menu">
+														<a id="btnServ" href="<?php print($this->url->get("comercio/solicitudServicio/generales"))?>" data-toggle="modal" ><i class="gi gi-bullhorn "></i> Servicios Generales</a>
+														</li>
+														<li class="three-menu">
+														<a id="btnOtros" href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>" data-toggle="modal"><i class="gi gi-group "></i>Otros Servicios</a>
+														</li>
+													</ul>
+					                            </div>                                                
+					                        </div>
+				                        </div>
+							        </div>
+							        <!-- END Working Tabs Content -->
+
+								</div>
+			                </div>
+				            <!-- END Timeline Widget -->
+				        </div>
+
+				        <div class="col-md-5">
+				            <!-- Your Plan Widget -->
+				            <div class="widget">
+				                <div class="widget-extra themed-background-dark">
+				                    <h3 class="widget-content-light">
+				                       <strong>Consultar</strong> Solicitud 
+				                        <small><a href="page_ready_pricing_tables.php"><strong></strong></a></small>
+				                        <small>Ultimos tickets</small>
+				                    </h3>
+
+				                </div>
+				                <div class="widget-extra-full">
+				                    <div class="row ">
+									                                            <!-- Tickets List -->
+					                    <div class="tab-pane active" id="tickets-list">
+					                        <div class="block-content-full">
+					                            <div class="table-responsive remove-margin-bottom">
+					                                <table class="table table-bc table-striped table-vcenter remove-margin-bottom">
+					                                    <thead>
+					                                        <tr>
+					                                            <th class="">ID</th>
+					                                            <th>Estado</th>
+					                                            <th>Categoria</th>
+					                                        </tr>
+					                                    </thead>
+					                                    <tbody>
+					                                        <tr>
+					                                            <td class="text-center">#TCK420</td>
+					                                            <td><span class="label label-danger">PENDIENTE</span></td>
+					                                            <td>Cambiar Contraseña</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK421</td>
+					                                            <td><span class="label label-danger">PENDIENTE</span></td>
+					                                            <td>Comunicaciones y mensajeria</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK422</td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Insalar Configurar</td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center">#TCK425</td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                        </tr>
+					                                    </tbody>
+					                                </table>
+					                                <div class="col-md-12 text-center">
+					                                	<a style="font-size: 16px;" href="">Ver todos ...</a>
+					                                </div>
+					                            </div>
+					                            <div class="text-center">
+					                            <br>
+					                            		<div class="col-sm-12">
+															 <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Nº Ticket">
+														</div>
+														
+					                            </div>
+					                            <div class="col-lg-12" style="margin-top: 5px;">
+													<div class="row">
+														<div class="col-lg-4">
+														<button style="width:100%" type="button" class="btn btn-success">Buscar tickets</button>
+														</div>
+														<div class="col-lg-4">
+														<button style="width:100%" type="button" class="btn btn-success">Reiterar</button>
+														</div>
+														<div class="col-lg-4">
+														<button style="width:100%" type="button" class="btn btn-success">Evaluar</button>
+														</div>
+													</div>
+												</div>
+					                        </div>
+					                    </div>
+					                    <!-- END Tickets List -->
+				                    </div>
+				                </div>
+				            </div>
+				            <!-- END Your Plan Widget -->
+
+
+
+				            <!-- Your Plan Widget -->
+
+				            <!-- END Your Plan Widget -->
+
+				            				        	<!-- Timeline Widget -->
+				            <div class="widget-eval">
+				                <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" >
+					                <div class="widget-simple">
+					                    <div class="pull-left icon-wg">
+					                       <i class="hi hi-ok"></i>
+					                    </div>
+					                    <h2 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
+					                        Evaluar <strong>Servicio</strong><br>
+					                        <small class="widget-simple-bc-leyend">Evalua las solicitudes cerradas</small>
+					                    </h2>
+					                </div>
+					            </a>
+					            <a href="<?php print($this->url->get('comercio/conocimiento')) ?>" class="widget widget-hover-effect1" >
+					                <div class="widget-simple">
+					                    <div class="pull-left icon-wg">
+					                       <i class="hi hi-search"></i>
+					                    </div>
+					                    <h4 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
+					                        Base de  <strong>Conocimiento</strong><br>
+					                        <small class="widget-simple-bc-leyend">Busca documentos </small>
+					                    </h4>
+					                </div>
+					            </a>
+				            </div>
+				            <!-- END Timeline Widget -->
+
+				        </div>
+
+				    </div>
+				    <!-- END Widgets Row -->
+
+
+	            </div>
+	            <!-- END Page Content -->
+
+	            <!-- Footer -->
+	            <footer class="clearfix">
+	                <div class="pull-right">
+	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
+	            	</div>
+		            <div class="pull-left">
+		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank">Portal TI - BCCH</a>
+		            </div>
+	            </footer>
+	            <!-- END Footer -->
+	        </div>
+       		<!-- END Main Container -->
+
+			<!-- Scroll to top link, initialized in js/app.js - scrollToTop() -->
+			<a href="#" id="to-top"><i class="fa fa-angle-double-up"></i></a>
+		</div>
+    	<!-- END Page Container -->
+
+
+
+	<!-- Remember to include excanvas for IE8 chart support -->
+	<!--[if IE 8]><?php print($this->tag->javascriptInclude("js/helpers/excanvas.min.js"))?><![endif]-->
+
+	<!-- jQuery, Bootstrap.js, jQuery plugins and Custom JS code -->
+	<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
+	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
+	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
+
+	<script>
+		$(document).ready(function() {
+		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+		        e.preventDefault();
+		        $(this).siblings('a.active').removeClass("active");
+		        $(this).addClass("active");
+		        var index = $(this).index();
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+		        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+		    });
+		});
+	</script>
+	<?php
+	if(isset($jsScript) && $jsScript!=null){
+	?>
+	<script>
+	<?php print($jsScript)?>
+	</script>
+	<?php
+		}
+	?>		
+	<?php
+		if(isset($addJs) && $addJs!=null){
+			foreach($addJs as $link){
+	?>
+	<?php print($this->tag->javascriptInclude($link))?>
+	<?php
+			}
+		}
+	?>
+	<?php
+	if(isset($jsPosScrt) && $jsPosScrt!=null){
+	?>
+	<script>
+	<?php print($jsPosScrt)?>
+	</script>
+	<?php
+		}
+	?>	
+</body>
+</html>
