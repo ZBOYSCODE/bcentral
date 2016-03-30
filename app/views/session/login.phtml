@@ -48,7 +48,7 @@
         <!-- Login Background -->
         <div id="login-background">
             <!-- For best results use an image with a resolution of 2560x400 pixels (prefer a blurred image for smaller file size) -->
-            <?php print( $this->tag->image(array("img/placeholders/headers/login_header_bi.jpg","alt"=>"Login Background","class"=>"animation-pulseSlow")));?>
+            <?php print( $this->tag->image(array("img/background-encabezado2.png","alt"=>"Login Background","class"=>"animation-pulseSlow")));?>
         </div>
         <!-- END Login Background -->
 
@@ -56,7 +56,8 @@
         <div id="login-container" class="animation-fadeIn">
             <!-- Login Title -->
             <div class="login-title text-center">
-                <h1><i class="fa fa-cogs"></i></i> <?php print($this->config->appName)?><br><small>Por favor <strong>Login</strong> o <strong>Regístrate</strong></small></h1>
+                <img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 50px;opacity: 0.8;"> 
+                <h1><?php print($this->config->appName)?><br><small>Por favor <strong>Ingresa tus datos</strong> <strong></strong></small></h1>
             </div>
             <!-- END Login Title -->
 
@@ -190,10 +191,10 @@
             <!-- Footer -->
             <footer class="clearfix">
                 <div class="pull-right">
-                    Con <i class="fa fa-heart text-danger"></i> by <a href="<?php print($this->config->appAutorLink)?>" target="_blank"><?php print($this->config->appAutor)?></a>
+                  2016 &copy; <a href="<?php print($this->config->appAutorLink)?>" target="<?php print($this->config->appAutor)?>"><?php print($this->config->appAutor)?></a>
                 </div>
                 <div class="pull-left">
-                    <span id="year-copy"></span> &copy; <a href="<?php print($this->config->appAutorLink)?>" target="<?php print($this->config->appAutor)?>"><?php print($this->config->appAutor)?></a>
+
                 </div>
             </footer>
             <!-- END Footer -->

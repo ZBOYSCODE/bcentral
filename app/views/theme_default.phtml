@@ -110,7 +110,7 @@
 				               		<img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
 				                </div>
 				                <div class="col-md-7 col-lg-7 col-xs-7">
-				                    <h1>Bienvenido al <strong>Portal de Atención de Usuarios</strong><br><small>Banco Central de Chile</small></h1>
+				                    <h1>Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small>Banco Central de Chile</small></h1>
 				                </div>
 				                <!-- END Main Title -->
 
@@ -138,7 +138,7 @@
 	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
 	            	</div>
 		            <div class="pull-left">
-		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank">Portal TI - BCCH</a>
+		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
 		            </div>
 	            </footer>
 	            <!-- END Footer -->

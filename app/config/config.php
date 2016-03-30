@@ -38,8 +38,8 @@ return new \Phalcon\Config([
 	array('session'=>array('login'=>true,'logout'=>true/*,'*'=>true*/)//
 	/*,'otro'=>array('login'=>true)*/,'comercio'=>array('*'=>true)//
 	/*,'otro'=>array('login'=>true)*/),
-	'appTitle'=>'Banco Central',
-	'appName'=>"<strong>Banco</strong>Central",
+	'appTitle'=>'Portal de Atención de Usuarios',
+	'appName'=>"Portal de Atención de Usuarios",
 	'appAutor'=>'Zenta',
 	'appAutorLink'=>'http://zentagroup.com',
 ]);
