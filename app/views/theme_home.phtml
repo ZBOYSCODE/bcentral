@@ -99,7 +99,7 @@
 	            <!-- END Header -->
 
 	            <!-- Page Content -->
-	            <div id="page-content" class="clearfix">
+	            <div id="page-content" class="clearfix" style="padding-bottom: 40px;">
 	                <!-- Dashboard Header -->
 				    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
 				    <div class="content-header content-header-media">
@@ -110,7 +110,7 @@
 				               		<img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
 				                </div>
 				                <div class="col-md-7 col-lg-7 col-xs-7">
-				                    <h1>Bienvenido al <strong>Portal de Atención de Usuarios</strong><br><small>Banco Central de Chile</small></h1>
+				                    <h1>Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small>Banco Central de Chile</small></h1>
 				                </div>
 				                <!-- END Main Title -->
 
@@ -126,7 +126,7 @@
 
 				    <!-- Widgets Row -->
 				    <div class="row">
-				        <div class="col-md-7 ">
+				        <div class="col-md-6 ">
 				            <!-- Timeline Widget -->
 				            <div class="widget ">
 				                <div class="widget-extra themed-background-dark">
@@ -137,41 +137,85 @@
 				                        <small><a href="page_ready_timeline.php"><strong></strong></a></small>
 				                    </h3>
 				                </div>
-				                <div class="widget-extra widget-catalogo">
+				                <div class="widget-extra " style="padding-right: 0px; padding-left: 0px;">
 
 							        <!-- Working Tabs Content -->
-							        <div class="row row-catalogo">
-					                   <ul class="nav nav-tabs fix-tabs">
-					                      <li class="active tab-bc"><a class="menu-bc" data-toggle="tab" href="#pest1">Servicios</a></li>
-					                      <li class="tab-bc"><a class="menu-bc" href="<?php print($this->url->get("soporte"))?>">Soporte</a></li>
-					                    </ul>
-
-				                        <div class="tab-content">
-					                        <div class="tab-pane fade in active" id="pest1">
-					                            <div class="modal-body">
-					                             	<ul class="nav-horizontal text-center catalogo-lista-home">
-														<li class="three-menu">
-														<a  id="btnTec" href="<?php print($this->url->get("comercio/solicitudServicio/tecnologia"))?>" data-toggle="modal" ><i class="gi gi-display "></i> Tecnología</a>
-														</li>
-														<li class="three-menu">
-														<a id="btnServ" href="<?php print($this->url->get("comercio/solicitudServicio/generales"))?>" data-toggle="modal" ><i class="gi gi-bullhorn "></i> Servicios Generales</a>
-														</li>
-														<li class="three-menu">
-														<a id="btnOtros" href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>" data-toggle="modal"><i class="gi gi-group "></i>Otros Servicios</a>
-														</li>
-													</ul>
-					                            </div>                                                
-					                        </div>
-				                        </div>
-							        </div>
+							        <div class="row row-catalogo catalogo-lista-home">
+				        				<div class="col-xs-12 text-center">
+											<a href="<?php print($this->url->get("comercio/solicitudServicio/tecnologia"))?>" class="widget active widget-hover-effect1 catalogo-menu " style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+									            <div class="widget-simple text-center">
+									            	<div class="row">
+									            		<div class="col-xs-4">
+									            			<i class="gi gi-display fa-3x"></i>
+											                <h3 class="widget-content" >
+											                 <strong>Tecnología</strong><br>
+											                </h3>
+										                </div>
+										                <div class="col-xs-8">
+										          			<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+										          		</div>
+									          		</div> 
+									            </div>
+								        	</a>
+										</div>
+										<div class="col-xs-12 text-center">
+											<a href="<?php print($this->url->get("comercio/solicitudServicio/generales"))?>" class="widget active widget-hover-effect1 catalogo-menu " style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+									            <div class="widget-simple text-center">
+									            	<div class="row">
+									            		<div class="col-xs-4">
+									            			<i class="gi gi-bullhorn fa-3x"></i>
+											                <h3 class="widget-content " >
+											                 <strong>Servicios Generales</strong><br>
+											                </h3>
+										                </div>
+										                <div class="col-xs-8">
+										          			<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+										          		</div>
+									          		</div> 
+									            </div>
+								        	</a>
+										</div>
+										<div class="col-xs-12 text-center">
+											<a href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>" class="widget active widget-hover-effect1 catalogo-menu " style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+									            <div class="widget-simple text-center">
+									            	<div class="row">
+									            		<div class="col-xs-4">
+									            			<i class="gi gi-group fa-3x"></i>
+											                <h3 class="widget-content" >
+											                 <strong>Otros Servicios</strong><br>
+											                </h3>
+										                </div>
+										                <div class="col-xs-8">
+										          			<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+										          		</div>
+									          		</div> 
+									            </div>
+								        	</a>
+										</div>
+									</div>	
+						        </div>
 							        <!-- END Working Tabs Content -->
 
-								</div>
-			                </div>
+							</div>
+			                <!-- Timeline Widget -->
+				            <div class="widget-eval">	
+					            <a href="<?php print($this->url->get('comercio/conocimiento')) ?>" class="widget widget-hover-effect1" >
+					                <div class="widget-simple widget-home-custom">
+					                    <div class="pull-left icon-wg">
+					                       <i class="hi hi-search"></i>
+					                    </div>
+					                    <h5 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
+					                        Procedimientos, Formularios e Instructivos  <strong></strong><br>
+					                        <small class="widget-simple-bc-leyend">Busca documentos </small>
+					                    </h5>
+					                </div>
+					            </a>
+				            </div>
+				            <!-- END Timeline Widget -->
 				            <!-- END Timeline Widget -->
 				        </div>
 
-				        <div class="col-md-5">
+				        <div class="col-md-6">
 				            <!-- Your Plan Widget -->
 				            <div class="widget">
 				                <div class="widget-extra themed-background-dark">
@@ -179,6 +223,7 @@
 				                       <strong>Consultar</strong> Solicitud 
 				                        <small><a href="page_ready_pricing_tables.php"><strong></strong></a></small>
 				                        <small>Ultimos tickets</small>
+				                       
 				                    </h3>
 
 				                </div>
@@ -194,55 +239,81 @@
 					                                            <th class="">ID</th>
 					                                            <th>Estado</th>
 					                                            <th>Categoria</th>
+					                                            <th> Acción</th>
 					                                        </tr>
 					                                    </thead>
 					                                    <tbody>
 					                                        <tr>
-					                                            <td class="text-center">#TCK420</td>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK420</a></td>
 					                                            <td><span class="label label-danger">PENDIENTE</span></td>
 					                                            <td>Cambiar Contraseña</td>
+					                                            <td></td>
 					                                        </tr>
 					                                        <tr>
-					                                            <td class="text-center">#TCK421</td>
-					                                            <td><span class="label label-danger">PENDIENTE</span></td>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK424</a></td>
+					                                            <td><span class="label label-default">CERRADO</span></td>
 					                                            <td>Comunicaciones y mensajeria</td>
+					                                            <td><button style="width:100%" type="button" class="btn  btn-small btn-bc">Evaluar</button></td>
 					                                        </tr>
 					                                        <tr>
-					                                            <td class="text-center">#TCK422</td>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
 					                                            <td><span class="label label-success">EN CURSO</span></td>
 					                                            <td>Insalar Configurar</td>
+					                                            <td></td>
 					                                        </tr>
 					                                        <tr>
-					                                            <td class="text-center">#TCK425</td>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK429</a></td>
+					                                            <td><span class="label label-default">CERRADO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                            <td><button style="width:100%" type="button" class="btn  btn-small btn-bc">Evaluar</button></td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK200</a></td>
 					                                            <td><span class="label label-success">EN CURSO</span></td>
 					                                            <td>Solucionar Problema</td>
+					                                            <td></td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                            <td></td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+					                                            <td><span class="label label-success">EN CURSO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                            <td></td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+					                                            <td><span class="label label-default">CERRADO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                            <td><button style="width:100%" type="button" class="btn  btn-small btn-bc">Evaluar</button></td>
+					                                        </tr>
+					                                        <tr>
+					                                            <td class="text-center"><a href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+					                                            <td><span class="label label-default">CERRADO</span></td>
+					                                            <td>Solucionar Problema</td>
+					                                            <td><button style="width:100%" type="button" class="btn  btn-small btn-bc">Evaluar</button></td>
 					                                        </tr>
 					                                    </tbody>
 					                                </table>
-					                                <div class="col-md-12 text-center">
-					                                	<a style="font-size: 16px;" href="">Ver todos ...</a>
+					                                <div class="col-md-12 text-center" style="margin-bottom: 6px;">
+					                                	<a style="font-size: 16px;" href="<?php print($this->url->get('solicitudes')) ?>"> Ver todos ...</a>
 					                                </div>
 					                            </div>
-					                            <div class="text-center">
+					                            <div class="text-center col-xs-12">
 					                            <br>
-					                            		<div class="col-sm-12">
+					                            	<div class="row">
+					                            		<div class="col-xs-6">
 															 <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Nº Ticket">
 														</div>
-														
-					                            </div>
-					                            <div class="col-lg-12" style="margin-top: 5px;">
-													<div class="row">
-														<div class="col-lg-4">
-														<button style="width:100%" type="button" class="btn btn-success">Buscar tickets</button>
-														</div>
-														<div class="col-lg-4">
-														<button style="width:100%" type="button" class="btn btn-success">Reiterar</button>
-														</div>
-														<div class="col-lg-4">
-														<button style="width:100%" type="button" class="btn btn-success">Evaluar</button>
+														<div class="col-xs-6">
+															<button style="width:100%" type="button" class="btn btn-bc">Buscar Ticket</button>
 														</div>
 													</div>
-												</div>
+					                            </div>
 					                        </div>
 					                    </div>
 					                    <!-- END Tickets List -->
@@ -257,32 +328,7 @@
 
 				            <!-- END Your Plan Widget -->
 
-				            				        	<!-- Timeline Widget -->
-				            <div class="widget-eval">
-				                <a href="<?php print($this->url->get('comercio/evaluar')) ?>" class="widget widget-hover-effect1" >
-					                <div class="widget-simple">
-					                    <div class="pull-left icon-wg">
-					                       <i class="hi hi-ok"></i>
-					                    </div>
-					                    <h2 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
-					                        Evaluar <strong>Servicio</strong><br>
-					                        <small class="widget-simple-bc-leyend">Evalua las solicitudes cerradas</small>
-					                    </h2>
-					                </div>
-					            </a>
-					            <a href="<?php print($this->url->get('comercio/conocimiento')) ?>" class="widget widget-hover-effect1" >
-					                <div class="widget-simple">
-					                    <div class="pull-left icon-wg">
-					                       <i class="hi hi-search"></i>
-					                    </div>
-					                    <h4 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
-					                        Base de  <strong>Conocimiento</strong><br>
-					                        <small class="widget-simple-bc-leyend">Busca documentos </small>
-					                    </h4>
-					                </div>
-					            </a>
-				            </div>
-				            <!-- END Timeline Widget -->
+				  
 
 				        </div>
 
@@ -295,12 +341,14 @@
 
 	            <!-- Footer -->
 	            <footer class="clearfix">
-	                <div class="pull-right">
-	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
-	            	</div>
-		            <div class="pull-left">
-		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
-		            </div>
+		            	
+		                <div class="pull-right" >
+		                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
+		            	</div>
+			            <div class="pull-left">
+			                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
+			            </div>
+			            <div class="center-footer">Mesa de ayuda: <i class="gi gi-earphone"></i> (56 2) 670 2000 </div>
 	            </footer>
 	            <!-- END Footer -->
 	        </div>

@@ -38,5 +38,16 @@ $router->add('/soporte', array(
 	'action' => 'solicitudSoporte'
 	));
 
+$router->add('/solicitudes', array(
+    'controller' => 'comercio',
+    'action' => 'listarSolicitudes'
+    ));
+
+$router->add('/ticket', array(
+    'controller' => 'comercio',
+    'action' => 'ticket'
+    ));
+
+
 
 return $router;

@@ -45,6 +45,8 @@ class ComercioController extends ControllerBase
             exit;
         }
 
+         $js = $js." "."$('.select-chosen').select2({width: '100%'});";
+
         echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>'','jsScript'=>$js));
 
     }
@@ -57,10 +59,21 @@ class ComercioController extends ControllerBase
 
     }
 
-    public function evaluarAction()
+    public function listarSolicitudesAction()
     {
 
-        $pcView = 'servicio/servicios_evaluacion';
+        $pcView = 'servicio/servicios_listar_tickets';
+
+        $js = $this->getJsEncuesta();
+        $js = $js." ".$this->getJsDatatables();
+
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
+    }
+
+     public function ticketAction()
+    {
+
+        $pcView = 'servicio/servicios_ver_ticket';
 
         $js = '';
 
@@ -137,6 +150,143 @@ class ComercioController extends ControllerBase
                 }
             });
             
+        ";
+
+        return $jsScript;
+    }
+
+    private function getJsEncuesta() {
+             $jsScript = "
+
+                $('#cerrarModal').click(
+                    function(){
+                        $('#barra-progreso').css('width','10%'); 
+                        $('#barra-progreso').removeClass('progress-bar-success');
+                        $('#barra-progreso').addClass('progress-bar-danger');
+                        $('#stp-trat-pregunta1 .stp-trat-btn').addClass('active');
+                        $('#stp-trat-pregunta1').css('display','block'); 
+                        $('#stp-trat-resultado').css('display','none'); 
+                    }
+                );
+
+                $('.stp-trat-btn').click(
+                    function(){
+
+                        $('#stp-trat-'+$(this).data('stp')+' .stp-trat-btn').removeClass('active');
+                        $(this).addClass('active');
+
+                        $('.stp-trat').css('display','none');
+                        
+                        $('#stp-trat-'+$(this).data('next')).css('display','block');                
+                        
+                        if($(this).data('type')=='pregunta1'){
+                            $('#barra-progreso').css('width','20%');
+                        }
+
+                        if($(this).data('type')=='pregunta2'){
+                            $('#barra-progreso').css('width','40%');
+                            $('#barra-progreso').removeClass('progress-bar-danger');
+                            $('#barra-progreso').addClass('progress-bar-warning');
+                        }
+
+                        if($(this).data('type')=='pregunta3'){
+                            $('#barra-progreso').css('width','60%');
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-success');
+                        }
+                        if($(this).data('type')=='pregunta4'){
+                            $('#barra-progreso').css('width','80%');
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-success');
+                        }
+                        if($(this).data('type')=='pregunta5'){
+                            $('#barra-progreso').css('width','100%');
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-success');
+                        }
+                    }
+                );
+
+                $('.stp-trat-btn-menu').click(
+                    function(){
+
+                        if($(this).data('next') == 'pregunta1')
+                        {
+                            $('#barra-progreso').css('width','20%');    
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-danger');
+                        }
+
+                        if($(this).data('next') == 'pregunta2')
+                        {
+                            $('#barra-progreso').css('width','40%');    
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-danger');
+                        }
+                        if($(this).data('next') == 'pregunta3')
+                        {
+                            $('#barra-progreso').css('width','60%');    
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-danger');
+                        }  
+                        if($(this).data('next') == 'pregunta4')
+                        {
+                            $('#barra-progreso').css('width','80%');    
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-danger');
+                        }   
+                        if($(this).data('next') == 'pregunta5')
+                        {
+                            $('#barra-progreso').css('width','100%');    
+                            $('#barra-progreso').removeClass('progress-bar-warning');
+                            $('#barra-progreso').addClass('progress-bar-danger');
+                        }                 
+              
+
+                        $('.stp-trat').css('display','none');
+                        $('#stp-trat-'+$(this).data('next')).css('display','block');
+                    }
+                );   
+
+                $(function() {
+                    $('#search').on('keyup', function() {
+                        var pattern = $(this).val();
+                        $('.searchable-container .items').hide();
+                        $('.searchable-container .items').filter(function() {
+                            return $(this).text().match(new RegExp(pattern, 'i'));
+                        }).show();
+                    });
+                });  
+         ";
+
+         return $jsScript;
+    }
+
+    private function getJsDatatables() {
+        $jsScript =
+        "
+            var TablesDatatables = function() {
+
+                return {
+                    init: function() {
+                        /* Initialize Bootstrap Datatables Integration */
+                        //App.datatables();
+
+                        /* Initialize Datatables */
+                        $('#table').dataTable({
+                            columnDefs: [ { orderable: true, targets: [ 1, 2, 3, 4 ] } ]
+                        });
+
+                        /* Add placeholder attribute to the search input */
+                        $('div.dataTables_length').html('');
+                        $('#table_filter').html('');
+                        $('#table_info').html('');
+                        $('#table_paginate').html('');
+                    }
+                };
+            }();
+
+            $(function(){ TablesDatatables.init(); });
         ";
 
         return $jsScript;

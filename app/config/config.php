@@ -38,8 +38,8 @@ return new \Phalcon\Config([
 	array('session'=>array('login'=>true,'logout'=>true/*,'*'=>true*/)//
 	/*,'otro'=>array('login'=>true)*/,'comercio'=>array('*'=>true)//
 	/*,'otro'=>array('login'=>true)*/),
-	'appTitle'=>'Portal de Atención de Usuarios',
-	'appName'=>"Portal de Atención de Usuarios",
+	'appTitle'=>'Portal de Servicios',
+	'appName'=>"Portal de Servicios",
 	'appAutor'=>'Zenta',
 	'appAutorLink'=>'http://zentagroup.com',
 ]);

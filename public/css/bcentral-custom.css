@@ -136,9 +136,12 @@ body {
 
 /*catalogo menu home*/
 
-.catalogo-lista-home li{
-
-	width: 100%;
+.catalogo-lista-home {
+    background-color: white;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:1px;
+    padding-right:1px;
 }
 
 .one-menu a, .one-menu a>i {
@@ -165,12 +168,42 @@ body {
  background-color: #93BAC0;
 }
 
+.catalogo-menu {
+    color: #93BAC0;
+    padding: 8px;
+}
+
+.catalogo-menu:hover {
+    background-color: #93BAC0;
+    color: white;
+}
+
+.catalogo-menu:focus {
+    color: #93BAC0;
+    padding: 8px;
+}
+
 
 .modal-catalogo-op {
-    padding-top: 20px;
+    padding-top: 10px;
     border-radius: 20px;
     background-color: #f9fafc;
     color: #93BAC0  ;
+    min-height: 225px;
+}
+
+.catalogo-op-desc {
+    padding-top: 1px;
+    padding-bottom: 10px;
+    padding-left: 4px;
+    padding-right: 2px;
+}
+
+.widget-home-custom {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .modal-catalogo-op:hover, .modal-catalogo-op.active:hover, .modal-catalogo-op.active:focus   {
@@ -199,9 +232,6 @@ body {
     overflow-y: hidden;
 }
 
-.form-group {
-    margin-bottom: 56px;
-}
 
 .table-bc thead > tr > th {
 	padding-top: 0px;
@@ -215,7 +245,21 @@ body {
 	margin: 0 auto;
 }
 
+.btn-bc {
+    background-color: #0D3862;
+    border-color: #16528E;
+    color: #ffffff;
+}
 
+.btn-bc:hover {
+    color: #93BAC0;
+    background-color: #0B2640;
+}
+
+.center-footer {
+    position: relative;
+    text-align: center;
+}
 
 @media (max-width: 991px) {
 	#page-container {
