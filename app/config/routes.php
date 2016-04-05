@@ -48,6 +48,11 @@ $router->add('/ticket', array(
     'action' => 'ticket'
     ));
 
+$router->add('/documento', array(
+    'controller' => 'comercio',
+    'action' => 'documento'
+    ));
+
 
 
 return $router;

@@ -80,6 +80,14 @@ class ComercioController extends ControllerBase
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
     }
 
+     public function documentoAction() {
+        $pcView = 'servicio/servicios_ver_documento';
+
+        $js = '';
+
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
+     }
+
 
 
     private function getJsCatalogo() {
@@ -133,6 +141,7 @@ class ComercioController extends ControllerBase
                 }
 
                 if($(this).data('next') == 'form-solicitudes'){
+                    $('#helptitle').addClass('hidden');
                     $('.bcTecnologia').removeClass('hidden');
                     $('.bcFormSolicitudes').removeClass('hidden');
                     $('#textFormSolicitudes').removeClass('hidden');

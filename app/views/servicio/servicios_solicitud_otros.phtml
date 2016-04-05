@@ -92,105 +92,172 @@
 
 	<!-- Formulario -->			
 	<div class="nsBoton-form-solicitudes hidden strap">
-		<fieldset>
+		<div class="row">
+			<div class="col-md-8 center-block">
+			<h4><div class="alert" style="color:white ;background-color: #93BAC0;border-color: #93BAC0;">Datos Ticket</div></h4>
+			
+			<fieldset>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="horaInicio">
+						<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
+					<div class="col-md-8">
+						<input type="text" class="form-control" >
+						<br>
+					</div>
+				</div>
+				<br>
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="horaFin">
+						<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
+					<div class="col-md-8">
+						<textarea class="form-control" rows="4" cols="50"></textarea>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="scsl_cdg">
+								<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
+							<div class="col-md-8">
+								<select  class="form-control select-chosen" value="Alejandro Aguilera">
+									<option value="" selected="selected"></option>
+									<option value="Alejandro Aguilera" selected="selected">Alejandro Aguilera</option>
+									<option value="Orlando">Orlando San Martín</option>
+									<option value="felipe">Felipe Acuña</option>
+									<option value="otro">Cristian Vargas</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					</div>
+			</fieldset>
+			<br>
+			<fieldset>
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-
-				<label class="col-md-4 control-label" for="scsl_cdg">
-					<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
-				<div class="col-md-8">
-					<input type="text" class="form-control" >
-				</div>
-			</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-				<label class="col-md-4 control-label" for="scsl_cdg">
-					<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
-				<div class="col-md-8">
-					<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno">
-						<option value="" selected="selected"></option>
-						<option value="ALTO">Alto</option>
-						<option value="MEDIO">Medio</option>
-						<option value="BAJO">Bajo</option>
-					</select>
-				</div>
-			</div>
-				</div>
-			</div>
-		</fieldset>
-		<br>         
-	
-		<fieldset>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-				<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-map-marker">&nbsp;&nbsp;</i>Ubicación:</label>
-				<div class="col-md-8">
-					<input type="text" class="form-control" >
-				</div>
-			</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-				<label class="col-md-4 control-label" for="scsl_cdg">
-					<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
-				<div class="col-md-8">
-					<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia">
-						<option value="" selected="selected"></option>
-						<option value="ALTO">Muy Urgente</option>
-						<option value="MEDIO">Urgente</option>
-						<option value="BAJO">Poco Urgente</option>
-					</select>
-				</div>
-			</div>
-				</div>
-			</div>	 
-		</fieldset>
-		<br>
-		<fieldset>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="scsl_cdg">
-							<i class="fa fa-gears">&nbsp;&nbsp;</i>Servicio Afectado:</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" >
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="scsl_cdg">
+								<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
+							<div class="col-md-8">
+								<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione tipo de turno">
+									<option value="" selected="selected"></option>
+									<option value="ALTO">Alto</option>
+									<option value="MEDIO">Medio</option>
+									<option value="BAJO">Bajo</option>
+								</select>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-					<label class="col-md-4 control-label" for="scsl_cdg">
-						<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
-					<div class="col-md-8">
-						<input type="text" class="form-control" >
+			</fieldset>
+			<br>         
+		
+			<fieldset>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i>Desde - Hasta:</label>
+							<div class="col-xs-3">
+								<input type="text" class="form-control" >
+							</div>
+							<div class="col-xs-1">
+							-
+							</div>
+							<div class="col-xs-3">
+								<input type="text" class="form-control" >
+							</div>
+						</div>
 					</div>
 					</div>
-				</div>
-			</div>	 						
-		</fieldset>
-		<br>
-		<h4><div class="block-title alert alert-warning">Información General</div></h4>
-		<fieldset>
-			<div class="form-group">
-				<label class="col-md-4 control-label" for="horaInicio">
-					<i class="fa fa-minus">&nbsp;&nbsp;</i>Título:</label>
-				<div class="col-md-8">
-					<input type="text" class="form-control" >
-					<br>
-				</div>
-			</div>
+			</fieldset>
 			<br>
+			<fieldset>
+			<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+						<label class="col-md-4 control-label" for="scsl_cdg">
+						<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
+							<div class="col-md-8">
+								<select name="tipoTurno" class="form-control select-chosen" data-placeholder="Seleccione urgencia">
+									<option value="" selected="selected"></option>
+									<option value="ALTO">Muy Urgente</option>
+									<option value="MEDIO">Urgente</option>
+									<option value="BAJO">Poco Urgente</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>	 
+			</fieldset>
+			<br>
+			<fieldset>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="scsl_cdg">
+								<i class="fa fa-gears">&nbsp;&nbsp;</i>Interrupción de Servicio:</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" >
+							</div>
+						</div>
+					</div>
+					</div>
+
+			</fieldset>
+			<br>
+			<fieldset>
+			<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+						<label class="col-md-4 control-label" for="scsl_cdg">
+							<i class="fa fa-user">&nbsp;&nbsp;</i>CI Afectado:</label>
+						<div class="col-md-8">
+							<select id="select_ci" name="select_ci" class="select-chosen">
+	                                    <option value=""></option>
+	                                    <option value="1">CI AFECTADO 1</option>
+	                                    <option value="1">CI AFECTADO 2</option>
+	                                    <option value="1">CI AFECTADO 3</option>
+	                                    <option value="1">CI AFECTADO 4</option>
+	                                    <option value="1">CI AFECTADO 5</option>
+	                                    <option value="1">CI AFECTADO 6</option> 
+	                                    <option value="1">CI AFECTADO 2</option>
+	                                    <option value="1">CI AFECTADO 3</option>
+	                                    <option value="1">CI AFECTADO 4</option>
+	                                    <option value="1">CI AFECTADO 5</option>
+	                                    <option value="1">CI AFECTADO 6</option>
+	                                    <option value="1">CI AFECTADO 2</option>
+	                                    <option value="1">CI AFECTADO 3</option>
+	                                    <option value="1">CI AFECTADO 4</option>
+	                                    <option value="1">CI AFECTADO 5</option>
+	                                    <option value="1">CI AFECTADO 6</option>
+	     
+
+	                        </select>
+						</div>
+						</div>
+					</div>
+				</div>	 						
+			</fieldset>
+			<fieldset>
+				<div class="form-group">
+	                <label class="col-md-4 control-label" for="example-file-multiple-input">Adjunto</label>
+	                <div class="col-md-8">
+	                    <input type="file" id="example-file-multiple-input" name="example-file-multiple-input" multiple="">
+	                </div>
+	            </div>
+			</fieldset>
+
+
+		<fieldset style="margin-top: 30px;">
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="horaFin">
-					<i class="fa fa-navicon">&nbsp;&nbsp;</i>Descripción:</label>
-				<div class="col-md-8">
-					<textarea class="form-control" rows="4" cols="50"></textarea>
+				<div class="col-xs-4 center-block">
+					<button id="btnGuardar" type="button" class="btn btn-block btn-bc">Enviar ticket</button>
 				</div>
-			</div>
-		</fieldset>	
+		  	</div>
+		</fieldset>
+
 	</div>								
 </div>
 
