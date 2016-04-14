@@ -20,53 +20,21 @@
     </div>
     <!-- ./BREADCRUMBS -->
 
-    <div class="row">
-        <div class="col-xs-4 ">
-                <!-- Your Plan Widget -->
-                <div class="block">
-                    <div class="block-title">
-                        <h3>
-                           <strong>Datos del ticket </strong>
-                            
-                        </h3>
-                        <div class="block-options pull-right">
-                            <a href="#">
-                            <span class="label btn-bc"> <i class="gi gi-repeat"></i> Reiterar</span>
-                            <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="widget-extra-full catalogo-lista-home">
-                        <div class="row ">
-                                                                    <!-- Tickets List -->
-                            <div class="tab-pane active" id="tickets-list">
-                                <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
-                                    
-                                    <span><i class="gi gi-user"></i> Por <strong>Alejandro Aguilera</strong></span> <br>
-                                    <span><i class="gi gi-calendar"></i> Fecha Solicitud: <strong>27/03/2016</strong></span><br>
-                                    <span><i class="gi gi-ok_2"></i> Categoría: <strong>Tecnología</strong></span><br>
-                                    <span><i class="hi hi-send"></i> Estado: <strong>PENDIENTE</strong></span><br>
-                                    <h3><strong>Necesito activación de mi cuenta</strong></h3><br>
-                                    <h5><strong>Descripción: </strong> Mi cuenta no está activada ya que al ingresar los sistemas internos me arroja un error.</h5><br>
-
-                                </div>
-                            </div>
-                            <!-- END Tickets List -->
-                        </div>
-                    </div>
-                 </div>
-                <!-- END Your Plan Widget -->
-        </div>
-
-        <div class="col-xs-8 ">
+<div class="row">
+    <div class="col-xs-4 ">
             <!-- Your Plan Widget -->
-            <div class="block">
+            <div class="block tablaTicketBc">
                 <div class="block-title">
                     <h3>
-                       <strong>Detalle ticket </strong>#TICK123
+                       <strong>Datos del ticket </strong>
                         
                     </h3>
+                    <div class="block-options pull-right">
+                        <a href="#modal-reiterar" data-toggle="modal">
+                        <span class="label btn-bc"> <i class="gi gi-repeat"></i> Insistir</span>
+                        <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
+                        </a>
+                    </div>
 
                 </div>
                 <div class="widget-extra-full catalogo-lista-home">
@@ -74,39 +42,14 @@
                                                                 <!-- Tickets List -->
                         <div class="tab-pane active" id="tickets-list">
                             <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
-                               <table class="table table-bordered table-striped table-vcenter">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-center">Destinatario Servicio</td>
-                                            <td > Alejandro Aguilera</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" >C.I. Afectado</td>
-                                            <td > Item de Configuración</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" >Impacto</td>
-                                            <td > Medio</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" >Urgencia</td>
-                                            <td > Alta</td>
-                                        </tr>
-                                         <tr>
-                                            <td class="text-center" >Interrupción de Servicio</td>
-                                            <td > Correo</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" >Adjunto</td>
-                                            <td > SI</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center" >Desde - Hasta</td>
-                                            <td > 27/03/2016 - 10/04/2016</td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table>
+                                
+                                <span><i class="gi gi-user"></i> Por <strong>Alejandro Aguilera</strong></span> <br>
+                                <span><i class="gi gi-calendar"></i> Fecha Solicitud: <strong>27/03/2016</strong></span><br>
+                                <span><i class="gi gi-calendar"></i> Fecha Estimada Resolución: <strong>29/03/2016</strong></span><br>
+                                <span><i class="gi gi-ok_2"></i> Categoría: <strong>Tecnología</strong></span><br>
+                                <span><i class="hi hi-send"></i> Estado: <strong>PENDIENTE</strong></span><br>
+                                <h3><strong>Necesito activación de mi cuenta</strong></h3><br>
+                                <h5><strong>Descripción: </strong> Mi cuenta no está activada ya que al ingresar los sistemas internos me arroja un error.</h5><br>
 
                             </div>
                         </div>
@@ -115,11 +58,150 @@
                 </div>
              </div>
             <!-- END Your Plan Widget -->
+    </div>
+
+    <div class="col-xs-8 ">
+        <!-- Your Plan Widget -->
+        <div class="block tablaTicketBc">
+            <div class="block-title">
+                <h3>
+                   <strong>Detalle ticket </strong>#TICK123
+                    
+                </h3>
+
+            </div>
+            <div class="widget-extra-full catalogo-lista-home">
+                <div class="row ">
+                                                            <!-- Tickets List -->
+                    <div class="tab-pane active" id="tickets-list">
+                        <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
+                           <table class="table table-bordered table-striped table-vcenter">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">Destinatario Servicio</td>
+                                        <td > Alejandro Aguilera</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >C.I. Afectado</td>
+                                        <td > Item de Configuración</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >Impacto</td>
+                                        <td > Medio</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >Urgencia</td>
+                                        <td > Alta</td>
+                                    </tr>
+                                     <tr>
+                                        <td class="text-center" >Interrupción de Servicio</td>
+                                        <td > Correo</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >Adjunto</td>
+                                        <td > SI</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >Desde - Hasta</td>
+                                        <td > 27/03/2016 - 10/04/2016</td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- END Tickets List -->
+                </div>
+            </div>
+         </div>
+        <!-- END Your Plan Widget -->
 
 
 
-            <!-- Your Plan Widget -->
+        <!-- Your Plan Widget -->
 
-            <!-- END Your Plan Widget -->
+        <!-- END Your Plan Widget -->
+    </div>
+
+    <div class="col-xs-4">
+    </div>
+    <div class="col-xs-8">
+        <div class="block ">
+            <div class="block-title">
+                <h3>
+                   <strong>Bitácora </strong>#TICK123
+                    
+                </h3>
+
+            </div>
+            <div class="widget-extra-full catalogo-lista-home">
+                <div class="row ">
+                                                            <!-- Tickets List -->
+                    <div class="tab-pane active" id="tickets-list">
+                        <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
+                           <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">Fecha</th>
+                                        <th>Detalle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">28/03/2016 16:25</td>
+                                        <td> El ticket ha sido tomado por la mesa de ayuda</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center" >28/03/2016 17:00</td>
+                                        <td> El ticket ha sido derivado al área de soporte</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <!-- END Tickets List -->
+                </div>
+            </div>
+         </div>
+        
+    </div>
+</div>
+
+
+<div id="modal-reiterar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog " style="width: 70%">
+        <div class="modal-content">
+            <!-- Updates Title -->
+            <div class="block-title" style=" margin: 0px;">
+                <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2><strong>Insistir Ticket <a href="<?php print($this->url->get('ticket')) ?>" >#TCK442</a></strong></h2>
+            </div>
+            <!-- END Updates Title -->
+            <div class="modal-body">
+                <!-- Resultado -->      
+                <div class="stp-trat"  id="stp-trat-resultado">
+                    <div class="form-group row text-center " style="margin-top: -15px;">
+                        <div class="col-lg-12">
+                            <h3><strong>Ingresar detalle de la Insistencia</strong></h3> <br>
+                        </div>
+                        <div class="col-lg-6 center-block">
+                           <textarea id="descripcion" name="descripcion" rows="5" class="form-control push-bit" placeholder="descripción"></textarea>
+                        </div>
+                        <div class="col-lg-6 center-block">
+                           <button style="width:100%" type="button" class="btn btn-bc">Enviar Insistencia</button>
+                        </div>                                               
+                    </div>
+                </div>                                                                                          
+            </div>
+
+        
+            <div class="modal-footer">
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-sm btn-default pull-right" data-dismiss="modal" href=""> Cerrar</a>
+                </div>
+            </div>
         </div>
+    </div>
 </div>

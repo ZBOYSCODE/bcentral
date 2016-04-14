@@ -9,7 +9,8 @@ class ComercioController extends ControllerBase
      */
     public function indexAction()
     {   
-        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>''));
+        $js = $this->getJsEncuesta();
+        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>'','jsScript'=>$js));
 
     }
 

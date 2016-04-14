@@ -169,13 +169,14 @@ body {
 }
 
 .catalogo-menu {
-    color: #93BAC0;
+    color: #63939A;
+   font-weight: 600;
     padding: 8px;
 }
 
 .catalogo-menu:hover {
     background-color: #93BAC0;
-    color: white;
+    color: white !important;
 }
 
 .catalogo-menu:focus {
@@ -188,7 +189,8 @@ body {
     padding-top: 20px;
     border-radius: 20px;
     background-color: #f9fafc;
-    color: #93BAC0  ;
+    color: #63939A  ;
+    font-weight: 600;
     min-height: 225px;
 }
 
@@ -198,6 +200,12 @@ body {
     padding-left: 4px;
     padding-right: 2px;
 }
+
+.bc-text {
+    color: #63939A;
+    font-weight: 600;
+}
+
 
 .widget-home-custom {
     padding-top: 5px;
@@ -246,19 +254,23 @@ body {
 }
 
 .btn-bc {
-    background-color: #0D3862;
-    border-color: #16528E;
+    background-color: #787879;
+    border-color: #98999A;
     color: #ffffff;
 }
 
 .btn-bc:hover {
-    color: #93BAC0;
-    background-color: #0B2640;
+    color: white;
+    background-color: #555556;
 }
 
 .center-footer {
     position: relative;
     text-align: center;
+}
+
+.tablaTicketBc {
+     min-height: 350px;
 }
 
 @media (max-width: 991px) {
