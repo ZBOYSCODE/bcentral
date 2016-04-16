@@ -1,6 +1,8 @@
 <?php
 namespace Gabs\Controllers;
 use Gabs\Models\Personas;
+use Gabs\Models\Evaluacion;
+use Gabs\Models\WebServiceClient;
  
 class ComercioController extends ControllerBase
 {
@@ -299,6 +301,29 @@ class ComercioController extends ControllerBase
         ";
 
         return $jsScript;
+    }
+
+    public function TestxmlAction()
+    {
+        $eval = new Evaluacion();
+        $ticket = rand(1000000, 10000000);
+        $eval->ticket = "SD" . $ticket;
+        $eval->conforme = "S";
+        $eval->preg1 = 1;
+        $eval->preg2 = 1;
+        $eval->preg3 = 1;
+        $eval->preg4 = 1;
+        $eval->preg5 = 1;
+        $eval->comentario = "Minions ipsum butt para tú aaaaaah jeje poulet tikka masala jiji gelatooo butt underweaaar. Poopayee poopayee hahaha tank yuuu! Bee do bee do bee do bee do bee do bee do. Chasy belloo! Hana dul sae belloo! Tank yuuu! Aaaaaah tank yuuu! Tatata bala tu gelatooo poulet tikka masala bappleees uuuhhh bananaaaa hana dul sae tatata bala tu. Ti aamoo! tulaliloo tatata bala tu chasy jeje baboiii para tú hana dul sae ti aamoo! Bee do bee do bee do.";
+        $eval->save();
+        indexAction();
+    }
+
+    public function TestwsAction()
+    {
+        $ws = new WebServiceClient();
+        $response = $ws->getTicket('asdasd');
+        var_dump($response);
     }
 
 }
