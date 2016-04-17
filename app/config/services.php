@@ -16,7 +16,7 @@ use Gabs\Auth\Auth;
 use Gabs\Mifaces\Mifaces;
 //use Vokuro\Acl\Acl;
 use Gabs\Mail\Mail;
-use Gabs\Nusoap\Nusoap;
+use library\Nusoap\Nusoap;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -151,6 +151,7 @@ $di->set('acl', function () {
 /*
 *   Web service component
 */
-$di->set('nusoap', function () {
+/*$di->set('nusoap', function () {
     return new Nusoap();
-});
+});*/
+
