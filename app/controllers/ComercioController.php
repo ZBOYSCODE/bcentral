@@ -46,8 +46,6 @@ class ComercioController extends ControllerBase
             exit;
         }
 
-         $js = $js." "."$('.select-chosen').select2({width: '100%'});";
-
         echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>'','jsScript'=>$js));
 
     }

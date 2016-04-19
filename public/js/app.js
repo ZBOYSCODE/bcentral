@@ -62,6 +62,9 @@ var App = function() {
         // Initialize Popovers
         $('[data-toggle="popover"], .enable-popover').popover({container: 'body', animation: true});
 
+        // Initialize Popovers
+        $('[data-toggle="popoverhover"]').popover({trigger:"hover", container: 'body', animation: true});
+
         // Initialize single image lightbox
         $('[data-toggle="lightbox-image"]').magnificPopup({type: 'image', image: {titleSrc: 'title'}});
 
@@ -105,7 +108,6 @@ var App = function() {
         // Initialize Datepicker
         $('.input-datepicker, .input-daterange').datepicker({weekStart: 1});
         $('.input-datepicker-close').datepicker({weekStart: 1}).on('changeDate', function(e){ $(this).datepicker('hide'); });
-
         // Initialize Timepicker
         $('.input-timepicker').timepicker({minuteStep: 1,showSeconds: true,showMeridian: true});
         $('.input-timepicker24').timepicker({minuteStep: 1,showSeconds: true,showMeridian: false});

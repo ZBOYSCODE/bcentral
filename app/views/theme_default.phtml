@@ -145,8 +145,24 @@
 	<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
+	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
+	<?php print($this->tag->javascriptInclude("js/app.js"))?>
 
 	<script>
+		$("#likeimg").on('click', function() {
+			$(this).attr("src","<?php print($this->url->get("img/like-1.png"))?>");
+			$("#dislikeimg").attr("src","<?php print($this->url->get("img/like-22.png"))?>");
+		});
+
+		$("#dislikeimg").on('click', function() {
+			$(this).attr("src","<?php print($this->url->get("img/like-2.png"))?>");
+			$("#likeimg").attr("src","<?php print($this->url->get("img/like-11.png"))?>");
+		});
+	</script>
+
+	<script>
+		
+
 		$(document).ready(function() {
 		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
 		        e.preventDefault();

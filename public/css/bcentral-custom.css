@@ -170,8 +170,9 @@ body {
 
 .catalogo-menu {
     color: #63939A;
-   font-weight: 600;
+    font-weight: 600;
     padding: 8px;
+    min-height: 112px;
 }
 
 .catalogo-menu:hover {
@@ -271,6 +272,58 @@ body {
 
 .tablaTicketBc {
      min-height: 345px;
+}
+
+.eval-bc-icon {
+    font-size: 34px;
+    color: #27AE60;
+}
+
+.padding0center {
+    padding: 0px !important;
+    text-align: center !important;
+}
+
+.table-main {
+    min-height: 452px;
+}
+
+
+
+
+/** LIKE DISLIKE PARA EL RADIO BUTTON */
+.like {
+     list-style-type:none;
+     margin: -8px 22px 0px 62px;
+     padding:0;
+}
+
+.like li {
+     float:left;
+     margin:0 5px 0 0;
+    width:45px;
+    height:40px;
+    position:relative;
+}
+
+.like label, .like input {
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.like input[type="radio"] {
+    opacity:0.011;
+    z-index:100;
+}
+
+
+.like label {
+     cursor:pointer;
+    z-index:90;
 }
 
 @media (max-width: 991px) {
