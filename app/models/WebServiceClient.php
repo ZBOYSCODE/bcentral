@@ -20,12 +20,85 @@ class WebServiceClient extends Model
         
 
         //cargamos el SoapClient desde el injector de dependencia
-        $this->client = $this->di->get('soapclient');
-        $param = array( 'arg0' => $tck);
+        $this->client = $this->di->get('soapclient-servicedesk');
+        $param = array( 'model' => array(
+                            'keys' => array(
+                                'CallID' => $tck
+                            ),
+                            'instance' => array(
+                                'CallID' => '',
+                                'ServiceRecipient' => '',
+                                'Urgency' => '',
+                                'OpenTime' => '',
+                                'UpdateTime' => '',
+                                'OpenedBy' => '',
+                                'Description' => array(
+                                    'Description' => ''
+                                ),
+                                'AffectedService' => '',
+                                'CallOwner' => '',
+                                'Status' => '',
+                                'NotifyBy' => '',
+                                'Solution' => array(
+                                    'Solution' => ''
+                                ),
+                                'Category' => '',
+                                'CallerDepartment' => '',
+                                'CallerLocation' => '',
+                                'CloseTime' => '',
+                                'ClosedBy' => '',
+                                'KnowledgeCandidate' => '',
+                                'SLAAgreementID' => '',
+                                'Priority' => '',
+                                'ServiceContract' => '',
+                                'SiteCategory' => '',
+                                'TotalLossOfService' => '',
+                                'Area' => '',
+                                'Subarea' => '',
+                                'ProblemType' => '',
+                                'FailedEntitlement' => '',
+                                'Location' => '',
+                                'CauseCode' => '',
+                                'ClosureCode' => '',
+                                'Company' => '',
+                                'ReportedByContact' => '',
+                                'ReportedByDifferentContact' => '',
+                                'ReportedByPhone' => '',
+                                'ReportedByExtension' => '',
+                                'ReportedByFax' => '',
+                                'ContactEmail' => '',
+                                'LocationFullName' => '',
+                                'ContactFirstName' => '',
+                                'ContactLastName' => '',
+                                'ContactTimeZone' => '',
+                                'EnteredByESS' => '',
+                                'SLABreached' => '',
+                                'NextSLABreach' => '',
+                                'Contact' => '',
+                                'Update' => array(
+                                    'Update' => ''
+                                ),
+                                'Impact' => '',
+                                'neededbytime' => '',
+                                'approvalstatus' => '',
+                                'folder' => '',
+                                'subscriptionItem' => '',
+                                'AffectedCI' => '',
+                                'Title' => '',
+                                'MetodoOrigen' => '',
+                                'attachments' => array(
+                                    'attachments' => ''
+                                )
+                            ),
+                            'messages' => array(
+                                'messages' => ''
+                            )
+                        )
+                    );
         $result = $this->client->RetrieveInteraction($param);
 
         //$result = $this->client->call('RetrieveInteraction', $param, '', '', false, true);
-
+        $result = (array) $result;
         return $result;
     }
 }

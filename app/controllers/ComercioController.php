@@ -3,6 +3,7 @@ namespace Gabs\Controllers;
 use Gabs\Models\Personas;
 use Gabs\Models\Evaluacion;
 use Gabs\Models\WebServiceClient;
+use Gabs\Models\Ticket;
  
 class ComercioController extends ControllerBase
 {
@@ -78,7 +79,9 @@ class ComercioController extends ControllerBase
         $pcView = 'servicio/servicios_ver_ticket';
 
         $js = '';
-
+        $ticket = new Ticket();
+        $ticket->find("asd");
+        $this->view->tck = $ticket;
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
     }
 
@@ -321,9 +324,12 @@ class ComercioController extends ControllerBase
 
     public function TestwsAction()
     {
-        $ws = new WebServiceClient();
-        $response = $ws->getTicket('asdasd');
-        var_dump($response);
+        //$ws = new WebServiceClient();
+        //$response = $ws->getTicket('asdasd');
+        $tck = new Ticket();
+        $tck->find("asd");
+        var_dump($tck);
+        //var_dump($response);
     }
 
 }

@@ -150,7 +150,7 @@ $di->set('acl', function () {
 /*
 *   Web service component
 */
-$di->set('soapclient', function () {
-    return new SoapClient('http://64.79.70.107:8080/raggApi/Servicedesk?wsdl');
+$di->set('soapclient-servicedesk', function () {
+    return new SoapClient('http://localhost:8080/raggApi/Servicedesk?wsdl');
 });
 
