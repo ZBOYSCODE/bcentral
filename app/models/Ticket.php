@@ -2,6 +2,7 @@
 namespace Gabs\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Validator\Uniqueness;
 
 class Ticket extends Model
 {   
@@ -230,10 +231,13 @@ class Ticket extends Model
      */
     public $messages;
     
-    public function find($tck)
+    public function findTicket($tck)
     {
         $wsClient = new WebServiceClient();
         $result = $wsClient->getTicket($tck);
+        $result = (array)$result['return'];
+        $mess = (array)$result['messages'];
+        $result = (array)$result['instance'];
 
         $this->CallID = $result['CallID'];
         $this->ServiceRecipient = $result['ServiceRecipient'];
@@ -290,7 +294,6 @@ class Ticket extends Model
         $this->Title = $result['Title'];
         $this->MetodoOrigen = $result['MetodoOrigen'];
         $this->attachments = $result['attachments'];
-        $this->messages = $result['messages'];
-        return void;
+        $this->messages = $mess;
     }
 }

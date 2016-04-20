@@ -80,7 +80,7 @@ class ComercioController extends ControllerBase
 
         $js = '';
         $ticket = new Ticket();
-        $ticket->find("asd");
+        $ticket->findTicket("asd");
         $this->view->tck = $ticket;
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
     }
@@ -326,10 +326,11 @@ class ComercioController extends ControllerBase
     {
         //$ws = new WebServiceClient();
         //$response = $ws->getTicket('asdasd');
-        $tck = new Ticket();
-        $tck->find("asd");
-        var_dump($tck);
         //var_dump($response);
+        $tck = new Ticket();
+        $tck->findTicket("asd");
+        var_dump($tck);
+        
     }
 
 }
