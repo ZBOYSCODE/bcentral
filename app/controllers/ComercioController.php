@@ -12,7 +12,8 @@ class ComercioController extends ControllerBase
      */
     public function indexAction()
     {   
-        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>''));
+        $js = $this->getJsEncuesta();
+        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>'','jsScript'=>$js));
 
     }
 
@@ -48,8 +49,6 @@ class ComercioController extends ControllerBase
             exit;
         }
 
-         $js = $js." "."$('.select-chosen').select2({width: '100%'});";
-
         echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>'','jsScript'=>$js));
 
     }
@@ -80,7 +79,9 @@ class ComercioController extends ControllerBase
 
         $js = '';
         $ticket = new Ticket();
+
         $ticket->findTicket($this->request->getPost('id'));
+
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> array('tck' => $ticket), 'jsScript'=>$js));    
     }
 

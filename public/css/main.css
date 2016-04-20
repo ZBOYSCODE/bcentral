@@ -3672,6 +3672,10 @@ p, .table, .alert, .carousel {
     transition: none !important;
 }
 
+.rm-padding-top {
+    padding-top: 0px !important;
+}
+
 .lt-ie9 .hidden-lt-ie9,
 .lt-ie10 .hidden-lt-ie10 {
     display: none !important;

@@ -231,9 +231,9 @@ class Ticket extends Model
      */
     public $messages;
 
-    public function updateTicket()
+    public function updateTicket($update)
     {
-        $wsClient = new WebServiceClient($update);
+        $wsClient = new WebServiceClient();
         $result = $wsClient->updateTicket($this->CallID, $update);
         return $result;
     }

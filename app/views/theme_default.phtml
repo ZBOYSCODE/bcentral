@@ -125,13 +125,14 @@
 
  				<!-- Footer -->
 	            <footer class="clearfix">
-	                <div class="pull-right">
-	                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
-	            	</div>
-		            <div class="pull-left">
-		                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
-		            </div>
-		            <div class="center-footer">Mesa de ayuda: <i class="gi gi-earphone"></i> (56 2) 670 2000 </div>
+		            	
+		                <div class="pull-right" >
+		                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
+		            	</div>
+			            <div class="pull-left">
+			                <span id="year-copy"></span> 2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
+			            </div>
+			            <div class="center-footer">Mesa de ayuda: <i class="gi gi-earphone"></i> (56 2) 670 2000 </div>
 	            </footer>
 	            <!-- END Footer -->
 			</div>
@@ -146,8 +147,23 @@
 	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
 	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
+	<?php print($this->tag->javascriptInclude("js/app.js"))?>
 
 	<script>
+		$("#likeimg").on('click', function() {
+			$(this).attr("src","<?php print($this->url->get("img/like-1.png"))?>");
+			$("#dislikeimg").attr("src","<?php print($this->url->get("img/like-22.png"))?>");
+		});
+
+		$("#dislikeimg").on('click', function() {
+			$(this).attr("src","<?php print($this->url->get("img/like-2.png"))?>");
+			$("#likeimg").attr("src","<?php print($this->url->get("img/like-11.png"))?>");
+		});
+	</script>
+
+	<script>
+		
+
 		$(document).ready(function() {
 		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
 		        e.preventDefault();

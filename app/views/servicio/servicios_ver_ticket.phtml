@@ -21,7 +21,7 @@
     <!-- ./BREADCRUMBS -->
 
     <div class="row">
-        <div class="col-xs-4 ">
+        <div class="col-sm-4 ">
                 <!-- Your Plan Widget -->
                 <div class="block">
                     <div class="block-title">
@@ -31,7 +31,7 @@
                         </h3>
                         <div class="block-options pull-right">
                             <a href="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-action="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-val="tck=<?php print $pcData['tck']->CallID ?>">
-                            <span class="label btn-bc"> <i class="gi gi-repeat"></i> Reiterar</span>
+                            <span class="label btn-bc"> <i class="gi gi-repeat"></i> Insistir</span>
                             <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
                             </a>
                         </div>
@@ -49,12 +49,13 @@
                                     <span><i class="gi gi-ok_2"></i> Sub-Categoría: <strong><?php echo $pcData['tck']->Subarea;?></strong></span><br>
                                     <span><i class="hi hi-send"></i> Estado: <strong><?php echo $pcData['tck']->Status;?></strong></span><br>
                                     <h3><strong><?php echo $pcData['tck']->Title;?></strong></h3><br>
-                                    <h5><strong>Descripción: </strong></h5><br>
+                                    <h5><strong>Descripción: </strong>
                                     <?php
                                         foreach ($pcData['tck']->Description as $var) {
-                                            echo "<h5>" . $var . "</h5><br>";
+                                            echo $var . ". ";
                                         }
                                     ?>
+                                    </h5>
                                 </div>
                             </div>
                             <!-- END Tickets List -->
@@ -64,7 +65,7 @@
                 <!-- END Your Plan Widget -->
         </div>
 
-        <div class="col-xs-8 ">
+        <div class="col-sm-8 ">
             <!-- Your Plan Widget -->
             <div class="block">
                 <div class="block-title">
@@ -123,7 +124,46 @@
 
             <!-- END Your Plan Widget -->
         </div>
-        <div id="modal-reiterar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-8">
+                <div class="block ">
+                    <div class="block-title">
+                        <h3>
+                           <strong>Bitácora </strong>#TICK123
+                            
+                        </h3>
+
+                    </div>
+                    <div class="widget-extra-full catalogo-lista-home">
+                        <div class="row ">
+                                                                    <!-- Tickets List -->
+                            <div class="tab-pane active" id="tickets-list">
+                                <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
+                                   <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="20%">Fecha</th>
+                                                <th>Detalle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-center">-</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <!-- END Tickets List -->
+                        </div>
+                    </div>
+                 </div>
+        </div>
+
+        <div id="modal-reiterar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         </div>
 </div>
