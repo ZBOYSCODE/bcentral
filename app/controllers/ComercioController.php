@@ -80,9 +80,8 @@ class ComercioController extends ControllerBase
 
         $js = '';
         $ticket = new Ticket();
-        $ticket->findTicket("asd");
-        $this->view->tck = $ticket;
-        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
+        $ticket->findTicket($this->request->getPost('id'));
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> array('tck' => $ticket), 'jsScript'=>$js));    
     }
 
      public function documentoAction() {

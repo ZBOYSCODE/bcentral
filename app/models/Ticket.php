@@ -230,6 +230,13 @@ class Ticket extends Model
      * @var Array<string>
      */
     public $messages;
+
+    public function updateTicket()
+    {
+        $wsClient = new WebServiceClient($update);
+        $result = $wsClient->updateTicket($this->CallID, $update);
+        return $result;
+    }
     
     public function findTicket($tck)
     {
@@ -242,10 +249,35 @@ class Ticket extends Model
         $this->CallID = $result['CallID'];
         $this->ServiceRecipient = $result['ServiceRecipient'];
         $this->Urgency = $result['Urgency'];
+        if($this->Urgency == "1")
+        {
+            $this->Urgency = "Crítico";
+        }
+        if($this->Urgency == "2")
+        {
+            $this->Urgency = "Alto";
+        }
+        if($this->Urgency == "3")
+        {
+            $this->Urgency = "Medio";
+        }
+        if($this->Urgency == "4")
+        {
+            $this->Urgency = "Baja";
+        }
         $this->OpenTime = $result['OpenTime'];
         $this->UpdateTime = $result['UpdateTime'];
         $this->OpenedBy = $result['OpenedBy'];
-        $this->Description = $result['Description'];
+        $temp = (array)$result['Description'];
+        if(isset($temp))
+        {
+            $this->Description = $temp['Description'];
+        }
+        else
+        {
+            $this->Description = '';
+        }
+        
         $this->AffectedService = $result['AffectedService'];
         $this->CallOwner = $result['CallOwner'];
         $this->Status = $result['Status'];
@@ -286,6 +318,22 @@ class Ticket extends Model
         $this->Contact = $result['Contact'];
         $this->Update = $result['Update'];
         $this->Impact = $result['Impact'];
+        if($this->Impact == "4")
+        {
+            $this->Impact = "Empresa";
+        }
+        if($this->Impact == "3")
+        {
+            $this->Impact = "Sitio/Depto";
+        }
+        if($this->Impact == "2")
+        {
+            $this->Impact = "Varios usuarios";
+        }
+        if($this->Impact == "1")
+        {
+            $this->Impact = "usuario";
+        }
         $this->neededbytime = $result['neededbytime'];
         $this->approvalstatus = $result['approvalstatus'];
         $this->folder = $result['folder'];

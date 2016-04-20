@@ -101,4 +101,88 @@ class WebServiceClient extends Model
         $result = (array) $result;
         return $result;
     }
+    public function updateTicket($CallID, $Update)
+    {
+        $this->client = $this->di->get('soapclient-servicedesk');
+        $param = array( 'model' => array(
+                            'keys' => array(
+                                'CallID' => $CallID
+                            ),
+                            'instance' => array(
+                                'CallID' => '',
+                                'ServiceRecipient' => '',
+                                'Urgency' => '',
+                                'OpenTime' => '',
+                                'UpdateTime' => '',
+                                'OpenedBy' => '',
+                                'Description' => array(
+                                    'Description' => ''
+                                ),
+                                'AffectedService' => '',
+                                'CallOwner' => '',
+                                'Status' => '',
+                                'NotifyBy' => '',
+                                'Solution' => array(
+                                    'Solution' => ''
+                                ),
+                                'Category' => '',
+                                'CallerDepartment' => '',
+                                'CallerLocation' => '',
+                                'CloseTime' => '',
+                                'ClosedBy' => '',
+                                'KnowledgeCandidate' => '',
+                                'SLAAgreementID' => '',
+                                'Priority' => '',
+                                'ServiceContract' => '',
+                                'SiteCategory' => '',
+                                'TotalLossOfService' => '',
+                                'Area' => '',
+                                'Subarea' => '',
+                                'ProblemType' => '',
+                                'FailedEntitlement' => '',
+                                'Location' => '',
+                                'CauseCode' => '',
+                                'ClosureCode' => '',
+                                'Company' => '',
+                                'ReportedByContact' => '',
+                                'ReportedByDifferentContact' => '',
+                                'ReportedByPhone' => '',
+                                'ReportedByExtension' => '',
+                                'ReportedByFax' => '',
+                                'ContactEmail' => '',
+                                'LocationFullName' => '',
+                                'ContactFirstName' => '',
+                                'ContactLastName' => '',
+                                'ContactTimeZone' => '',
+                                'EnteredByESS' => '',
+                                'SLABreached' => '',
+                                'NextSLABreach' => '',
+                                'Contact' => '',
+                                'Update' => array(
+                                    'Update' => $Update
+                                ),
+                                'Impact' => '',
+                                'neededbytime' => '',
+                                'approvalstatus' => '',
+                                'folder' => '',
+                                'subscriptionItem' => '',
+                                'AffectedCI' => '',
+                                'Title' => '',
+                                'Reitera' => 'Si',
+                                'MetodoOrigen' => '',
+                                'attachments' => array(
+                                    'attachments' => ''
+                                )
+                            ),
+                            'messages' => array(
+                                'messages' => ''
+                            )
+                        )
+                    );
+        $result = $this->client->UpdateInteractionRequest($param);
+
+        //$result = $this->client->call('RetrieveInteraction', $param, '', '', false, true);
+        $result = (array) $result;
+        return $result;
+    }
 }

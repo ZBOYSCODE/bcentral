@@ -296,14 +296,26 @@
 					                            </div>
 					                            <div class="text-center col-xs-12">
 					                            <br>
+					                            	<!--
 					                            	<div class="row">
 					                            		<div class="col-xs-6">
-															 <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Nº Ticket">
+															 <input type="text" id="id" name="id" class="form-control" placeholder="Nº Ticket">
 														</div>
 														<div class="col-xs-6">
 															<a href="<?php print($this->url->get('ticket')) ?>" style="width:100%" type="button" class="btn btn-bc">Buscar Ticket</a>
 														</div>
 													</div>
+													-->
+													<?php echo $this->tag->form("comercio/ticket"); ?>
+														 <div class="row">
+						                            		<div class="col-xs-6">
+																 <input type="text" id="id" name="id" class="form-control" placeholder="Nº Ticket">
+															</div>
+															<div class="col-xs-6">
+																<input type="submit" value="Buscar Ticket" style="width:100%" class="btn btn-bc">
+															</div>
+														</div>
+													</form>
 					                            </div>
 					                        </div>
 					                    </div>
