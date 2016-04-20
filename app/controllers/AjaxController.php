@@ -1,9 +1,11 @@
 <?php
 namespace Gabs\Controllers;
 use Gabs\Models\Personas;
- 
+use Gabs\Models\Ticket;
+
 class AjaxController extends ControllerBase
 {
+
     /**
      * Default action. Set the public layout (layouts/public.volt)
      */
@@ -35,5 +37,27 @@ class AjaxController extends ControllerBase
 					$("#modal-large").modal("show");');
 					
 		$this->mifaces->run();
+    }
+
+    public function loadReiterarTicketAction()
+    {
+    	$dataView['tck'] = $_POST['tck'];
+    	$toRend = $this->view->render('servicio/servicios_modalReiterar',$dataView);
+    	$this->mifaces->newFaces();
+    	$this->mifaces->addToRend('modal-reiterar',$toRend);
+    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal()');
+    	$this->mifaces->run();
     }	
+
+	public function reiterarTicketAction()
+	{
+		print_r($_POST);
+    	$this->mifaces->newFaces();
+    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal("close")');
+    	$ticket = new Ticket();
+    	$ticket->CallID = $_POST['tck'];
+    	$ticket->updateTicket($_POST['txt']);
+
+    	$this->mifaces->run();		
+	}    
 }

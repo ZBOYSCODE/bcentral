@@ -30,7 +30,7 @@
                             
                         </h3>
                         <div class="block-options pull-right">
-                            <a href="#modal-reiterar" data-toggle="modal">
+                            <a href="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-action="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-val="tck=<?php print $pcData['tck']->CallID ?>">
                             <span class="label btn-bc"> <i class="gi gi-repeat"></i> Reiterar</span>
                             <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
                             </a>
@@ -124,19 +124,6 @@
             <!-- END Your Plan Widget -->
         </div>
         <div id="modal-reiterar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog " style="width: 50%; height: 200px;">
-                <div class="modal-content">
-                    <!-- Updates Title -->
-                    <div class="block-title" style=" margin: 0px;">
-                        <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h2><strong>Reiterar Ticket <?php echo $pcData['tck']->CallID;?></strong></h2>
-                    </div>
-                    <!-- END Updates Title -->
-                    <div class="modal-body">
-                        <textarea name="txt" id="txt" rows="5" class="form-control" placeholder="Comentario"></textarea>
-                        <input type="submit" value="Reiterar"  style="width:100%" class="btn btn-bc">
-                    </div>
-                </div>
-            </div>
+
         </div>
 </div>

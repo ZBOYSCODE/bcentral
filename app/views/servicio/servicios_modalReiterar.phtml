@@ -1,0 +1,18 @@
+        <form action="<?php print $this->url->get('ajax/reiterarTicket') ?>" class="form-horizontal" data-type="ajax" method="post">
+            <div class="modal-dialog " style="width: 50%; height: 200px;">
+                <div class="modal-content">
+                    <!-- Updates Title -->
+                    <div class="block-title" style=" margin: 0px;">
+                        <button type="button" class="close closeModal" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                        <h2><strong>Reiterar Ticket <?php echo $tck;?></strong></h2>
+                    </div>
+                    <!-- END Updates Title -->
+                    <div class="modal-body">
+                        <textarea name="txt" id="txt" rows="5" class="form-control" placeholder="Comentario"></textarea>
+                        <input type="submit" value="Reiterar"  style="width:100%" class="btn btn-bc">
+                        <input type="hidden" value="<?php print($tck) ?>" name="tck">
+                    </div>
+                </div>
+            </div>
+        </form>
