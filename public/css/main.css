@@ -2734,7 +2734,7 @@ li.dropdown-header {
 
 .pagination > li > a,
 .pagination > li > span  {
-    color: #1bbae1;
+    color: #787879;
     margin-left: 5px;
     margin-right: 5px;
     border: none !important;
@@ -2747,7 +2747,7 @@ li.dropdown-header {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #1bbae1;
+    background-color: #787879;
 }
 
 .pager > li > a,
@@ -2757,13 +2757,13 @@ li.dropdown-header {
 
 .pager > li > a:hover,
 .pagination > li > a:hover {
-    background-color: #1bbae1;
-    border-color: #1bbae1;
+    background-color: #787879;
+    border-color: #787879;
     color: #ffffff;
 }
 
 .pager > li.disabled > a:hover {
-    border-color: #eaedf1;
+    border-color: #787879;
 }
 
 /* Horizontal Navigation */

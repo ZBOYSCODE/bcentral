@@ -282,7 +282,7 @@ class ComercioController extends ControllerBase
 
                         /* Initialize Datatables */
                         $('#table').dataTable({
-                            columnDefs: [ { orderable: true, targets: [ 1, 2, 3, 4 ] } ]
+                            columnDefs: [ { orderable: true, targets: [ 1, 2, 3] } ]
                         });
 
                         /* Add placeholder attribute to the search input */
