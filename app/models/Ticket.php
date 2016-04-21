@@ -242,8 +242,8 @@ class Ticket extends Model
     {
         $wsClient = new WebServiceClient();
         $result = $wsClient->getTicket($tck);
-        $result = (array)$result['return'];
-        $mess = (array)$result['messages'];
+        $result = (array)$result['model'];
+        //$mess = (array)$result['messages'];
         $result = (array)$result['instance'];
 
         $this->CallID = $result['CallID'];

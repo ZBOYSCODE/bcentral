@@ -325,12 +325,17 @@ class ComercioController extends ControllerBase
     public function TestwsAction()
     {
         //$ws = new WebServiceClient();
-        //$response = $ws->getTicket('asdasd');
+        //$response = $ws->getTicket('SD68157');
         //var_dump($response);
         $tck = new Ticket();
-        $tck->findTicket("asd");
+        $tck->findTicket("SD68157");
         var_dump($tck);
         
     }
-
+    public function Testws2Action()
+    {
+        $ws = new WebServiceClient();
+        $response = $ws->getTicket('SD68149');
+        var_dump($response);
+    }
 }
