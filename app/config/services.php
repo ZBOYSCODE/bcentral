@@ -151,7 +151,7 @@ $di->set('acl', function () {
 *   Web service component
 */
 $di->set('soapclient-servicedesk', function () {
-    return new SoapClient('http://64.79.70.107:8080/raggApi/Servicedesk?wsdl', array('login'=>'falcon'));
+    return new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', array('login'=>'falcon', 'features' => 'SOAP_WAIT_ONE_WAY_CALLS'));
 });
 
-//http://192.168.5.113:13080/SM/7/servicedesk.wsdl
+//http://localhost:8080/raggApi/Servicedesk?wsdl

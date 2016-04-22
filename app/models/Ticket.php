@@ -243,6 +243,7 @@ class Ticket extends Model
         $wsClient = new WebServiceClient();
         $result = $wsClient->getTicket($tck);
         $result = (array)$result['model'];
+        //$result = (array)$result['return'];
         //$mess = (array)$result['messages'];
         $result = (array)$result['instance'];
 
@@ -342,6 +343,6 @@ class Ticket extends Model
         $this->Title = $result['Title'];
         $this->MetodoOrigen = $result['MetodoOrigen'];
         $this->attachments = $result['attachments'];
-        $this->messages = $mess;
+        //$this->messages = $mess;
     }
 }
