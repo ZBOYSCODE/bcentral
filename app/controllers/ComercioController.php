@@ -93,6 +93,7 @@ class ComercioController extends ControllerBase
         $toRend=$this->view->render('servicio/servicios_encuesta_modal', array("like"=>$like));
         $this->mifaces->addToRend('contenidomodal', $toRend);
         $this->mifaces->addPosRendEval('$("#modal-encuesta").modal("show");');
+        $this->mifaces->addPosRendEval($this->getLikeEvalJs());
 
         $this->mifaces->run();
 
@@ -212,8 +213,24 @@ class ComercioController extends ControllerBase
             $(\"#ticketId\").val('SD1234');
             $(\"#evaluacionForm\").submit();
             });
+
+
         ";
     
+        return $jsScript;
+    }
+
+    private function getLikeEvalJs() {
+        $jsScript =
+        "
+            $(\"[name^='preg0']\").on('click', function() {
+                $(\"#preg01\").toggleClass('likeimgGray');
+                $(\"#preg01\").toggleClass('likeimg');
+                $(\"#preg02\").toggleClass('dislikeimgGray');
+                $(\"#preg02\").toggleClass('dislikeimg');
+            });
+        ";
+
         return $jsScript;
     }
 
