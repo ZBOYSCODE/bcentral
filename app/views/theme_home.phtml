@@ -270,9 +270,9 @@
 						                                            <td>Necesito licencia de Software</td>
 						                                            <td class="padding0center">
 																		<div class="like-selector">
-																	        <input  onchange="this.form.submit()" id="like11" type="radio" name="conf1" value="1" />
+																	        <input data-submit="true" id="like11" type="radio" name="conf1" value="1" />
 																	        <label data-submit="true" class="option-like like" for="like11"></label>
-																	        <input onchange="this.form.submit()" id="like12" type="radio" name="conf1" value="2" />
+																	        <input data-submit="true" id="like12" type="radio" name="conf1" value="2" />
 																	        <label data-submit="true" class="option-like dislike"for="like12"></label>
 																	    </div>
 	                                								</td>
@@ -375,8 +375,8 @@
 						                                    </tbody>
 						                                </table>
 
-						                                <input  class="hidden" name="optionLike" />
-						                                <input  class="hidden" name="ticketId" />
+						                                <input  class="hidden" id="optionLike" name="optionLike" />
+						                                <input  class="hidden" id="ticketId" name="ticketId" />
 						                            </form>
 					                                <div class="col-md-12 text-center" style="margin-bottom: 6px;">
 					                                	<a style="font-size: 16px;" href="<?php print($this->url->get('solicitudes')) ?>"> Ver todos ...</a>
@@ -443,27 +443,17 @@
 	<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
-	<?php print($this->tag->javascriptInclude("js/app.js"))?>
 	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
+	<?php print($this->tag->javascriptInclude("js/app.js"))?>
 	
 	<script>
 		$("[name^='conf']").on('click', function() {
-			$("optionLike").val(($(this).val());
-			$("ticketId").val(($(this).val('SD1234'));
+			$("#optionLike").val($(this).val());
+			$("#ticketId").val('SD1234');
+			$("#evaluacionForm").submit();
 		});
 	</script>
-	<script>
-		$(document).ready(function() {
-		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-		        e.preventDefault();
-		        $(this).siblings('a.active').removeClass("active");
-		        $(this).addClass("active");
-		        var index = $(this).index();
-		        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-		        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-		    });
-		});
-	</script>
+
 	<?php
 	if(isset($jsScript) && $jsScript!=null){
 	?>
