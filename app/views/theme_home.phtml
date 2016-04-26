@@ -98,7 +98,9 @@
 				            <div class="row">
 				                <!-- Main Title (hidden on small devices for the statistics to fit) -->
 				                <div class="col-md-2 col-lg-1 col-xs-2">
-				               		<img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
+				                	<a href="<?php print($this->url->get(""))?>">
+				               			<img  src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
+				               		</a>
 				                </div>
 				                <div class="col-md-7 col-lg-7 col-xs-7">
 				                    <h1>Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small>Banco Central de Chile</small></h1>
@@ -189,21 +191,42 @@
 
 							</div>
 			                <!-- Timeline Widget -->
-				            <div class="widget-eval">	
-					            <a href="<?php print($this->url->get('comercio/conocimiento')) ?>" class="widget widget-hover-effect1" >
-					                <div class="widget-simple widget-home-custom">
-					                    <div class="pull-left icon-wg">
-					                       <i class="hi hi-search"></i>
-					                    </div>
-					                    <h5 class="widget-content text-right animation-pullDown  widget-simple-bc" style="font-size: 25px;">
-					                        Procedimientos, Formularios e Instructivos  <strong></strong><br>
-					                        <small class="widget-simple-bc-leyend">Busca documentos </small>
-					                    </h5>
-					                </div>
-					            </a>
-				            </div>
-				            <!-- END Timeline Widget -->
-				            <!-- END Timeline Widget -->
+
+			                <!-- Timeline Widget -->
+				            <div class="widget ">
+				                <div class="widget-extra themed-background-dark">
+				                    <div class="widget-options">
+				                    </div>
+				                    <h3 class="widget-content-light">
+				                        Buscar <strong> Documentos </strong>
+				                        <small><a href="page_ready_timeline.php"><strong></strong></a></small>
+				                    </h3>
+				                </div>
+				                <div class="widget-extra " style="padding-right: 0px; padding-left: 0px;">
+
+							        <!-- Working Tabs Content -->
+							        <div class="row row-catalogo catalogo-lista-home">
+				        				<div class="col-xs-12 text-center">
+											<a href="<?php print($this->url->get("comercio/conocimiento"))?>" class="widget active widget-hover-effect1 catalogo-menu " style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+									            <div class="widget-simple text-center">
+									            	<div class="row">
+									            		<div class="col-xs-4">
+									            			<i class="gi gi-search fa-3x"></i>
+											                <h3 class="widget-content" >
+											                 <strong>Buscar</strong><br>
+											                </h3>
+										                </div>
+										                <div class="col-xs-8">
+										          			<span > Buscar Preguntas Frecuentes, Procedimientos, Formularios e Instructivos.</span>
+										          		</div>
+									          		</div> 
+									            </div>
+								        	</a>
+										</div>
+									</div>	
+						        </div>
+							        <!-- END Working Tabs Content -->
+							</div>
 				        </div>
 
 				        <div class="col-md-6">
@@ -224,78 +247,137 @@
 					                    <div class="tab-pane active" id="tickets-list">
 					                        <div class="block-content-full">
 					                            <div class="table-responsive remove-margin-bottom table-main">
-					                                <table class="table table-bc table-striped table-vcenter remove-margin-bottom">
-					                                    <thead>
-					                                        <tr>
-					                                            <th class="">ID</th>
-					                                            <th>Estado</th>
-					                                            <th>Descripción breve</th>
-					                                            <th> Evaluar Ticket</th>
-					                                        </tr>
-					                                    </thead>
-					                                    <tbody>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK420</a></td>
-					                                            <td><span class="label label-danger">PENDIENTE</span></td>
-					                                            <td>Cambiar Contraseña LDAP</td>
-					                                            <td class="padding0center"></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK424</a></td>
-					                                            <td><span class="label label-default">CERRADO</span></td>
-					                                            <td>Necesito licencia de Software</td>
-					                                            <td class="padding0center"><a class="eval-bc-icon" href="#modal-encuesta" data-toggle="modal"><i data-toggle="popoverhover" data-placement="top" title="¡Evaluar Servicio!" data-content="Haz clic en este ícono, para evaluar el servicio" class="fa fa-check-square-o"></i></a></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
-					                                            <td><span class="label label-success">EN CURSO</span></td>
-					                                            <td>Petición recuperar datos</td>
-					                                            <td class="padding0center"></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK429</a></td>
-					                                            <td><span class="label label-default">CERRADO</span></td>
-					                                            <td>Petición cuenta de SOA</td>
-					                                            <td class="padding0center"><a class="eval-bc-icon" href="#modal-encuesta" data-toggle="modal"><i data-toggle="popoverhover" data-placement="top" title="¡Evaluar Servicio!" data-content="Haz clic en este ícono, para evaluar el servicio" class="fa fa-check-square-o"></i></a></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK200</a></td>
-					                                            <td><span class="label label-success">EN CURSO</span></td>
-					                                            <td>Solucionar Problema login</td>
-					                                            <td class="padding0center"></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-					                                            <td><span class="label label-success">EN CURSO</span></td>
-					                                            <td>Solicito cambio luminaria</td>
-					                                            <td class="padding0center"></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-					                                            <td><span class="label label-success">EN CURSO</span></td>
-					                                            <td>Solucionar Problema de pantalla</td>
-					                                            <td class="padding0center"></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-					                                            <td><span class="label label-default">CERRADO</span></td>
-					                                            <td>Revisión equipos</td>
-					                                            <td class="padding0center"><a class="eval-bc-icon" href="#modal-encuesta" data-toggle="modal"><i data-toggle="popoverhover" data-placement="top" title="¡Evaluar Servicio!" data-content="Haz clic en este ícono, para evaluar el servicio" class="fa fa-check-square-o"></i></a></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-					                                            <td><span class="label label-default">CERRADO</span></td>
-					                                            <td>Solucionar Problema</td>
-					                                            <td class="padding0center"><a class="eval-bc-icon" href="#modal-encuesta" data-toggle="modal"><i data-toggle="popoverhover" data-placement="top" title="¡Evaluar Servicio!" data-content="Haz clic en este ícono, para evaluar el servicio" class="fa fa-check-square-o"></i></a></td>
-					                                        </tr>
-					                                        <tr>
-					                                            <td class="text-center "><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" ><strong>#TCK426</strong></a></td>
-					                                            <td><span class="label label-default">CERRADO</span></td>
-					                                            <td>Solucionar Problema con licencia</td>
-					                                            <td class="padding0center"><a class="eval-bc-icon" href="#modal-encuesta" data-toggle="modal"><i data-toggle="popoverhover" data-placement="top" title="¡Evaluar Servicio!" data-content="Haz clic en este ícono, para evaluar el servicio" class="fa fa-check-square-o"></i></a></td>
-					                                        </tr>
-					                                    </tbody>
-					                                </table>
+					                            	<form id="evaluacionForm" action="<?php print $this->url->get('comercio/evaluarAtencionModal') ?>" method="post" enctype="multipart/form-data" data-type="ajax">
+						                                <table class="table table-bc table-striped table-vcenter remove-margin-bottom">
+						                                    <thead>
+						                                        <tr>
+						                                            <th class="">ID</th>
+						                                            <th>Estado</th>
+						                                            <th>Descripción breve</th>
+						                                            <th> Evaluar Atención</th>
+						                                        </tr>
+						                                    </thead>
+						                                    <tbody>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK420</a></td>
+						                                            <td><span class="label label-danger">PENDIENTE</span></td>
+						                                            <td>Cambiar Contraseña LDAP</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK424</a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Necesito licencia de Software</td>
+						                                            <td class="padding0center">
+																		<div class="like-selector">
+																	        <input  onchange="this.form.submit()" id="like11" type="radio" name="conf1" value="1" />
+																	        <label data-submit="true" class="option-like like" for="like11"></label>
+																	        <input onchange="this.form.submit()" id="like12" type="radio" name="conf1" value="2" />
+																	        <label data-submit="true" class="option-like dislike"for="like12"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
+						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td>Petición recuperar datos</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK429</a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Petición cuenta de SOA</td>
+						                                            <td class="padding0center">
+																		<div class="like-selector">
+																	        <input  id="like21" type="radio" name="conf2" value="1" />
+																	        <label class="option-like like" for="like21"></label>
+																	        <input id="like22" type="radio" name="conf2" value="2" />
+																	        <label class="option-like dislike" for="like22"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK200</a></td>
+						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td>Solucionar Problema login</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td>Solicito cambio luminaria</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td>Solucionar Problema de pantalla</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Revisión equipos</td>
+						                                            <td class="padding0center">
+						                                            	<div class="like-selector">
+																	        <input  id="like31" type="radio" name="conf3" value="1" />
+																	        <label class="option-like like" for="like31"></label>
+																	        <input id="like32" type="radio" name="conf3" value="2" />
+																	        <label class="option-like dislike"for="like32"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Solucionar Problema</td>
+						                                            <td class="padding0center">
+						                                            	<div class="like-selector">
+																	        <input  id="like41" type="radio" name="conf4" value="1" />
+																	        <label class="option-like like" for="like41"></label>
+																	        <input id="like42" type="radio" name="conf4" value="2" />
+																	        <label class="option-like dislike"for="like42"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center "><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" ><strong>#TCK426</strong></a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Solucionar Problema con licencia</td>
+						                                            <td class="padding0center">
+						                                            	<div class="like-selector">
+																	        <input  id="like51" type="radio" name="conf5" value="1" />
+																	        <label class="option-like like" for="like51"></label>
+																	        <input id="like52" type="radio" name="conf5" value="2" />
+																	        <label class="option-like dislike"for="like52"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                        <tr>
+						                                            <td class="text-center "><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" ><strong>#TCK426</strong></a></td>
+						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td>Solucionar Problema con licencia</td>
+						                                           <td class="padding0center">
+						                                            	<div class="like-selector">
+																	        <input  id="like61" type="radio" name="conf6" value="1" />
+																	        <label class="option-like like" for="like61"></label>
+																	        <input id="like62" type="radio" name="conf6" value="2" />
+																	        <label class="option-like dislike"for="like62"></label>
+																	    </div>
+	                                								</td>
+						                                        </tr>
+						                                         <tr>
+						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td>Solucionar Problema de pantalla</td>
+						                                            <td class="padding0center"></td>
+						                                        </tr>
+						                                    </tbody>
+						                                </table>
+
+						                                <input  class="hidden" name="optionLike" />
+						                                <input  class="hidden" name="ticketId" />
+						                            </form>
 					                                <div class="col-md-12 text-center" style="margin-bottom: 6px;">
 					                                	<a style="font-size: 16px;" href="<?php print($this->url->get('solicitudes')) ?>"> Ver todos ...</a>
 					                                </div>
@@ -318,24 +400,14 @@
 				                </div>
 				            </div>
 				            <!-- END Your Plan Widget -->
-
-
-
-				            <!-- Your Plan Widget -->
-
-				            <!-- END Your Plan Widget -->
-
-				  
-
 				        </div>
 
 				    </div>
 				    <!-- END Widgets Row -->
 
-
-					<div id="modal-encuesta" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 0px !important;">
-							<?php echo $this->view->render('servicio/servicios_encuesta_modal'); ?>
-					</div>
+				    <div id="contenidomodal">
+				    	
+				    </div>
 
 
 
@@ -351,7 +423,7 @@
 			            <div class="pull-left">
 			                2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
 			            </div>
-			            <div class="center-footer">Mesa de ayuda: <i class="gi gi-earphone"></i> (56 2) 670 2000 </div>
+			            <div class="center-footer">Mesa de Servicios: <i class="gi gi-earphone"></i> +56 2 2670-2337 </div>
 	            </footer>
 	            <!-- END Footer -->
 	        </div>
@@ -371,18 +443,13 @@
 	<?php print($this->tag->javascriptInclude("js/vendor/jquery-1.11.3.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/vendor/bootstrap.min.js"))?>
 	<?php print($this->tag->javascriptInclude("js/plugins.js"))?>
-	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
 	<?php print($this->tag->javascriptInclude("js/app.js"))?>
-
+	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
+	
 	<script>
-		$("#likeimg").on('click', function() {
-			$(this).attr("src","<?php print($this->url->get("img/like-1.png"))?>");
-			$("#dislikeimg").attr("src","<?php print($this->url->get("img/like-22.png"))?>");
-		});
-
-		$("#dislikeimg").on('click', function() {
-			$(this).attr("src","<?php print($this->url->get("img/like-2.png"))?>");
-			$("#likeimg").attr("src","<?php print($this->url->get("img/like-11.png"))?>");
+		$("[name^='conf']").on('click', function() {
+			$("optionLike").val(($(this).val());
+			$("ticketId").val(($(this).val('SD1234'));
 		});
 	</script>
 	<script>

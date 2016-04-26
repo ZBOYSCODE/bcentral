@@ -87,6 +87,20 @@ class ComercioController extends ControllerBase
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
      }
 
+     public function evaluarAtencionModalAction()  {
+        if ($this->request->isPost() == true) {
+            if ($this->request->isAjax() == true) {
+                $like = $_POST['optionLike'];
+                $toRend=$this->view->render('ajax/chart_test',array("like"=>$like));
+                $this->mifaces->addToRend('contenidomodal', $toRend);
+                $this->mifaces->addPosRendEval('$("#modal-encuesta").modal("show");');
+
+                $this->mifaces->run();
+
+            }
+        }
+     }
+
 
 
     private function getJsCatalogo() {

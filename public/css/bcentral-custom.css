@@ -139,9 +139,10 @@ body {
 .catalogo-lista-home {
     background-color: white;
     padding-top:10px;
-    padding-bottom:10px;
+    padding-bottom:6px;
     padding-left:1px;
     padding-right:1px;
+    margin-bottom: -1px;
 }
 
 .one-menu a, .one-menu a>i {
@@ -327,37 +328,49 @@ body {
 
 
 /** LIKE DISLIKE PARA EL RADIO BUTTON */
-.like {
-     list-style-type:none;
-     padding:0;
+
+.like-selector {
+    padding-top: 6px;
 }
 
-.like li {
-     float:left;
-     margin:0 5px 0 0;
-    width:45px;
-    height:40px;
-    position:relative;
+.like-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
 }
 
-.like label, .like input {
-    display:block;
+.like-selector-2 input{
     position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    z-index:999;
 }
 
-.like input[type="radio"] {
-    opacity:0.011;
-    z-index:100;
+.like{background-image:url(../img/like-1.png);}
+.dislike{background-image:url(../img/like-2.png);}
+
+.like-selector-2 input:active +.option-like, .like-selector input:active +.option-like{opacity: .9;}
+.like-selector-2 input:checked +.option-like, .like-selector input:checked +.option-like{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
 }
-
-
-.like label {
+.option-like{
     cursor:pointer;
-    z-index:90;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:32px;height:32px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(0.9) grayscale(1) opacity(.7);
+       -moz-filter: brightness(0.9) grayscale(1) opacity(.7);
+            filter: brightness(0.9) grayscale(1) opacity(.7);
+}
+.option-like:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 
 .table-encuesta {
