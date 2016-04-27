@@ -90,7 +90,7 @@ var App = function() {
         $('.input-typeahead').typeahead({ source: exampleTypeheadData });
 
         // Initialize Chosen
-        $('.select-chosen').chosen({width: "100%", disable_search_threshold: 10});
+        $('.select-chosen').chosen({width: "100%", disable_search_threshold: 5});
 
         // Initialize Select2
         $('.select-select2').select2();

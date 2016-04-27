@@ -1,5 +1,5 @@
 body {
-	/*background-color: #F1F3F5;*/
+	font-family: "Verdana";
 }
 
 /*tamaño seccion content toma tamaño screen*/
@@ -139,7 +139,7 @@ body {
 .catalogo-lista-home {
     background-color: white;
     padding-top: 8px;
-    padding-bottom: 2px;
+    padding-bottom: 30px;
     padding-left:1px;
     padding-right:1px;
     margin-bottom: -1px;
@@ -170,10 +170,14 @@ body {
 }
 
 .catalogo-menu {
-    color: #63939A;
-    font-weight: 600;
+    color: #556063;
+    /*font-weight: 600;*/
     padding: 8px;
     min-height: 112px;
+    font-size: 15px;
+    -webkit-box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
+    -moz-box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
+    box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
 }
 
 .catalogo-menu:hover {
@@ -186,15 +190,24 @@ body {
     padding: 8px;
 }
 
+.catalogo-menu:hover + #icon  {
+    color:white !important;
+}
+
 
 .modal-catalogo-op {
     padding-top: 20px;
     border-radius: 20px;
+
     background-color: #f9fafc;
-    color: #63939A  ;
-    font-weight: 600;
-    min-height: 225px;
+    color:#556063;
+    /*font-weight: 600;*/
+    min-height: 234px;
+    -webkit-box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
+    -moz-box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
+    box-shadow: inset -1px -3px 10px -2px rgba(99,99,99,0.76);
 }
+
 
 .catalogo-op-desc {
     padding-top: 1px;
@@ -204,7 +217,7 @@ body {
 }
 
 .bc-text {
-    color: #63939A;
+    color: #556063;
     font-weight: 600;
 }
 
@@ -229,7 +242,7 @@ body {
 .header-pages {
     background-color: #FFFFFF;
     color: white;
-    color: #737C7D;
+    color: #556063;
     padding: 1px 15px 15px;
     border-bottom: 1px solid #eeeeee;
     border-top-left-radius: 4px;
@@ -256,14 +269,14 @@ body {
 }
 
 .btn-bc {
-    background-color: #787879;
-    border-color: #98999A;
+    background-color: #517B82;
+    border-color: #C3C5C5;
     color: #ffffff;
 }
 
 .btn-bc:hover {
     color: white;
-    background-color: #555556;
+    background-color: #93BAC0;
 }
 
 .center-footer {

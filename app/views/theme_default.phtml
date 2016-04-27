@@ -151,6 +151,16 @@
 	<?php print($this->tag->javascriptInclude("js/mifaces.js"))?>
 	<?php print($this->tag->javascriptInclude("js/app.js"))?>
 
+	<script>
+		var colors = ['#334D5C', '#45B29D', '#EFC94C', '#E27A3F' ,'#DF5A49','#DB5800','#FF9000','#F0C600','#8EA106'];
+		
+		$('[id^=icon]').each(function() {
+			var random_color = colors[Math.floor(Math.random() * colors.length)];
+			$(this).css('color', random_color);
+		});
+
+	</script>
+
 	<?php
 	if(isset($jsScript) && $jsScript!=null){
 	?>
