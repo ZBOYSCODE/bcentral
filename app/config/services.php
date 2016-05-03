@@ -151,7 +151,56 @@ $di->set('acl', function () {
 *   Web service component
 */
 $di->set('soapclient-servicedesk', function () {
-    return new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', array('login'=>'falcon', 'features' => 'SOAP_WAIT_ONE_WAY_CALLS'));
+    return new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', 
+        array(
+            'login' => "falcon", 
+            'password' => "", 
+            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+            'soap_version'   => SOAP_1_2,
+            'trace' => true
+            )
+        );
+});
+
+$di->set('soapclient-config', function () {
+    return new SoapClient('http://192.168.5.113:13080/SM/7/configurationmanagement.wsdl', 
+        array(
+            'login' => "falcon", 
+            'password' => "", 
+            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+            'soap_version'   => SOAP_1_2,
+            'trace' => true
+            )
+        );
+});
+
+$di->set('soapclient-knowledge', function () {
+    return new SoapClient('http://192.168.5.113:13080/SM/7/KnowledgeManagement.wsdl', 
+        array(
+            'login' => "falcon", 
+            'password' => "", 
+            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+            'soap_version'   => SOAP_1_2,
+            'trace' => true
+            )
+        );
+});
+
+$di->set('soapclient-catalog', function () {
+    return new SoapClient('http://192.168.5.113:13080/SM/7/ServiceCatalogAPI.wsdl', 
+        array(
+            'login' => "falcon", 
+            'password' => "", 
+            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+            'soap_version'   => SOAP_1_2,
+            'trace' => true
+            )
+        );
 });
 
 //http://localhost:8080/raggApi/Servicedesk?wsdl
+//http://192.168.5.113:13080/SM/7/servicedesk.wsdl
+
+//C:\xampp\htdocs\Servicedesk.wsdl
+
+//http://192.168.5.113:13080/SM/7/ServiceCatalogAPI.wsdl

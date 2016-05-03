@@ -4,6 +4,7 @@ use Gabs\Models\Personas;
 use Gabs\Models\Evaluacion;
 use Gabs\Models\WebServiceClient;
 use Gabs\Models\Ticket;
+use Gabs\Models\Contact;
  
 class ComercioController extends ControllerBase
 {
@@ -335,7 +336,40 @@ class ComercioController extends ControllerBase
     public function Testws2Action()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getTicket('SD68149');
+        $response = $ws->getTicket('SD68157');
+        
         var_dump($response);
+        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+    public function Testws3Action()
+    {
+        $ws = new WebServiceClient();
+        //$response = $ws->getContactList();
+        $usr = "ALARCON, FELIPE";
+        $response = $ws->getTicketsByUser($usr);
+
+        //$contacto = new Contact();
+        //$response = $contacto->getContactList();
+
+        var_dump($response);
+        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+        
+        //echo $response['request'];
+    }
+
+    public function Testws4Action()
+    {
+        $ws = new WebServiceClient();
+        $response = $ws->getCIList();
+        var_dump($response);
+        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+
+    public function Testws5Action()
+    {
+        $ws = new WebServiceClient();
+        $response = $ws->getRequerimentList();
+        var_dump($response);
+        //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
 }

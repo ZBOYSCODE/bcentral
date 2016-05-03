@@ -50,11 +50,7 @@
                                     <span><i class="hi hi-send"></i> Estado: <strong><?php echo $pcData['tck']->Status;?></strong></span><br>
                                     <h3><strong><?php echo $pcData['tck']->Title;?></strong></h3><br>
                                     <h5><strong>Descripción: </strong>
-                                    <?php
-                                        foreach ($pcData['tck']->Description as $var) {
-                                            echo $var . ". ";
-                                        }
-                                    ?>
+                                        <?php echo $pcData['tck']->Description; ?>
                                     </h5>
                                 </div>
                             </div>

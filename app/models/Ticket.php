@@ -247,9 +247,12 @@ class Ticket extends Model
         //$mess = (array)$result['messages'];
         $result = (array)$result['instance'];
 
-        $this->CallID = $result['CallID'];
-        $this->ServiceRecipient = $result['ServiceRecipient'];
-        $this->Urgency = $result['Urgency'];
+        $this->CallID = (array)$result['CallID'];
+        $this->CallID = $this->CallID['_'];
+        $this->ServiceRecipient = (array)$result['ServiceRecipient'];
+        $this->ServiceRecipient = $this->ServiceRecipient['_'];
+        $this->Urgency = (array)$result['Urgency'];
+        $this->Urgency = $this->Urgency['_'];
         if($this->Urgency == "1")
         {
             $this->Urgency = "Crítico";
@@ -266,83 +269,275 @@ class Ticket extends Model
         {
             $this->Urgency = "Baja";
         }
-        $this->OpenTime = $result['OpenTime'];
-        $this->UpdateTime = $result['UpdateTime'];
-        $this->OpenedBy = $result['OpenedBy'];
+
+        $this->OpenTime = (array)$result['OpenTime'];
+        $this->OpenTime = $this->OpenTime['_'];
+        $this->UpdateTime = (array)$result['UpdateTime'];
+        $this->UpdateTime = $this->UpdateTime['_'];
+        $this->OpenedBy = (array)$result['OpenedBy'];
+        $this->OpenedBy = $this->OpenedBy['_'];
         $temp = (array)$result['Description'];
         if(isset($temp))
         {
-            $this->Description = $temp['Description'];
+            $this->Description = (array)$temp['Description'];
+            $this->Description = $this->Description['_'];
+            
         }
         else
         {
             $this->Description = '';
         }
         
-        $this->AffectedService = $result['AffectedService'];
-        $this->CallOwner = $result['CallOwner'];
-        $this->Status = $result['Status'];
-        $this->NotifyBy = $result['NotifyBy'];
-        $this->Solution = $result['Solution'];
-        $this->Category = $result['Category'];
-        $this->CallerDepartment = $result['CallerDepartment'];
-        $this->CallerLocation = $result['CallerLocation'];
-        $this->CloseTime = $result['CloseTime'];
-        $this->ClosedBy = $result['ClosedBy'];
-        $this->KnowledgeCandidate = $result['KnowledgeCandidate'];
-        $this->SLAAgreementID = $result['SLAAgreementID'];
-        $this->Priority = $result['Priority'];
-        $this->ServiceContract = $result['ServiceContract'];
-        $this->SiteCategory = $result['SiteCategory'];
-        $this->TotalLossOfService = $result['TotalLossOfService'];
-        $this->Area = $result['Area'];
-        $this->Subarea = $result['Subarea'];
-        $this->ProblemType = $result['ProblemType'];
-        $this->FailedEntitlement = $result['FailedEntitlement'];
-        $this->Location = $result['Location'];
-        $this->CauseCode = $result['CauseCode'];
-        $this->ClosureCode = $result['ClosureCode'];
-        $this->Company = $result['Company'];
-        $this->ReportedByContact = $result['ReportedByContact'];
-        $this->ReportedByDifferentContact = $result['ReportedByDifferentContact'];
-        $this->ReportedByPhone = $result['ReportedByPhone'];
-        $this->ReportedByExtension = $result['ReportedByExtension'];
-        $this->ReportedByFax = $result['ReportedByFax'];
-        $this->ContactEmail = $result['ContactEmail'];
-        $this->LocationFullName = $result['LocationFullName'];
-        $this->ContactFirstName = $result['ContactFirstName'];
-        $this->ContactLastName = $result['ContactLastName'];
-        $this->ContactTimeZone = $result['ContactTimeZone'];
-        $this->EnteredByESS = $result['EnteredByESS'];
-        $this->SLABreached = $result['SLABreached'];
-        $this->NextSLABreach = $result['NextSLABreach'];
-        $this->Contact = $result['Contact'];
-        $this->Update = $result['Update'];
-        $this->Impact = $result['Impact'];
-        if($this->Impact == "4")
+        $this->AffectedService = (array)$result['AffectedService'];
+        $this->AffectedService = $this->AffectedService['_'];
+        $this->CallOwner = (array)$result['CallOwner'];
+        $this->CallOwner = $this->CallOwner['_'];
+        $this->Status = (array)$result['Status'];
+        $this->Status = $this->Status['_'];
+        $this->NotifyBy = (array)$result['NotifyBy'];
+        $this->NotifyBy = $this->NotifyBy['_'];
+        if(array_key_exists('Solution', $result))
         {
-            $this->Impact = "Empresa";
+            $this->Solution = (array)$result['Solution'];    
+            $this->Solution = $this->Solution['_'];
         }
-        if($this->Impact == "3")
+        if(array_key_exists('Category', $result))
         {
-            $this->Impact = "Sitio/Depto";
+            $this->Category = (array)$result['Category'];
+            $this->Category = $this->Category['_'];
         }
-        if($this->Impact == "2")
+        if(array_key_exists('CallerDepartment', $result))
         {
-            $this->Impact = "Varios usuarios";
+            $this->CallerDepartment = (array)$result['CallerDepartment'];
+            $this->CallerDepartment = $this->CallerDepartment['_'];
         }
-        if($this->Impact == "1")
+        if(array_key_exists('CallerLocation', $result))
         {
-            $this->Impact = "usuario";
+            $this->CallerLocation = (array)$result['CallerLocation'];
+            $this->CallerLocation = $this->CallerLocation['_'];
         }
-        $this->neededbytime = $result['neededbytime'];
-        $this->approvalstatus = $result['approvalstatus'];
-        $this->folder = $result['folder'];
-        $this->subscriptionItem = $result['subscriptionItem'];
-        $this->AffectedCI = $result['AffectedCI'];
-        $this->Title = $result['Title'];
-        $this->MetodoOrigen = $result['MetodoOrigen'];
-        $this->attachments = $result['attachments'];
+        if(array_key_exists('CloseTime', $result))
+        {
+            $this->CloseTime = (array)$result['CloseTime'];
+            $this->CloseTime = $this->CloseTime['_'];
+        }
+        if(array_key_exists('ClosedBy', $result))
+        {
+            $this->ClosedBy = (array)$result['ClosedBy'];
+            $this->ClosedBy = $this->ClosedBy['_'];
+        }
+        if(array_key_exists('KnowledgeCandidate', $result))
+        {
+            $this->KnowledgeCandidate = (array)$result['KnowledgeCandidate'];
+            $this->KnowledgeCandidate = $this->KnowledgeCandidate['_'];
+        }
+        if(array_key_exists('SLAAgreementID', $result))
+        {
+            $this->SLAAgreementID = (array)$result['SLAAgreementID'];
+            $this->SLAAgreementID = $this->SLAAgreementID['_'];
+        }
+        if(array_key_exists('Priority', $result))
+        {
+            $this->Priority = (array)$result['Priority'];
+            $this->Priority = $this->Priority['_'];
+        }
+        if(array_key_exists('ServiceContract', $result))
+        {
+            $this->ServiceContract = (array)$result['ServiceContract'];
+            $this->ServiceContract = $this->ServiceContract['_'];
+        }
+        if(array_key_exists('SiteCategory', $result))
+        {
+            $this->SiteCategory = (array)$result['SiteCategory'];
+            $this->SiteCategory = $this->SiteCategory['_'];
+        }
+        if(array_key_exists('TotalLossOfService', $result))
+        {
+            $this->TotalLossOfService = (array)$result['TotalLossOfService'];
+            $this->TotalLossOfService = $this->TotalLossOfService['_'];
+        }
+        if(array_key_exists('Area', $result))
+        {
+            $this->Area = (array)$result['Area'];
+            $this->Area = $this->Area['_'];
+        }
+        if(array_key_exists('Subarea', $result))
+        {
+            $this->Subarea = (array)$result['Subarea'];
+            $this->Subarea = $this->Subarea['_'];
+        }
+        if(array_key_exists('ProblemType', $result))
+        {
+            $this->ProblemType = (array)$result['ProblemType'];
+            $this->ProblemType = $this->ProblemType['_'];
+        }
+        if(array_key_exists('FailedEntitlement', $result))
+        {
+            $this->FailedEntitlement = (array)$result['FailedEntitlement'];
+            $this->FailedEntitlement = $this->FailedEntitlement['_'];
+        }
+        if(array_key_exists('Location', $result))
+        {
+            $this->Location = (array)$result['Location'];
+            $this->Location = $this->Location['_'];
+        }
+        if(array_key_exists('CauseCode', $result))
+        {
+            $this->CauseCode = (array)$result['CauseCode'];
+            $this->CauseCode = $this->CauseCode['_'];
+        }
+        if(array_key_exists('ClosureCode', $result))
+        {
+            $this->ClosureCode = (array)$result['ClosureCode'];
+            $this->ClosureCode = $this->ClosureCode['_'];
+        }
+        if(array_key_exists('Company', $result))
+        {
+            $this->Company = (array)$result['Company'];
+            $this->Company = $this->Company['_'];
+        }
+        if(array_key_exists('ReportedByContact', $result))
+        {
+            $this->ReportedByContact = (array)$result['ReportedByContact'];
+            $this->ReportedByContact = $this->ReportedByContact['_'];
+        }
+        if(array_key_exists('ReportedByDifferentContact', $result))
+        {
+            $this->ReportedByDifferentContact = (array)$result['ReportedByDifferentContact'];
+            $this->ReportedByDifferentContact = $this->ReportedByDifferentContact['_'];
+        }
+        if(array_key_exists('ReportedByPhone', $result))
+        {
+            $this->ReportedByPhone = (array)$result['ReportedByPhone'];
+            $this->ReportedByPhone = $this->ReportedByPhone['_'];
+        }
+        if(array_key_exists('ReportedByExtension', $result))
+        {
+            $this->ReportedByExtension = (array)$result['ReportedByExtension'];
+            $this->ReportedByExtension = $this->ReportedByExtension['_'];
+        }
+        if(array_key_exists('ReportedByFax', $result))
+        {
+            $this->ReportedByFax = (array)$result['ReportedByFax'];
+            $this->ReportedByFax = $this->ReportedByFax['_'];
+        }
+        if(array_key_exists('ContactEmail', $result))
+        {
+            $this->ContactEmail = (array)$result['ContactEmail'];
+            $this->ContactEmail = $this->ContactEmail['_'];
+        }
+        if(array_key_exists('LocationFullName', $result))
+        {
+            $this->LocationFullName = (array)$result['LocationFullName'];
+            $this->LocationFullName = $this->LocationFullName['_'];
+        }
+        if(array_key_exists('ContactFirstName', $result))
+        {
+            $this->ContactFirstName = (array)$result['ContactFirstName'];
+            $this->ContactFirstName = $this->ContactFirstName['_'];
+        }
+        if(array_key_exists('ContactLastName', $result))
+        {
+            $this->ContactLastName = (array)$result['ContactLastName'];
+            $this->ContactLastName = $this->ContactLastName['_'];
+        }
+        if(array_key_exists('ContactTimeZone', $result))
+        {
+            $this->ContactTimeZone = (array)$result['ContactTimeZone'];
+            $this->ContactTimeZone = $this->ContactTimeZone['_'];
+        }
+        if(array_key_exists('EnteredByESS', $result))
+        {
+            $this->EnteredByESS = (array)$result['EnteredByESS'];
+            $this->EnteredByESS = $this->EnteredByESS['_'];
+        }
+        if(array_key_exists('SLABreached', $result))
+        {
+            $this->SLABreached = (array)$result['SLABreached'];
+            $this->SLABreached = $this->SLABreached['_'];
+        }
+        if(array_key_exists('NextSLABreach', $result))
+        {
+            $this->NextSLABreach = (array)$result['NextSLABreach'];
+            $this->NextSLABreach = $this->NextSLABreach['_'];
+        }
+        if(array_key_exists('Contact', $result))
+        {
+            $this->Contact = (array)$result['Contact'];
+            $this->Contact = $this->Contact['_'];
+        }
+        if(array_key_exists('Update', $result))
+        {
+            $this->Update = (array)$result['Update'];
+            $this->Update = $this->Update['_'];
+        }
+        if(array_key_exists('Impact', $result))
+        {
+            $this->Impact = (array)$result['Impact'];
+            $this->Impact = $this->Impact['_'];
+            if($this->Impact == "4")
+            {
+                $this->Impact = "Empresa";
+            }
+            if($this->Impact == "3")
+            {
+                
+                $this->Impact = "Sitio/Depto";
+            }
+            if($this->Impact == "2")
+            {
+                $this->Impact = "Varios usuarios";
+            }
+            if($this->Impact == "1")
+            {
+                $this->Impact = "usuario";
+            }
+        }
+        if(array_key_exists('neededbytime', $result))
+        {
+            $this->neededbytime = (array)$result['neededbytime'];
+            $this->neededbytime = $this->neededbytime['_'];
+        }
+        if(array_key_exists('approvalstatus', $result))
+        {
+            $this->approvalstatus = (array)$result['approvalstatus'];
+            $this->approvalstatus = $this->approvalstatus['_'];
+        }
+        if(array_key_exists('folder', $result))
+        {
+            $this->folder = (array)$result['folder'];
+            $this->folder = $this->folder['_'];
+        }
+        if(array_key_exists('subscriptionItem', $result))
+        {
+            $this->subscriptionItem = (array)$result['subscriptionItem'];
+            $this->subscriptionItem = $this->subscriptionItem['_'];
+        }
+        if(array_key_exists('AffectedCI', $result))
+        {
+            $this->AffectedCI = (array)$result['AffectedCI'];
+            $this->AffectedCI = $this->AffectedCI['_'];
+        }
+        if(array_key_exists('Title', $result))
+        {
+            $this->Title = (array)$result['Title'];
+            $this->Title = $this->Title['_'];
+        }
+        if(array_key_exists('MetodoOrigen', $result))
+        {
+            $this->MetodoOrigen = (array)$result['MetodoOrigen'];
+            $this->MetodoOrigen = $this->MetodoOrigen['_'];
+        }
+        if(array_key_exists('attachments', $result))
+        {
+            $this->attachments = (array)$result['attachments'];
+            $this->attachments = $this->attachments['_'];
+        }
         //$this->messages = $mess;
+    }
+
+    public function getTicketByUser($usr)
+    {
+        
     }
 }
