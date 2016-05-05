@@ -1,0 +1,287 @@
+<!-- Widgets Row -->
+<div class="row">
+    <div class="col-md-6 ">
+        <!-- Timeline Widget -->
+        <div class="widget ">
+            <div class="widget-extra themed-background-dark">
+                <div class="widget-options">
+                </div>
+                <h3 class="widget-content-light">
+                    Nueva <strong>Solicitud</strong>
+                    <small><a href="page_ready_timeline.php"><strong></strong></a></small>
+                </h3>
+            </div>
+            <div class="widget-extra " style="padding-right: 0px; padding-left: 0px;">
+
+		        <!-- Working Tabs Content -->
+		        <div class="row row-catalogo catalogo-lista-home">
+    				<div class="col-xs-12 text-center">
+						<a href="<?php print($this->url->get("comercio/solicitudServicio/tecnologia"))?>" class="widget active widget-hover-effect1 catalogo-menu primera-opcion" style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+				            <div class="widget-simple text-center">
+				            	<div class="row">
+				            		<div class="col-xs-4">
+				            			<i class="gi gi-display fa-3x"></i>
+						                <h3 class="widget-content" >
+						                 <strong>Sistemas TI</strong><br>
+						                </h3>
+					                </div>
+					                <div class="col-xs-8">
+					                	<div class="description">
+					          				<span >Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+					          			</div>
+					          		</div>
+				          		</div> 
+				            </div>
+			        	</a>
+					</div>
+					<div class="col-xs-12 text-center">
+						<a href="<?php print($this->url->get("comercio/solicitudServicio/generales"))?>" class="widget active widget-hover-effect1 catalogo-menu segunda-opcion" style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+				            <div class="widget-simple text-center">
+				            	<div class="row">
+				            		<div class="col-xs-4">
+				            			<i class="gi gi-bullhorn fa-3x"></i>
+						                <h3 class="widget-content " >
+						                 <strong>Servicios TI</strong><br>
+						                </h3>
+					                </div>
+					                <div class="col-xs-8">
+					                	<div class="description">
+					          				<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+					          			</div>
+					          		</div>
+				          		</div> 
+				            </div>
+			        	</a>
+					</div>
+					<div class="col-xs-12 text-center">
+						<a href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>" class="widget active widget-hover-effect1 catalogo-menu tercera-opcion" style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+				            <div class="widget-simple text-center">
+				            	<div class="row">
+				            		<div class="col-xs-4 widget-title-cat">
+				            			<i class="gi gi-group fa-3x"></i>
+						                <h3 class="widget-content" >
+						                 <strong>Infraestructura y Servicios Generales </strong><br>
+						                </h3>
+					                </div>
+					                <div class="col-xs-8">
+					                	<div class="description">
+					          				<span>Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.</span>
+					          			</div>
+					          		</div>
+				          		</div> 
+				            </div>
+			        	</a>
+					</div>
+				</div>	
+	        </div>
+		        <!-- END Working Tabs Content -->
+
+		</div>
+        <!-- Timeline Widget -->
+
+        <!-- Timeline Widget -->
+        <div class="widget ">
+            <div class="widget-extra themed-background-dark">
+                <div class="widget-options">
+                </div>
+                <h3 class="widget-content-light">
+                    Buscar <strong> Documentos </strong>
+                    <small><a href="page_ready_timeline.php"><strong></strong></a></small>
+                </h3>
+            </div>
+            <div class="widget-extra " style="padding-right: 0px; padding-left: 0px;">
+
+		        <!-- Working Tabs Content -->
+		        <div class="row row-catalogo catalogo-lista-home">
+    				<div class="col-xs-12 text-center">
+						<a href="<?php print($this->url->get("comercio/conocimiento"))?>" class="widget active widget-hover-effect1 catalogo-menu " style="padding: 0px;" data-val="Aplicaciones de Negocio" data-next="aplicaciones" data-type="segundaVista" >
+				            <div class="widget-simple text-center">
+				            	<div class="row">
+				            		<div class="col-xs-4">
+				            			<i class="gi gi-search fa-3x"></i>
+						                <h3 class="widget-content" >
+						                 <strong>Buscar</strong><br>
+						                </h3>
+					                </div>
+					                <div class="col-xs-8">
+					          			<span > Buscar Preguntas Frecuentes, Procedimientos, Formularios e Instructivos.</span>
+					          		</div>
+				          		</div> 
+				            </div>
+			        	</a>
+					</div>
+				</div>	
+	        </div>
+		        <!-- END Working Tabs Content -->
+		</div>
+    </div>
+
+    <div class="col-md-6">
+        <!-- Your Plan Widget -->
+        <div class="widget">
+            <div class="widget-extra themed-background-dark">
+                <h3 class="widget-content-light">
+                   <strong>Consultar</strong> Solicitud 
+                    <small><a href="page_ready_pricing_tables.php"><strong></strong></a></small>
+                    <small>Ultimos tickets</small>
+                   
+                </h3>
+
+            </div>
+            <div class="widget-extra-full rm-padding-top">
+                <div class="row ">
+				                                            <!-- Tickets List -->
+                    <div class="tab-pane active" id="tickets-list">
+                        <div class="block-content-full">
+                            <div class="table-responsive remove-margin-bottom table-main">
+                            	<form id="evaluacionForm" action="<?php print $this->url->get('comercio/evaluarAtencionModal') ?>" method="post" enctype="multipart/form-data" data-type="ajax">
+	                                <table class="table table-bc table-striped table-vcenter remove-margin-bottom">
+	                                    <thead>
+	                                        <tr>
+	                                            <th class="">ID</th>
+	                                            <th>Estado</th>
+	                                            <th>Descripción breve</th>
+	                                            <th> Evaluar Atención</th>
+	                                        </tr>
+	                                    </thead>
+	                                    <tbody>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK420</a></td>
+	                                            <td><span class="label label-pendiente">PENDIENTE</span></td>
+	                                            <td>Cambiar Contraseña LDAP</td>
+	                                             <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+	                                            		<label></label>
+	                                            	</div>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK424</a></td>
+	                                            <td><span class="label label-cerrado">CERRADO</span></td>
+	                                            <td>Necesito licencia de Software</td>
+	                                            <td class="padding0center">
+													<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        <input class="hidden" id="like11" name="conf1" type="radio" value="1" />
+												        <label for="like11" class="likeimgGray"></label>
+												        <input class="hidden" id="like12" name="conf1" type="radio" value="2" />
+												        <label for="like12" class="dislikeimgGray"></label>
+												    </div>
+                								</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
+	                                            <td><span class="label label-encurso">EN CURSO</span></td>
+	                                            <td>Petición recuperar datos</td>
+	                                             <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+	                                            		<label></label>
+	                                            	</div>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK429</a></td>
+	                                            <td><span class="label label-cerrado">CERRADO</span></td>
+	                                            <td>Petición cuenta de SOA</td>
+	                                            <td class="padding0center">
+													<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        <input class="hidden" id="like21" name="conf2" type="radio" value="1" />
+												        <label for="like21" class="likeimgGray"></label>
+												        <input class="hidden" id="like22" name="conf2" type="radio" value="2" />
+												        <label for="like22" class="dislikeimgGray"></label>
+												    </div>
+                								</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+	                                            <td><span class="label label-encurso">EN CURSO</span></td>
+	                                            <td>Solicito cambio luminaria</td>
+	                                             <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+	                                            		<label></label>
+	                                            	</div>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+	                                            <td><span class="label label-encurso">EN CURSO</span></td>
+	                                            <td>Solucionar Problema de pantalla</td>
+	                                             <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+	                                            		<label></label>
+	                                            	</div>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+	                                            <td><span class="label label-cerrado">CERRADO</span></td>
+	                                            <td>Revisión equipos</td>
+	                                            <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        <input class="hidden" id="like31" name="conf3" type="radio" value="1" />
+												        <label for="like31" class="likeimgGray"></label>
+												        <input class="hidden" id="like32" name="conf3" type="radio" value="2" />
+												        <label for="like32" class="dislikeimgGray"></label>
+												    </div>
+                								</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
+	                                            <td><span class="label label-cerrado">CERRADO</span></td>
+	                                            <td>Solucionar Problema</td>
+	                                            <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        <input class="hidden" id="like41" name="conf4" type="radio" value="1" />
+												        <label for="like41" class="likeimgGray"></label>
+												        <input class="hidden" id="like42" name="conf4" type="radio" value="2" />
+												        <label for="like42" class="dislikeimgGray"></label>
+												    </div>
+                								</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td class="text-center "><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
+	                                            <td><span class="label label-cerrado">CERRADO</span></td>
+	                                            <td>Solucionar Problema con licencia</td>
+	                                            <td class="padding0center">
+	                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        <input class="hidden" id="like51" name="conf5" type="radio" value="1" />
+												        <label for="like51" class="likeimgGray"></label>
+												        <input class="hidden" id="like52" name="conf5" type="radio" value="2" />
+												        <label for="like52" class="dislikeimgGray"></label>
+												    </div>
+                								</td>
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
+
+	                                <input  class="hidden" id="optionLike" name="optionLike" />
+	                                <input  class="hidden" id="ticketId" name="ticketId" />
+	                            </form>
+                                <div class="col-md-12 text-center" style="margin-bottom: 6px;">
+                                	<a class="bc-text" style="font-size: 16px;" href="<?php print($this->url->get('solicitudes')) ?>"> Ver todos ...</a>
+                                </div>
+                            </div>
+                            <div class="text-center col-xs-12" style="min-height: 73px;padding: 10px;">
+                            <br>
+                            	<div class="row">
+                            		<div class="col-xs-6">
+										 <input type="text" id="example-text-input" name="example-text-input" class="form-control" placeholder="Nº Ticket">
+									</div>
+									<div class="col-xs-6">
+										<a href="<?php print($this->url->get('ticket')) ?>" style="width:100%" type="button" class="btn btn-bc">Buscar Ticket</a>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Tickets List -->
+                </div>
+            </div>
+        </div>
+        <!-- END Your Plan Widget -->
+    </div>
+
+</div>
+<!-- END Widgets Row -->
+<div id="contenidomodal">
+	
+</div>

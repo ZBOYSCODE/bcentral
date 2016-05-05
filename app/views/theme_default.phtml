@@ -13,6 +13,8 @@
 
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
 
+	<link rel="shortcut icon" href="<?php print($this->url->get("img/favicon.png"))?>">
+
 	<!-- Icons -->
 	<!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
 	<!-- END Icons -->
@@ -46,7 +48,7 @@
 	<?php print($this->tag->javascriptInclude("js/vendor/modernizr-respond.min.js"))?>
 
 </head>
-<body class="page-loading">
+<body>
 		<div id="page-container" class="style-alt">
 	        <!-- Main Container -->
 	        <div id="main-container">
@@ -92,30 +94,30 @@
 	            <!-- Page Content -->
 	            <div id="page-content" class="clearfix">
 	                <!-- Dashboard Header -->
-				    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
-				    <div class="content-header content-header-media">
-				        <div class="header-section header-section-bc">
-				            <div class="row">
-				                <!-- Main Title (hidden on small devices for the statistics to fit) -->
-				                <div class="col-md-2 col-lg-1 col-xs-2">
-				               		<a href="<?php print($this->url->get(""))?>">
-				               			<img  src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
-				               		</a>
-				                </div>
-				                <div class="col-md-7 col-lg-7 col-xs-7">
-				                    <h1>Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small>Banco Central de Chile</small></h1>
-				                </div>
-				                <!-- END Main Title -->
+					<!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+					<div class="content-header content-header-media ">
+					    <div class="header-section header-section-bc">
+					        <div class="row">
+					            <!-- Main Title (hidden on small devices for the statistics to fit) -->
+					            <div class="col-md-2 col-lg-2 col-xs-2" style="text-align: center;">
+					            	<a href="<?php print($this->url->get(""))?>">
+					           			<img  src="<?php print($this->url->get("img/logo-bcentral-100.png"))?>" height="100" >
+					           		</a>
+					            </div>
+					            <div class="col-md-10 col-lg-10 col-xs-10 ">
+					                <h1 class="titulo-bc">Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small></small></h1>
+					            </div>
+					            <!-- END Main Title -->
 
-				                <!-- Top Stats -->
+					            <!-- Top Stats -->
 
-				                <!-- END Top Stats -->
-				            </div>
-				        </div>
-				        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
-				        <img src="<?php print($this->url->get("img/background-encabezado2.png"))?>" alt="header image" class="" style="width: 100%;opacity: 0.9;">
-				    </div>
-				    <!-- END Dashboard Header -->
+					            <!-- END Top Stats -->
+					        </div>
+					    </div>
+					    <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
+					    <img src="<?php print($this->url->get("img/background-encabezado3.png"))?>" alt="header image" class="" style="width: 100%;opacity: 0.9;">
+					</div>
+					<!-- END Dashboard Header -->
 
 				    <?php if(isset($pcView) && $pcView!=null) 
 							echo $this->view->render($pcView,array('pcData'=>$pcData));
@@ -128,13 +130,13 @@
  				<!-- Footer -->
 	            <footer class="clearfix">
 		            	
-		                <div class="pull-right" >
-		                	<a href="http://www.bccentral.cl" >Banco Central de Chile</a>
+		                <div class="pull-right hidden-xs" >
+		                	<a class="bc-text" href="http://www.bcentral.cl" >Banco Central de Chile</a>
 		            	</div>
-			            <div class="pull-left">
-			                2016 &copy; <a href="" target="_blank"><?php print($this->config->appName)?></a>
+			            <div class="pull-left hidden-xs">
+			                2016 &copy; <a class="bc-text" href="" target="_blank"><?php print($this->config->appName)?></a>
 			            </div>
-			            <div class="center-footer">Mesa de Servicios: <i class="gi gi-earphone"></i> +56 2 2670-2337 </div>
+			            <div class="center-footer ">Mesa de Servicios: <i class="gi gi-earphone"></i> +56 2 2670-2337 </div>
 	            </footer>
 	            <!-- END Footer -->
 			</div>

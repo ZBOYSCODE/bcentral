@@ -9,14 +9,16 @@ class ComercioController extends ControllerBase
      */
     public function indexAction()
     { 
+        $pcView = 'servicio/servicios_home_page';
         $js = $this->getLikeJs();
-        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>'','jsScript'=>$js));
+        echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>'','jsScript'=>$js));
 
     }
 
     public function consultarAction()
     {   
-        echo $this->view->render('theme_home', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>'', 'pcData'=>''));    
+        $pcView = 'servicio/servicios_base_conocimiento';
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=>''));    
     }
 
     public function conocimientoAction() {

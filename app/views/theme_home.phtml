@@ -91,32 +91,9 @@
 
 	            <!-- Page Content -->
 	            <div id="page-content" class="clearfix" style="padding-bottom: 40px;">
-	                <!-- Dashboard Header -->
-				    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
-				    <div class="content-header content-header-media">
-				        <div class="header-section header-section-bc">
-				            <div class="row">
-				                <!-- Main Title (hidden on small devices for the statistics to fit) -->
-				                <div class="col-md-2 col-lg-1 col-xs-2">
-				                	<a href="<?php print($this->url->get(""))?>">
-				               			<img  src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 100%;opacity: 0.8;">
-				               		</a>
-				                </div>
-				                <div class="col-md-7 col-lg-7 col-xs-7">
-				                    <h1>Bienvenido al <strong><?php print($this->config->appName)?></strong><br><small>Banco Central de Chile</small></h1>
-				                </div>
-				                <!-- END Main Title -->
 
-				                <!-- Top Stats -->
-
-				                <!-- END Top Stats -->
-				            </div>
-				        </div>
-				        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
-				        <img src="<?php print($this->url->get("img/background-encabezado2.png"))?>" alt="header image" class="" style="width: 100%;opacity: 0.9;">
-				    </div>
-				    <!-- END Dashboard Header -->
-
+	            	
+	            
 				    <!-- Widgets Row -->
 				    <div class="row">
 				        <div class="col-md-6 ">
@@ -260,7 +237,7 @@
 						                                    <tbody>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK420</a></td>
-						                                            <td><span class="label label-danger">PENDIENTE</span></td>
+						                                            <td><span class="label label-pendiente">PENDIENTE</span></td>
 						                                            <td>Cambiar Contraseña LDAP</td>
 						                                             <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -270,7 +247,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK424</a></td>
-						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td><span class="label label-cerrado">CERRADO</span></td>
 						                                            <td>Necesito licencia de Software</td>
 						                                            <td class="padding0center">
 																		<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -283,7 +260,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK426</a></td>
-						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td><span class="label label-encurso">EN CURSO</span></td>
 						                                            <td>Petición recuperar datos</td>
 						                                             <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -293,7 +270,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK429</a></td>
-						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td><span class="label label-cerrado">CERRADO</span></td>
 						                                            <td>Petición cuenta de SOA</td>
 						                                            <td class="padding0center">
 																		<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -306,7 +283,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK200</a></td>
-						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td><span class="label label-encurso">EN CURSO</span></td>
 						                                            <td>Solucionar Problema login</td>
 						                                            <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -316,7 +293,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td><span class="label label-encurso">EN CURSO</span></td>
 						                                            <td>Solicito cambio luminaria</td>
 						                                             <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -326,7 +303,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-						                                            <td><span class="label label-success">EN CURSO</span></td>
+						                                            <td><span class="label label-encurso">EN CURSO</span></td>
 						                                            <td>Solucionar Problema de pantalla</td>
 						                                             <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -336,7 +313,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td><span class="label label-cerrado">CERRADO</span></td>
 						                                            <td>Revisión equipos</td>
 						                                            <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -349,7 +326,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center bc-text"><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" >#TCK425</a></td>
-						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td><span class="label label-cerrado">CERRADO</span></td>
 						                                            <td>Solucionar Problema</td>
 						                                            <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
@@ -362,7 +339,7 @@
 						                                        </tr>
 						                                        <tr>
 						                                            <td class="text-center "><a class="bc-text" href="<?php print($this->url->get('ticket')) ?>" ><strong>#TCK426</strong></a></td>
-						                                            <td><span class="label label-default">CERRADO</span></td>
+						                                            <td><span class="label label-cerrado">CERRADO</span></td>
 						                                            <td>Solucionar Problema con licencia</td>
 						                                            <td class="padding0center">
 						                                            	<div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">

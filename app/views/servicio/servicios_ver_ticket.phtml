@@ -5,7 +5,7 @@
         </div>
         <div id="breadcrumbs">
             <span class="bcTecnologia nsMenu">
-                <a href="<?php print($this->url->get("comercio"))?>"><span id="textTecnologia">Inicio</span></a>
+                <a class="bc-text" href="<?php print($this->url->get("comercio"))?>"><span id="textTecnologia">Inicio</span></a>
             </span>
             <span class="bcTecnologia nsMenu">
                 <i class="fa fa-arrow-right"></i>   
@@ -47,9 +47,15 @@
                                 <br>
                                 <span ><i class="gi gi-calendar"></i> Fecha Solicitud: <strong>27/03/2016</strong></span>
                                 <br> <br>
-                                <span class="label label-info br-span"><i class="hi hi-time"></i></i>  <strong> Fecha Estimada Resolucion: 29/03/2016</strong></span>
+                                <span class="label label-bc br-span"><i class="hi hi-time"></i></i>  <strong> Fecha Estimada Resolucion: 29/03/2016</strong></span>
                                 <br>
-                                <span><span class="label label-success">EN CURSO</span></span>
+                                <span>
+                                    <span class="label label-encurso">EN CURSO</span>
+                                    <!--
+                                    <span class="label label-pendiente">PENDIENTE</span>
+                                    <span class="label label-cerrado">CERRADO</span>
+                                    -->
+                                </span>
 
                                 <br> <br>
                                 <h3><strong>Creación de Cuenta</strong></h3>
