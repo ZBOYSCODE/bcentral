@@ -469,7 +469,13 @@ class Ticket extends Model
         if(array_key_exists('Update', $result))
         {
             $this->Update = (array)$result['Update'];
-            $this->Update = $this->Update['_'];
+            $this->Update = $this->Update['Update'];
+            $temp = array();
+            foreach ($this->Update as $value) {
+                $var = (array)$value;
+                array_push($temp, $var['_']);
+            }
+            $this->Update = $temp;
         }
         if(array_key_exists('Impact', $result))
         {
@@ -536,8 +542,29 @@ class Ticket extends Model
         //$this->messages = $mess;
     }
 
-    public function getTicketByUser($usr)
+    public function getTickestByUser($usr)
     {
-        
+        $wsClient = new WebServiceClient();
+        $result = $wsClient->getTicketsByUser($usr);
+
+        $tckList = array();
+        $count = 1;
+        foreach ($result['instance'] as $key => $value) 
+        {
+            if($count > 30)
+            {
+                break;
+            }
+            $value = (array)$value;
+            $id = (array)$value['CallID'];
+            $id = $id['_'];
+            $status = (array)$value['Status'];
+            $status = $status['_'];
+            $title = (array)$value['Title'];
+            $title = $title['_'];
+            array_push($tckList, array('CallID' => $id, 'Status' => $status, 'Title' => $title));
+            $count = 1 + $count;
+        }
+        return $tckList;
     }
 }

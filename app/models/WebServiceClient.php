@@ -8,13 +8,21 @@ class WebServiceClient extends Model
     private $client;
     public function getTicketsByUser($usr)
     {
+        $query = 'callback.contact="' . $usr . '" or contact.name="' . $usr . '"';//"callback.contact=&quot;" . $usr ."&quot; and contact.name=&quot;" . $usr ."&quot;";
+        /*echo $query;
+        echo mb_detect_encoding($query);
+        $query = "callback.contact=&quot;ALARCON, FELIPE&quot;";
+        echo $query;
+        echo mb_detect_encoding($query);
+        die();*/
+        //$encoding = mb_detect_encoding($query); if($encoding == 'UTF-8') { $query_escaped = urlencode($query);} else { $query_escaped = urlencode(utf8_encode($query)); }
         $this->client = $this->di->get('soapclient-servicedesk');
         $param = array(
                 'keys' => array(
                     '_' => array(
                             'CallID' => ''
                         ),
-                    'query' => "(callback.contact=&quot;" . $usr ."&quot; or contact.name~=&quot;" . $usr ."&quot;) and incident.id IS NOT NULL"
+                    'query' => $query//$query_escaped
                 )    
             );
         $response = (array)$this->client->RetrieveInteractionList($param);
@@ -241,7 +249,7 @@ class WebServiceClient extends Model
                             )*/
                         )
                     );
-        $result = $this->client->UpdateInteractionRequest($param);
+        $result = $this->client->UpdateInteraction($param);
 
         //$result = $this->client->call('RetrieveInteraction', $param, '', '', false, true);
         $result = (array) $result;

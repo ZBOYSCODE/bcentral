@@ -14,7 +14,9 @@ class ComercioController extends ControllerBase
     public function indexAction()
     {   
         $js = $this->getJsEncuesta();
-        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>'','jsScript'=>$js));
+        $tck = new Ticket();
+        $tckList = $tck->getTickestByUser("ALARCON, FELIPE");
+        echo $this->view->render('theme_home',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>'','pcData'=>array('tckList' => $tckList),'jsScript'=>$js));
 
     }
 
@@ -82,7 +84,6 @@ class ComercioController extends ControllerBase
         $ticket = new Ticket();
 
         $ticket->findTicket($this->request->getPost('id'));
-
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> array('tck' => $ticket), 'jsScript'=>$js));    
     }
 
@@ -343,16 +344,17 @@ class ComercioController extends ControllerBase
     }
     public function Testws3Action()
     {
-        $ws = new WebServiceClient();
+        //$ws = new WebServiceClient();
         //$response = $ws->getContactList();
         $usr = "ALARCON, FELIPE";
-        $response = $ws->getTicketsByUser($usr);
-
+        //$response = $ws->getTicketsByUser($usr);
+        $tck = new Ticket();
+        $response = $tck->getTicketsByUser($usr);
         //$contacto = new Contact();
         //$response = $contacto->getContactList();
 
         var_dump($response);
-        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+        //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
         
         //echo $response['request'];
     }

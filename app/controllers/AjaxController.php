@@ -51,13 +51,12 @@ class AjaxController extends ControllerBase
 
 	public function reiterarTicketAction()
 	{
-		print_r($_POST);
     	$this->mifaces->newFaces();
-    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal("close")');
     	$ticket = new Ticket();
     	$ticket->CallID = $_POST['tck'];
-    	$ticket->updateTicket($_POST['txt']);
-
+    	$result = $ticket->updateTicket($_POST['txt']);
+    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal("close")');
+    	$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
     	$this->mifaces->run();		
 	}    
 }
