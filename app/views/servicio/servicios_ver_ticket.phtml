@@ -37,6 +37,24 @@
                         </div>
 
                     </div>
+                                                            <?php  
+                                                            $label = "bc";
+                                                            if ($pcData['tck']->Status == 'Aceptado' or (strpos($pcData['tck']->Status, 'Abierto') !== false)) {
+                                                                $label = "encurso";
+                                                            }
+                                                            else if(strpos($pcData['tck']->Status, 'Pendiente') !== false)
+                                                            {
+                                                                 $label = "pendiente";
+                                                            } else if(strpos($pcData['tck']->Status, 'Rechazado') !== false)
+                                                            {
+                                                                 $label = "rechazado";
+                                                            }
+                                                            else if(strpos($pcData['tck']->Status, 'Cerrado') !== false)
+                                                            {
+                                                                 $label = "cerrado";
+                                                            }
+                                                            //cerrado, rechazado y bc 
+                                                            ?>
                     <div class="widget-extra-full catalogo-lista-home">
                         <div class="row ">
                                                                     <!-- Tickets List -->
@@ -47,7 +65,7 @@
                                     <span><i class="gi gi-calendar"></i> Fecha Solicitud: <strong><?php echo $pcData['tck']->OpenTime;?></strong></span><br>
                                     <span><i class="gi gi-ok_2"></i> Categoría: <strong><?php echo $pcData['tck']->Area;?></strong></span><br>
                                     <span><i class="gi gi-ok_2"></i> Sub-Categoría: <strong><?php echo $pcData['tck']->Subarea;?></strong></span><br>
-                                    <span><i class="hi hi-send"></i> Estado: <strong><?php echo $pcData['tck']->Status;?></strong></span><br>
+                                    <span class="label label-<?php echo $label; ?> br-span"><i class="hi hi-send"></i> Estado: <strong><?php echo $pcData['tck']->Status;?></strong></span><br>
                                     <h3><strong><?php echo $pcData['tck']->Title;?></strong></h3><br>
                                     <h5><strong>Descripción: </strong>
                                         <?php echo $pcData['tck']->Description; ?>
@@ -79,12 +97,20 @@
                                <table class="table table-bordered table-striped table-vcenter">
                                     <tbody>
                                         <tr>
+                                            <td class="text-center">Servicio Solicitado</td>
+                                            <td >Servicios TI - Correo Electronico - Crear, Eliminar Cuenta </td>
+                                        </tr>
+                                        <tr>
                                             <td class="text-center">Destinatario Servicio</td>
                                             <td > <?php echo $pcData['tck']->ServiceRecipient;?></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center" >C.I. Afectado</td>
                                             <td > <?php echo $pcData['tck']->AffectedCI;?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center" >¿Hay Interrupción de Servicio?</td>
+                                            <td ><?php if($pcData['tck']->FailedEntitlement){ echo "Sí"; } else{ echo "No"; }?></td>
                                         </tr>
                                         <tr>
                                             <td class="text-center" >Impacto</td>
@@ -102,6 +128,15 @@
                                             <td class="text-center" >Última Actualización</td>
                                             <td > <?php echo $pcData['tck']->UpdateTime;?></td>
                                         </tr>
+                                        <!--<tr>
+                                            <td class="text-center" >Desde</td>
+                                            <td > 16:05 01-04-2016</td>
+                                        </tr>
+                                         <tr>
+                                            <td class="text-center" >Hasta</td>
+                                            <td > 16:05 01-04-2017</td>
+                                        </tr>-->
+
                                        
                                     </tbody>
                                 </table>
@@ -169,204 +204,6 @@
 
 
 
-
-
-
-    <!-- BREADCRUMBS -->
-    <div  class="header-pages">
-        <div id="modal_header_1">
-            <h3 class="modal-title_1"> Ticket #TICK123.</strong></h3>
-        </div>
-        <div id="breadcrumbs">
-            <span class="bcTecnologia nsMenu">
-                <a class="bc-text" href="<?php print($this->url->get("comercio"))?>"><span id="textTecnologia">Inicio</span></a>
-            </span>
-            <span class="bcTecnologia nsMenu">
-                <i class="fa fa-arrow-right"></i>   
-                <span id="textTecnologia">Tickets</span>
-            </span>
-            <span class="bcTecnologia nsMenu">
-                <i class="fa fa-arrow-right"></i>   
-                <span id="textTecnologia">#ticket123</span>
-            </span>                              
-        </div>
-
-    </div>
-    <!-- ./BREADCRUMBS -->
-
-<div class="row">
-    <div class="col-sm-4 ">
-            <!-- Your Plan Widget -->
-            <div class="block tablaTicketBc">
-                <div class="block-title">
-                    <h3>
-                       <strong>Datos del ticket </strong>
-                        
-                    </h3>
-                    <div class="block-options pull-right">
-                        <a href="#modal-reiterar" data-toggle="modal">
-                        <span class="label btn-bc"> <i class="gi gi-repeat"></i> Insistir</span>
-                        <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
-                        </a>
-                    </div>
-
-                </div>
-                <div class="widget-extra-full catalogo-lista-home">
-                    <div class="row ">
-                                                                <!-- Tickets List -->
-                        <div class="tab-pane active" id="tickets-list">
-                            <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
-                                
-                                <span><i class="gi gi-user"></i> Por <strong>Alejandro Aguilera</strong></span> 
-                                <br>
-                                <span ><i class="gi gi-calendar"></i> Fecha Solicitud: <strong>27/03/2016</strong></span>
-                                <br> <br>
-                                <span class="label label-bc br-span"><i class="hi hi-time"></i></i>  <strong> Fecha Estimada Resolucion: 29/03/2016</strong></span>
-                                <br>
-                                <span>
-                                    <span class="label label-encurso">EN CURSO</span>
-                                    <!--
-                                    <span class="label label-pendiente">PENDIENTE</span>
-                                    <span class="label label-cerrado">CERRADO</span>
-                                    -->
-                                </span>
-
-                                <br> <br>
-                                <h3><strong>Creación de Cuenta</strong></h3>
-                                <br>
-                                <span><strong>Descripción: </strong> Necesito creación de cuenta de correo alternativa por periodo de un año..</span><br>
-
-                            </div>
-                        </div>
-                        <!-- END Tickets List -->
-                    </div>
-                </div>
-             </div>
-            <!-- END Your Plan Widget -->
-    </div>
-
-    <div class="col-sm-8 ">
-        <!-- Your Plan Widget -->
-        <div class="block tablaTicketBc">
-            <div class="block-title">
-                <h3>
-                   <strong>Detalle ticket </strong>#TICK123
-                </h3>
-
-            </div>
-            <div class="widget-extra-full catalogo-lista-home">
-                <div class="row ">
-                                                            <!-- Tickets List -->
-                    <div class="tab-pane active" id="tickets-list">
-                        <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
-                           <table class="table table-bordered table-striped table-vcenter">
-                                <tbody>
-                                    <tr>
-                                        <td class="text-center">Servicio Solicitado</td>
-                                        <td >Servicios TI - Correo Electronico - Crear, Eliminar Cuenta </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">Destinatario</td>
-                                        <td > Alejandro Aguilera</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >Componente</td>
-                                        <td > Sistema de Correo (Exchange) </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >Descripción Breve</td>
-                                        <td > Creación de Cuenta</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >Otros Antecedentes</td>
-                                        <td > Necesito creación de cuenta de correo alternativa por periodo de un año.</td>
-                                    </tr>
-                                     <tr>
-                                        <td class="text-center" >¿Hay Interrupción de Servicio?</td>
-                                        <td > NO</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >Impacto</td>
-                                        <td >Usuario</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >Urgencia</td>
-                                        <td > Media</td>
-                                    </tr>
-                                     <tr>
-                                        <td class="text-center" >Desde</td>
-                                        <td > 16:05 01-04-2016</td>
-                                    </tr>
-                                     <tr>
-                                        <td class="text-center" >Hasta</td>
-                                        <td > 16:05 01-04-2017</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                    <!-- END Tickets List -->
-                </div>
-            </div>
-         </div>
-        <!-- END Your Plan Widget -->
-
-
-
-        <!-- Your Plan Widget -->
-
-        <!-- END Your Plan Widget -->
-    </div>
-
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-8">
-        <div class="block ">
-            <div class="block-title">
-                <h3>
-                   <strong>Bitácora </strong>#TICK123
-                    
-                </h3>
-
-            </div>
-            <div class="widget-extra-full catalogo-lista-home">
-                <div class="row ">
-                                                            <!-- Tickets List -->
-                    <div class="tab-pane active" id="tickets-list">
-                        <div class="block-content-full " style="padding-left:30px;padding-right:30px;">
-                           <table class="table table-bordered table-bc">
-                                <thead>
-                                    <tr>
-                                        <th width="30%" class="text-center">Fecha</th>
-                                        <th>Detalle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr style="background-color: #F9F9F9;">
-                                        <td class="text-center"><strong style="font-size: 14px;">28/03/2016 16:25</strong></td>
-                                        <td> <strong style="font-size: 14x;">El ticket ha sido derivado al área de soporte </strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >27/03/2016 17:00</td>
-                                        <td> El ticket ha sido tomado por la mesa de ayuda</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center" >27/03/2016 16:00</td>
-                                        <td> El ticket ha sido creado</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                    <!-- END Tickets List -->
-                </div>
-            </div>
-         </div>
-        
-    </div>
-</div>
 
 
 <div id="modal-reiterar" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

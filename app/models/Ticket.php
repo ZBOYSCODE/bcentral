@@ -242,6 +242,10 @@ class Ticket extends Model
     {
         $wsClient = new WebServiceClient();
         $result = $wsClient->getTicket($tck);
+        if($result['returnCode'] != 0)
+        {
+            return false;
+        }
         $result = (array)$result['model'];
         //$result = (array)$result['return'];
         //$mess = (array)$result['messages'];
@@ -271,9 +275,9 @@ class Ticket extends Model
         }
 
         $this->OpenTime = (array)$result['OpenTime'];
-        $this->OpenTime = $this->OpenTime['_'];
+        $this->OpenTime = $this->parseDate($this->OpenTime['_']);
         $this->UpdateTime = (array)$result['UpdateTime'];
-        $this->UpdateTime = $this->UpdateTime['_'];
+        $this->UpdateTime = $this->parseDate($this->UpdateTime['_']);
         $this->OpenedBy = (array)$result['OpenedBy'];
         $this->OpenedBy = $this->OpenedBy['_'];
         $temp = (array)$result['Description'];
@@ -293,7 +297,7 @@ class Ticket extends Model
         $this->CallOwner = (array)$result['CallOwner'];
         $this->CallOwner = $this->CallOwner['_'];
         $this->Status = (array)$result['Status'];
-        $this->Status = $this->Status['_'];
+        $this->Status = $this->statusToEsp($this->Status['_']);
         $this->NotifyBy = (array)$result['NotifyBy'];
         $this->NotifyBy = $this->NotifyBy['_'];
         if(array_key_exists('Solution', $result))
@@ -540,6 +544,7 @@ class Ticket extends Model
             $this->attachments = $this->attachments['_'];
         }
         //$this->messages = $mess;
+        return true;
     }
 
     public function getTickestByUser($usr)
@@ -562,9 +567,80 @@ class Ticket extends Model
             $status = $status['_'];
             $title = (array)$value['Title'];
             $title = $title['_'];
-            array_push($tckList, array('CallID' => $id, 'Status' => $status, 'Title' => $title));
+            array_push($tckList, array('CallID' => $id, 'Status' => $this->statusToEsp($status), 'Title' => $title));
             $count = 1 + $count;
         }
         return $tckList;
+    }
+
+    function statusToEsp($status)
+    {
+        if($status == 'Accepted')
+        {
+            $status = "Aceptado";
+        }
+        if($status == 'Closed')
+        {
+            $status = "Cerrado";
+        }
+        if($status == 'Open')
+        {
+            $status = "Abierto";
+        }
+        if($status == 'Pending Change')
+        {
+            $status = "Pendiente cambio";
+        }
+        if($status == 'Pending Customer')
+        {
+            $status = "Pendiente cliente";
+        }
+        if($status == 'Pending Other')
+        {
+            $status = "Pendiente otro";
+        }
+        if($status == 'Pending Vendor')
+        {
+            $status = "Pendiente proveedor";
+        }
+        if($status == 'Referred')
+        {
+            $status = "Referido";
+        }
+        if($status == 'Rejected')
+        {
+            $status = "Rechazado";
+        }
+        if($status == 'Replaced Problem')
+        {
+            $status = "Remplazado por problema";
+        }
+        if($status == 'Resolved')
+        {
+            $status = "Resuelto";
+        }
+        if($status == 'Work In Progress')
+        {
+            $status = "Trabajo en progreso";
+        }
+        if($status == 'Open - Callback')
+        {
+            $status = "Abierto en espera de confirmación";
+        }
+        if($status == 'Open - Linked')
+        {
+            $status = "Abierto escalado";
+        }
+        if($status == 'Open - Idle')
+        {
+            $status = "Abierto sin atender";
+        }
+        return $status;
+    }
+
+    function parseDate($d)
+    {
+         $d = str_split($d);
+         return $d[8].$d[9].'/'.$d[5].$d[6].'/'.$d[0].$d[1].$d[2].$d[3].' '.$d[11].$d[12].':'.$d[14].$d[15].':'.$d[17].$d[18];
     }
 }

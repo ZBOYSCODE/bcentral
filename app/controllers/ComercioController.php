@@ -87,8 +87,18 @@ class ComercioController extends ControllerBase
         $js = '';
         $ticket = new Ticket();
 
-        $ticket->findTicket($this->request->getPost('id'));
-        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> array('tck' => $ticket), 'jsScript'=>$js));    
+        $done = $ticket->findTicket($this->request->getPost('id'));
+        if($done)
+        {
+            $data = array('tck' => $ticket);
+        }
+        else{
+            $tckList = $ticket->getTickestByUser("ALARCON, FELIPE");
+            $data = array('tckList' => $tckList);
+            $pcView = 'servicio/servicios_home_page';
+            $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("Ticket no encontrado, revisar información ingresada", { type: \'danger\', align: \'center\',width: \'auto\' });';
+        }
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));    
     }
 
      public function documentoAction() {

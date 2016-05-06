@@ -152,32 +152,40 @@
 	                                    		{
 	                                    			if($i >= 9){
 	                                    				break;
-	                                    			}
-	                                    			echo "<tr>";
-	                                    			echo "<td class='text-center bc-text'>";
-
-	                                    			$label = "default";
-	                                    			if (strpos($val['Status'], 'Open') !== false) {
-													    $label = "encurso";
-													}
-													else if(strpos($val['Status'], 'pending') !== false)
-													{
-														 $label = "pendiente";
-													}
-													//cerrado, rechazado y bc 
-
-	                                    			echo '<a id="verTicket'.$val['CallID'].'" href="#" class="bc-text" data-id="' . $val['CallID'] . '">'.$val['CallID'].'</a>';
-	                                    			
-	                                    			echo "</td>";
-	                                    			echo '<td><span class="label label-' . $label . '">' . $val['Status'] . '</span></td>';
-	                                    			echo "<td>" . $val['Title'] . "</td>";
-	                                    			echo '<td class="padding0center"><div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
-												        	<input class="hidden" id="like'.$val['CallID'].'1" name="conf'.$val['CallID'].'" type="radio" value="1" />
+	                                    			} ?>
+	                                    			<tr>
+	                                    				<td class='text-center bc-text'>
+			                                    			<?php  
+			                                    			$label = "bc";
+			                                    			if ($val['Status'] == 'Aceptado' or (strpos($val['Status'], 'Abierto') !== false)) {
+															    $label = "encurso";
+															}
+															else if(strpos($val['Status'], 'Pendiente') !== false)
+															{
+																 $label = "pendiente";
+															} else if(strpos($val['Status'], 'Rechazado') !== false)
+															{
+																 $label = "rechazado";
+															}
+															else if(strpos($val['Status'], 'Cerrado') !== false)
+															{
+																 $label = "cerrado";
+															}
+															//cerrado, rechazado y bc 
+															?>
+			                                    			<a id="<?php echo 'verTicket'.$val['CallID']; ?>" href="#" class="bc-text" data-id="<?php echo $val['CallID']; ?>"><?php echo $val['CallID']; ?></a>
+			                                    			
+	                                    				</td>
+	                                    			<td><span class="label label-<?php echo $label; ?>"><?php echo $val['Status']; ?></span></td>
+	                                    			<td><?php echo $val['Title']; ?></td>
+	                                    			<td class="padding0center"><div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
+												        	<input class="hidden" id="like<?php echo $val['CallID']; ?>1" name="conf<?php echo $val['CallID']; ?>" type="radio" value="1" />
 												        	<label for="like11" class="likeimgGray"></label>
-												        	<input class="hidden" id="like'.$val['CallID'].'2" name="conf1" type="radio" value="2" />
+												        	<input class="hidden" id="like<?php echo $val['CallID']; ?>2" name="conf1" type="radio" value="2" />
 												        	<label for="like12" class="dislikeimgGray"></label>
-												    	</div></td>';
-	                                    			echo "</tr>";
+												    	</div></td>
+	                                    			</tr>
+	                                    			<?php
 	                                    			$i = $i + 1;
 	                                    		}
 	                                    	 ?>
