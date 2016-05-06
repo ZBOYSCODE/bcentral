@@ -55,7 +55,7 @@ class AjaxController extends ControllerBase
     	$ticket = new Ticket();
     	$ticket->CallID = $_POST['tck'];
     	$result = $ticket->updateTicket($_POST['txt']);
-    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal("close")');
+    	$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
     	$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
     	$this->mifaces->run();		
 	}    
