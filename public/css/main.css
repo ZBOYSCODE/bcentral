@@ -1193,7 +1193,7 @@ a.sidebar-title:focus {
 }
 
 .widget-simple .widget-content {
-    font-size: 18px;
+    font-size: 16px;
     margin: 12px 0;
 }
 
@@ -2149,7 +2149,7 @@ fieldset legend {
 }
 
 input[type="file"] {
-    padding-top: 7px;
+    padding-top: 0px;
 }
 
 input[type="text"].form-control,
@@ -2734,7 +2734,7 @@ li.dropdown-header {
 
 .pagination > li > a,
 .pagination > li > span  {
-    color: #1bbae1;
+    color: #878786;
     margin-left: 5px;
     margin-right: 5px;
     border: none !important;
@@ -2747,7 +2747,7 @@ li.dropdown-header {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #1bbae1;
+    background-color: #878786;
 }
 
 .pager > li > a,
@@ -2757,13 +2757,13 @@ li.dropdown-header {
 
 .pager > li > a:hover,
 .pagination > li > a:hover {
-    background-color: #1bbae1;
-    border-color: #1bbae1;
+    background-color: #878786;
+    border-color: #878786;
     color: #ffffff;
 }
 
 .pager > li.disabled > a:hover {
-    border-color: #eaedf1;
+    border-color: #878786;
 }
 
 /* Horizontal Navigation */
@@ -3505,6 +3505,27 @@ code {
     padding: 3px 6px;
 }
 
+.label-pendiente {
+    background-color: #9B2925;
+}
+
+.label-encurso {
+    background-color: #4B7337;
+}
+
+.label-cerrado {
+    background-color: #878786;
+}
+
+.label-rechazado {
+    background-color: #9B6A25;
+}
+
+.label-bc {
+    background-color: #002453;
+}
+
+
 .label-danger {
     background-color: #e74c3c;
 }
@@ -3714,9 +3735,14 @@ p, .table, .alert, .carousel {
     border-color: transparent;
 }
 
-.style-alt .block-title {
+/*.style-alt .block-title {
     background-color: #dbe1e8;
     border-bottom-color: #dbe1e8;
+}*/
+
+.style-alt .block-title {
+    background-color: #DADAD9;
+    border-bottom-color: #DADAD9;
 }
 
 .style-alt .content-header + .breadcrumb-top,

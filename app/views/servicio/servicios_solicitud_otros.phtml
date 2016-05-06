@@ -2,17 +2,17 @@
 
 
 	<!-- BREADCRUMBS -->
-    <div  class="header-pages">
+    <div  class="header-pages tercera-opcion">
     	<div id="modal_header_1">
             <h3 class="modal-title_1"> Nueva Solicitud<strong> Infraestructura y Servicios Generales</strong></h3>
     	</div>
     	<div id="breadcrumbs">
   			<span class="bcTecnologia nsMenu">
-				<a href="<?php print($this->url->get("comercio"))?>"><span id="textTecnologia">Inicio</span></a>
+				<a class="bc-text" href="<?php print($this->url->get(""))?>"><span id="textTecnologia">Inicio</span></a>
 			</span>
 			<span class="bcTecnologia nsMenu">
 				<i class="fa fa-arrow-right"></i>	
-				<a href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>"><span id="textTecnologia">Infraestructura y Servicios Generales</span></a>
+				<a class="bc-text" href="<?php print($this->url->get("comercio/solicitudServicio/otros"))?>"><span id="textTecnologia">Infraestructura y Servicios Generales</span></a>
 			</span>
 			<span class="bcAplicaciones nsMenu hidden">
 				<i class="fa fa-arrow-right"></i>	
@@ -32,16 +32,16 @@
 
 <div id="modalBodyCreate" class="modal-body" style="overflow: hidden; width: auto;">
 	<div id="msgCampos" class="alert alert-danger" style="display:none;"> Se deben rellenar todos los campos.</div>
-	<h4>Seleccione tipo de solicitud</h4>
+	<h4 id="helptitle">Seleccione tipo de solicitud</h4>
 
 
 	<!-- Segunda Vista-->
 
 	<div class="row strap nsBoton-tecnologia defaultClass">
 		<div class="col-md-3 text-center ">
-			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-val="Aplicaciones de Negocio" data-next="form-solicitudes" data-type="segundaVista" ><i class="gi gi-suitcase  fa-5x"></i>
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op tercera-opcion" data-val="Aplicaciones de Negocio" data-next="form-solicitudes" data-type="segundaVista" ><i id="icon" class="gi gi-suitcase  fa-5x"></i>
 	            <div class="widget-simple text-center">
-	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                <h3 class="widget-content text-center " style="height: 40px !important;">
 	                 <strong>Otro Servicio 1</strong><br>
 	                </h3>
 	          		<span >Solucionar Problema / Solicitar</span>      
@@ -49,9 +49,9 @@
         	</a>
 		</div>	
 		<div class="col-md-3 text-center">
-			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Comunicaciones y Mensajería" data-type="segundaVista"><i class="gi gi-play fa-5x"></i>
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op tercera-opcion" data-next="form-solicitudes" data-val="Comunicaciones y Mensajería" data-type="segundaVista"><i id="icon" class="gi gi-play fa-5x"></i>
 	            <div class="widget-simple text-center">
-	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                <h3 class="widget-content text-center " style="height: 40px !important;">
 	                 <strong>Otro Servicio 2</strong><br>
 	                </h3>
 	                <span >Solucionar Problema / Solicitar</span>
@@ -59,9 +59,9 @@
         	</a>
 		</div>	
 		<div class="col-md-3 text-center">
-			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Correo Electrónico y Calendarios" data-type="segundaVista" ><i class="gi gi-home fa-5x"></i>
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op tercera-opcion" data-next="form-solicitudes" data-val="Correo Electrónico y Calendarios" data-type="segundaVista" ><i id="icon" class="gi gi-home fa-5x"></i>
 	            <div class="widget-simple text-center">
-	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                <h3 class="widget-content text-center " style="height: 40px !important;">
 	                 <strong>Otro Servicio 3</strong><br>
 	                </h3>
 	                <span >Solucionar Problema / Solicitar</span>
@@ -69,9 +69,9 @@
         	</a>
 		</div>											
 		<div class="col-md-3 text-center">
-			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista"><i class="gi gi-electricity fa-5x"></i>
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op tercera-opcion" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista"><i id="icon" class="gi gi-electricity fa-5x"></i>
 	            <div class="widget-simple text-center">
-	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                <h3 class="widget-content text-center " style="height: 40px !important;">
 	                 <strong>Otro Servicio 4</strong><br>
 	                </h3>
 	                <span >Solucionar Problema / Solicitar</span>
@@ -79,9 +79,9 @@
         	</a>
 		</div>
 		<div class="col-md-3 text-center">
-			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista"><i class="gi gi-cars fa-5x"></i>
+			<a href="javascript:void(0)" class="widget active widget-hover-effect1 nsBoton modal-catalogo-op tercera-opcion" data-next="form-solicitudes" data-val="Cuentas y Accesos" data-type="segundaVista"><i id="icon" class="gi gi-cars fa-5x"></i>
 	            <div class="widget-simple text-center">
-	                <h3 class="widget-content text-center animation-pullDown" style="height: 40px !important;">
+	                <h3 class="widget-content text-center " style="height: 40px !important;">
 	                 <strong>Otro Servicio 5</strong><br>
 	                </h3>
 	                <span >Solucionar Problema / Solicitar</span>
@@ -92,9 +92,11 @@
 
 	<!-- Formulario -->			
 	<div class="nsBoton-form-solicitudes hidden strap">
-		<div class="row">
+		<div class="row" style="margin-top: -20px;">
+			<div class="col-md-8 center-block" style="text-align: center; padding-bottom: 15px;">
+				<h4><div class="alert" style="color:white ;background-color: #002453;border-color: #002453;">Datos <strong>Solicitud</strong></div></h4>
+			</div>
 			<div class="col-md-8 center-block">
-				<h4><div class="alert" style="color:white ;background-color: #93BAC0;border-color: #93BAC0;">Datos Ticket</div></h4>
 				
 				<fieldset>
 					<div class="row">
@@ -294,7 +296,7 @@
 				<fieldset style="margin-top: 30px;">
 					<div class="form-group">
 						<div class="col-xs-4 center-block">
-							<button id="btnGuardar" type="button" class="btn btn-block btn-bc">Enviar ticket</button>
+							<button id="btnGuardar" type="button" class="btn btn-block btn-bc">Enviar Solicitud</button>
 						</div>
 				  	</div>
 				</fieldset>
