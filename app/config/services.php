@@ -151,27 +151,44 @@ $di->set('acl', function () {
 *   Web service component
 */
 $di->set('soapclient-servicedesk', function () {
-    return new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', 
-        array(
-            'login' => "falcon", 
-            'password' => "", 
-            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
-            'soap_version'   => SOAP_1_2,
-            'trace' => true
-            )
-        );
+     try
+    {
+        $client = new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', 
+            array(
+                'login' => "falcon", 
+                'password' => "", 
+                'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+                'soap_version'   => SOAP_1_2,
+                'trace' => true
+                )
+            );
+        return $client;
+    }
+    catch (SoapFault $e)
+    {
+        return false;
+    }
 });
 
 $di->set('soapclient-config', function () {
-    return new SoapClient('http://192.168.5.113:13080/SM/7/configurationmanagement.wsdl', 
-        array(
-            'login' => "falcon", 
-            'password' => "", 
-            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
-            'soap_version'   => SOAP_1_2,
-            'trace' => true
-            )
-        );
+    try
+    {
+        $client = new SoapClient('http://192.168.5.113:13080/SM/7/configurationmanagement.wsdl', 
+            array(
+                'login' => "falcon", 
+                'password' => "", 
+                'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+                'soap_version'   => SOAP_1_2,
+                'exceptions' => true,
+                'trace' => true
+                )
+            );
+        return $client;
+    }
+    catch (SoapFault $e)
+    {
+        return false;
+    }
 });
 
 $di->set('soapclient-knowledge', function () {
@@ -181,6 +198,7 @@ $di->set('soapclient-knowledge', function () {
             'password' => "", 
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
+            'exceptions' => true,
             'trace' => true
             )
         );
@@ -193,6 +211,7 @@ $di->set('soapclient-catalog', function () {
             'password' => "", 
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
+            'exceptions' => true,
             'trace' => true
             )
         );

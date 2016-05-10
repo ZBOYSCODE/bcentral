@@ -2,6 +2,7 @@
 namespace Gabs\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Dispatcher\Exception;
 
 class WebServiceClient extends Model
 {
@@ -9,14 +10,12 @@ class WebServiceClient extends Model
     public function getTicketsByUser($usr)
     {
         $query = 'callback.contact="' . $usr . '" or contact.name="' . $usr . '"';//"callback.contact=&quot;" . $usr ."&quot; and contact.name=&quot;" . $usr ."&quot;";
-        /*echo $query;
-        echo mb_detect_encoding($query);
-        $query = "callback.contact=&quot;ALARCON, FELIPE&quot;";
-        echo $query;
-        echo mb_detect_encoding($query);
-        die();*/
-        //$encoding = mb_detect_encoding($query); if($encoding == 'UTF-8') { $query_escaped = urlencode($query);} else { $query_escaped = urlencode(utf8_encode($query)); }
+        
         $this->client = $this->di->get('soapclient-servicedesk');
+        if($this->client == false)
+        {
+            throw new Exception("Error Processing Request", 2);
+        }
         $param = array(
                 'keys' => array(
                     '_' => array(
@@ -56,6 +55,7 @@ class WebServiceClient extends Model
         return $response;
     }
 
+
     public function getTicket($tck)
     {
         $proxyhost       = '';
@@ -70,6 +70,10 @@ class WebServiceClient extends Model
 
         //cargamos el SoapClient desde el injector de dependencia
         $this->client = $this->di->get('soapclient-servicedesk');
+        if($this->client == false)
+        {
+            throw new Exception("Error Processing Request", 2);
+        }
         $param = array( 'model' => array(
                             'keys' => array(
                                 'CallID' => $tck
@@ -147,10 +151,43 @@ class WebServiceClient extends Model
         $result = $this->client->RetrieveInteraction($param);
         //$result = $this->client->call('RetrieveInteraction', $param, '', '', false, true);
         $result = (array) $result;
-        $result['request'] = $this->client->__getLastRequest();
-        $result['headers'] = $this->client->__getLastRequestHeaders();
-        $result['params'] = $param;
+        /*$param = array(
+                'keys' => array(
+                        'Number' => $tck,
+                        'negdatestamp' => '',
+                        'TheNumber' => ''
+                    )
+            );*/
         return $result;
+    }
+
+    public function getTicketTrace($tck)
+    {
+        $param = array(
+                'keys' => array(
+                        'Number' => $tck,
+                        'negdatestamp' => '',
+                        'TheNumber' => ''
+                    )
+            );
+        $this->client = $this->di->get('soapclient-catalog');
+        if($this->client == false)
+        {
+            throw new Exception("Error Processing Request", 2);
+        }
+        $result = $this->client->RetrieveActivityServiceMgtList($param);
+        $result = (array)$result;
+        if($result['returnCode'] != '0')
+        {
+            return array();
+        }
+        if(array_key_exists('TheNumber', $result['instance']))
+        {
+            $temp = array();
+            array_push($temp, $result['instance']);
+            return $temp;
+        }
+        return $result['instance'];
     }
     public function getContactList()
     {
@@ -168,7 +205,7 @@ class WebServiceClient extends Model
                         )
                     );
         $result = $this->client->RetrieveContactKeysList($param);
-        
+
         return $result;
     }
     public function updateTicket($CallID, $Update)
@@ -263,7 +300,7 @@ class WebServiceClient extends Model
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''
                                 ),*/
-                            'query' => "Status=&quot;In Use&quot;"
+                            'query' => 'Status="In Use"'
                         )                    
                     );
         $response = (array)$this->client->RetrieveDeviceList($param);

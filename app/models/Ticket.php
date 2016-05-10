@@ -231,6 +231,8 @@ class Ticket extends Model
      */
     public $messages;
 
+    public $trace;
+
     public function updateTicket($update)
     {
         $wsClient = new WebServiceClient();
@@ -240,11 +242,23 @@ class Ticket extends Model
     
     public function findTicket($tck)
     {
-        $wsClient = new WebServiceClient();
+        try
+        {
+            $wsClient = new WebServiceClient();
+        }
+        catch ( Exception $E )
+        {
+            return 2;
+        }
+        if (is_numeric ( $tck))
+        {
+            $tck = "SD" . $tck;
+        }
         $result = $wsClient->getTicket($tck);
+
         if($result['returnCode'] != 0)
         {
-            return false;
+            return 1;
         }
         $result = (array)$result['model'];
         //$result = (array)$result['return'];
@@ -544,12 +558,38 @@ class Ticket extends Model
             $this->attachments = $this->attachments['_'];
         }
         //$this->messages = $mess;
-        return true;
+        $this->trace = $wsClient->getTicketTrace($tck);
+        if (sizeof($this->trace)>0) 
+        {  
+            $temp = array();
+            foreach ($this->trace as $key => $val) {
+                $a = (array)$val;
+                $tipo = (array)$a['Type'];
+                $tipo = $tipo['_'];
+                $fecha = (array)$a['Datestamp'];
+                $fecha = $this->parseDate($fecha['_']);
+                $user = (array)$a['Operator'];
+                $user = $user['_'];
+                $description = (array)$a['Description'];
+                $description = (array)$description['Description'];
+                $description = $description['_'];
+                array_push($temp, array('fecha' => $fecha, 'tipo' => $tipo, 'user' => $user, 'description' => $description));
+            }
+            $this->trace = $temp;
+        }
+        return 0;
     }
 
     public function getTickestByUser($usr)
     {
-        $wsClient = new WebServiceClient();
+        try
+        {
+            $wsClient = new WebServiceClient();
+        }
+        catch ( Exception $E )
+        {
+            return 2;
+        }
         $result = $wsClient->getTicketsByUser($usr);
 
         $tckList = array();

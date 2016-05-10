@@ -88,7 +88,7 @@ class ComercioController extends ControllerBase
         $ticket = new Ticket();
 
         $done = $ticket->findTicket($this->request->getPost('id'));
-        if($done)
+        if($done == 0)
         {
             $data = array('tck' => $ticket);
         }
@@ -96,7 +96,17 @@ class ComercioController extends ControllerBase
             $tckList = $ticket->getTickestByUser("ALARCON, FELIPE");
             $data = array('tckList' => $tckList);
             $pcView = 'servicio/servicios_home_page';
-            $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("Ticket no encontrado, revisar información ingresada", { type: \'danger\', align: \'center\',width: \'auto\' });';
+            $msg = "Algo salió mal, por favor intente más tarde.";
+            if($done == 1)
+            {
+                $msg = "Ticket no encontrado, revisar información ingresada.";
+            }
+            elseif ($dine == 2) 
+            {
+                $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
+            }
+            if($done)
+            $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
         }
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));    
     }
@@ -291,6 +301,14 @@ class ComercioController extends ControllerBase
     {
         $ws = new WebServiceClient();
         $response = $ws->getRequerimentList();
+        var_dump($response);
+        //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+
+     public function Testws6Action()
+    {
+        $ws = new WebServiceClient();
+        $response = $ws->getTicketTrace('SD68140');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
