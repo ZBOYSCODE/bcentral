@@ -48,40 +48,6 @@ $di->set('view', function () use ($config) {
     return $view;
 }, true);
 
-
-// Simple database connection to localhost
-/*
-$di->set('mongo', function () {
-    $mongo = new MongoClient();
-    return $mongo->selectDB("gadapps");
-}, true);
-
-
-$di->set('collectionManager', function(){
-        return new Manager();
-    }, true);
-*/
-/**
- * Database connection is created based in the parameters defined in the configuration file
- */
- /*
-$di->set('db', function () use ($config) {
-    return new DbAdapter(array(
-        'host' => $config->database->host,
-        'username' => $config->database->username,
-        'password' => $config->database->password,
-        'dbname' => $config->database->dbname
-    ));
-});
-*/
-/**
- * If the configuration specify the use of metadata adapter use it or use memory otherwise
- *
-$di->set('modelsMetadata', function () use ($config) {
-    return new MetaDataAdapter(array(
-        'metaDataDir' => $config->application->cacheDir . 'metaData/'
-    ));
-});
 /**
  * Start the session the first time some component request the session service
  */
@@ -150,13 +116,13 @@ $di->set('acl', function () {
 /*
 *   Web service component
 */
-$di->set('soapclient-servicedesk', function () {
+$di->set('soapclient-servicedesk', function () use ($configWs) { 
      try
     {
-        $client = new SoapClient('http://192.168.5.113:13080/SM/7/servicedesk.wsdl', 
+        $client = new SoapClient($configWs->wsdlUriServ, 
             array(
-                'login' => "falcon", 
-                'password' => "", 
+                'login' => $configWs->wsdlUsr, 
+                'password' => $configWs->wsdlPass, 
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
                 'trace' => true
@@ -170,13 +136,13 @@ $di->set('soapclient-servicedesk', function () {
     }
 });
 
-$di->set('soapclient-config', function () {
+$di->set('soapclient-config', function () use ($configWs) { 
     try
     {
-        $client = new SoapClient('http://192.168.5.113:13080/SM/7/configurationmanagement.wsdl', 
+        $client = new SoapClient($configWs->wsdlUriConf, 
             array(
-                'login' => "falcon", 
-                'password' => "", 
+                'login' => $configWs->wsdlUsr, 
+                'password' => $configWs->wsdlPass, 
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
                 'exceptions' => true,
@@ -191,11 +157,11 @@ $di->set('soapclient-config', function () {
     }
 });
 
-$di->set('soapclient-knowledge', function () {
-    return new SoapClient('http://192.168.5.113:13080/SM/7/KnowledgeManagement.wsdl', 
+$di->set('soapclient-knowledge', function () use ($configWs) { 
+    return new SoapClient($configWs->wsdlUriKnow, 
         array(
-            'login' => "falcon", 
-            'password' => "", 
+            'login' => $configWs->wsdlUsr, 
+            'password' => $configWs->wsdlPass, 
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
             'exceptions' => true,
@@ -204,17 +170,21 @@ $di->set('soapclient-knowledge', function () {
         );
 });
 
-$di->set('soapclient-catalog', function () {
-    return new SoapClient('http://192.168.5.113:13080/SM/7/ServiceCatalogAPI.wsdl', 
+$di->set('soapclient-catalog', function () use ($configWs) { 
+    return new SoapClient($configWs->wsdlUriCata, 
         array(
-            'login' => "falcon", 
-            'password' => "", 
+            'login' => $configWs->wsdlUsr, 
+            'password' => $configWs->wsdlPass, 
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
             'exceptions' => true,
             'trace' => true
             )
         );
+});
+
+$di->set('test-user', function () use ($configWs) {
+    return $configWs->testUser;
 });
 
 //http://localhost:8080/raggApi/Servicedesk?wsdl

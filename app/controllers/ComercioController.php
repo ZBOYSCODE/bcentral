@@ -16,7 +16,7 @@ class ComercioController extends ControllerBase
     {   
         $pcView = 'servicio/servicios_home_page';
         $tck = new Ticket();
-        $tckList = $tck->getTickestByUser("ALARCON, FELIPE");
+        $tckList = $tck->getTickestByUser($this->di->get('test-user'));
         //$js = $this->getJsEncuesta();
         $js = $this->getLikeJs();
         echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>array('tckList' => $tckList),'jsScript'=>$js));
@@ -93,7 +93,7 @@ class ComercioController extends ControllerBase
             $data = array('tck' => $ticket);
         }
         else{
-            $tckList = $ticket->getTickestByUser("ALARCON, FELIPE");
+            $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
             $data = array('tckList' => $tckList);
             $pcView = 'servicio/servicios_home_page';
             $msg = "Algo salió mal, por favor intente más tarde.";

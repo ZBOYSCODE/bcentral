@@ -9,7 +9,8 @@ try {
 	/**
 	 * Read the configuration
 	 */
-	$config = include APP_DIR . '/config/config.php';
+	$config   = include APP_DIR . '/config/config.php';
+	$configWs = include APP_DIR . '/config/configWS.php';
 	/**
 	 * Read auto-loader
 	 */
