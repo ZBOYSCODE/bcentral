@@ -320,7 +320,7 @@ class WebServiceClient extends Model
                         )                    
                     );
         $response = (array)$this->client->RetrieveSvcCatalogList($param);
-        return $response;
+        return $response['instance'];
     }
 
     function f_remove_odd_characters($string){

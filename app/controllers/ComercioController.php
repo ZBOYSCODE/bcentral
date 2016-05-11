@@ -5,6 +5,7 @@ use Gabs\Models\Evaluacion;
 use Gabs\Models\WebServiceClient;
 use Gabs\Models\Ticket;
 use Gabs\Models\Contact;
+use Gabs\Models\Catalog;
  
 class ComercioController extends ControllerBase
 {
@@ -307,8 +308,10 @@ class ComercioController extends ControllerBase
 
      public function Testws6Action()
     {
-        $ws = new WebServiceClient();
-        $response = $ws->getTicketTrace('SD68140');
+        //$ws = new WebServiceClient();
+        //$response = $ws->getCatalogStepOne('Servicios TI');
+        $cat = new Catalog();
+        $response = $cat->getServiceCatalog('Servicios TI');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
