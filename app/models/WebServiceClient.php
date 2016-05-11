@@ -309,6 +309,20 @@ class WebServiceClient extends Model
         return $response;
     }
 
+    public function getCatalogStepOne($option)
+    {
+        $this->client = $this->di->get('soapclient-catalog');
+        $param = array('keys' => array(
+                            '_' => '',/*array(
+                                    'ConfigurationItem' => ''
+                                ),*/
+                            'query' => 'active="true" and Parent="' . $option . '"'
+                        )                    
+                    );
+        $response = (array)$this->client->RetrieveSvcCatalogList($param);
+        return $response;
+    }
+
     function f_remove_odd_characters($string){
         $string = str_replace("\n","[NEWLINE]",$string);
         $string=htmlentities($string);
