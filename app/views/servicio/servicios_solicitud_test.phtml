@@ -4,7 +4,9 @@
 				<h4><div class="alert" style="color:white ;background-color: #002453;border-color: #002453;">Datos <strong>Solicitud</strong></div></h4>
 			</div>
 
+			
 			<div class="col-md-8 center-block">
+			<!--
 			<?php if($pcData['campos']['detinatario'] == 'si') {?>
 			<fieldset>
 				<div class="row">
@@ -19,14 +21,6 @@
 											# code...
 										}
 									 ?>
-	                                    <!--<option value="1">Alejandro Aguilera</option>
-	                                    <option value="2">Pedro Perez</option>
-	                                    <option value="3">Andrés Silvestre</option>
-	                                    <option value="4">Fito Osvaldo</option>
-	                                    <option value="5">Camilo Cruz</option>
-	                                    <option value="6">Héctor Fausto</option>
-	                                    <option value="7">María Gualterio</option>
-	                                    <option value="8">Osvaldo Edmundo</option>-->
 		                        </select>
 							</div>
 						</div>
@@ -34,8 +28,27 @@
 					</div>
 			</fieldset>
 			<?php } ?>
+			-->
 			<br>
-
+			<fieldset>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+						<label class="col-md-4 control-label" for="select_sa">
+							<i class="fa fa-user">&nbsp;&nbsp;</i>Servicio Afectado:</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Servicio Afectado" data-content="Blah Blah">
+							<select data-placeholder="Selecciona un Opción"  id="select_sa" name="select_sa" class="select-chosen">
+                                <option value=""></option>
+                                <?php foreach ($pcData['listas'] as $key => $value) {?>
+                                	<option value="<?php print $key ?>"><?php print $key ?></option>
+                                <?php } ?>
+	                        </select>
+						</div>
+						</div>
+					</div>
+				</div>	 						
+			</fieldset>
+			<br>
 			<fieldset>
 				<div class="row">
 					<div class="col-xs-12">
@@ -45,17 +58,10 @@
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Componente" data-content="Componente de Tecnología (Sistema, Hardware, Software)">
 							<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
                                 <option value=""></option>
-                                <option value="1">Pantallas Digitales</option>
-                                <option value="1">Sitio economiamascerca.cl</option>
-                                <option value="1">Software Editorial</option>
-                                <option value="1">Toweb</option>
-                                <option value="1">Sharepoint - Contraloria</option>
-                                <option value="1">Base de Datos Cambiarios</option> 
-                                <option value="1">Encuestas por Internet</option>
-                                <option value="1">Inversiones en el Exterior </option>
-                                <option value="1">Otro1</option>
-                                <option value="1">Otro2</option>
-                                <option value="1">Otro3</option>
+                                <?php foreach ($pcData['listas']['servicio afectado 1'] as $valor) {?>
+                                	<option value="<?php print $valor ?>"><?php print $valor ?></option>
+                                <?php } ?>
+                               
 	                        </select>
 						</div>
 						</div>
@@ -93,7 +99,7 @@
 						<label class="col-md-4 control-label" for="scsl_cdg">
 							<i class="fa fa-user">&nbsp;&nbsp;</i>Hay Interrupción de Servicio ?:</label>
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Interrupción de Servicio" data-content="Blah Blah Blah ..">
-							<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
+							<select data-placeholder="Selecciona un Opción"  id="select_is" name="select_is" class="select-chosen">
                                     <option value="SI">SI</option>
                                     <option selected="selected" value="NO">NO</option>
 	                        </select>
@@ -112,7 +118,7 @@
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Impacto" data-content="Blah Blah Blah ..">
-								<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
+								<select data-placeholder="Selecciona un Opción"  id="select_i" name="select_i" class="select-chosen">
 	                                <option value="1">Empresa</option>
 	                                <option value="2">Sitio/Dpto</option>
 	                                <option value="3">Varios Usuarios</option>
@@ -133,7 +139,7 @@
 						<label class="col-md-4 control-label" for="scsl_cdg">
 						<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Urgencia" data-content="Blah Blah Blah ..">
-								<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
+								<select data-placeholder="Selecciona un Opción"  id="select_u" name="select_u" class="select-chosen">
 	                                <option value="1">Crítica</option>
 	                                <option value="2">Alta</option>
 	                                <option value="3">Media</option>
@@ -153,7 +159,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i>Desde:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Desde" data-content="Blah Blah Blah ..">
-								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy">
+								<input type="text" class="form-control input-datepicker" name="desde" data-date-format="dd-mm-yyyy">
 							</div>
 						</div>
 					</div>
@@ -168,7 +174,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i>Hasta:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Hasta" data-content="Blah Blah Blah ..">
-								<input type="text" class="form-control input-datepicker" data-date-format="dd-mm-yyyy">
+								<input type="text" class="form-control input-datepicker" name="hasta" data-date-format="dd-mm-yyyy">
 							</div>
 						</div>
 					</div>
@@ -216,3 +222,4 @@
 			</div>
 		</div>
 	</div>
+
