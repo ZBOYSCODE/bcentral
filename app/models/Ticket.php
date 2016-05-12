@@ -254,7 +254,14 @@ class Ticket extends Model
         {
             $tck = "SD" . $tck;
         }
-        $result = $wsClient->getTicket($tck);
+        try
+        {
+            $result = $wsClient->getTicket($tck);
+        }
+        catch ( Exception $E )
+        {
+            return 2;
+        }
 
         if($result['returnCode'] != 0)
         {
@@ -558,25 +565,33 @@ class Ticket extends Model
             $this->attachments = $this->attachments['_'];
         }
         //$this->messages = $mess;
-        $this->trace = $wsClient->getTicketTrace($tck);
-        if (sizeof($this->trace)>0) 
-        {  
-            $temp = array();
-            foreach ($this->trace as $key => $val) {
-                $a = (array)$val;
-                $tipo = (array)$a['Type'];
-                $tipo = $tipo['_'];
-                $fecha = (array)$a['Datestamp'];
-                $fecha = $this->parseDate($fecha['_']);
-                $user = (array)$a['Operator'];
-                $user = $user['_'];
-                $description = (array)$a['Description'];
-                $description = (array)$description['Description'];
-                $description = $description['_'];
-                array_push($temp, array('fecha' => $fecha, 'tipo' => $tipo, 'user' => $user, 'description' => $description));
-            }
-            $this->trace = $temp;
+        try
+        {
+            $this->trace = $wsClient->getTicketTrace($tck);
+            if (sizeof($this->trace)>0) 
+            {  
+                $temp = array();
+                foreach ($this->trace as $key => $val) {
+                    $a = (array)$val;
+                    $tipo = (array)$a['Type'];
+                    $tipo = $tipo['_'];
+                    $fecha = (array)$a['Datestamp'];
+                    $fecha = $this->parseDate($fecha['_']);
+                    $user = (array)$a['Operator'];
+                    $user = $user['_'];
+                    $description = (array)$a['Description'];
+                    $description = (array)$description['Description'];
+                    $description = $description['_'];
+                    array_push($temp, array('fecha' => $fecha, 'tipo' => $tipo, 'user' => $user, 'description' => $description));
+                }
+                $this->trace = $temp;
+            }    
         }
+        catch(Exception $e)
+        {
+            return 2;
+        }
+        
         return 0;
     }
 
@@ -585,12 +600,17 @@ class Ticket extends Model
         try
         {
             $wsClient = new WebServiceClient();
+            $result = $wsClient->getTicketsByUser($usr);
+            if(is_null($result))
+            {
+                return 2;
+            }
         }
         catch ( Exception $E )
         {
             return 2;
         }
-        $result = $wsClient->getTicketsByUser($usr);
+        
 
         $tckList = array();
         $count = 1;

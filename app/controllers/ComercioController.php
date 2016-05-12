@@ -6,6 +6,7 @@ use Gabs\Models\WebServiceClient;
 use Gabs\Models\Ticket;
 use Gabs\Models\Contact;
 use Gabs\Models\Catalog;
+use Gabs\Models\CI;
  
 class ComercioController extends ControllerBase
 {
@@ -16,11 +17,18 @@ class ComercioController extends ControllerBase
 
     {   
         $pcView = 'servicio/servicios_home_page';
+        
         $tck = new Ticket();
         $tckList = $tck->getTickestByUser($this->di->get('test-user'));
+        $data = array('tckList' => $tckList);
+        if($tckList == 2)
+        {
+            $pcView = 'servicio/servicios_error_page';
+            $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+        }
         //$js = $this->getJsEncuesta();
         $js = $this->getLikeJs();
-        echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>array('tckList' => $tckList),'jsScript'=>$js));
+        echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
 
     }
 
@@ -76,8 +84,15 @@ class ComercioController extends ControllerBase
 
         $js = $this->getJsDatatables();
         $js = $js." ".$this->getLikeJs();
-
-        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=>'', 'jsScript'=>$js));    
+        $tck = new Ticket();
+        $tckList = $tck->getTickestByUser($this->di->get('test-user'));
+        $data = array('tckList' => $tckList);
+        if($tckList == 2)
+        {
+            $pcView = 'servicio/servicios_error_page';
+            $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+        }
+        echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
     }
 
      public function ticketAction()
@@ -292,10 +307,12 @@ class ComercioController extends ControllerBase
 
     public function Testws4Action()
     {
-        $ws = new WebServiceClient();
-        $response = $ws->getCIList();
+        //$ws = new WebServiceClient();
+        //$response = $ws->getCIList();
+        $ciItem = new CI();
+        $response = $ciItem->getCompleteCIList();
         var_dump($response);
-        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+        //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
 
     public function Testws5Action()
@@ -343,5 +360,38 @@ class ComercioController extends ControllerBase
         ";
 
         return $jsScript;
+    }
+
+    public function TestCreateInteractionAction()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') 
+        {
+            $campos = array(
+                    'detinatario' => 'si',
+                    'ci' => 'si',
+                    'titulo' => 'si',
+                    'descripcion' => 'si',
+                    'desde' => 'no',
+                    'impacto' =>'si',
+                    'urgencia' => 'si',
+                    'interrupcion' => 'si',
+                    'autorizacion' => 'no',
+                    'adjunto' => 'op',
+                    'hasta' => 'no'
+                );
+            $catalog = array(
+                    'area' => 'Administrador documental',
+                    'subarea' => 'Desbloqueo de cuentas',
+                );
+
+            $contacto = new Contact();
+            $contactList = $contacto->getContactList();
+
+            $ciItem = new CI();
+            $ciList = $ciItem->getCompleteCIList();
+            $pcView = 'servicio/servicios_solicitud_test';
+            $data = array('campos' => $campos, 'catalog' => $catalog, 'contactos' => $contactList, 'ci' => $ciList);
+            echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=> $data));
+        }
     }
 }

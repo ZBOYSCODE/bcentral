@@ -14,7 +14,7 @@ class WebServiceClient extends Model
         $this->client = $this->di->get('soapclient-servicedesk');
         if($this->client == false)
         {
-            throw new Exception("Error Processing Request", 2);
+            return null;
         }
         $param = array(
                 'keys' => array(
@@ -24,9 +24,14 @@ class WebServiceClient extends Model
                     'query' => $query//$query_escaped
                 )    
             );
-        $response = (array)$this->client->RetrieveInteractionList($param);
-        $response['request'] = $this->client->__getLastRequest();
-        $response['headers'] = $this->client->__getLastRequestHeaders();
+        try
+        {
+            $response = (array)$this->client->RetrieveInteractionList($param);
+        }
+        catch (Exception $e)
+        {
+            $response = null;
+        }
         return $response;
     }
 
@@ -304,8 +309,6 @@ class WebServiceClient extends Model
                         )                    
                     );
         $response = (array)$this->client->RetrieveDeviceList($param);
-        $response['request'] = $this->client->__getLastRequest();
-        $response['headers'] = $this->client->__getLastRequestHeaders();
         return $response;
     }
 

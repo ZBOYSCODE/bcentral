@@ -119,21 +119,28 @@ $di->set('acl', function () {
 $di->set('soapclient-servicedesk', function () use ($configWs) { 
      try
     {
-        $client = new SoapClient($configWs->wsdlUriServ, 
+        $client = @new SoapClient($configWs->wsdlUriServ, 
             array(
                 'login' => $configWs->wsdlUsr, 
                 'password' => $configWs->wsdlPass, 
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
-                'trace' => true
+                "exceptions" => true,
+                'trace' => false
                 )
             );
-        return $client;
+        if(is_null($client))
+        {
+            throw new Exception("Error Processing Request", 2);
+            
+        }
+        
     }
-    catch (SoapFault $e)
+    catch (Exception $e)
     {
-        return false;
+        $client = false;
     }
+    return $client;
 });
 
 $di->set('soapclient-config', function () use ($configWs) { 
@@ -146,15 +153,16 @@ $di->set('soapclient-config', function () use ($configWs) {
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
                 'exceptions' => true,
-                'trace' => true
+                'trace' => false
                 )
             );
         return $client;
     }
-    catch (SoapFault $e)
+    catch (Exception $e)
     {
-        return false;
+        $client = false;
     }
+    return $client;
 });
 
 $di->set('soapclient-knowledge', function () use ($configWs) { 
@@ -186,6 +194,10 @@ $di->set('soapclient-catalog', function () use ($configWs) {
 $di->set('test-user', function () use ($configWs) {
     return $configWs->testUser;
 });
+/*
+$di->set('catalog-icons', function () use ($catalogIcons) {
+    return $catalogIcons;
+});*/
 
 //http://localhost:8080/raggApi/Servicedesk?wsdl
 //http://192.168.5.113:13080/SM/7/servicedesk.wsdl

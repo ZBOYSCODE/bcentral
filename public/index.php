@@ -11,6 +11,7 @@ try {
 	 */
 	$config   = include APP_DIR . '/config/config.php';
 	$configWs = include APP_DIR . '/config/configWS.php';
+	$catalogIcons = include APP_DIR . '/config/catalogIcons.php';
 	/**
 	 * Read auto-loader
 	 */

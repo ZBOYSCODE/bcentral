@@ -130,7 +130,10 @@
             </div>
             <div class="widget-extra-full rm-padding-top">
                 <div class="row ">
-				                                            <!-- Tickets List -->
+				    <?php if(sizeof($pcData['tckList']) > 0) 
+				    	{
+				    ?>
+				    <!-- Tickets List -->
                     <div class="tab-pane active" id="tickets-list">
                         <div class="block-content-full">
                             <div class="table-responsive remove-margin-bottom table-main">
@@ -219,6 +222,11 @@
                         </div>
                     </div>
                     <!-- END Tickets List -->
+                    <?php } 
+                    	else{
+                    ?>
+                    	<h3>No se encontraron ticket´s</h3>
+                    <?php } ?>
                 </div>
             </div>
         </div>

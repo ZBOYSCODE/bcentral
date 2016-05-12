@@ -35,7 +35,7 @@ class Contact extends Model
 		}
 		else
 		{
-			//error
+			return array();
 		}
 
 	}
