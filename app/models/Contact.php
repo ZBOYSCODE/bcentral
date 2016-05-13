@@ -44,5 +44,14 @@ class Contact extends Model
 	{
 		$ws = new WebServiceClient();
 		$response = $ws->getContact($name);
+		$response = (array)$response['model'];
+		$response = (array)$response['instance'];
+		$this->firstname = (array)$response['FirstName'];
+		$this->firstname = $this->firstname['_'];
+		$this->lastname = (array)$response['LastName'];
+		$this->lastname = $this->lastname['_'];
+		$this->email = (array)$response['Email'];
+		$this->email = $this->email ['_'];
+		$this->contact = $name;
 	}
 }

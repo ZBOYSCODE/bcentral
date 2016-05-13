@@ -169,7 +169,27 @@
 			$("#verTicketForm").submit();
 		});
 	</script>
-
+	<script>
+		$("#botonPagina1").on('click', function() {
+			$('[id^="fila-"]').each(function (){
+				//alert($(this).data('pagina'))
+				if($(this).data('pagina') == 1)
+				{
+					if($(this).hasClass("hidden"))
+					{
+						$(this).toggleClass("hidden");
+					}
+				}
+				else
+				{
+					if(!$(this).hasClass("hidden"))
+					{
+						$(this).toggleClass("hidden");
+					}
+				}
+			});
+		});
+	</script>
 
 	<?php
 	if(isset($jsScript) && $jsScript!=null){

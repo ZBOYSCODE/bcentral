@@ -214,12 +214,15 @@ class ComercioController extends ControllerBase
 
     public function Testws5Action()
     {
-        $ws = new WebServiceClient();
-        $response = $ws->getContact("ALARCON, FELIPE");
+        //$ws = new WebServiceClient();
+        //$response = $ws->getContact("ALARCON, FELIPE");
         //$response = $ws->getRequerimentList();
 
-        var_dump($response);
+        //var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+        $contact = new Contact();
+        $contact->getContact("ALARCON, FELIPE");
+        var_dump($contact);
     }
 
      public function Testws6Action()
@@ -244,7 +247,7 @@ class ComercioController extends ControllerBase
                     'urgencia' => 'si',
                     'interrupcion' => 'si',
                     'autorizacion' => 'no',
-                    'adjunto' => 'op',
+                    'adjunto' => 'no',
                     'hasta' => 'no'
                 );
         if ($_SERVER['REQUEST_METHOD'] === 'GET') 
@@ -278,12 +281,50 @@ class ComercioController extends ControllerBase
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') 
         {
-            $ws = new WebServiceClient();
-            $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
-                $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),
-                $this->di->get('test-user'), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
-                $this->request->getPost('title'), $this->request->getPost('select_sa'));
-            var_dump($response);
+            try
+            {
+                $ws = new WebServiceClient();
+                $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
+                    $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),
+                    $this->di->get('test-user'), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
+                    $this->request->getPost('title'), $this->request->getPost('select_sa'), $this->request->getPost('select_is'));
+                //var_dump($response);
+                $response = (array)$response['CallID'];
+                $response = $response['_'];
+                $pcView = 'servicio/servicios_ver_ticket';
+
+                $js = '';
+                $ticket = new Ticket();
+
+                $done = $ticket->findTicket($response);
+                if($done == 0)
+                {
+                    $data = array('tck' => $ticket);
+                }
+                else{
+                    $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
+                    $data = array('tckList' => $tckList);
+                    $pcView = 'servicio/servicios_home_page';
+                    $msg = "Algo salió mal, por favor intente más tarde.";
+                    if($done == 1)
+                    {
+                        $msg = "Ticket no encontrado, revisar información ingresada.";
+                    }
+                    elseif ($dine == 2) 
+                    {
+                        $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
+                    }
+                    if($done)
+                    $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
+                }
+            }
+            catch (Exception $e)
+            {
+                $pcView = 'servicio/servicios_error_page';
+                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+            }
+            
+            echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));    
         }
     }
 

@@ -344,9 +344,19 @@ class WebServiceClient extends Model
         return $response['instance'];
     }
 
-    public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio)
+    public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
+        if($caida == 'SI')
+        {
+            $caida = 'true';
+        }
+        else
+        {
+            $caida = 'false';
+        }
+        $contact = new Contact();
+        $contact->getContact($this->di->get('test-user'));
         $param = array(
                 'model' => array(
                     'keys' => '',
@@ -363,15 +373,17 @@ class WebServiceClient extends Model
                         'Category' => 'incident',
                         'Area' => $area,
                         'Subarea' => $subarea,
-                        //'ContactEmail' => ,
-                        //'ContactFirstName' => ,
-                        //'ContactLastName' => ,
+                        'ContactEmail' => $contact->email,
+                        'ContactFirstName' => $contact->firstname,
+                        'ContactLastName' => $contact->lastname,
+                        'FailedEntitlement' => $caida,
                         'EnteredByESS' => 'true',
                         'Contact' => $this->di->get('test-user'),
                         'Update' => '',
                         'Impact' => $impact,
                         'AffectedCI' => $ci,//parte dos de ci
                         'Title' => $title,
+                        'ReportedByContact' => $this->di->get('test-user'),
                         'MetodoOrigen' => 'Autoservicio',
                         'attachments' => ''
                     ),
