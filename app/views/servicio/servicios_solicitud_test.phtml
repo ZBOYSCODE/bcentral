@@ -1,3 +1,4 @@
+<form action="<?php print $this->url->get('comercio/TestCreateInteraction') ?>" method="post">
 <div class="nsBoton-form-solicitudes strap">
 		<div class="row" style="margin-top: -20px;">
 			<div class="col-md-8 center-block" style="text-align: center; padding-bottom: 15px;">
@@ -6,7 +7,7 @@
 
 			
 			<div class="col-md-8 center-block">
-			<!--
+			
 			<?php if($pcData['campos']['detinatario'] == 'si') {?>
 			<fieldset>
 				<div class="row">
@@ -15,10 +16,11 @@
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Destinatario" data-content="Persona a la que se le entregará el servicio.">
-								<select  data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
+								<select  data-placeholder="Selecciona un Opción"  id="select_dest" name="select_dest" class="select-chosen">
 									<?php 
-										foreach ($pcData['contactos'] as $key => $value) {
-											# code...
+										foreach ($pcData['contactos'] as $key => $value) { ?>
+											<option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+									<?php	
 										}
 									 ?>
 		                        </select>
@@ -27,8 +29,8 @@
 					</div>
 					</div>
 			</fieldset>
-			<?php } ?>
-			-->
+			<?php } 
+			if($pcData['campos']['ci'] == 'si') {?>
 			<br>
 			<fieldset>
 				<div class="row">
@@ -58,17 +60,14 @@
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Componente" data-content="Componente de Tecnología (Sistema, Hardware, Software)">
 							<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
                                 <option value=""></option>
-                                <?php foreach ($pcData['listas']['servicio afectado 1'] as $valor) {?>
-                                	<option value="<?php print $valor ?>"><?php print $valor ?></option>
-                                <?php } ?>
-                               
 	                        </select>
 						</div>
 						</div>
 					</div>
 				</div>	 						
 			</fieldset>
-
+			<?php } 
+			if($pcData['campos']['descripcion'] == 'si') {?>
 			<br>
 
 			<fieldset>
@@ -76,7 +75,7 @@
 					<label class="col-md-4 control-label" for="horaInicio">
 						<i class="fa fa-minus">&nbsp;&nbsp;</i>Descripción Breve:</label>
 					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Descripción Breve" data-content="Blah Blah Blah ..">
-						<input type="text" class="form-control" >
+						<input type="text" name="title" class="form-control" >
 						<br>
 					</div>
 				</div>
@@ -85,11 +84,12 @@
 					<label class="col-md-4 control-label" for="horaFin">
 						<i class="fa fa-navicon">&nbsp;&nbsp;</i>Otros Antecedentes:</label>
 					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Otros Antecedentes" data-content="Blah Blah Blah ..">
-						<textarea class="form-control" rows="4" cols="50"></textarea>
+						<textarea class="form-control" rows="4" cols="50" name="description"></textarea>
 					</div>
 				</div>
 			</fieldset>
-
+			<?php }
+			 if($pcData['campos']['interrupcion'] == 'si') {?>
 			<br>
 
 			<fieldset>
@@ -108,7 +108,8 @@
 					</div>
 				</div>	 						
 			</fieldset>
-
+			<?php }
+			if($pcData['campos']['impacto'] == 'si') {?>
 			<br>
 
 			<fieldset>
@@ -119,17 +120,18 @@
 								<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Impacto" data-content="Blah Blah Blah ..">
 								<select data-placeholder="Selecciona un Opción"  id="select_i" name="select_i" class="select-chosen">
-	                                <option value="1">Empresa</option>
-	                                <option value="2">Sitio/Dpto</option>
-	                                <option value="3">Varios Usuarios</option>
-	                                <option value="4" selected="selected">Usuario</option>
+	                                <option value="4">Empresa</option>
+	                                <option value="3">Sitio/Dpto</option>
+	                                <option value="2">Varios Usuarios</option>
+	                                <option value="1" selected="selected">Usuario</option>
 		                        </select>
 							</div>
 						</div>
 					</div>
 				</div>
 			</fieldset>
-
+			<?php }
+			if($pcData['campos']['urgencia'] == 'si') { ?>
 			<br>
 
 			<fieldset>
@@ -150,7 +152,8 @@
 					</div>
 				</div>	 
 			</fieldset>
-
+			<?php }
+			 if($pcData['campos']['desde'] == 'si') {?>
 			<br>
 
 			<fieldset>
@@ -165,7 +168,8 @@
 					</div>
 				</div>
 			</fieldset>
-
+			<?php }
+			if($pcData['campos']['hasta'] == 'si') { ?>
 			<br>
 
 			<fieldset>
@@ -180,7 +184,8 @@
 					</div>
 				</div>
 			</fieldset>
-
+			<?php }
+			if($pcData['campos']['autorizacion'] == 'si') { ?>
 			<br>
 
 			<fieldset>
@@ -199,7 +204,8 @@
 					</div>
 					</div>
 			</fieldset>
-
+			<?php } 
+			if($pcData['campos']['adjunto'] == 'op') { ?>
 			<br>
 
 			<fieldset>
@@ -211,9 +217,11 @@
 	            </div>
 			</fieldset>
 
-
+			<?php } ?>
 			<fieldset style="margin-top: 30px;">
 				<div class="form-group">
+					<input type="hidden" name="area" value="<?php echo $pcData['catalogo']['area']; ?>">
+					<input type="hidden" name="subarea" value="<?php echo $pcData['catalogo']['subarea']; ?>">
 					<div class="col-xs-4 center-block">
 						<button id="btnGuardar" type="button" class="btn btn-block btn-bc">Enviar Solicitud</button>
 					</div>
@@ -222,4 +230,4 @@
 			</div>
 		</div>
 	</div>
-
+</form>

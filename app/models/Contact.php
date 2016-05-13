@@ -39,4 +39,10 @@ class Contact extends Model
 		}
 
 	}
+
+	public function getContact($name)
+	{
+		$ws = new WebServiceClient();
+		$response = $ws->getContact($name);
+	}
 }

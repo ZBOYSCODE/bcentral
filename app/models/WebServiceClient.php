@@ -213,6 +213,24 @@ class WebServiceClient extends Model
 
         return $result;
     }
+    public function getContact($name)
+    {
+        $this->client = $this->di->get('soapclient-config');
+        $param = array( 'model' => array(
+                            'keys' => array(
+                                'ContactName' => $name
+                            ),
+                            'instance' => '',
+                            'messages' => ''/*array(
+                                'messages' => ''
+                            )*/
+                        )
+                    );
+        $result = $this->client->RetrieveContact($param);
+
+        return (array)$result;
+    }
+
     public function updateTicket($CallID, $Update)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
@@ -324,6 +342,47 @@ class WebServiceClient extends Model
                     );
         $response = (array)$this->client->RetrieveSvcCatalogList($param);
         return $response['instance'];
+    }
+
+    public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio)
+    {
+        $this->client = $this->di->get('soapclient-servicedesk');
+        $param = array(
+                'model' => array(
+                    'keys' => '',
+                    'instance' => array(
+                        'ServiceRecipient' => $recipent, //quien recibe
+                        'Urgency' => $urgency, // urgencia
+                        'OpenedBy' => $this->di->get('test-user'), //usuario que crea el ticket
+                        'Description' => array(
+                            'Description' => $description//Descripcion
+                        ),
+                        'AffectedService' => $servicio, //servicio afectado
+                        'NotifyBy' => 'Telephone',
+                        'Solution' => '',
+                        'Category' => 'incident',
+                        'Area' => $area,
+                        'Subarea' => $subarea,
+                        //'ContactEmail' => ,
+                        //'ContactFirstName' => ,
+                        //'ContactLastName' => ,
+                        'EnteredByESS' => 'true',
+                        'Contact' => $this->di->get('test-user'),
+                        'Update' => '',
+                        'Impact' => $impact,
+                        'AffectedCI' => $ci,//parte dos de ci
+                        'Title' => $title,
+                        'MetodoOrigen' => 'Autoservicio',
+                        'attachments' => ''
+                    ),
+                    'messages' => ''
+                )
+            );
+        $response = $this->client->CreateInteraction($param);
+        $response = (array)$response;
+        $response = (array)$response['model'];
+        $response = (array)$response['keys'];
+        return $response;
     }
 
     function f_remove_odd_characters($string){

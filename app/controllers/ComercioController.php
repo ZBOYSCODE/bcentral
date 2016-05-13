@@ -215,7 +215,9 @@ class ComercioController extends ControllerBase
     public function Testws5Action()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getRequerimentList();
+        $response = $ws->getContact("ALARCON, FELIPE");
+        //$response = $ws->getRequerimentList();
+
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
@@ -232,9 +234,7 @@ class ComercioController extends ControllerBase
 
     public function TestCreateInteractionAction()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') 
-        {
-           /* $campos = array(
+        $campos = array(
                     'detinatario' => 'si',
                     'ci' => 'si',
                     'titulo' => 'si',
@@ -247,6 +247,8 @@ class ComercioController extends ControllerBase
                     'adjunto' => 'op',
                     'hasta' => 'no'
                 );
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') 
+        {
             $catalog = array(
                     'area' => 'Administrador documental',
                     'subarea' => 'Desbloqueo de cuentas',
@@ -256,21 +258,32 @@ class ComercioController extends ControllerBase
             $contactList = $contacto->getContactList();
 
             $ciItem = new CI();
-            $ciList = $ciItem->getCompleteCIList();
-            */
+            $listas = $ciItem->getCompleteCIList();
+            
             $pcView = 'servicio/servicios_solicitud_test';
             //$data = array('campos' => $campos, 'catalog' => $catalog, 'contactos' => $contactList, 'ci' => $ciList);
 
             //asi debe ser la lista de  servicios afectados y sus hijos ci
-            $listas = array('servicio afectado 1' => array('ci1','ci2','ci3'),
+            /*$listas = array('servicio afectado 1' => array('ci1','ci2','ci3'),
                             'servicio afectado 2' => array('ci4','ci5','ci6'),
-                            'servicio afectado 3' => array('ci7','ci8','ci9'));
+                            'servicio afectado 3' => array('ci7','ci8','ci9'));*/
 
             $data['listas'] = $listas;
-
+            $data['campos'] = $campos;
+            $data['catalogo'] = $catalog;
+            $data['contactos'] = $contactList;
             $js = $this->getComponenteServAfectadoJs($listas);
 
             echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            $ws = new WebServiceClient();
+            $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
+                $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),
+                $this->di->get('test-user'), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
+                $this->request->getPost('title'), $this->request->getPost('select_sa'));
+            var_dump($response);
         }
     }
 
