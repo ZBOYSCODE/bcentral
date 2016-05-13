@@ -170,10 +170,11 @@
 		});
 	</script>
 	<script>
-		$("#botonPagina1").on('click', function() {
+		$('[id^="botonPagina-"]').on('click', function() {
+			var pag_sig = $(this).data("pagina");
 			$('[id^="fila-"]').each(function (){
 				//alert($(this).data('pagina'))
-				if($(this).data('pagina') == 1)
+				if($(this).data('pagina') == pag_sig)
 				{
 					if($(this).hasClass("hidden"))
 					{
