@@ -1,0 +1,25 @@
+<?php foreach($pcData['knowList'] as $item){?>
+					<tr>
+						<td>
+							<h5><strong style="color:#93BAC0"><?php print($item['titulo'])?></strong></h5>
+
+							<p><em><?php print($item['minitexto'])?></em></p>
+						</td>
+						<td class="text-center hidden-xs">
+							<h3 class="animation-pullDown"><?php print($item['adjunto'])?></h3>
+						</td>
+						<td class="text-center hidden-xs">
+							<h3 class="animation-pullDown"></h3>
+						</td>
+						<td class="text-center">
+							<a class="btn btn-bc" href="<?php print($this->url->get('comercio')) ?>/documento/<?php print($item['id'])?>"><strong>Leer resultado completo </strong></a>
+						</td>
+					</tr>
+<?php }?>
+<?php if(count($pcData['knowList'])==0){?>
+					<tr>
+						<td colspan="4">
+							<p><em>Sin Resultados</em></p>
+						</td>
+					</tr>
+<?php }?>

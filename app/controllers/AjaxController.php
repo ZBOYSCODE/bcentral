@@ -58,5 +58,28 @@ class AjaxController extends ControllerBase
     	$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
     	$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
     	$this->mifaces->run();		
-	}    
+	}  
+
+	/**MJARA**/
+	public function conocimientoAction()
+	{
+		//le puedes colocar a la variable que quieras
+    	$dataView['searchinn'] = $_POST['searchinn'];
+		
+		
+		
+		$know['id'] = 1;
+		$know['titulo'] = 'Busqueda automatica de cambio de contraseña';
+		$know['minitexto'] = 'Actualmente los usuarios buscan en menos clic como cambiar la contraseña de su cuenta SSO.';
+		$know['adjunto'] = 'SI';	
+		//'knowList' es un array de arrays.. del tipo $know
+		$data = array('knowList' => array($know,$know));
+		
+		
+    	$toRend = $this->view->render('servicio/servicios_base_conocimiento_tr',array('pcData'=>$data));
+    	$this->mifaces->newFaces();
+    	$this->mifaces->addToRend('conocimiento-tbody',$toRend);
+    	$this->mifaces->run();	
+	}
+	
 }
