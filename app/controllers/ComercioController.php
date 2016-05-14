@@ -70,6 +70,7 @@ class ComercioController extends ControllerBase
 
         }
         else {
+            //caso de que mande por get una url trucha
             $response = new \Phalcon\Http\Response();
             return $response->redirect("");
         }
@@ -104,10 +105,9 @@ class ComercioController extends ControllerBase
                 $catalogoRutaCompleta = $_POST['catalogoRutaCompleta'];
                 $catalogoRutaCompleta = $catalogoRutaCompleta."_".$catalogoPadre;
                 $catalogoRutaArray = explode("_", $catalogoRutaCompleta);
-
-                //si NO es nodo hoja
                 $styleCssMenu = $_POST['styleCssMenu'];
-
+                
+                //si NO es nodo hoja
                 if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
                     $ctlg = new Catalog();
                     $catalogoMenu = $ctlg->getServiceCatalogSP2($catalogoPadre);
