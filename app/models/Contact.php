@@ -42,7 +42,7 @@ class Contact extends Model
 				'user, primero',
 				'user, segundo',
 				'user, final'
-			):
+			);
 	}
 
 	public function getContact($name)

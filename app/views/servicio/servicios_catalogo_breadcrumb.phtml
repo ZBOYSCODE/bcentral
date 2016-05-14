@@ -1,20 +1,19 @@
 <div id="modal_header_1">
-    <h3 class="modal-title_1"> Nueva Solicitud<strong> Sistemas TI</strong></h3>
+    <h3 class="modal-title_1"> Nueva Solicitud<strong> <?php print $pcData['breadCrumbList'][0][0] ?></strong></h3>
 </div>
 <div id="breadcrumbs">
 		<span class="bcTecnologia nsMenu">
 		<a class="bc-text" href="<?php print($this->url->get(""))?>"><span id="textTecnologia">Inicio</span></a>
 	</span>
-	<span class="bcTecnologia nsMenu">
-		<i class="fa fa-arrow-right"></i>	
-		<a class="bc-text" href="<?php print($this->url->get("comercio/solicitudServicio/tecnologia"))?>"><span id="textTecnologia">Nueva Solicitud Sistemas TI</span></a>
-	</span>
-	<span class="bcAplicaciones nsMenu hidden">
-		<i class="fa fa-arrow-right"></i>	
-		<span id="textAplicaciones">Aplicaciones de Negocio</span>
-	</span>
-	<span class="bcFormSolicitudes nsMenu hidden">
-		<i class="fa fa-arrow-right"></i>	
-		<span id="textFormSolicitudes"></span>
-	</span>									
+	<?php foreach ($pcData['breadCrumbList'] as $item) {	?>
+		<span class="bcTecnologia nsMenu">
+			<i class="fa fa-arrow-right"></i>
+			<?php if($item[1] == 'active'){ ?>	
+				<a class="bc-text" href="<?php print($this->url->get('comercio/solicitudServicio/'.$item[2]))?>"><span id="textTecnologia"><?php print $item[0] ?></span></a>
+			<?php } else {?>
+				<?php print $item[0] ?>
+			<?php } ?>
+			
+		</span>	
+	<?php } ?>					
 </div>

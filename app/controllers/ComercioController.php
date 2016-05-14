@@ -47,27 +47,162 @@ class ComercioController extends ControllerBase
 
     public function solicitudServicioAction($tipo) 
     {
-
         $js = '';
-        if($tipo == "tecnologia") {
-            $js = $this->getJsCatalogo();
-            $pcView = 'servicio/servicios_solicitud_tecnologia';
+        $pcView = 'servicio/servicios_catalogo_base';
+
+        if($tipo == "sistemas-ti") {
+
+            $catalogoPadre = "Sistemas TI";
+            $styleCssMenu = "primera-opcion";
+            
+
         }
-        else if ($tipo == "generales") {
-            $js = $this->getJsCatalogo();
-            $pcView = 'servicio/servicios_solicitud_sg';
+        else if ($tipo == "servicios-ti") {
+
+            $catalogoPadre = "Servicios TI";
+            $styleCssMenu = "segunda-opcion";
+
         }
-        else if ($tipo == "otros") {
-            $js = $this->getJsCatalogo();
-            $pcView = 'servicio/servicios_solicitud_otros';
+        else if ($tipo == "infraestructura") {
+
+            $catalogoPadre = "Infraestructura y Servicios Generales";
+            $styleCssMenu = "tercera-opcion";
+
         }
         else {
-            $this->indexAction();
-            exit;
+            $response = new \Phalcon\Http\Response();
+            return $response->redirect("");
         }
 
-        echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>'','jsScript'=>$js));
+        $ctlg = new Catalog();
+        $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
 
+        $pcData['catalogo'] = $catalogoMenu;
+        $pcData['styleCssMenu'] = $styleCssMenu;
+        $pcData['catalogoRutaCompleta'] = $catalogoPadre;
+
+        //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
+        $pcData['breadCrumbList']  = [
+          array($catalogoPadre,'active',$tipo),
+        ];
+
+        $js = $this->getJsCatalogo();
+        echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$pcData,'jsScript'=>$js));
+
+    }
+
+    public function solicitudServicioAjaxAction() {
+
+        //verificamos petición se ajax
+        if($this->request->isAjax() == true) {
+            //verificamos post
+            if($this->request->isPost() == true) {
+                $this->mifaces->newFaces();
+
+                //datos del formulario
+                $catalogoPadre = $_POST['optionSelected'];
+                $catalogoRutaCompleta = $_POST['catalogoRutaCompleta'];
+                $catalogoRutaCompleta = $catalogoRutaCompleta."_".$catalogoPadre;
+                $catalogoRutaArray = explode("_", $catalogoRutaCompleta);
+
+                //si NO es nodo hoja
+                $styleCssMenu = $_POST['styleCssMenu'];
+
+                if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
+                    $ctlg = new Catalog();
+                    $catalogoMenu = $ctlg->getServiceCatalogSP2($catalogoPadre);
+
+                    $pcData['catalogo'] = $catalogoMenu;
+                    $pcData['styleCssMenu'] = $styleCssMenu;
+                    $pcData['catalogoRutaCompleta'] = $catalogoRutaCompleta;
+                    //seteamos que será nodo hoja directamente, se supone que el tercer nivel es nodo hoja
+                    //si no deberia identificarse mediante logica de la respuesta del web service
+                    $pcData['is_nodo_hoja'] = true;
+
+                    //vista a renderizar
+                    $pcView = 'servicio/servicios_catalogo_menu';
+                }
+                // SI es nodo hoja
+                else {
+                    $catalog = array(
+                        'familia'   => $catalogoRutaArray[0],
+                        'area'      => $catalogoRutaArray[1],
+                        'subarea'   => $catalogoRutaArray[2],
+                    );
+
+                    $contacto = new Contact();
+                    $contactList = $contacto->getContactList();
+
+                    $ciItem = new CI();
+                    $listas = $ciItem->getCompleteCIList();
+
+                    $ctlg = new Catalog();
+                    //**OJO, no se si para sacar los campos requerido solo es necesario un padre o toda la ruta
+                    //opcion1
+                    $campos = $ctlg->gatCampos($catalogoPadre);
+                    //opcion2 (ruta completa separados con %)
+                    //$catalogoMenu = $ctlg->gatCampos($catalogoRutaCompleta);
+                    
+                    $pcData['listas'] = $listas;
+                    $pcData['campos'] = $campos;
+                    $pcData['catalogo'] = $catalog;
+                    $pcData['contactos'] = $contactList;
+                    $js = $this->getComponenteServAfectadoJs($listas);
+
+                    //vista a renderizar
+                    $pcView = 'servicio/servicios_solicitud_test';
+                }
+
+                //seteamos breadcrum superior
+                $pcData['breadCrumbList']  = array();
+
+                foreach ($catalogoRutaArray as $item) {
+                    //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
+                    $mapeoUrl = $this->__mapUrl($item);
+                    if($mapeoUrl != 'none') {
+                        $activeHipervinculo = "active";
+                    }
+                    else {
+                        $activeHipervinculo = "inactive";
+                         $mapeoUrl = "";
+                    }
+                    array_push($pcData['breadCrumbList'],array($item,$activeHipervinculo,$this->__mapUrl($item)));
+                }
+
+                $dataView['pcData'] = $pcData;
+
+                //seteamos vistas a mostrar
+                $toRend = $this->view->render($pcView,$dataView);
+                $toRendBreadCrum = $this->view->render('servicio/servicios_catalogo_breadcrumb',$dataView);
+
+                $this->mifaces->newFaces();
+                $this->mifaces->addToRend('menus',$toRend);
+                $this->mifaces->addToRend('breadcrumbs',$toRendBreadCrum);
+                if(isset($js)) {
+                    $this->mifaces->addPosRendEval($js);
+                    $this->mifaces->addPosRendEval("$('.select-chosen').chosen({width:  '100%', disable_search_threshold: 4});");
+                    $this->mifaces->addPosRendEval("$('[data-toggle=\"popoverhover\"]').popover({trigger:\"hover\", container: \"body\", animation: true});");
+                }
+
+                $this->mifaces->run();
+
+            }
+        }
+        else {
+            //en el caso que no sea ajax la petición o se envíe mal
+            $response = new \Phalcon\Http\Response();
+            return $response->redirect("");
+        }
+    }
+
+    private function __mapUrl($opcion) {
+        $map = [
+            "Sistemas TI" => "sistemas-ti",
+            "Servicios TI" => "servicios-ti",
+            "Infraestructura y Servicios Generales" => "infraestructura"
+        ];
+
+        return isset($map[$opcion])?$map[$opcion]:'none';
     }
 
     public function solicitudSoporteAction() {
@@ -310,7 +445,7 @@ class ComercioController extends ControllerBase
                     {
                         $msg = "Ticket no encontrado, revisar información ingresada.";
                     }
-                    elseif ($dine == 2) 
+                    elseif ($done == 2) 
                     {
                         $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
                     }

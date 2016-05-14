@@ -1,10 +1,9 @@
 <!-- BREADCRUMBS -->
 <div id="breadcrumbs" class="header-pages primera-opcion">
-	<?php echo $this->view->render('servicios_catalogo_breadcrumb',array('pcData'=>$pcData)); ?>
+	<?php echo $this->view->render('servicio/servicios_catalogo_breadcrumb',array('pcData'=>$pcData)); ?>
 </div>
 <!-- ./BREADCRUMBS -->
 
 <div id="menus" class="modal-body" style="overflow: hidden; width: auto;">
-
-
+	<?php echo $this->view->render('servicio/servicios_catalogo_menu',array('pcData'=>$pcData)); ?>
 </div>
