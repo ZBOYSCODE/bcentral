@@ -164,9 +164,9 @@ class ComercioController extends ControllerBase
                     }
                     else {
                         $activeHipervinculo = "inactive";
-                         $mapeoUrl = "";
+                        $mapeoUrl = "";
                     }
-                    array_push($pcData['breadCrumbList'],array($item,$activeHipervinculo,$this->__mapUrl($item)));
+                    array_push($pcData['breadCrumbList'],array($item,$activeHipervinculo,$mapeoUrl));
                 }
 
                 $dataView['pcData'] = $pcData;
