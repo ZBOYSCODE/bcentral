@@ -1,0 +1,22 @@
+<h4 id="helptitle">Seleccione tipo de solicitud</h4>
+
+<div class="row">
+
+	<?php foreach ($pcData['catalogo'] as $opcion) { ?>
+		<div class="col-md-3 text-center ">
+			<a 	class="widget active widget-hover-effect1 nsBoton modal-catalogo-op <?php print(isset($pcData['styleCssMenu'])?$pcData['styleCssMenu']:'') ?>"
+				href="<?php print $this->url->get('comercio/solicitudServicioAjax') ?>"
+				data-action="<?php print $this->url->get('comercio/solicitudServicioAjax') ?>"
+				data-val="optionSelected=<?php print $opcion['name'] ?>&catalogoRutaCompleta=<?php print $pcData['catalogoRutaCompleta'] ?>&styleCssMenu=<?php print $pcData['styleCssMenu'] ?>&is_nodo_hoja=<?php print(isset($pcData['is_nodo_hoja'])?$pcData['is_nodo_hoja']:'false') ?>"
+			>					
+				<i class="fa <?php print $opcion['icon'] ?> fa-5x"></i>
+	            <div class="widget-simple text-center catalogo-op-desc">
+	                <h3 class="widget-content text-center" >
+	                 <strong><?php print $opcion['name'] ?></strong><br>
+	                </h3>
+	          		<span ><?php print $opcion['description'] ?>.</span>      
+	            </div>
+	    	</a>
+		</div>	
+	<?php } ?>
+</div>

@@ -30,23 +30,28 @@ class Catalog extends Model
         $result = array(
                         array(
                             'name' => 'SOA',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                         array(
                             'name' => 'Sistemas TI',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                         array(
                             'name' => 'Activo Fijo',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                         array(
                             'name' => 'Audio y Video',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.',
                         ),
                         array(
                             'name' => 'Traslado personas',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                     );
         return $result;
@@ -56,15 +61,18 @@ class Catalog extends Model
         $result = array(
                         array(
                             'name' => 'Solucionar problema',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                         array(
                             'name' => 'Actualizar Datos de Cuenta',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         ),
                         array(
                             'name' => 'Solicitar',
-                            'icon' => 'fa-toggle-right'
+                            'icon' => 'fa-toggle-right',
+                            'description' => 'Habilitar accesos mediante configuración de permisos, solución de problemas o recuperar datos.'
                         )
                     );
         return $result;
