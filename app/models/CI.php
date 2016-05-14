@@ -14,7 +14,7 @@ class CI extends Model
 
 	public function getCompleteCIList()
 	{
-
+/*
 		$ws = new WebServiceClient();
 		$response = $ws->getCIList();	
 		$response = $response['instance'];
@@ -37,5 +37,9 @@ class CI extends Model
 			}
 		}
 		return $ciList;
+		*/
+		return array('servicio afectado 1' => array('ci1','ci2','ci3'),
+                            'servicio afectado 2' => array('ci4','ci5','ci6'),
+                            'servicio afectado 3' => array('ci7','ci8','ci9'));
 	}
 }
