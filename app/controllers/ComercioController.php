@@ -106,7 +106,7 @@ class ComercioController extends ControllerBase
                 $catalogoRutaCompleta = $catalogoRutaCompleta."_".$catalogoPadre;
                 $catalogoRutaArray = explode("_", $catalogoRutaCompleta);
                 $styleCssMenu = $_POST['styleCssMenu'];
-                
+
                 //si NO es nodo hoja
                 if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
                     $ctlg = new Catalog();
@@ -122,7 +122,7 @@ class ComercioController extends ControllerBase
                     //vista a renderizar
                     $pcView = 'servicio/servicios_catalogo_menu';
                 }
-                // SI es nodo hoja
+                // SI es nodo hoja mostramos formulario final
                 else {
                     $catalog = array(
                         'familia'   => $catalogoRutaArray[0],
