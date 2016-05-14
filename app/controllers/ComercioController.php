@@ -140,7 +140,7 @@ class ComercioController extends ControllerBase
                     //**OJO, no se si para sacar los campos requerido solo es necesario un padre o toda la ruta
                     //opcion1
                     $campos = $ctlg->gatCampos($catalogoPadre);
-                    //opcion2 (ruta completa separados con %)
+                    //opcion2 (ruta completa separados con '_')
                     //$catalogoMenu = $ctlg->gatCampos($catalogoRutaCompleta);
                     
                     $pcData['listas'] = $listas;
