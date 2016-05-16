@@ -194,10 +194,10 @@ $di->set('soapclient-catalog', function () use ($configWs) {
 $di->set('test-user', function () use ($configWs) {
     return $configWs->testUser;
 });
-/*
+
 $di->set('catalog-icons', function () use ($catalogIcons) {
     return $catalogIcons;
-});*/
+});
 
 //http://localhost:8080/raggApi/Servicedesk?wsdl
 //http://192.168.5.113:13080/SM/7/servicedesk.wsdl

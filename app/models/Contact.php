@@ -19,7 +19,7 @@ class Contact extends Model
 
 	public function getContactList()
 	{
-		/*$ws = new WebServiceClient();
+		$ws = new WebServiceClient();
 		$response = (array)$ws->getContactList();
 		if($response['returnCode'] == "0")
 		{
@@ -37,12 +37,11 @@ class Contact extends Model
 		{
 			return array();
 		}
-		*/
-		return array(
+		/*return array(
 				'user, primero',
 				'user, segundo',
 				'user, final'
-			);
+			);*/
 	}
 
 	public function getContact($name)

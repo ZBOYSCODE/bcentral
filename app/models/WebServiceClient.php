@@ -344,7 +344,7 @@ class WebServiceClient extends Model
         return $response['instance'];
     }
 
-    public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida)
+    public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida, $attach)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
         if($caida == 'SI')
@@ -385,7 +385,13 @@ class WebServiceClient extends Model
                         'Title' => $title,
                         'ReportedByContact' => $this->di->get('test-user'),
                         'MetodoOrigen' => 'Autoservicio',
-                        'attachments' => ''
+                        'attachments' => array(
+                                'attachment' => array(
+                                        '_' => $attach['content'],
+                                        'name' => $attach['name'],
+                                        'attachmentType' => $attach['type']
+                                    )
+                            )
                     ),
                     'messages' => ''
                 )
@@ -394,6 +400,30 @@ class WebServiceClient extends Model
         $response = (array)$response;
         $response = (array)$response['model'];
         $response = (array)$response['keys'];
+        return $response;
+    }
+
+    public function searchKnowledge($search)
+    {
+        $this->client = $this->di->get('soapclient-knowledge');
+        $param = array('keys' => array(
+                            '_' => '',/*array(
+                                    'ConfigurationItem' => ''
+                                ),*/
+                            'query' => 'title#"' . $search . '"'
+                        )                    
+                    );
+        $response = (array)$this->client->RetrieveKnowledgeList($param);
+        return $response;
+    }
+    public function getKnowledge($id)
+    {
+        $this->client = $this->di->get('soapclient-knowledge');
+        $param = array('keys' => array(
+                            'id' => $id
+                        )                    
+                    );
+        $response = (array)$this->client->RetrieveKnowledgeList($param);
         return $response;
     }
 

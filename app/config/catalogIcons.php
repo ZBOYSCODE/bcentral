@@ -1,4 +1,6 @@
 <?php
-return new \Phalcon\Config([
+return array(
+	'default' => 'fa-toggle-right'
+);/*new \Phalcon\Config([
     'default' => 'fa-toggle-right',
-]);
+]);*/

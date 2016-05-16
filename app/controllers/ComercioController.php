@@ -7,6 +7,7 @@ use Gabs\Models\Ticket;
 use Gabs\Models\Contact;
 use Gabs\Models\Catalog;
 use Gabs\Models\CI;
+use Gabs\Models\Knowledge;
  
 class ComercioController extends ControllerBase
 {
@@ -33,16 +34,18 @@ class ComercioController extends ControllerBase
 
     public function consultarAction()
     {   
-        $pcView = 'servicio/servicios_base_conocimiento';
-        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=>''));    
+        $pcView = 'servicio/servicios_base_conocimiento_tr';
+        $KM = new Knowledge();
+        $data = array('knowList' => $KM->searchKwonledge($this->request->getPost('searchinn')));
+        
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=>$data));    
     }
 
 	/**MJARA**/
     public function conocimientoAction() 
     {
-
-		$pcView = 'servicio/servicios_base_conocimiento';
-		$data = array('knowList' => array());
+        $pcView = 'servicio/servicios_base_conocimiento';
+        $data = array('knowList' => array());
 		echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$data));
     }
 
@@ -75,7 +78,7 @@ class ComercioController extends ControllerBase
             $response = new \Phalcon\Http\Response();
             return $response->redirect("");
         }
-
+        echo $catalogoPadre;
         $ctlg = new Catalog();
         $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
 
@@ -272,10 +275,11 @@ class ComercioController extends ControllerBase
 		if($id == null){
 			$know = null;
 		}else{
-		
+		  $KM = new Knowledge();
+          $know = $KM->getKnowledge($id);
 			//llamar a la funcion que trae los dato por el $id....
 /**************************************************************************/
-			$know['id'] = 1;
+			/*$know['id'] = 1;
 			$know['titulo'] = 'Busqueda automatica de cambio de contraseña';
 			$know['fecha_formateada'] = 'Noviembre 5, 2014 - 09:10 am';
 			$know['texto'] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor. Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti. Aliquam tincidunt sollicitudin sem nec ultrices. Sed at mi velit. Ut egestas tempor est, in cursus enim venenatis eget! Nulla quis ligula ipsum. Donec vitae ultrices dolor?
@@ -287,7 +291,7 @@ class ComercioController extends ControllerBase
 	Donec lacinia venenatis metus at bibendum? In hac habitasse platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non. Suspendisse potenti. Pellentesque non accumsan orci. Praesent at lacinia dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultrices, justo vel imperdiet gravida, urna ligula hendrerit nibh, ac cursus nibh sapien in purus. Mauris tincidunt tincidunt turpis in porta. Integer fermentum tincidunt auctor. Vestibulum ullamcorper, odio sed rhoncus imperdiet, enim elit sollicitudin orci, eget dictum leo mi nec lectus. Nam commodo turpis id lectus scelerisque vulputate. Integer sed dolor erat. Fusce erat ipsum, varius vel euismod sed, tristique et lectus? Etiam egestas fringilla enim, id convallis lectus laoreet at. Fusce purus nisi, gravida sed consectetur ut, interdum quis nisi. Quisque egestas nisl id lectus facilisis scelerisque? Proin rhoncus dui at ligula vestibulum ut facilisis ante sodales! Suspendisse potenti. Aliquam tincidunt sollicitudin sem nec ultrices. Sed at mi velit. Ut egestas tempor est, in cursus enim venenatis eget! Nulla quis ligula ipsum. Donec vitae ultrices dolor?";
-			$know['adjunto'] = array('http://www.mm.cl/Instrucciones.txt','http://www.mm.cl/Procedimiento.pdf');
+			$know['adjunto'] = array('http://www.mm.cl/Instrucciones.txt','http://www.mm.cl/Procedimiento.pdf');*/
 /**************************************************************************/
 		}
 
@@ -339,10 +343,14 @@ class ComercioController extends ControllerBase
     public function Testws2Action()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getTicket('SD68157');
-        
+        $km = new Knowledge();
+        //$response = $ws->getTicket('SD68157');
+        $response['ws'] = $ws->getKnowledge('KM0257');
+        $response['km'] = $km->getKnowledge('KM0257');
         var_dump($response);
-        echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+        echo "<br><br>";
+        print_r($response);
+        //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
     public function Testws3Action()
     {
@@ -386,10 +394,12 @@ class ComercioController extends ControllerBase
 
      public function Testws6Action()
     {
-        //$ws = new WebServiceClient();
-        //$response = $ws->getCatalogStepOne('Servicios TI');
+        $ws = new WebServiceClient();
+        $response = $ws->getCatalogStepOne('Servicios TI');
+        var_dump($response);
+        echo "<br><br><br><br>";
         $cat = new Catalog();
-        $response = $cat->getServiceCatalog('Servicios TI');
+        $response = $cat->getServiceCatalogSP1('Servicios TI');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
@@ -406,7 +416,7 @@ class ComercioController extends ControllerBase
                     'urgencia' => 'si',
                     'interrupcion' => 'si',
                     'autorizacion' => 'no',
-                    'adjunto' => 'no',
+                    'adjunto' => 'op',
                     'hasta' => 'no'
                 );
         if ($_SERVER['REQUEST_METHOD'] === 'GET') 
@@ -442,11 +452,25 @@ class ComercioController extends ControllerBase
         {
             try
             {
+                //Aqí voy
+                $tmpfile = $_FILES["example-file-multiple-input"]["tmp_name"];   // temp filename
+                $filename = $_FILES["example-file-multiple-input"]["name"];      // Original filename
+                $handle = fopen($tmpfile, "r");                  // Open the temp file
+                $contents = fread($handle, filesize($tmpfile));  // Read the temp file
+                fclose($handle);                                 // Close the temp file
+                $decodeContent   = base64_encode($contents);
+                $attach = array(
+                        'content' => $decodeContent, 
+                        'name' => $filename, 
+                        'type' => $_FILES["example-file-multiple-input"]['type'], 
+                        'size' => $_FILES["example-file-multiple-input"]["size"]
+                    );
                 $ws = new WebServiceClient();
                 $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
                     $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),
                     $this->di->get('test-user'), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
-                    $this->request->getPost('title'), $this->request->getPost('select_sa'), $this->request->getPost('select_is'));
+                    $this->request->getPost('title'), $this->request->getPost('select_sa'), $this->request->getPost('select_is'),
+                    $attach);
                 //var_dump($response);
                 $response = (array)$response['CallID'];
                 $response = $response['_'];

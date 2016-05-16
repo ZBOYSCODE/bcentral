@@ -2,6 +2,7 @@
 namespace Gabs\Controllers;
 use Gabs\Models\Personas;
 use Gabs\Models\Ticket;
+use Gabs\Models\Knowledge;
 
 class AjaxController extends ControllerBase
 {
@@ -68,13 +69,14 @@ class AjaxController extends ControllerBase
 		
 		
 		
-		$know['id'] = 1;
+		/*$know['id'] = 1;
 		$know['titulo'] = 'Busqueda automatica de cambio de contraseña';
 		$know['minitexto'] = 'Actualmente los usuarios buscan en menos clic como cambiar la contraseña de su cuenta SSO.';
 		$know['adjunto'] = 'SI';	
 		//'knowList' es un array de arrays.. del tipo $know
-		$data = array('knowList' => array($know,$know));
-		
+		$data = array('knowList' => array($know,$know));*/
+		$KM = new Knowledge();
+        $data = array('knowList' => $KM->searchKwonledge($this->request->getPost('searchinn')));
 		
     	$toRend = $this->view->render('servicio/servicios_base_conocimiento_tr',array('pcData'=>$data));
     	$this->mifaces->newFaces();
