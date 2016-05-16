@@ -78,7 +78,6 @@ class ComercioController extends ControllerBase
             $response = new \Phalcon\Http\Response();
             return $response->redirect("");
         }
-        echo $catalogoPadre;
         $ctlg = new Catalog();
         $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
 
@@ -114,7 +113,7 @@ class ComercioController extends ControllerBase
                 //si NO es nodo hoja
                 if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
                     $ctlg = new Catalog();
-                    $catalogoMenu = $ctlg->getServiceCatalogSP2($catalogoPadre);
+                    $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
 
                     $pcData['catalogo'] = $catalogoMenu;
                     $pcData['styleCssMenu'] = $styleCssMenu;
@@ -395,12 +394,16 @@ class ComercioController extends ControllerBase
      public function Testws6Action()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getCatalogStepOne('Servicios TI');
+        /*$response = $ws->getCatalogStepTwo('Correo Electronico');
+        var_dump($response);*/
+        $response = $ws->getCatalogStepOne('Sistemas TI');
         var_dump($response);
         echo "<br><br><br><br>";
-        $cat = new Catalog();
-        $response = $cat->getServiceCatalogSP1('Servicios TI');
+        $response = $ws->getCatalogStepOne('Servicios TI');
         var_dump($response);
+        /*$cat = new Catalog();
+        $response = $cat->getServiceCatalogSP1('Servicios TI');
+        var_dump($response);*/
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
 

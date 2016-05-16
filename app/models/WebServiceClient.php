@@ -343,7 +343,26 @@ class WebServiceClient extends Model
         $response = (array)$this->client->RetrieveSvcCatalogList($param);
         return $response['instance'];
     }
-
+    public function getCatalogStepTwo($option)
+    {
+        $this->client = $this->di->get('soapclient-catalog');
+        $param = array(
+                        'model' => array(
+                            'keys' => array(
+                                'Name' => ''
+                            ),
+                            'instance' => array(
+                                'Parent' => array(
+                                    'Parent' => $option
+                                ),
+                                'Active' => 'true'
+                            ),
+                            'messages' => ''
+                        )                
+                    );
+        $response = (array)$this->client->RetrieveSvcCatalogKeysList($param);
+        return $response;
+    }
     public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida, $attach)
     {
         $this->client = $this->di->get('soapclient-servicedesk');

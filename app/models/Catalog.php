@@ -12,7 +12,25 @@ class Catalog extends Model
         $respnse = $wsClient->getCatalogStepOne($name);
         $result = array();
         $icons = $this->di->get('catalog-icons');
-        foreach ($respnse as $key => $value) 
+        if(is_array($respnse))
+        {
+            foreach ($respnse as $key => $value) 
+            {
+                $temp = (array)$value;
+                $name = (array)$temp['Name'];
+                if(array_key_exists($name['_'], $icons))
+                {
+                    $tempIcon = $icons[$name['_']];
+                }
+                else
+                {
+                    $tempIcon = $icons['default'];
+                }
+                $description = (array)$temp['Description'];
+                array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description['_']));
+            }    
+        }
+        else
         {
             $temp = (array)$value;
             $name = (array)$temp['Name'];

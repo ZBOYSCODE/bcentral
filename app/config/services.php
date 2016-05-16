@@ -173,7 +173,7 @@ $di->set('soapclient-knowledge', function () use ($configWs) {
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
             'exceptions' => true,
-            'trace' => true
+            'trace' => false
             )
         );
 });
@@ -186,7 +186,7 @@ $di->set('soapclient-catalog', function () use ($configWs) {
             'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
             'soap_version'   => SOAP_1_2,
             'exceptions' => true,
-            'trace' => true
+            'trace' => false
             )
         );
 });
