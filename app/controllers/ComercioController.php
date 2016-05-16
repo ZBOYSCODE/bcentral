@@ -78,7 +78,6 @@ class ComercioController extends ControllerBase
             $response = new \Phalcon\Http\Response();
             return $response->redirect("");
         }
-        echo $catalogoPadre;
         $ctlg = new Catalog();
         $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
 
