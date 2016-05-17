@@ -12,7 +12,7 @@ class Catalog extends Model
         $respnse = $wsClient->getCatalogStepOne($name);
         $result = array();
         $icons = $this->di->get('catalog-icons');
-        if(is_array($respnse))
+        if(array_key_exists('Name', $respnse) == false)
         {
             foreach ($respnse as $key => $value) 
             {
@@ -27,13 +27,18 @@ class Catalog extends Model
                     $tempIcon = $icons['default'];
                 }
                 $description = (array)$temp['Description'];
-                array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description['_']));
+                $description = $description['_'];
+                if(strlen($description)>100)
+                {
+                    $description = substr($description, 0, 96) . '...';
+                }
+                array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description));
             }    
         }
         else
         {
-            $temp = (array)$value;
-            $name = (array)$temp['Name'];
+            $respnse = (array)$respnse;
+            $name = (array)$respnse['Name'];
             if(array_key_exists($name['_'], $icons))
             {
                 $tempIcon = $icons[$name['_']];
@@ -42,8 +47,13 @@ class Catalog extends Model
             {
                 $tempIcon = $icons['default'];
             }
-            $description = (array)$temp['Description'];
-            array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description['_']));
+            $description = (array)$respnse['Description'];
+            $description = $description['_'];
+            if(strlen($description)>100)
+            {
+                $description = substr($description, 0, 96) . '...';
+            }
+            array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description));
         }
         /*$result = array(
                         array(
