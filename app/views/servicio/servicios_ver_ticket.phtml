@@ -167,8 +167,7 @@
         <div class="block ">
             <div class="block-title">
                 <h3>
-                   <strong>Bitácora </strong><?php echo $pcData['tck']->CallID;?>
-                    
+                   <strong>Bitácora </strong><?php echo $pcData['tck']->CallID;?>                    
                 </h3>
 
             </div>
@@ -186,32 +185,8 @@
                                         <th>Detalle</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                        $first = true; 
-                                        foreach ($pcData['tck']->trace as $key => $val) { 
-                                            if($first)
-                                            {
-                                    ?>
-                                        <tr tyle="background-color: #F9F9F9;">
-                                            <td class="text-center"><strong style="font-size: 14px;"><?php echo $val['fecha']; ?></strong></td>
-                                            <td class="text-center"><strong style="font-size: 14px;"><?php echo $val['tipo']; ?></strong></td>
-                                            <td class="text-center"><strong style="font-size: 14px;"><?php echo $val['user']; ?></strong></td>
-                                            <td><strong style="font-size: 14px;"><?php echo $val['description']; ?></strong></td>
-                                        </tr>
-                                    <?php 
-                                            $first = false;
-                                            }
-                                            else
-                                            {
-                                     ?>
-                                        <tr>
-                                            <td class="text-center"><?php echo $val['fecha']; ?></td>
-                                            <td class="text-center"><?php echo $val['tipo']; ?></td>
-                                            <td class="text-center"><?php echo $val['user']; ?></td>
-                                            <td><?php echo $val['description']; ?></td>
-                                        </tr>
-                                    <?php } }?>
+                                <tbody id="tkt_bitacora">
+<?php echo $this->view->render('servicio/servicios_ver_ticket_bitacora',array('pcData'=>$pcData));?>
                                 </tbody>
                             </table>
 
