@@ -305,27 +305,51 @@ class Ticket extends Model
         if(isset($temp))
         {
             $this->Description = (array)$temp['Description'];
-            $this->Description = $this->Description['_'];
-            
+            if(array_key_exists('_', $this->Description))
+            {
+                $this->Description = $this->Description['_'];
+            }
+            else if(sizeof($this->Description)>1)
+            {
+                $tempText = '';
+                $slt = '';
+                foreach ($this->Description as $key => $value) {
+                    $value = (array)$value;
+                    $tempText = $tempText . $slt . $value['_'];
+                    if($slt = '')
+                    {
+                        $slt = "\n";
+                    }
+                }
+                $this->Description = $tempText;
+            }
         }
         else
         {
             $this->Description = '';
         }
-        
-        $this->AffectedService = (array)$result['AffectedService'];
-        $this->AffectedService = $this->AffectedService['_'];
-        $this->CallOwner = (array)$result['CallOwner'];
-        $this->CallOwner = $this->CallOwner['_'];
+        if(array_key_exists('AffectedService', $result))
+        {
+            $this->AffectedService = (array)$result['AffectedService'];
+            $this->AffectedService = $this->AffectedService['_'];
+        }
+        if(array_key_exists('CallOwner', $result))
+        {
+            $this->CallOwner = (array)$result['CallOwner'];
+            $this->CallOwner = $this->CallOwner['_'];
+        }
         $this->Status = (array)$result['Status'];
         $this->Status = $this->statusToEsp($this->Status['_']);
-        $this->NotifyBy = (array)$result['NotifyBy'];
-        $this->NotifyBy = $this->NotifyBy['_'];
-        if(array_key_exists('Solution', $result))
+        if(array_key_exists('NotifyBys', $result))
+        {
+            $this->NotifyBy = (array)$result['NotifyBy'];
+            $this->NotifyBy = $this->NotifyBy['_'];
+        }
+        /*if(array_key_exists('Solution', $result))
         {
             $this->Solution = (array)$result['Solution'];    
             $this->Solution = $this->Solution['_'];
-        }
+        }*/
         if(array_key_exists('Category', $result))
         {
             $this->Category = (array)$result['Category'];
@@ -581,7 +605,24 @@ class Ticket extends Model
                     $user = $user['_'];
                     $description = (array)$a['Description'];
                     $description = (array)$description['Description'];
-                    $description = $description['_'];
+                    if(array_key_exists('_', $description))
+                    {
+                        $description = $description['_'];
+                    }
+                    else if(sizeof($description)>1)
+                    {
+                        $tempText = '';
+                        $slt = '';
+                        foreach ($description as $key => $value) {
+                            $value = (array)$value;
+                            $tempText = $tempText . $slt . $value['_'];
+                            if($slt = '')
+                            {
+                                $slt = "\n";
+                            }
+                        }
+                        $description = $tempText;
+                    }
                     array_push($temp, array('fecha' => $fecha, 'tipo' => $tipo, 'user' => $user, 'description' => $description));
                 }
                 $this->trace = $temp;

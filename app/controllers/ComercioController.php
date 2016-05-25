@@ -114,7 +114,7 @@ class ComercioController extends ControllerBase
                 if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
                     $ctlg = new Catalog();
                     $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
-
+                    array_push($catalogoMenu, array('name' => 'Solucionar Problema', 'icon' => 'fa-check', 'description' => ''));
                     $pcData['catalogo'] = $catalogoMenu;
                     $pcData['styleCssMenu'] = $styleCssMenu;
                     $pcData['catalogoRutaCompleta'] = $catalogoRutaCompleta;
@@ -133,19 +133,30 @@ class ComercioController extends ControllerBase
                         'subarea'   => $catalogoRutaArray[2],
                     );
 
-                    $contacto = new Contact();
-                    $contactList = $contacto->getContactList();
-
-                    $ciItem = new CI();
-                    $listas = $ciItem->getCompleteCIList();
-
                     $ctlg = new Catalog();
                     //**OJO, no se si para sacar los campos requerido solo es necesario un padre o toda la ruta
                     //opcion1
-                    $campos = $ctlg->gatCampos($catalogoPadre);
+                    $campos = $ctlg->getFields($catalogoRutaArray[2]);
                     //opcion2 (ruta completa separados con '_')
                     //$catalogoMenu = $ctlg->gatCampos($catalogoRutaCompleta);
-                    
+                    if($campos['ci'])
+                    {
+                        $ciItem = new CI();
+                        $listas = $ciItem->getCompleteCIList();
+                    }
+                    else
+                    {
+                        $listas = array();
+                    }
+                    if($campos['detinatario'])
+                    {
+                        $contacto = new Contact();
+                        $contactList = $contacto->getContactList();
+                    }
+                    else
+                    {
+                        $contactList = array();
+                    }
                     $pcData['listas'] = $listas;
                     $pcData['campos'] = $campos;
                     $pcData['catalogo'] = $catalog;
@@ -153,7 +164,7 @@ class ComercioController extends ControllerBase
                     $js = $this->getComponenteServAfectadoJs($listas);
 
                     //vista a renderizar
-                    $pcView = 'servicio/servicios_solicitud_test';
+                    $pcView = 'servicio/servicios_solicitud_general';
                 }
 
                 //seteamos breadcrum superior
@@ -331,12 +342,12 @@ class ComercioController extends ControllerBase
 
     public function TestwsAction()
     {
-        //$ws = new WebServiceClient();
-        //$response = $ws->getTicket('SD68157');
-        //var_dump($response);
-        $tck = new Ticket();
-        $tck->findTicket("SD68157");
-        var_dump($tck);
+        $ws = new WebServiceClient();
+        $response = $ws->getTicket('SD12544');
+        var_dump($response);
+        //$tck = new Ticket();
+        //$tck->findTicket("SD68157");
+        //var_dump($tck);
         
     }
     public function Testws2Action()
@@ -380,15 +391,21 @@ class ComercioController extends ControllerBase
 
     public function Testws5Action()
     {
-        //$ws = new WebServiceClient();
+        $ws = new WebServiceClient();
+        $response = $ws->getFields('Crear, Eliminar Cuenta');
+        
+        var_dump($response);
+        echo '<br><br><br>';
+        $cat = new Catalog();
+        $response = $cat->getFields('Crear, Eliminar Cuenta');
         //$response = $ws->getContact("ALARCON, FELIPE");
         //$response = $ws->getRequerimentList();
 
-        //var_dump($response);
+        var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
-        $contact = new Contact();
-        $contact->getContact("ALARCON, FELIPE");
-        var_dump($contact);
+        //$contact = new Contact();
+        //$contact->getContact("ALARCON, FELIPE");
+        //var_dump($contact);
     }
 
      public function Testws6Action()
@@ -405,6 +422,172 @@ class ComercioController extends ControllerBase
         $response = $cat->getServiceCatalogSP1('Servicios TI');
         var_dump($response);*/
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+
+    public function CreateInteractionAction()
+    {
+        $campos = array(
+                'detinatario' => ($this->request->getPost('campo-detinatario') == 'true'),
+                'ci' => ($this->request->getPost('campo-ci') == 'true'),
+                'titulo' => ($this->request->getPost('campo-titulo') == 'true'),
+                'descripcion' => ($this->request->getPost('campo-descripcion') == 'true'),
+                'desde' => ($this->request->getPost('campo-desde') == 'true'),
+                'impacto' => ($this->request->getPost('campo-impacto') == 'true'),
+                'urgencia' => ($this->request->getPost('campo-urgencia') == 'true'),
+                'interrupcion' => ($this->request->getPost('campo-interrupcion') == 'true'),
+                'autorizacion' => ($this->request->getPost('campo-autorizacion') == 'true'),
+                'adjunto' => ($this->request->getPost('campo-adjunto') == 'true'),
+                'hasta' => ($this->request->getPost('campo-hasta') == 'true')
+            );
+        $catalogo = array(
+                'familia' => $this->request->getPost('familia'),
+                'area' => $this->request->getPost('area'),
+                'subarea' => $this->request->getPost('subarea')
+            );
+        $form;
+        if(isset($_POST["select_dest"]))
+        {
+            $form['contact'] = $_POST["select_dest"];
+        }
+        else
+        {
+            $form['contact'] = '';
+        }
+        if(isset($_POST["select_sa"]))
+        {
+            $form['sa'] = $_POST["select_sa"];
+        }
+        else
+        {
+            $form['sa'] = '';
+        }
+        if(isset($_POST["select_ci"]))
+        {
+            $form['ci'] = $_POST["select_ci"];
+        }
+        else
+        {
+            $form['ci'] = '';
+        }
+        if(isset($_POST["title"]))
+        {
+            $form['title'] = $_POST["title"];
+        }
+        else
+        {
+            $form['title'] = '';
+        }
+        if(isset($_POST["description"]))
+        {
+            $form['description'] = $_POST["description"];
+        }
+        else
+        {
+            $form['description'] = '';
+        }
+        if(isset($_POST["select_is"]))
+        {
+            $form['interruption'] = $_POST["select_is"];
+            if($form['interruption'] == 'SI')
+            {
+                $form['interruption'] = 'true';
+            }
+            else
+            {
+                $form['interruption'] = 'false';
+            }
+        }
+        else
+        {
+            $form['interruption'] = '';
+        }
+        if(isset($_POST["select_i"]))
+        {
+            $form['impact'] = $_POST["select_i"];
+        }
+        else
+        {
+            $form['impact'] = '';
+        }
+        if(isset($_POST["select_u"]))
+        {
+            $form['urgency'] = $_POST["select_u"];
+        }
+        else
+        {
+            $form['urgency'] = '';
+        }
+        if(isset($_POST["desde"]))
+        {
+            $form['desde'] = $_POST["desde"];
+        }
+        else
+        {
+            $form['desde'] = '';
+        }
+        if(isset($_POST["hasta"]))
+        {
+            $form['hasta'] = $_POST["hasta"];
+        }
+        else
+        {
+            $form['hasta'] = '';
+        }
+        if(isset($HTTP_POST_FILES['example-file-multiple-input']['size']))
+        {
+            $tmpfile = $HTTP_POST_FILES["example-file-multiple-input"]["tmp_name"];   // temp filename
+            $filename = $HTTP_POST_FILES["example-file-multiple-input"]["name"];      // Original filename
+            $handle = fopen($tmpfile, "r");                  // Open the temp file
+            $contents = fread($handle, filesize($tmpfile));  // Read the temp file
+            fclose($handle);                                 // Close the temp file
+            $decodeContent   = base64_encode($contents);
+            $form['fileName'] = $filename;
+            $form['fileContent'] = $decodeContent;
+        }
+        else
+        {
+            $form['fileName'] = '';
+        }
+        $ws = new WebServiceClient();
+        $form['catalog'] = $catalogo;
+        if($catalogo['subarea']=='Solucionar Problema'){
+            $response = $ws->CreateRequestSol($form);
+
+            $response = (array)$response['CallID'];
+                $response = $response['_'];
+                $pcView = 'servicio/servicios_ver_ticket';
+
+                $js = '';
+                $ticket = new Ticket();
+
+                $done = $ticket->findTicket($response);
+                if($done == 0)
+                {
+                    $data = array('tck' => $ticket);
+                }
+                else{
+                    $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
+                    $data = array('tckList' => $tckList);
+                    $pcView = 'servicio/servicios_home_page';
+                    $msg = "Algo salió mal, por favor intente más tarde.";
+                    if($done == 1)
+                    {
+                        $msg = "Ticket no encontrado, revisar información ingresada.";
+                    }
+                    elseif ($done == 2) 
+                    {
+                        $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
+                    }
+                    if($done)
+                    $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
+                }
+                echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));
+        }
+        else
+        {
+            $response = $ws->CreateRequestInteraction($form);
+            var_dump($response);
+        }
     }
 
     public function TestCreateInteractionAction()
@@ -456,18 +639,30 @@ class ComercioController extends ControllerBase
             try
             {
                 //Aqí voy
-                $tmpfile = $_FILES["example-file-multiple-input"]["tmp_name"];   // temp filename
-                $filename = $_FILES["example-file-multiple-input"]["name"];      // Original filename
-                $handle = fopen($tmpfile, "r");                  // Open the temp file
-                $contents = fread($handle, filesize($tmpfile));  // Read the temp file
-                fclose($handle);                                 // Close the temp file
-                $decodeContent   = base64_encode($contents);
-                $attach = array(
+                if(isset($_FILES["example-file-multiple-input"]["tmp_name"]))
+                {
+                    $tmpfile = $_FILES["example-file-multiple-input"]["tmp_name"];   // temp filename
+                    $filename = $_FILES["example-file-multiple-input"]["name"];      // Original filename
+                    $handle = fopen($tmpfile, "r");                  // Open the temp file
+                    $contents = fread($handle, filesize($tmpfile));  // Read the temp file
+                    fclose($handle);                                 // Close the temp file
+                    $decodeContent   = base64_encode($contents);
+                    $attach = array(
                         'content' => $decodeContent, 
                         'name' => $filename, 
                         'type' => $_FILES["example-file-multiple-input"]['type'], 
                         'size' => $_FILES["example-file-multiple-input"]["size"]
                     );
+                }
+                else
+                {
+                    $attach = array(
+                        'content' => '', 
+                        'name' => '', 
+                        'type' => '', 
+                        'size' => 0
+                    );
+                }
                 $ws = new WebServiceClient();
                 $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
                     $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),

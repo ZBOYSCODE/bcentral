@@ -7,6 +7,18 @@ use Phalcon\Mvc\Dispatcher\Exception;
 class WebServiceClient extends Model
 {
     private $client;
+    public function getFields($catalogItem)
+    {
+        $this->client = $this->di->get('soapclient-catalog');
+        $param = array(
+                   'keys' => array(
+                        'Name' => $catalogItem
+                    )
+                );
+        $response = (array)$this->client->RetrieveSvcCatalogList($param);
+        return (array) $response['instance'];
+    }
+
     public function getTicketsByUser($usr)
     {
         $query = 'callback.contact="' . $usr . '" or contact.name="' . $usr . '"';//"callback.contact=&quot;" . $usr ."&quot; and contact.name=&quot;" . $usr ."&quot;";
@@ -363,6 +375,119 @@ class WebServiceClient extends Model
         $response = (array)$this->client->RetrieveSvcCatalogKeysList($param);
         return $response;
     }
+    public function CreateRequestInteraction($form)
+    {
+        $this->client = $this->di->get('soapclient-catalog');
+        if($form['fileName'] != '')
+        {
+            $attach = array(
+                    '_' => $form['fileContent'],
+                    'href' => '<![CDATA[<' . $form['fileName'] . '>]]>',
+                    'action' => 'add',
+                    'name' => $form['fileName']
+                );    
+        }
+        else
+        {
+            $attach = '';
+        }
+        
+        $param = array(
+                'model' => array(
+                    'keys' => array(
+                        'CartId' => ''
+                    ),
+                    'instance' => array(
+                        'Service' => $form['ci'],
+                        'CallbackContactName' => $form['contact'],
+                        'cartItems' => array(
+                            'cartItems' => array(
+                                'type' => 'Structure',
+                                '_' => array(
+                                    'ItemName' => $form['catalog']['subarea'],
+                                    'Quantity' => '1',
+                                    'RequestedFor' => $this->di->get('test-user'),
+                                    'RequestedForType' => 'individual'
+                                )
+                            )
+                        ),
+                        //'NeededByTime' => $form['hasta'],
+                        'ContactName' => $form['contact'],
+                        'Urgency' => $form['urgency'],
+                        'Title' => $form['title'],
+                        'Purpose' => array(
+                            'Purpose' => $form['description']
+                        ),
+                        'attachments' => array(
+                            'attachments' => $attach
+                        )
+                    )
+                )
+            );
+        $response = $this->client->CreateSRCInteractionViaOneStep($param);
+        return (array)$response;
+    }
+
+     public function CreateRequestSol($form)
+    {
+        $this->client = $this->di->get('soapclient-servicedesk');
+        if($form['fileName'] != '')
+        {
+            $attach = array(
+                    '_' => $form['fileContent'],
+                    'href' => '<![CDATA[<' . $form['fileName'] . '>]]>',
+                    'action' => 'add',
+                    'name' => $form['fileName']
+                );    
+        }
+        else
+        {
+            $attach = '';
+        }
+        $contact = new Contact();
+        $contact->getContact($this->di->get('test-user'));
+        $param = array(
+                'model' => array(
+                    'keys' => '',
+                    'instance' => array(
+                        'ServiceRecipient' => $form['contact'], //quien recibe
+                        'Urgency' => $form['urgency'], // urgencia
+                        'OpenedBy' => $this->di->get('test-user'), //usuario que crea el ticket
+                        'Description' => array(
+                            'Description' => $form['description']//Descripcion
+                        ),
+                        'AffectedService' => $form['sa'], //servicio afectado
+                        'NotifyBy' => 'Telephone',
+                        'Solution' => '',
+                        'Category' => 'incident',
+                        'Area' => $form['catalog']['area'],
+                        'Subarea' => $form['catalog']['subarea'],
+                        'ContactEmail' => $contact->email,
+                        'ContactFirstName' => $contact->firstname,
+                        'ContactLastName' => $contact->lastname,
+                        'FailedEntitlement' => $form['interruption'],
+                        'EnteredByESS' => 'true',
+                        'Contact' => $this->di->get('test-user'),
+                        'Update' => '',
+                        'Impact' => $form['impact'],
+                        'AffectedCI' => $form['ci'],//parte dos de ci
+                        'Title' => $form['title'],
+                        'ReportedByContact' => $this->di->get('test-user'),
+                        'MetodoOrigen' => 'Autoservicio',
+                        'attachments' => array(
+                            'attachments' => $attach
+                        )
+                    ),
+                    'messages' => ''
+                )
+            );
+        $response = $this->client->CreateInteraction($param);
+        $response = (array)$response;
+        $response = (array)$response['model'];
+        $response = (array)$response['keys'];
+        return $response;
+    }
+
     public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida, $attach)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
@@ -376,6 +501,20 @@ class WebServiceClient extends Model
         }
         $contact = new Contact();
         $contact->getContact($this->di->get('test-user'));
+        if($attach['content'] !== '')
+        {
+            $attachment = array(
+                            'attachment' => array(
+                                    '_' => $attach['content'],
+                                    'name' => $attach['name'],
+                                    'attachmentType' => $attach['type']
+                                    )
+                                );
+        }
+        else
+        {
+            $attachment = array('attachment' => '');
+        }
         $param = array(
                 'model' => array(
                     'keys' => '',
@@ -404,13 +543,7 @@ class WebServiceClient extends Model
                         'Title' => $title,
                         'ReportedByContact' => $this->di->get('test-user'),
                         'MetodoOrigen' => 'Autoservicio',
-                        'attachments' => array(
-                                'attachment' => array(
-                                        '_' => $attach['content'],
-                                        'name' => $attach['name'],
-                                        'attachmentType' => $attach['type']
-                                    )
-                            )
+                        'attachments' => $attachment
                     ),
                     'messages' => ''
                 )

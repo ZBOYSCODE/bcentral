@@ -105,6 +105,68 @@ class Catalog extends Model
                     );
         return $result;
     }
+
+    public function getFields($name)
+    {
+        $fields = array(
+                    'detinatario' => false,
+                    'ci' => false,
+                    'titulo' => true,
+                    'descripcion' => true,
+                    'desde' => false,
+                    'impacto' =>false,
+                    'urgencia' => false,
+                    'interrupcion' => false,
+                    'autorizacion' => false,
+                    'adjunto' => true,
+                    'hasta' => false
+                );
+        if($name == 'Solucionar Problema')
+        {
+            $fields['ci'] = true;
+            $fields['impacto'] = true;
+            $fields['urgencia'] = true;
+            $fields['interrupcion'] = true;
+            $fields['detinatario'] = true;
+            return $fields;
+        }
+        $ws = new WebServiceClient();
+        $response = $ws->getFields($name);
+        $response = (array)$response['OptionDesc'];
+        $response = $response['OptionDesc'];
+        foreach ($response as $key => $value) 
+        {
+            $value = (array)$value;
+            $value = $value['_'];
+            if(strpos($value,'CI'))
+            {
+                $fields['ci'] = true;
+                continue;
+            }
+            if(strpos($value,'esde'))
+            {
+                $fields['desde'] = true;
+                continue;
+            }
+            if(strpos($value,'autoriza'))
+            {
+                $fields['autorizacion'] = true;
+                continue;
+            }
+            if(strpos($value, 'asta'))
+            {
+                $fields['hasta'] = true;
+                continue;
+            }
+            if(strpos($value,'estinatario'))
+            {
+                $fields['detinatario'] = true;
+                continue;
+            }
+        }
+        return $fields;
+    }
+
     public function gatCampos($name)
     {
          $campos = array(
