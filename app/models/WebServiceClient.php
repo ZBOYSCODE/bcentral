@@ -378,6 +378,10 @@ class WebServiceClient extends Model
     public function CreateRequestInteraction($form)
     {
         $this->client = $this->di->get('soapclient-catalog');
+        if($this->client == false)
+        {
+            return null;
+        }
         if($form['fileName'] != '')
         {
             $attach = array(
@@ -431,6 +435,10 @@ class WebServiceClient extends Model
      public function CreateRequestSol($form)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
+        if($this->client == false)
+        {
+            return null;
+        }
         if($form['fileName'] != '')
         {
             $attach = array(

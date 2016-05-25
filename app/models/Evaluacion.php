@@ -46,7 +46,7 @@ class Evaluacion extends Model
     {
     	if(func_num_args() == 0)
     	{
-    		$path = "C:\\Users\\jcocina\\Desktop\\xml\\";
+    		$path = "C:\\xampp\\htdocs\\bancocentral\\";
     	}
     	else 
     	{
