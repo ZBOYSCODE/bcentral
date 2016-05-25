@@ -143,7 +143,8 @@ $(function(){
 			dataType	: 'json',
 			cache 		: false,
 			error: function (request,error) {
-				alert('Error, repita el procedimiento.');
+				//alert('Error, repita el procedimiento.');
+				$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:"warning",align:"center"});
 				if (typeof NProgress !== "undefined" && NProgress != null)
 					NProgress.done();
 			},
