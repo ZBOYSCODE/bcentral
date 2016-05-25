@@ -1,4 +1,4 @@
-<form action="<?php print $this->url->get('comercio/CreateInteraction') ?>" method="post" enctype="multipart/form-data">
+<form id="solicitudForm" action="<?php print $this->url->get('comercio/CreateInteraction') ?>" method="post" enctype="multipart/form-data">
 <div class="nsBoton-form-solicitudes strap">
 		<div class="row">
 			<div class="col-md-8 center-block" style="text-align: center; padding-bottom: 15px;">
@@ -16,7 +16,7 @@
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-user">&nbsp;&nbsp;</i>Destinatario:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Destinatario" data-content="Persona a la que se le entregará el servicio.">
-								<select  data-placeholder="Selecciona un Opción"  id="select_dest" name="select_dest" class="select-chosen">
+								<select  data-placeholder="Selecciona un Opción"  id="input-select_dest" name="select_dest" class="select-chosen">
 									<?php 
 										foreach ($pcData['contactos'] as $key => $value) { ?>
 											<option value="<?php echo $value; ?>"><?php echo $value; ?></option>
@@ -24,6 +24,7 @@
 										}
 									 ?>
 		                        </select>
+		                        <label id="alert-select_dest" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -39,12 +40,13 @@
 						<label class="col-md-4 control-label" for="select_sa">
 							<i class="fa fa-cog">&nbsp;&nbsp;</i>Servicio Afectado:</label>
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Servicio Afectado" data-content="Blah Blah">
-							<select data-placeholder="Selecciona un Opción"  id="select_sa" name="select_sa" class="select-chosen">
+							<select data-placeholder="Selecciona un Opción"  id="input-select_sa" name="select_sa" class="select-chosen">
                                 <option value=""></option>
                                 <?php foreach ($pcData['listas'] as $key => $value) {?>
                                 	<option value="<?php print $key ?>"><?php print $key ?></option>
                                 <?php } ?>
 	                        </select>
+	                        <label id="alert-select_sa" style="color:red; display: none;" >Campo requerido</label>
 						</div>
 						</div>
 					</div>
@@ -58,9 +60,10 @@
 						<label class="col-md-4 control-label" for="scsl_cdg">
 							<i class="fa fa-cogs">&nbsp;&nbsp;</i>Componente:</label>
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Componente" data-content="Componente de Tecnología (Sistema, Hardware, Software)">
-							<select data-placeholder="Selecciona un Opción"  id="select_ci" name="select_ci" class="select-chosen">
+							<select data-placeholder="Selecciona un Opción"  id="input-select_ci" name="select_ci" class="select-chosen">
                                 <option value=""></option>
 	                        </select>
+	                        <label id="alert-select_ci" style="color:red; display: none;" >Campo requerido</label>
 						</div>
 						</div>
 					</div>
@@ -75,7 +78,8 @@
 					<label class="col-md-4 control-label" for="horaInicio">
 						<i class="fa fa-minus">&nbsp;&nbsp;</i>Descripción Breve:</label>
 					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Descripción Breve" data-content="Blah Blah Blah ..">
-						<input type="text" name="title" class="form-control" >
+						<input type="text" id="input-descripcion_breve" name="title" class="form-control" >
+	                        <label id="alert-descripcion_breve" style="color:red; display: none;" >Campo requerido</label>
 						<br>
 					</div>
 				</div>
@@ -84,7 +88,8 @@
 					<label class="col-md-4 control-label" for="horaFin">
 						<i class="fa fa-navicon">&nbsp;&nbsp;</i>Otros Antecedentes:</label>
 					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Otros Antecedentes" data-content="Blah Blah Blah ..">
-						<textarea class="form-control" rows="4" cols="50" name="description"></textarea>
+						<textarea id="input-description" class="form-control" rows="4" cols="50" name="description"></textarea>
+	                        <label id="alert-description" style="color:red; display: none;" >Campo requerido</label>
 					</div>
 				</div>
 			</fieldset>
@@ -99,10 +104,11 @@
 						<label class="col-md-4 control-label" for="scsl_cdg">
 							<i class="fa fa-user">&nbsp;&nbsp;</i>Hay Interrupción de Servicio ?:</label>
 						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Interrupción de Servicio" data-content="Blah Blah Blah ..">
-							<select data-placeholder="Selecciona un Opción"  id="select_is" name="select_is" class="select-chosen">
+							<select data-placeholder="Selecciona un Opción"  id="input-select_is" name="select_is" class="select-chosen">
                                     <option value="SI">SI</option>
                                     <option selected="selected" value="NO">NO</option>
 	                        </select>
+	                        <label id="alert-select_is" style="color:red; display: none;" >Campo requerido</label>
 						</div>
 						</div>
 					</div>
@@ -119,12 +125,13 @@
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-line-chart">&nbsp;&nbsp;</i>Impacto:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Impacto" data-content="Blah Blah Blah ..">
-								<select data-placeholder="Selecciona un Opción"  id="select_i" name="select_i" class="select-chosen">
+								<select data-placeholder="Selecciona un Opción"  id="input-select_i" name="select_i" class="select-chosen">
 	                                <option value="4">Empresa</option>
 	                                <option value="3">Sitio/Dpto</option>
 	                                <option value="2">Varios Usuarios</option>
 	                                <option value="1" selected="selected">Usuario</option>
 		                        </select>
+	                        <label id="alert-select_i" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -141,12 +148,13 @@
 						<label class="col-md-4 control-label" for="scsl_cdg">
 						<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>Urgencia:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Urgencia" data-content="Blah Blah Blah ..">
-								<select data-placeholder="Selecciona un Opción"  id="select_u" name="select_u" class="select-chosen">
+								<select data-placeholder="Selecciona un Opción"  id="input-select_u" name="select_u" class="select-chosen">
 	                                <option value="1">Crítica</option>
 	                                <option value="2">Alta</option>
 	                                <option value="3">Media</option>
 	                                <option value="4" selected="selected">Baja</option>
 		                        </select>
+	                        <label id="alert-select_u" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -162,7 +170,8 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i>Desde:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Desde" data-content="Blah Blah Blah ..">
-								<input type="text" class="form-control input-datepicker" name="desde" data-date-format="dd/mm/yyyy">
+								<input id="input-desde" type="text" class="form-control input-datepicker" name="desde" data-date-format="dd/mm/yyyy">
+	                        <label id="alert-desde" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -178,7 +187,8 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i>Hasta:</label>
 							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Hasta" data-content="Blah Blah Blah ..">
-								<input type="text" class="form-control input-datepicker" name="hasta" data-date-format="dd/mm/yyyy">
+								<input id="input-hasta" type="text" class="form-control input-datepicker" name="hasta" data-date-format="dd/mm/yyyy">
+	                        <label id="alert-hasta" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -233,8 +243,8 @@
 					<input type="hidden" name="campo-autorizacion" value="<?php echo $pcData['campos']['autorizacion']; ?>">
 					<input type="hidden" name="campo-adjunto" value="<?php echo $pcData['campos']['adjunto']; ?>">
 					<input type="hidden" name="campo-hasta" value="<?php echo $pcData['campos']['hasta']; ?>">
-					<div class="col-xs-4 center-block">
-						<button id="btnGuardar" type="submit" class="btn btn-block btn-bc">Enviar Solicitud</button>
+					<div class="" style="margin: 0 auto;width: 200px;">
+						<a id="btnGuardar" href="#" class="btn btn-block btn-bc">Enviar Solicitud</a>
 					</div>
 			  	</div>
 			</fieldset>

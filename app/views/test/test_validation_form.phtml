@@ -1,0 +1,42 @@
+<form class="cmxform" id="commentForm" method="get" action="">
+<fieldset>
+<legend>Please provide your name, email address (won't be published) and a comment</legend>
+<p>
+<label for="cname">Name (required, at least 2 characters)</label>
+<input id="input-cname" name="name" minlength="2" type="text" >
+<label id="alert-cname" style="color:red; display: none;" >Campo requerido</label>
+</p>
+<p>
+<label for="cemail">E-Mail (required)</label>
+<input id="input-email" type="email" name="email" >
+<label id="alert-email" style="color:red; display: none;" >Campo requerido</label>
+</p>
+<p>
+<label for="curl">URL (optional)</label>
+<input id="input-curl" type="url" name="url">
+<label id="alert-curl" style="color:red; display: none;" >Campo requerido</label>
+</p>
+<p>
+<label for="ccomment">Your comment (required)</label>
+<textarea id="input-ccomment" name="comment" ></textarea>
+<label id="alert-ccomment" style="color:red; display: none;" >Campo requerido</label>
+</p>
+
+<p>
+<label for="ccomment">Your comment (required)</label>
+<select  data-placeholder="Selecciona un Opción"  id="input-select" name="select_dest" class="select-chosen">
+			<option value=""></option>				
+			<option value="1">1</option>				
+</select>
+<label id="alert-select" style="color:red; display: none;" >Campo requerido</label>
+
+<div>
+<label for="ccomment">Your comment (required)</label>
+<input type="file" id="input-file" name="example-file-multiple-input" multiple="">
+<label id="alert-file" style="color:red; display: none;" >Campo requerido</label>
+</div>
+<div>
+<a class="btn btn-success" id="btn">enviar</a>
+</div
+</fieldset>
+</form>
