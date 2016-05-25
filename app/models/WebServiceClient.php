@@ -345,6 +345,10 @@ class WebServiceClient extends Model
     public function getCatalogStepOne($option)
     {
         $this->client = $this->di->get('soapclient-catalog');
+        if(!$this->client)
+        {
+            return null;
+        }
         $param = array('keys' => array(
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''

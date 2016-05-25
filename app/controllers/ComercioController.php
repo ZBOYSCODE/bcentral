@@ -80,19 +80,27 @@ class ComercioController extends ControllerBase
         }
         $ctlg = new Catalog();
         $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
+        if($catalogoMenu)
+        {
+            $js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
+            $pcView = 'servicio/servicios_error_page';
+            $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+            echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$data,'jsScript'=>$js));    
+        }
+        else
+        {
+            $pcData['catalogo'] = $catalogoMenu;
+            $pcData['styleCssMenu'] = $styleCssMenu;
+            $pcData['catalogoRutaCompleta'] = $catalogoPadre;
 
-        $pcData['catalogo'] = $catalogoMenu;
-        $pcData['styleCssMenu'] = $styleCssMenu;
-        $pcData['catalogoRutaCompleta'] = $catalogoPadre;
+            //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
+            $pcData['breadCrumbList']  = [
+              array($catalogoPadre,'active',$tipo),
+            ];
 
-        //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
-        $pcData['breadCrumbList']  = [
-          array($catalogoPadre,'active',$tipo),
-        ];
-
-        $js = $this->getJsCatalogo();
-        echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$pcData,'jsScript'=>$js));
-
+            $js = $this->getJsCatalogo();
+            echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$pcData,'jsScript'=>$js));
+        }
     }
 
     public function solicitudServicioAjaxAction() {
