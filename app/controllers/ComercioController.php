@@ -937,11 +937,10 @@ class ComercioController extends ControllerBase
                 else {
                     $(alert).css(\'display\',\'none\');
                 }
-
-                if(statusForm === 1){
-                    //$("#solicitudForm").submit();
-                }
             });
+            if(statusForm === 1){
+                $("#solicitudForm").submit();
+            }
         });
         ';
 
