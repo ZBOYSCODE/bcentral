@@ -173,6 +173,7 @@ class ComercioController extends ControllerBase
                     $pcData['catalogo'] = $catalog;
                     $pcData['contactos'] = $contactList;
                     $js = $this->getComponenteServAfectadoJs($listas);
+                    $js .= $this->getValidationJs();
 
                     //vista a renderizar
                     $pcView = 'servicio/servicios_solicitud_general';
@@ -434,6 +435,12 @@ class ComercioController extends ControllerBase
         $response = $cat->getServiceCatalogSP1('Servicios TI');
         var_dump($response);*/
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+
+    public function testFormAction(){
+        $pcView = 'test/test_validation_form';
+        $js = "$('.select-chosen').chosen();";
+        echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=>'','jsScript' => $js));  
     }
 
     public function CreateInteractionAction()
@@ -920,6 +927,34 @@ class ComercioController extends ControllerBase
                 $(\"#select_ci\").trigger(\"chosen:updated\");
         });
         ";
+
+        return $jsScript;
+    }
+
+    private function getValidationJs() {
+        $jsScript =
+        '
+            $("#btnGuardar").on(\'click\', function() {
+            var statusForm = 1;
+            $("[id^=input-]").each(function(){
+                var id = $(this).attr(\'id\');
+                var alert = id.split("-")[1];
+                alert = "#alert-"+alert;
+
+                if($(this).val().length === 0) {
+                    statusForm = 0;
+                    $(alert).css(\'display\',\'inline\');
+                }
+                else {
+                    $(alert).css(\'display\',\'none\');
+                }
+
+                if(statusForm === 1){
+                    //$("#solicitudForm").submit();
+                }
+            });
+        });
+        ';
 
         return $jsScript;
     }
