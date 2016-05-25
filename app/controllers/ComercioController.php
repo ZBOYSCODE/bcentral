@@ -827,7 +827,7 @@ class ComercioController extends ControllerBase
     {
         $jsScript =
         "
-            $(\"[name^='conf']\").on('click', function() {
+            $(\"[name^='conf-']\").on('click', function() {
             $(\"#optionLike\").val($(this).val());
             $(\"#ticketId\").val('SD1234');
             $(\"#evaluacionForm\").submit();
@@ -835,6 +835,8 @@ class ComercioController extends ControllerBase
 
 
         ";
+
+        //$jsScript = '';
     
         return $jsScript;
     }
