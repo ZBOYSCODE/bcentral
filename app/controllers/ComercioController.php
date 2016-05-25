@@ -78,11 +78,17 @@ class ComercioController extends ControllerBase
             $response = new \Phalcon\Http\Response();
             return $response->redirect("");
         }
-        try
+        $ctlg = new Catalog();
+        $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
+        if($catalogoMenu)
         {
-            $ctlg = new Catalog();
-            $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
-
+            $js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
+            $pcView = 'servicio/servicios_error_page';
+            $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+            echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$data,'jsScript'=>$js));    
+        }
+        else
+        {
             $pcData['catalogo'] = $catalogoMenu;
             $pcData['styleCssMenu'] = $styleCssMenu;
             $pcData['catalogoRutaCompleta'] = $catalogoPadre;
@@ -95,15 +101,6 @@ class ComercioController extends ControllerBase
             $js = $this->getJsCatalogo();
             echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$pcData,'jsScript'=>$js));
         }
-        catch (Exception $e)
-        {
-            $js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
-            $pcView = 'servicio/servicios_error_page';
-            $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
-            echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$pcData,'jsScript'=>$js));
-        }
-        
-
     }
 
     public function solicitudServicioAjaxAction() {
@@ -950,7 +947,7 @@ class ComercioController extends ControllerBase
                 }
 
                 if(statusForm === 1){
-                    //$("#solicitudForm").submit();
+                    $("#solicitudForm").submit();
                 }
             });
         });
