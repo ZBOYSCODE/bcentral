@@ -119,7 +119,7 @@ $di->set('acl', function () {
 $di->set('soapclient-servicedesk', function () use ($configWs) { 
      try
     {
-        $client = @new SoapClient($configWs->wsdlUriServ, 
+        $client = new SoapClient($configWs->wsdlUriServ, 
             array(
                 'login' => $configWs->wsdlUsr, 
                 'password' => $configWs->wsdlPass, 

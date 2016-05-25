@@ -3,6 +3,7 @@ namespace Gabs\Controllers;
 use Gabs\Models\Personas;
 use Gabs\Models\Ticket;
 use Gabs\Models\Knowledge;
+use Gabs\Models\Evaluacion;
 
 class AjaxController extends ControllerBase
 {
@@ -49,6 +50,29 @@ class AjaxController extends ControllerBase
     	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal()');
     	$this->mifaces->run();
     }	
+    public function enviarEncuestaAction()
+    {
+    	$this->mifaces->newFaces();
+    	$eval = new Evaluacion();
+    	$eval->ticket = $this->request->getPost('idTicket');
+        $eval->conforme = $this->request->getPost('preg0');
+        $eval->preg1 = $this->request->getPost('PREG1');
+        $eval->preg2 = $this->request->getPost('PREG2');
+        $eval->preg3 = $this->request->getPost('PREG3');
+        $eval->preg4 = $this->request->getPost('PREG4');
+        $eval->preg5 = $this->request->getPost('PREG5');
+        $eval->comentario = $this->request->getPost('comentarios');
+        if($eval->save())
+        {
+        	$this->mifaces->addToMsg('success', 'Gracias por dar su opinion.');
+        }
+        else
+        {
+        	$this->mifaces->addToMsg('warning', 'En estos momentos no es posible guardar la respuesta enviada.');
+        }
+    	$this->mifaces->addPosRendEval('$("#modal-encuesta").modal("hide");');
+    	$this->mifaces->run();	
+    }
 	/*MIGUELO*/
 	public function reiterarTicketAction()
 	{
