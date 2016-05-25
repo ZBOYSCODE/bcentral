@@ -21,7 +21,7 @@
                     <div class="block full">
                         <div class="block-content-full">
                             <div class="table-responsive remove-margin-bottom">
-                            
+                                
                                 <table id="table" class="table table-striped table-vcenter  table-condensed remove-margin-bottom">
                                     <thead>
                                         <tr>
@@ -41,7 +41,7 @@
                                             </td>
                                             <td class="text-center bc-text"> </td>
                                         </tr>-->
-                                        <form id="verTicketForm" action="<?php print $this->url->get('comercio/ticket') ?>" method="post">
+                                        
                                             <?php 
                                                 $i = 1;
                                                 foreach ($pcData['tckList'] as $key => $val) 
@@ -84,10 +84,12 @@
                                                     $i = $i + 1;
                                                 }
                                              ?>
-                                                <input class="hidden" name="id" id="idTicket">
-                                            </form>
+
                                     </tbody>
                                 </table>
+                            <form id="verTicketForm" action="<?php print $this->url->get('comercio/ticket') ?>" method="post">
+                                <input class="hidden" name="id" id="idTicket">
+                            </form>
                             <form id="evaluacionForm" action="<?php print $this->url->get('comercio/evaluarAtencionModal') ?>" method="post" enctype="multipart/form-data" data-type="ajax">
                                 <input  class="hidden" id="optionLike" name="optionLike" />
                                 <input  class="hidden" id="ticketId" name="ticketId" />
