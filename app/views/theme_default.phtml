@@ -169,29 +169,6 @@
 			$("#verTicketForm").submit();
 		});
 	</script>
-	<script>
-		$('[id^="botonPagina-"]').on('click', function() {
-			var pag_sig = $(this).data("pagina");
-
-			$('[id^="stylePagina-"]').each(function (){
-				$(this).removeClass('active');
-			});
-			$('[id^="stylePagina-'+pag_sig+'"]').addClass('active');
-
-			$('[id^="fila-"]').each(function (){
-				//alert($(this).data('pagina'))
-				if($(this).data('pagina') == pag_sig)
-				{
-					$(this).css("display","");
-					
-				}
-				else
-				{
-					$(this).css("display","none");
-				}
-			});
-		});
-	</script>
 
 	<?php
 	if(isset($jsScript) && $jsScript!=null){
