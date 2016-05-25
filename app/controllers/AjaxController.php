@@ -49,15 +49,26 @@ class AjaxController extends ControllerBase
     	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal()');
     	$this->mifaces->run();
     }	
-
+	/*MIGUELO*/
 	public function reiterarTicketAction()
 	{
     	$this->mifaces->newFaces();
     	$ticket = new Ticket();
     	$ticket->CallID = $_POST['tck'];
     	$result = $ticket->updateTicket($_POST['txt']);
-    	$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
+		
+        $done = $ticket->findTicket($_POST['tck']);
+		$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
     	$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
+        if($done == 0)
+        {
+            $data['pcData'] = array('tck' => $ticket);
+			$toRend = $this->view->render('servicio/servicios_ver_ticket_bitacora',$data);
+			$this->mifaces->addToRend('tkt_bitacora',$toRend);			
+        }else{
+			$this->mifaces->addToMsg('warning', 'En estos momentos no es posible actualizar la Bitacora.');		
+		}
+		
     	$this->mifaces->run();		
 	}  
 
