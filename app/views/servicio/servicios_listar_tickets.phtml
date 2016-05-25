@@ -21,7 +21,7 @@
                     <div class="block full">
                         <div class="block-content-full">
                             <div class="table-responsive remove-margin-bottom">
-                            <form id="evaluacionForm" action="<?php print $this->url->get('comercio/evaluarAtencionModal') ?>" method="post" enctype="multipart/form-data" data-type="ajax">
+                            
                                 <table id="table" class="table table-striped table-vcenter  table-condensed remove-margin-bottom">
                                     <thead>
                                         <tr>
@@ -74,9 +74,9 @@
                                                     <td><span class="label label-<?php echo $label; ?>"><?php echo $val['Status']; ?></span></td>
                                                     <td><?php echo $val['Title']; ?></td>
                                                     <td class="padding0center"><div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
-                                                            <input class="hidden" id="like<?php echo $val['CallID']; ?>1" name="conf<?php echo $val['CallID']; ?>" type="radio" value="1" />
+                                                            <input class="hidden" id="like<?php echo $val['CallID']; ?>1" name="conf1-<?php echo $val['CallID']; ?>" type="radio" value="1" />
                                                             <label for="like11" class="likeimgGray"></label>
-                                                            <input class="hidden" id="like<?php echo $val['CallID']; ?>2" name="conf1" type="radio" value="2" />
+                                                            <input class="hidden" id="like<?php echo $val['CallID']; ?>2" name="conf2-<?php echo $val['CallID']; ?>" type="radio" value="2" />
                                                             <label for="like12" class="dislikeimgGray"></label>
                                                         </div></td>
                                                     </tr>
@@ -88,7 +88,7 @@
                                             </form>
                                     </tbody>
                                 </table>
-
+                            <form id="evaluacionForm" action="<?php print $this->url->get('comercio/evaluarAtencionModal') ?>" method="post" enctype="multipart/form-data" data-type="ajax">
                                 <input  class="hidden" id="optionLike" name="optionLike" />
                                 <input  class="hidden" id="ticketId" name="ticketId" />
                             </form>
