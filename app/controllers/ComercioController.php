@@ -314,7 +314,8 @@ class ComercioController extends ControllerBase
     {
 
         $like = $_POST['optionLike'];
-        $toRend=$this->view->render('servicio/servicios_encuesta_modal', array("like"=>$like));
+        $idticket = $_POST['ticketId'];
+        $toRend=$this->view->render('servicio/servicios_encuesta_modal', array("like"=>$like, "idTicket" =>$idticket));
         $this->mifaces->addToRend('contenidomodal', $toRend);
         $this->mifaces->addPosRendEval('$("#modal-encuesta").modal("show");');
         $this->mifaces->addPosRendEval($this->getLikeEvalJs());
@@ -829,7 +830,7 @@ class ComercioController extends ControllerBase
         "
             $(\"[name^='conf-']\").on('click', function() {
             $(\"#optionLike\").val($(this).val());
-            $(\"#ticketId\").val('SD1234');
+            $(\"#ticketId\").val($(this).data('id'));
             $(\"#evaluacionForm\").submit();
             });
 
