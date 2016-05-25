@@ -172,21 +172,22 @@
 	<script>
 		$('[id^="botonPagina-"]').on('click', function() {
 			var pag_sig = $(this).data("pagina");
+
+			$('[id^="stylePagina-"]').each(function (){
+				$(this).removeClass('active');
+			});
+			$('[id^="stylePagina-'+pag_sig+'"]').addClass('active');
+
 			$('[id^="fila-"]').each(function (){
 				//alert($(this).data('pagina'))
 				if($(this).data('pagina') == pag_sig)
 				{
-					if($(this).hasClass("hidden"))
-					{
-						$(this).toggleClass("hidden");
-					}
+					$(this).css("display","");
+					
 				}
 				else
 				{
-					if(!$(this).hasClass("hidden"))
-					{
-						$(this).toggleClass("hidden");
-					}
+					$(this).css("display","none");
 				}
 			});
 		});

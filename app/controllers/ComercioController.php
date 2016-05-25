@@ -806,6 +806,7 @@ class ComercioController extends ControllerBase
 
                         /* Initialize Datatables */
                         $('#table').dataTable({
+                           'paging':   true,
                             columnDefs: [ { orderable: true, targets: [ 1, 2, 3] } ]
                         });
 
@@ -813,7 +814,6 @@ class ComercioController extends ControllerBase
                         $('div.dataTables_length').html('');
                         $('#table_filter').html('');
                         $('#table_info').html('');
-                        $('#table_paginate').html('');
                     }
                 };
             }();

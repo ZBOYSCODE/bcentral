@@ -599,8 +599,52 @@ body {
     border-bottom: 0px !important;
 }
 
-#table_length, #dataTables_filter, #table_info, #table_paginate, #table_filter {
+#table_length, #dataTables_filter, #table_info, #table_filter {
     display: none;
+}
+
+#table_paginate {
+    display: block;
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#table_previous, #table_next {
+    display: none;
+}
+
+.paginate_button {
+    border-radius: 32px;
+    padding: 0px 9px 0px 7px;
+    font-size: 20px;
+    text-align: center;
+    color: #878786;
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.paginate_button:hover{
+    background: #878786;
+    color:white;
+}
+
+.paginate_button.current {
+    border-radius: 32px;
+    padding: 0px 9px 0px 7px;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    background: #878786;
+    margin: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dataTables_wrapper > div {
+    background-color: white;
+    border: 0px;
 }
 
 @media (max-width: 991px) {

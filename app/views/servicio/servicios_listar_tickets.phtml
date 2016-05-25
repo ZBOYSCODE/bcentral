@@ -48,7 +48,7 @@
                                                 {
                                                     $page = ceil($i / 10);
                                                     ?>
-                                                    <tr id="fila-<?php echo $val['CallID']; ?>" data-pagina="<?php echo $page; ?>" class="<?php if($page>1){ echo 'hidden'; } ?>">
+                                                    <tr id="fila-<?php echo $val['CallID']; ?>" data-pagina="<?php echo $page; ?>" style="<?php if($page>1){ echo ''; } ?>">
                                                         <td class="text-center bc-text">
                                                             <?php  
                                                             $label = "bc";
@@ -93,13 +93,7 @@
                                 <input  class="hidden" id="ticketId" name="ticketId" />
                             </form>
                             </div>
-                            <div class="text-center">
-                                <ul class="pagination">
-                                    <li class="active"><a id="botonPagina-1" data-pagina="1" href="javascript:void(0)">1</a></li>
-                                    <li><a id="botonPagina-2" data-pagina="2" href="javascript:void(0)">2</a></li>
-                                    <li><a id="botonPagina-3" data-pagina="3" href="javascript:void(0)">3</a></li>
-                                </ul>
-                            </div>
+                        
                         </div>
                     </div>
                     <!-- END Tickets List -->
