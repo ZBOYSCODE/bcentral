@@ -178,17 +178,26 @@ $di->set('soapclient-knowledge', function () use ($configWs) {
         );
 });
 
-$di->set('soapclient-catalog', function () use ($configWs) { 
-    return new SoapClient($configWs->wsdlUriCata, 
-        array(
-            'login' => $configWs->wsdlUsr, 
-            'password' => $configWs->wsdlPass, 
-            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
-            'soap_version'   => SOAP_1_2,
-            'exceptions' => true,
-            'trace' => false
-            )
-        );
+$di->set('soapclient-catalog', function () use ($configWs) {
+    try
+    {
+        $client = new SoapClient($configWs->wsdlUriCata, 
+            array(
+                'login' => $configWs->wsdlUsr, 
+                'password' => $configWs->wsdlPass, 
+                'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+                'soap_version'   => SOAP_1_2,
+                'exceptions' => true,
+                'trace' => false
+                )
+            );
+        return $client;
+    }
+    catch (Exception $e)
+    {
+        $client = false;
+    }
+    return $client;
 });
 
 $di->set('test-user', function () use ($configWs) {

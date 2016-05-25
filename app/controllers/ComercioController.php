@@ -553,8 +553,15 @@ class ComercioController extends ControllerBase
         $form['catalog'] = $catalogo;
         if($catalogo['subarea']=='Solucionar Problema'){
             $response = $ws->CreateRequestSol($form);
-
-            $response = (array)$response['CallID'];
+            if($response == null)
+            {
+                $pcView = 'servicio/servicios_error_page';
+                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+                echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
+            }
+            else
+            {
+                $response = (array)$response['CallID'];
                 $response = $response['_'];
                 $pcView = 'servicio/servicios_ver_ticket';
 
@@ -583,11 +590,29 @@ class ComercioController extends ControllerBase
                     $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
                 }
                 echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));
+            }
         }
         else
         {
             $response = $ws->CreateRequestInteraction($form);
-            var_dump($response);
+            if($response == null)
+            {
+                $pcView = 'servicio/servicios_error_page';
+                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+                echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
+            }
+            $status = $response['status'];
+            if(strpos($status, 'FAILURE'))
+            {
+                $pcView = 'servicio/servicios_error_page';
+                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'El WebService entrega respuesta: '.$status.' cuando se intenta crear una interacción.' );
+                echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
+            }
+            else
+            {
+                var_dump($response);
+            }
+            
         }
     }
 
