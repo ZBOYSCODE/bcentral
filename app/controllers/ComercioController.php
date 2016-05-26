@@ -604,7 +604,7 @@ class ComercioController extends ControllerBase
                     if($done)
                     $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
                 }
-                echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>isset($js)?$js:'');
+                echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>isset($js)?$js:''));
             }
         }
         else
@@ -905,13 +905,13 @@ class ComercioController extends ControllerBase
 
         $jsScript =
         "
-        $(\"#select_sa\").on('change', function(){
+        $(\"#input-select_sa\").on('change', function(){
                 //lista completa desde ws
                 var lista_completa =".$listajson." ;
 
                 //dejamos vacia la listaASasa
-                $(\"#select_ci\").empty();
-                $(\"#select_ci\").trigger(\"chosen:updated\");
+                $(\"#input-select_ci\").empty();
+                $(\"#input-select_ci\").trigger(\"chosen:updated\");
 
                 // actualizamos el select de componente
                 $.each(lista_completa[$(this).val()], function(key,value) {
@@ -919,9 +919,9 @@ class ComercioController extends ControllerBase
                   var option = $(\"<option></option>\")
                     .attr(\"value\", value)
                     .text(value);
-                  $(\"#select_ci\").append(option);
+                  $(\"#input-select_ci\").append(option);
                 });
-                $(\"#select_ci\").trigger(\"chosen:updated\");
+                $(\"#input-select_ci\").trigger(\"chosen:updated\");
         });
         ";
 
