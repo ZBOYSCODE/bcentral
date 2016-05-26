@@ -301,7 +301,14 @@ class Ticket extends Model
         $this->UpdateTime = $this->parseDate($this->UpdateTime['_']);
         $this->OpenedBy = (array)$result['OpenedBy'];
         $this->OpenedBy = $this->OpenedBy['_'];
-        $temp = (array)$result['Description'];
+        if(array_key_exists('Description', $result))
+        {
+            $temp = (array)$result['Description'];
+        }
+        else
+        {
+            $temp = null;
+        }
         if(isset($temp))
         {
             $this->Description = (array)$temp['Description'];
@@ -603,25 +610,32 @@ class Ticket extends Model
                     $fecha = $this->parseDate($fecha['_']);
                     $user = (array)$a['Operator'];
                     $user = $user['_'];
-                    $description = (array)$a['Description'];
-                    $description = (array)$description['Description'];
-                    if(array_key_exists('_', $description))
+                    if(array_key_exists('Description', $a))
                     {
-                        $description = $description['_'];
-                    }
-                    else if(sizeof($description)>1)
-                    {
-                        $tempText = '';
-                        $slt = '';
-                        foreach ($description as $key => $value) {
-                            $value = (array)$value;
-                            $tempText = $tempText . $slt . $value['_'];
-                            if($slt = '')
-                            {
-                                $slt = "\n";
-                            }
+                        $description = (array)$a['Description'];
+                        $description = (array)$description['Description'];
+                        if(array_key_exists('_', $description))
+                        {
+                            $description = $description['_'];
                         }
-                        $description = $tempText;
+                        else if(sizeof($description)>1)
+                        {
+                            $tempText = '';
+                            $slt = '';
+                            foreach ($description as $key => $value) {
+                                $value = (array)$value;
+                                $tempText = $tempText . $slt . $value['_'];
+                                if($slt = '')
+                                {
+                                    $slt = "\n";
+                                }
+                            }
+                            $description = $tempText;
+                        }
+                    }
+                    else
+                    {
+                        $description = '';
                     }
                     array_push($temp, array('fecha' => $fecha, 'tipo' => $tipo, 'user' => $user, 'description' => $description));
                 }
@@ -655,7 +669,8 @@ class Ticket extends Model
 
         $tckList = array();
         $count = 1;
-        foreach ($result['instance'] as $key => $value) 
+
+        foreach (array_reverse($result['instance']) as $key => $value) 
         {
             if($count > 30)
             {
@@ -666,8 +681,15 @@ class Ticket extends Model
             $id = $id['_'];
             $status = (array)$value['Status'];
             $status = $status['_'];
-            $title = (array)$value['Title'];
-            $title = $title['_'];
+            if(array_key_exists('Title', $value))
+            {
+                $title = (array)$value['Title'];
+                $title = $title['_'];
+            }
+            else
+            {
+                $title = "";
+            }
             array_push($tckList, array('CallID' => $id, 'Status' => $this->statusToEsp($status), 'Title' => $title));
             $count = 1 + $count;
         }

@@ -1,0 +1,71 @@
+<form id="solicitudForm" action="<?php print $this->url->get('comercio/Ldap') ?>" method="post" enctype="multipart/form-data">
+<div class="nsBoton-form-solicitudes strap">
+		<div class="row">
+			<div class="col-md-8 center-block" style="text-align: center; padding-bottom: 15px;">
+				<h4><div class="alert" style="color:white ;background-color: #002453;border-color: #002453;">Test <strong>conexión LDAP</strong></div></h4>
+			</div>
+			
+			<div class="col-md-8 center-block">
+			
+				<fieldset>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="horaInicio">
+							<i class="fa fa-user">&nbsp;&nbsp;</i>Usuario</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Usuario" data-content="Blah Blah Blah ..">
+							<input type="text" id="input-usuario" name="usuario" class="form-control" >
+		                        <label id="alert-usuario" style="color:red; display: none;" >Campo requerido</label>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="horaInicio">
+							<i class="fa fa-user">&nbsp;&nbsp;</i>Dominio</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Dominio" data-content="Blah Blah Blah ..">
+							<input type="text" id="input-usuario" name="dom" class="form-control" >
+		                        <label id="alert-dom" style="color:red; display: none;" >Campo requerido</label>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="horaInicio">
+							<i class="fa fa-key">&nbsp;&nbsp;</i>Password (no secreta)</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Password" data-content="Blah Blah Blah ..">
+							<input type="text" id="input-password" name="password" class="form-control" >
+		                        <label id="alert-password" style="color:red; display: none;" >Campo requerido</label>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="horaInicio">
+							<i class="fa fa-cogs">&nbsp;&nbsp;</i>Base dn</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="dn" data-content="Blah Blah Blah ..">
+							<input type="text" id="input-dn" name="dn" class="form-control" >
+		                        <label id="alert-dn" style="color:red; display: none;" >Campo requerido</label>
+							<br>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="horaInicio">
+							<i class="fa fa-cog">&nbsp;&nbsp;</i>Server IP</label>
+						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="IP" data-content="Blah Blah Blah ..">
+							<input type="text" id="input-ip" name="ip" class="form-control" >
+		                        <label id="alert-dn" style="color:red; display: none;" >Campo requerido</label>
+							<br>
+						</div>
+					</div>
+				</fieldset>
+				<fieldset style="margin-top: 30px;">
+					<div class="form-group">
+						<div class="" style="margin: 0 auto;width: 200px;">
+							<button type="submit" class="btn btn-block btn-bc" form="solicitudForm" value="Submit">Test</button>
+						</div>
+				  	</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</form>
