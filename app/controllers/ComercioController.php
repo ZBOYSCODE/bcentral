@@ -44,9 +44,10 @@ class ComercioController extends ControllerBase
 	/**MJARA**/
     public function conocimientoAction() 
     {
+		$js = $this->getJsKnowsDatatables();
         $pcView = 'servicio/servicios_base_conocimiento';
         $data = array('knowList' => array());
-		echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$data));
+		echo $this->view->render('theme_default',array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=>$data,'jsScript'=>$js));
     }
 
     public function solicitudServicioAction($tipo) 
@@ -931,6 +932,37 @@ class ComercioController extends ControllerBase
 
         return $jsScript;
     }
+	
+    private function getJsKnowsDatatables() 
+    {
+        $jsScript =
+        "
+            var TablesDatatables = function() {
+
+                return {
+                    init: function() {
+                        /* Initialize Bootstrap Datatables Integration */
+                        //App.datatables();
+
+                        /* Initialize Datatables */
+                        $('#table').dataTable({
+                           'paging':   true,
+                            columnDefs: [ { orderable: false } ]
+                        });
+
+                        /* Add placeholder attribute to the search input */
+                        $('div.dataTables_length').html('');
+                        $('#table_filter').html('');
+                        $('#table_info').html('');
+                    }
+                };
+            }();
+
+            $(function(){ TablesDatatables.init(); });
+        ";
+
+        return $jsScript;
+    }	
 
     private function getLikeJs() 
     {
