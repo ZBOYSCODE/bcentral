@@ -10,6 +10,10 @@ class Catalog extends Model
     {
         $wsClient = new WebServiceClient();
         $respnse = $wsClient->getCatalogStepOne($name);
+        if($respnse == null)
+        {
+            return false;
+        }
         $result = array();
         $icons = $this->di->get('catalog-icons');
         if(array_key_exists('Name', $respnse) == false)

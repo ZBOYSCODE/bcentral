@@ -76,33 +76,9 @@ class Knowledge extends Model
          				'11' => 'Noviembre',
          				'12' => 'Diciembre'
          			);
-		if($d[8]=='0')
-		{
-			$d[8] = '';
-		}
-		$temp = intval($d[11].$d[12]);
-		if($temp >= 12)
-		{
-			$t = ' pm';
-			$temp = $temp - 12;
-
-		}
-		else
-		{
-			$t = ' am';
-		}
-
-        if($temp < 10)
-     	{
-     		$d[11] = '0';
-     		$d[12] = (string)$temp;
-     	}
-     	else
-     	{
-     		$temp = $temp - 10;
-     		$d[11] = '1';
-     		$d[12] = (string)$temp;
-     	}
-         return $months[$d[5].$d[6]] . ' ' . $d[5] . $d[6] . ', ' . $d[0] . $d[1] . $d[2] . $d[3] . ' - ' . $d[11] . $d[12] . ':' . $d[14] . $d[15] . $t;
+         $d=mktime(intval($d[11].$d[12], 10) + 5, intval($d[14].$d[15], 10), 0, intval($d[5].$d[6] ,10), intval($d[8].$d[9], 10), intval($d[0].$d[1].$d[2].$d[3], 10));
+         // hh, mm, ss, m, d, y
+         $result =  $months[date("m", $d)] . ' ' . date("d, Y h:i a", $d);
+         return $result;
     }
 }

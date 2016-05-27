@@ -764,6 +764,24 @@ class Ticket extends Model
     function parseDate($d)
     {
          $d = str_split($d);
-         return $d[8].$d[9].'/'.$d[5].$d[6].'/'.$d[0].$d[1].$d[2].$d[3].' '.$d[11].$d[12].':'.$d[14].$d[15].':'.$d[17].$d[18];
+         //return $d[8].$d[9].'/'.$d[5].$d[6].'/'.$d[0].$d[1].$d[2].$d[3].' '.$d[11].$d[12].':'.$d[14].$d[15].':'.$d[17].$d[18];
+         $months = array(
+                        '01' => 'Enero',
+                        '02' => 'Febrero',
+                        '03' => 'Marzo',
+                        '04' => 'Abril',
+                        '05' => 'Mayo',
+                        '06' => 'Junio',
+                        '07' => 'Julio',
+                        '08' => 'Agosto',
+                        '09' => 'Septiembre',
+                        '10' => 'Octubre',
+                        '11' => 'Noviembre',
+                        '12' => 'Diciembre'
+                    );
+         $d=mktime(intval($d[11].$d[12], 10) + 5, intval($d[14].$d[15], 10), 0, intval($d[5].$d[6] ,10), intval($d[8].$d[9], 10), intval($d[0].$d[1].$d[2].$d[3], 10));
+         // hh, mm, ss, m, d, y
+         $result =  $months[date("m", $d)] . ' ' . date("d, Y h:i a", $d);
+         return $result;
     }
 }

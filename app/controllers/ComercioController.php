@@ -80,7 +80,7 @@ class ComercioController extends ControllerBase
         }
         $ctlg = new Catalog();
         $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
-        if($catalogoMenu)
+        if(!$catalogoMenu)
         {
             $js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
             $pcView = 'servicio/servicios_error_page';
@@ -369,7 +369,6 @@ class ComercioController extends ControllerBase
         $response['km'] = $km->getKnowledge('KM0257');
         var_dump($response);
         echo "<br><br>";
-        print_r($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
     public function Testws3Action()
@@ -402,13 +401,13 @@ class ComercioController extends ControllerBase
     public function Testws5Action()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getFields('Crear, Eliminar Cuenta');
+        //$response = $ws->getFields('Crear, Eliminar Cuenta');
         
-        var_dump($response);
-        echo '<br><br><br>';
-        $cat = new Catalog();
-        $response = $cat->getFields('Crear, Eliminar Cuenta');
-        //$response = $ws->getContact("ALARCON, FELIPE");
+        //var_dump($response);
+        //echo '<br><br><br>';
+        //$cat = new Catalog();
+        //$response = $cat->getFields('Crear, Eliminar Cuenta');
+        $response = $ws->getContact("ALARCON, FELIPE");
         //$response = $ws->getRequerimentList();
 
         var_dump($response);
