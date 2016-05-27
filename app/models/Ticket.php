@@ -779,7 +779,7 @@ class Ticket extends Model
                         '11' => 'Noviembre',
                         '12' => 'Diciembre'
                     );
-         $d=mktime(intval($d[11].$d[12], 10) + 5, intval($d[14].$d[15], 10), 0, intval($d[5].$d[6] ,10), intval($d[8].$d[9], 10), intval($d[0].$d[1].$d[2].$d[3], 10));
+         $d=mktime(intval($d[11].$d[12], 10)  - 4, intval($d[14].$d[15], 10), 0, intval($d[5].$d[6] ,10), intval($d[8].$d[9], 10), intval($d[0].$d[1].$d[2].$d[3], 10));
          // hh, mm, ss, m, d, y
          $result =  $months[date("m", $d)] . ' ' . date("d, Y h:i a", $d);
          return $result;
