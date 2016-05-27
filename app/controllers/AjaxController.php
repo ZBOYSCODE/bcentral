@@ -116,6 +116,7 @@ class AjaxController extends ControllerBase
     	$toRend = $this->view->render('servicio/servicios_base_conocimiento_tr',array('pcData'=>$data));
     	$this->mifaces->newFaces();
     	$this->mifaces->addToRend('conocimiento-tbody',$toRend);
+		$this->mifaces->addPosRendEval('$(function(){ TableskDatatables.init(); });');
     	$this->mifaces->run();	
 	}
 	
