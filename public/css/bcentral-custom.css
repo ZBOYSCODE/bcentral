@@ -642,6 +642,15 @@ body {
     cursor: pointer;
 }
 
+#conocimiento-table_previous {
+    display: none;
+}
+
+#conocimiento-table_next {
+    display: none;
+}
+
+
 .dataTables_wrapper > div {
     background-color: white;
     border: 0px;
