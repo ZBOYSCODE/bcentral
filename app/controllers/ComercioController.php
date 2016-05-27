@@ -364,12 +364,12 @@ class ComercioController extends ControllerBase
     public function Testws2Action()
     {
         $ws = new WebServiceClient();
-        $km = new Knowledge();
-        //$response = $ws->getTicket('SD68157');
-        $response['ws'] = $ws->getKnowledge('KM0257');
-        $response['km'] = $km->getKnowledge('KM0257');
+        //$km = new Knowledge();
+        $response = $ws->getTicket('SD68157');
+        //$response['ws'] = $ws->getKnowledge('KM0257');
+        //$response['km'] = $km->getKnowledge('KM0257');
         var_dump($response);
-        echo "<br><br>";
+        //echo "<br><br>";
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
     public function Testws3Action()
