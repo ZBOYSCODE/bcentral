@@ -45,18 +45,14 @@
 		<?php print($this->tag->javascriptInclude("js/vendor/modernizr-respond.min.js"))?>
     </head>
     <body>
-        <!-- Login Background -->
-        <div id="login-background">
-            <!-- For best results use an image with a resolution of 2560x400 pixels (prefer a blurred image for smaller file size) -->
-            <?php print( $this->tag->image(array("img/background-encabezado2.png","alt"=>"Login Background","class"=>"animation-pulseSlow")));?>
-        </div>
+
         <!-- END Login Background -->
 
         <!-- Login Container -->
-        <div id="login-container" class="animation-fadeIn">
+        <div id="login-container"  style="top:90px;" class="animation-fadeIn">
             <!-- Login Title -->
             <div class="login-title text-center">
-                <img src="<?php print($this->url->get("img/bc-chile-icon.png"))?>" style="width: 50px;opacity: 0.8;"> 
+                <img src="<?php print($this->url->get("img/logo-bcentral-100.png"))?>" style="width: 100px;opacity: 0.8;"> 
                 <h1><?php print($this->config->appName)?><br><small>Por favor <strong>Ingresa tus datos</strong> <strong></strong></small></h1>
             </div>
             <!-- END Login Title -->
