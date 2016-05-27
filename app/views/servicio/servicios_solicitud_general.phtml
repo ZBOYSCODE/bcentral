@@ -219,9 +219,16 @@
 
 			<fieldset>
 				<div class="form-group">
-	                <label class="col-md-4 control-label" for="example-file-multiple-input">Información Adicional</label>
+	                <label class="col-md-4 control-label" for="example-file-multiple-input">
+	                 <?php print($pcData['campos']['autorizacion'] == true? '<strong style="color:red;">*</strong>':''); ?>
+	                 	Información Adicional
+	                 </label>
 	                <div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Información Adicional" data-content="Blah Blah Blah ..">
-	                    <input type="file" id="example-file-multiple-input" name="example-file-multiple-input" multiple="">
+	                    <input type="file" id="<?php print($pcData['campos']['autorizacion'] == true?'input-':''); ?>file" name="example-file-multiple-input" multiple="">
+	                    <!-- info alert required -->
+	                    <?php if($pcData['campos']['autorizacion']) { ?>
+	                    <label id="alert-file" style="color:red; display: none;" >Campo requerido</label>
+	                    <?php } ?>
 	                </div>
 	            </div>
 			</fieldset>
