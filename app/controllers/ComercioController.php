@@ -204,6 +204,7 @@ class ComercioController extends ControllerBase
                 if(isset($js)) {
                     $this->mifaces->addPosRendEval($js);
                     $this->mifaces->addPosRendEval("$('.select-chosen').chosen({width:  '100%', disable_search_threshold: 4});");
+                    $this->mifaces->addPosRendEval("$('.input-datepicker, .input-daterange').datepicker({weekStart: 1});");
                     $this->mifaces->addPosRendEval("$('[data-toggle=\"popoverhover\"]').popover({trigger:\"hover\", container: \"body\", animation: true});");
                 }
 
