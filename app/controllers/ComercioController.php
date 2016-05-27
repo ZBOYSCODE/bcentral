@@ -954,7 +954,8 @@ class ComercioController extends ControllerBase
     {
         $jsScript =
         "
-            var TablesDatatables = function() {
+			var table_ = $('#table');
+            var TableskDatatables = function() {
 
                 return {
                     init: function() {
@@ -962,7 +963,7 @@ class ComercioController extends ControllerBase
                         //App.datatables();
 
                         /* Initialize Datatables */
-                        $('#table').dataTable({
+                        table_.dataTable({
                            'paging':   true,
                             columnDefs: [ { orderable: false } ]
                         });
@@ -975,7 +976,7 @@ class ComercioController extends ControllerBase
                 };
             }();
 
-            $(function(){ TablesDatatables.init(); });
+            $(function(){ TableskDatatables.init(); });
         ";
 
         return $jsScript;
