@@ -173,6 +173,20 @@ class ComercioController extends ControllerBase
                     $js = $this->getComponenteServAfectadoJs($listas);
                     $js .= $this->getValidationJs();
 
+                    //Js para limitar calendario dependiendo si se muestran los campos desde-hasta, desde ó hasta.
+                    if($campos['desde'] && $campos['hasta']) {
+                        $js .= $this->getValidationCalendarDesdeHastaJs();
+                    }
+                    elseif($campos['desde']) {
+                         $js .= $this->getValidationCalendarDesdeJs();
+                    }
+                    elseif($campos['hasta']) {
+                        $js .= $this->getValidationCalendarHastaJs();
+                    }
+                    else {
+                        //none
+                    }
+
                     //vista a renderizar
                     $pcView = 'servicio/servicios_solicitud_general';
                 }
@@ -438,6 +452,9 @@ class ComercioController extends ControllerBase
     public function testFormAction(){
         $pcView = 'test/test_validation_form';
         $js = "$('.select-chosen').chosen();";
+        $js .= $this->getValidationCalendarDesdeHastaJs();
+        //$js .= $this->getValidationCalendarDesdeJs();
+        //$js .= $this->getValidationCalendarHastaJs();
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=>'','jsScript' => $js));  
     }
 
@@ -1050,6 +1067,93 @@ class ComercioController extends ControllerBase
                 $("#solicitudForm").submit();
             }
         });
+        ';
+
+        return $jsScript;
+    }
+
+    private function getValidationCalendarDesdeHastaJs() {
+        $jsScript =
+        '
+
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            var checkin = $("#input-desde").datepicker({
+
+                beforeShowDay: function (date) {
+                    return date.valueOf() >= now.valueOf();
+                },
+                autoclose: true
+
+            }).on("changeDate", function (ev) {
+                if (checkout.datepicker("getDate") == null || ev.date.valueOf() >= checkout.datepicker("getDate").valueOf()) {
+
+                    var newDate = new Date(ev.date);
+                    newDate.setDate(newDate.getDate());
+                    checkout.datepicker("update", newDate);
+
+                }
+                else {
+                    var newDate = new Date(ev.date);
+                    newDate.setDate(newDate.getDate());
+                    checkout.datepicker("update", "");
+                }
+
+                 $("#input-hasta")[0].focus();
+            });
+
+
+            var checkout = $("#input-hasta").datepicker({
+                beforeShowDay: function (date) {
+                    if (checkin.datepicker("getDate") == null) {
+                        return date.valueOf() >= new Date().valueOf();
+                    } else {
+                        return date.valueOf() >= checkin.datepicker("getDate").valueOf();
+                    }
+                },
+                autoclose: true
+
+            }).on("changeDate", function (ev) {});
+
+        ';
+
+        return $jsScript;
+    }
+
+    private function getValidationCalendarDesdeJs() {
+        $jsScript =
+        '
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            var checkin = $("#input-desde").datepicker({
+
+                beforeShowDay: function (date) {
+                    return date.valueOf() >= now.valueOf();
+                },
+                autoclose: true
+
+            });
+        ';
+
+        return $jsScript;
+    }
+
+    private function getValidationCalendarHastaJs() {
+         $jsScript =
+        '
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            var checkin = $("#input-hasta").datepicker({
+
+                beforeShowDay: function (date) {
+                    return date.valueOf() >= now.valueOf();
+                },
+                autoclose: true
+
+            });
         ';
 
         return $jsScript;
