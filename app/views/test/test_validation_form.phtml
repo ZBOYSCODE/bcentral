@@ -21,7 +21,32 @@
 <textarea id="input-ccomment" name="comment" ></textarea>
 <label id="alert-ccomment" style="color:red; display: none;" >Campo requerido</label>
 </p>
-
+<fieldset>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Hasta:</label>
+				<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Hasta" data-content="Blah Blah Blah ..">
+					<input id="input-hasta" type="text" class="form-control input-datepicker" name="hasta" data-date-format="dd/mm/yyyy">
+                <label id="alert-hasta" style="color:red; display: none;" >Campo requerido</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>
+<fieldset>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Desde:</label>
+				<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Desde" data-content="Blah Blah Blah ..">
+					<input id="input-desde" type="text" class="form-control input-datepicker" name="desde" data-date-format="dd/mm/yyyy">
+                <label id="alert-desde" style="color:red; display: none;" >Campo requerido</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>
 <p>
 <label for="ccomment">Your comment (required)</label>
 <select  data-placeholder="Selecciona un Opción"  id="input-select" name="select_dest" class="select-chosen">
