@@ -954,7 +954,7 @@ class ComercioController extends ControllerBase
     {
         $jsScript =
         "
-			var table_ = $('#table');
+			var table_ = $('#conocimiento-table');
             var TableskDatatables = function() {
 
                 return {
