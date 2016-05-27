@@ -94,9 +94,9 @@ class ComercioController extends ControllerBase
             $pcData['styleCssMenu'] = $styleCssMenu;
             $pcData['catalogoRutaCompleta'] = $catalogoPadre;
 
-            //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
+            //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa), data para link con ajax (null para ignorar)
             $pcData['breadCrumbList']  = [
-              array($catalogoPadre,'active',$tipo),
+              array($catalogoPadre,'active',$tipo,null),
             ];
 
             $js = $this->getJsCatalogo();
@@ -170,6 +170,15 @@ class ComercioController extends ControllerBase
                     $pcData['campos'] = $campos;
                     $pcData['catalogo'] = $catalog;
                     $pcData['contactos'] = $contactList;
+
+                    $pcData['styleCssMenu'] = $styleCssMenu;
+                    $pcData['catalogoRutaCompleta'] = $catalogoRutaCompleta;
+
+                    //esta ruta se para volver a la opcion anterior y que no se aniden el breadcrum sobre la anterior
+                    $pcData['catalogoRutaCompletaToBack'] = '';
+                    $pcData['catalogoRutaCompletaToBack'] .= $catalogoRutaArray[0];
+
+
                     $js = $this->getComponenteServAfectadoJs($listas);
                     $js .= $this->getValidationJs();
 
@@ -193,18 +202,29 @@ class ComercioController extends ControllerBase
 
                 //seteamos breadcrum superior
                 $pcData['breadCrumbList']  = array();
-
+                $finalItem = end($catalogoRutaArray);
                 foreach ($catalogoRutaArray as $item) {
                     //breadcrum de la siguiente forma: "opcion","active" (con hipervinculo o no), "url" (relativa)
-                    $mapeoUrl = $this->__mapUrl($item);
-                    if($mapeoUrl != 'none') {
-                        $activeHipervinculo = "active";
+                    if($finalItem == $item) {
+                            $activeHipervinculo = "inactive";
+                            $mapeoUrl = "";
+                            $addData = null;
                     }
                     else {
-                        $activeHipervinculo = "inactive";
-                        $mapeoUrl = "";
+                        $mapeoUrl = $this->__mapUrl($item);
+                        if($mapeoUrl != 'none') {
+                            $activeHipervinculo = "active";
+                            $addData = null;
+                        }
+                        else {
+                            // activa link para 3er nivel, para volver al nivel anterior.
+                            // addData contiene el nodo podre
+                            $activeHipervinculo = "active";
+                            $mapeoUrl = ""; // no tendrá hiperviculo por get, si no la data se enviara por ajax
+                            $addData = $item;
+                        }
                     }
-                    array_push($pcData['breadCrumbList'],array($item,$activeHipervinculo,$mapeoUrl));
+                    array_push($pcData['breadCrumbList'],array($item,$activeHipervinculo,$mapeoUrl,$addData));
                 }
 
                 $dataView['pcData'] = $pcData;
