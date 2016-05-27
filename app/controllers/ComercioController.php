@@ -975,8 +975,6 @@ class ComercioController extends ControllerBase
                     }
                 };
             }();
-
-            $(function(){ TableskDatatables.init(); });
         ";
 
         return $jsScript;
