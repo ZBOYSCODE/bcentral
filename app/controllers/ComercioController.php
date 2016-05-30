@@ -976,7 +976,7 @@ class ComercioController extends ControllerBase
                 };
             }();
         ";
-
+		
         return $jsScript;
     }	
 
