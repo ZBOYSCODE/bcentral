@@ -8,8 +8,15 @@
 	<?php foreach ($pcData['breadCrumbList'] as $item) {	?>
 		<span class="bcTecnologia nsMenu">
 			<i class="fa fa-arrow-right"></i>
-			<?php if($item[1] == 'active'){ ?>	
-				<a class="bc-text" href="<?php print($this->url->get('comercio/solicitudServicio/'.$item[2]))?>"><span id="textTecnologia"><?php print $item[0] ?></span></a>
+			<?php if($item[1] == 'active'){ ?>
+				<?php if($item[3] != null){ ?>
+					<a class="bc-text" href="<?php print $this->url->get('comercio/solicitudServicioAjax') ?>"
+						data-action="<?php print $this->url->get('comercio/solicitudServicioAjax') ?>"
+						data-val="optionSelected=<?php print $item[3] ?>&catalogoRutaCompleta=<?php print $pcData['catalogoRutaCompletaToBack'] ?>&styleCssMenu=<?php print $pcData['styleCssMenu'] ?>&is_nodo_hoja=false"
+					><span id="textTecnologia"><?php print $item[0] ?></span></a>
+				<?php } else {?>	
+					<a class="bc-text" href="<?php print($this->url->get('comercio/solicitudServicio/'.$item[2]))?>"><span id="textTecnologia"><?php print $item[0] ?></span></a>
+				<?php }?>
 			<?php } else {?>
 				<?php print $item[0] ?>
 			<?php } ?>

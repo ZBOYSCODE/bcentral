@@ -116,7 +116,14 @@ class AjaxController extends ControllerBase
     	$toRend = $this->view->render('servicio/servicios_base_conocimiento_tr',array('pcData'=>$data));
     	$this->mifaces->newFaces();
     	$this->mifaces->addToRend('conocimiento-tbody',$toRend);
-		$this->mifaces->addPosRendEval('$(function(){ TableskDatatables.init(); });');
+        $this->mifaces->addPosRendEval('$(function(){ TableskDatatables.init(); });');
+        $this->mifaces->addPosRendEval("$('#conocimiento-table_next').css('display','none');");
+        $this->mifaces->addPosRendEval("$('#conocimiento-table_previous').css('display','none');");
+        $this->mifaces->addPosRendEval("$('#conocimiento-table_length').css('display','none')");
+        $this->mifaces->addPosRendEval("$('#conocimiento-table_filter').css('display','none')");
+        $this->mifaces->addPosRendEval("$('#conocimiento-table_info').css('display','none')");
+
+                       
     	$this->mifaces->run();	
 	}
 	
