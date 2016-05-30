@@ -246,6 +246,10 @@ class WebServiceClient extends Model
     public function getUsername($name)
     {
         $this->client = $this->di->get('soapclient-config');
+        if($this->client == false)
+        {
+            return null;
+        }
         $param = array( 'model' => array(
                             'keys' => array(
                                 'ContactName' => ''
@@ -259,15 +263,22 @@ class WebServiceClient extends Model
                         )
                     );
         $result = (array)$this->client->RetrieveContact($param);
-        $status = $result['returnCode'];
-        if($status != '0')
+        try
+        {
+            $status = $result['returnCode'];
+            if($status != '0')
+            {
+                return false;
+            }
+            $result = (array)$result['model'];
+            $result = (array)$result['instance'];
+            $result = (array)$result['ContactName'];
+            return $result['_'];    
+        }
+        catch(Exception $e)
         {
             return null;
         }
-        $result = (array)$result['model'];
-        $result = (array)$result['instance'];
-        $result = (array)$result['ContactName'];
-        return $result['_'];
     }
 
     public function updateTicket($CallID, $Update)
