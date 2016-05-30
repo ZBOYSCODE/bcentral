@@ -443,9 +443,9 @@ class ComercioController extends ControllerBase
         //echo '<br><br><br>';
         //$cat = new Catalog();
         //$response = $cat->getFields('Crear, Eliminar Cuenta');
-        $response = $ws->getContact("ALARCON, FELIPE");
+        //$response = $ws->getContact("ALARCON, FELIPE");
         //$response = $ws->getRequerimentList();
-
+        $response = $ws->getUsername('falarcon');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
         //$contact = new Contact();
