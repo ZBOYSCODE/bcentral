@@ -399,12 +399,12 @@ class ComercioController extends ControllerBase
     public function Testws2Action()
     {
         $ws = new WebServiceClient();
-        $km = new Knowledge();
-        //$response = $ws->getTicket('SD68157');
-        $response['ws'] = $ws->getKnowledge('KM0257');
-        $response['km'] = $km->getKnowledge('KM0257');
+        //$km = new Knowledge();
+        $response = $ws->getTicket('SD68157');
+        //$response['ws'] = $ws->getKnowledge('KM0257');
+        //$response['km'] = $km->getKnowledge('KM0257');
         var_dump($response);
-        echo "<br><br>";
+        //echo "<br><br>";
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
     public function Testws3Action()
@@ -443,9 +443,9 @@ class ComercioController extends ControllerBase
         //echo '<br><br><br>';
         //$cat = new Catalog();
         //$response = $cat->getFields('Crear, Eliminar Cuenta');
-        $response = $ws->getContact("ALARCON, FELIPE");
+        //$response = $ws->getContact("ALARCON, FELIPE");
         //$response = $ws->getRequerimentList();
-
+        $response = $ws->getUsername('falarcon');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
         //$contact = new Contact();
