@@ -99,8 +99,13 @@ class SessionController extends ControllerBase
 
         $this->view->form = $form;
 		
-		
-		echo $this->view->render('session/login',array('errors'=>$error));
+		$pcView = 'session/session_login';
+        $addJs = array('js/pages/login.js');
+
+        $array = array('errors'=>$error,'lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> '','jsScript'=>'', 'addJs' => $addJs, 'disableUserNav'=> true);
+
+        echo $this->view->render('theme_default' , $array);
+        //echo $this->view->render('session/login',array('errors'=>$error));
 		
     }
 
