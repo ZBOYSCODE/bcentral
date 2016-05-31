@@ -1,4 +1,4 @@
-<!-- Widgets Row -->
+<!-- Widgets Row -->
 <div class="row">
     <div class="col-md-6 ">
         <!-- Timeline Widget -->
@@ -181,12 +181,16 @@
 	                                    				</td>
 	                                    			<td><span class="label label-<?php echo $label; ?>"><?php echo $val['Status']; ?></span></td>
 	                                    			<td><?php echo $val['Title']; ?></td>
+	                                    			<?php if(strpos($val['Status'], 'errado')) {?>
 	                                    			<td class="padding0center"><div class="like-selector" data-toggle="popoverhover" data-placement="top" title="" data-content="Haz clic en uno de estos iconos para evaluar el servicio" class="fa fa-check-square-o" data-original-title="¡Evaluar Atención!">
 												        	<input class="hidden" id="like<?php echo $val['CallID']; ?>1" name="conf-<?php echo $val['CallID']; ?>" type="radio" value="1" data-id="<?php echo $val['CallID']; ?>" />
 												        	<label for="like<?php echo $val['CallID']; ?>1" class="likeimgGray"></label>
 												        	<input class="hidden" id="like<?php echo $val['CallID']; ?>2" name="conf-<?php echo $val['CallID']; ?>" type="radio" value="2" data-id="<?php echo $val['CallID']; ?>" />
 												        	<label for="like<?php echo $val['CallID']; ?>2" class="dislikeimgGray"></label>
 												    	</div></td>
+												    	<?php } else{ ?>
+												    	<td></td>
+												    	<?php } ?>
 	                                    			</tr>
 	                                    			<?php
 	                                    			$i = $i + 1;
