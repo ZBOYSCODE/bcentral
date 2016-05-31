@@ -1,0 +1,103 @@
+ <!-- Login Container -->
+        <div id="login-container"  class="animation-fadeIn">
+            <!-- Login Title -->
+            <div class="login-title text-center">
+                <!--<img src="<?php print($this->url->get("img/logo-bcentral-100.png"))?>" style="width: 100px;opacity: 0.8;"> -->
+                <h1><?php print($this->config->appName)?><br><small>Por favor <strong>Ingresa tus datos</strong> <strong></strong></small></h1>
+            </div>
+            <!-- END Login Title -->
+
+            <!-- Login Block -->
+            <div class="block push-bit" style="border: 1px solid rgba(0, 0, 0, 0.13);">
+                <!-- Login Form -->
+                <form action="login" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+				<?= $this->tag->form(array("login", "method" => "post", "id" => "form-login", "class" => "form-horizontal form-bordered form-control-borderless")); ?>
+				<?php echo $form->render("csrf",array('value'=> $this->security->getToken())); ?>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+								<?php echo $form->render("email"); ?>
+                                <div id="email-error" style="color:red" class="help-block animation-slideDown" styl><?php echo isset($errors['email'])?$errors['email']:''?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+								<?php echo $form->render("password"); ?>
+                                <div id="password-error" style="color:red" class="help-block animation-slideDown"><?php echo isset($errors['password'])?$errors['password']:''?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <button type="submit" class="btn btn-sm btn-bc"> Ingresar </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Register Form -->
+                <form method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                <input type="text" id="register-firstname" name="register-firstname" class="form-control input-lg" placeholder="Firstname">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" id="register-lastname" name="register-lastname" class="form-control input-lg" placeholder="Lastname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                <input type="text" id="register-email" name="register-email" class="form-control input-lg" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="register-password" name="register-password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                <input type="password" id="register-password-verify" name="register-password-verify" class="form-control input-lg" placeholder="Verify Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-actions">
+                        <div class="col-xs-6">
+                            <a href="#modal-terms" data-toggle="modal" class="register-terms">Terms</a>
+                            <label class="switch switch-primary" data-toggle="tooltip" title="Agree to the terms">
+                                <input type="checkbox" id="register-terms" name="register-terms">
+                                <span></span>
+                            </label>
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Regístrate</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12 text-center">
+                            <small>¿Tienes una cuenta?</small> <a href="javascript:void(0)" id="link-register"><small>Login</small></a>
+                        </div>
+                    </div>
+                </form>
+                <!-- END Register Form -->
+            </div>
+            <!-- END Login Block -->
+
+        </div>
+        <!-- END Login Container -->
