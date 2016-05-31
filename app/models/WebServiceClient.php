@@ -243,6 +243,44 @@ class WebServiceClient extends Model
         return (array)$result;
     }
 
+    public function getUsername($name)
+    {
+        $this->client = $this->di->get('soapclient-config');
+        if($this->client == false)
+        {
+            return null;
+        }
+        $param = array( 'model' => array(
+                            'keys' => array(
+                                'ContactName' => ''
+                            ),
+                            'instance' => array(
+                                    'IdOperador' => $name
+                                ),
+                            'messages' => ''/*array(
+                                'messages' => ''
+                            )*/
+                        )
+                    );
+        $result = (array)$this->client->RetrieveContact($param);
+        try
+        {
+            $status = $result['returnCode'];
+            if($status != '0')
+            {
+                return false;
+            }
+            $result = (array)$result['model'];
+            $result = (array)$result['instance'];
+            $result = (array)$result['ContactName'];
+            return $result['_'];    
+        }
+        catch(Exception $e)
+        {
+            return null;
+        }
+    }
+
     public function updateTicket($CallID, $Update)
     {
         $this->client = $this->di->get('soapclient-servicedesk');
