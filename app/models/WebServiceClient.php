@@ -523,6 +523,7 @@ class WebServiceClient extends Model
                         'AffectedCI' => $form['ci'],//parte dos de ci
                         'Title' => $form['title'],
                         'ReportedByContact' => $this->di->get('test-user'),
+                        'EnteredByESS' => 'true',
                         'MetodoOrigen' => 'Autoservicio',
                         'attachments' => array(
                             'attachments' => $attach
