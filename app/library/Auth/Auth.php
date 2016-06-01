@@ -53,10 +53,7 @@ class Auth extends Component
 			throw new Exception('Error de comunicacion con SM','usuario');
 		}
 		
-        // Check if the remember me was selected
-        if (isset($credentials['remember'])) {
-            $this->createRememberEnvironment($user);
-        }
+        $this->createRememberEnvironment($user);
 		
         $this->session->set('auth-identity', array(
             'id'	=> $user,

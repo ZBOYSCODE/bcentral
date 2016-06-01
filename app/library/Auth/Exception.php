@@ -5,7 +5,6 @@ class Exception extends \Exception
 {
 
     protected $field;
-
     public function __construct($message, $field = null, $code = 0, Exception $previous = null) {
 
         $this->field = $field;
