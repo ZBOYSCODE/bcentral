@@ -9,6 +9,7 @@ use Gabs\Models\Personas;
 use Gabs\Models\RememberTokens;
 use Gabs\Models\SuccessLogins;
 use Gabs\Models\FailedLogins;
+use Gabs\Models\WebServiceClient;
 
 /**
  * Gabs\Auth\Auth
@@ -26,37 +27,40 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-
-        // Check if the user exist
-        $user = Users::findFirstByEmail($credentials['email']);
-        if ($user == false) {
-            $this->registerUserThrottling(0);
-            throw new Exception('Combinación email/password Erronea','email');
-        }
-
-        // Check the password
-        if (!$this->security->checkHash($credentials['password'], $user->password)) {
-            $this->registerUserThrottling($user->id);
-            throw new Exception('Combinación email/password Erronea','email');
-        }
-
-        // Check if the user was flagged
-        $this->checkUserFlags($user);
-
-        // Register the successful login
-        $this->saveSuccessLogin($user);
-
+		if($this->config->ldapValida){
+			$ldap = ldap_connect($this->config->ldapHost);
+			ldap_set_option ($ldap, LDAP_OPT_REFERRALS, 0);
+			ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);			
+			
+            if(!$ldap)
+            {
+                throw new Exception('Error de conexión a LDAP','usuario');
+            }
+			
+            if($bind = @ldap_bind($ldap, $credentials['usuario'].$ldap_usr_dom, $credentials['password'])) {
+                // valid
+                ldap_unbind($ldap);
+            } else {
+				throw new Exception('Combinación Usuario/Password Erronea','usuario');
+            }			
+		}
+		$ws = new WebServiceClient();
+		$user = $ws->getUsername($credentials['usuario']);
+		
+		if($user==false){
+			throw new Exception('Usuario no Encontradodo en SM','usuario');
+		}elseif($user==null){
+			throw new Exception('Error de comunicacion con SM','usuario');
+		}
+		
         // Check if the remember me was selected
         if (isset($credentials['remember'])) {
             $this->createRememberEnvironment($user);
         }
-
-		
 		
         $this->session->set('auth-identity', array(
-            'id' => $user->id,
-            'name' => $user->name,
-            'profile' => json_decode(json_encode(Personas::findById($user->profilesId)),TRUE)
+            'id'	=> $user
+			'name'	=> $user
         ));
 
     }
@@ -121,21 +125,10 @@ class Auth extends Component
      *
      * @param \Gabs\Models\Users $user
      */
-    public function createRememberEnvironment(Users $user)
+    public function createRememberEnvironment($user)
     {
-        $userAgent = $this->request->getUserAgent();
-        $token = md5($user->email . $user->password . $userAgent);
-
-        $remember = new RememberTokens();
-        $remember->usersId = $user->id;
-        $remember->token = $token;
-        $remember->userAgent = $userAgent;
-
-        if ($remember->save() != false) {
-            $expire = time() + 86400 * 8;
-            $this->cookies->set('RMU', $user->id, $expire);
-            $this->cookies->set('RMT', $token, $expire);
-        }
+		$expire = time() + 86400 * 365;
+		$this->cookies->set('RMU', $user, $expire);
     }
 
     /**
@@ -156,51 +149,11 @@ class Auth extends Component
     public function loginWithRememberMe()
     {
         $userId = $this->cookies->get('RMU')->getValue();
-        $cookieToken = $this->cookies->get('RMT')->getValue();
-
-        $user = Users::findFirstById($userId);
-        if ($user) {
-
-            $userAgent = $this->request->getUserAgent();
-            $token = md5($user->email . $user->password . $userAgent);
-
-            if ($cookieToken == $token) {
-
-                $remember = RememberTokens::findFirst(array(
-                    'usersId = ?0 AND token = ?1',
-                    'bind' => array(
-                        $user->id,
-                        $token
-                    )
-                ));
-                if ($remember) {
-
-                    // Check if the cookie has not expired
-                    if ((time() - (86400 * 8)) < $remember->createdAt) {
-
-                        // Check if the user was flagged
-                        $this->checkUserFlags($user);
-
-                        // Register identity
-                        $this->session->set('auth-identity', array(
-                            'id' => $user->id,
-                            'name' => $user->name,
-                            'profile' => $user->profile->name
-                        ));
-
-                        // Register the successful login
-                        $this->saveSuccessLogin($user);
-
-                        return $this->response->redirect('users');
-                    }
-                }
-            }
-        }
-
-        $this->cookies->get('RMU')->delete();
-        $this->cookies->get('RMT')->delete();
-
-        return $this->response->redirect('session/login');
+		$this->session->set('auth-identity', array(
+			'id'	=> $userId,
+			'name'	=> $userId
+		));
+		return $this->response->redirect('');
     }
 
     /**

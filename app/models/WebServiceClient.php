@@ -452,7 +452,7 @@ class WebServiceClient extends Model
                                 '_' => array(
                                     'ItemName' => $form['catalog']['subarea'],
                                     'Quantity' => '1',
-                                    'RequestedFor' => $this->di->get('test-user'),
+                                    'RequestedFor' => $this->auth->getName(),
                                     'RequestedForType' => 'individual'
                                 )
                             )
@@ -495,14 +495,14 @@ class WebServiceClient extends Model
             $attach = '';
         }
         $contact = new Contact();
-        $contact->getContact($this->di->get('test-user'));
+        $contact->getContact($this->auth->getName());
         $param = array(
                 'model' => array(
                     'keys' => '',
                     'instance' => array(
                         'ServiceRecipient' => $form['contact'], //quien recibe
                         'Urgency' => $form['urgency'], // urgencia
-                        'OpenedBy' => $this->di->get('test-user'), //usuario que crea el ticket
+                        'OpenedBy' => $this->auth->getName(), //usuario que crea el ticket
                         'Description' => array(
                             'Description' => $form['description']//Descripcion
                         ),
@@ -517,12 +517,12 @@ class WebServiceClient extends Model
                         'ContactLastName' => $contact->lastname,
                         'FailedEntitlement' => $form['interruption'],
                         'EnteredByESS' => 'true',
-                        'Contact' => $this->di->get('test-user'),
+                        'Contact' => $this->auth->getName(),
                         'Update' => '',
                         'Impact' => $form['impact'],
                         'AffectedCI' => $form['ci'],//parte dos de ci
                         'Title' => $form['title'],
-                        'ReportedByContact' => $this->di->get('test-user'),
+                        'ReportedByContact' => $this->auth->getName(),
                         'EnteredByESS' => 'true',
                         'MetodoOrigen' => 'Autoservicio',
                         'attachments' => array(
@@ -551,7 +551,7 @@ class WebServiceClient extends Model
             $caida = 'false';
         }
         $contact = new Contact();
-        $contact->getContact($this->di->get('test-user'));
+        $contact->getContact($this->auth->getName());
         if($attach['content'] !== '')
         {
             $attachment = array(
@@ -572,7 +572,7 @@ class WebServiceClient extends Model
                     'instance' => array(
                         'ServiceRecipient' => $recipent, //quien recibe
                         'Urgency' => $urgency, // urgencia
-                        'OpenedBy' => $this->di->get('test-user'), //usuario que crea el ticket
+                        'OpenedBy' => $this->auth->getName(), //usuario que crea el ticket
                         'Description' => array(
                             'Description' => $description//Descripcion
                         ),
@@ -587,12 +587,12 @@ class WebServiceClient extends Model
                         'ContactLastName' => $contact->lastname,
                         'FailedEntitlement' => $caida,
                         'EnteredByESS' => 'true',
-                        'Contact' => $this->di->get('test-user'),
+                        'Contact' => $this->auth->getName(),
                         'Update' => '',
                         'Impact' => $impact,
                         'AffectedCI' => $ci,//parte dos de ci
                         'Title' => $title,
-                        'ReportedByContact' => $this->di->get('test-user'),
+                        'ReportedByContact' => $this->auth->getName(),
                         'MetodoOrigen' => 'Autoservicio',
                         'attachments' => $attachment
                     ),

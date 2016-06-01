@@ -9,9 +9,10 @@ try {
 	/**
 	 * Read the configuration
 	 */
-	$config   = include APP_DIR . '/config/config.php';
-	$configWs = include APP_DIR . '/config/configWS.php';
-	$catalogIcons = include APP_DIR . '/config/catalogIcons.php';
+	$config			= include APP_DIR . '/config/config.php';
+	$configWs		= include APP_DIR . '/config/configWS.php';
+	$catalogIcons	= include APP_DIR . '/config/catalogIcons.php';
+	$configLdap		= include APP_DIR . '/config/configLdap.php';	
 	/**
 	 * Read auto-loader
 	 */

@@ -27,7 +27,7 @@ $di = new FactoryDefault();
  * Register the global configuration as config
  */
  $di->set('config', $config);
-
+ $di->set('configLdap', $configLdap);
  
  /**
  * The URL component is used to generate all kind of urls in the application

@@ -19,7 +19,7 @@ class ComercioController extends ControllerBase
         $pcView = 'servicio/servicios_home_page';
         
         $tck = new Ticket();
-        $tckList = $tck->getTickestByUser($this->di->get('test-user'));
+        $tckList = $tck->getTickestByUser($this->auth->getName());
         $data = array('tckList' => $tckList);
         if($tckList == 2)
         {
@@ -280,7 +280,7 @@ class ComercioController extends ControllerBase
         $js = $this->getJsDatatables();
         $js = $js." ".$this->getLikeJs();
         $tck = new Ticket();
-        $tckList = $tck->getTickestByUser($this->di->get('test-user'));
+        $tckList = $tck->getTickestByUser($this->auth->getName());
         $data = array('tckList' => $tckList);
         if($tckList == 2)
         {
@@ -304,7 +304,7 @@ class ComercioController extends ControllerBase
             $data = array('tck' => $ticket);
         }
         else{
-            $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
+            $tckList = $ticket->getTickestByUser($this->auth->getName());
             $data = array('tckList' => $tckList);
             $pcView = 'servicio/servicios_home_page';
             $msg = "Algo salió mal, por favor intente más tarde.";
@@ -627,7 +627,7 @@ class ComercioController extends ControllerBase
                     $data = array('tck' => $ticket);
                 }
                 else{
-                    $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
+                    $tckList = $ticket->getTickestByUser($this->auth->getName());
                     $data = array('tckList' => $tckList);
                     $pcView = 'servicio/servicios_home_page';
                     $msg = "Algo salió mal, por favor intente más tarde.";
@@ -745,7 +745,7 @@ class ComercioController extends ControllerBase
                 $ws = new WebServiceClient();
                 $response = $ws->createRequestTicket($this->request->getPost('select_dest'), $this->request->getPost('select_u'),
                     $this->request->getPost('description'), $this->request->getPost('area'), $this->request->getPost('subarea'),
-                    $this->di->get('test-user'), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
+                    $this->auth->getName(), $this->request->getPost('select_i'), $this->request->getPost('select_ci'),
                     $this->request->getPost('title'), $this->request->getPost('select_sa'), $this->request->getPost('select_is'),
                     $attach);
                 //var_dump($response);
@@ -762,7 +762,7 @@ class ComercioController extends ControllerBase
                     $data = array('tck' => $ticket);
                 }
                 else{
-                    $tckList = $ticket->getTickestByUser($this->di->get('test-user'));
+                    $tckList = $ticket->getTickestByUser($this->auth->getName());
                     $data = array('tckList' => $tckList);
                     $pcView = 'servicio/servicios_home_page';
                     $msg = "Algo salió mal, por favor intente más tarde.";
@@ -785,77 +785,6 @@ class ComercioController extends ControllerBase
             }
             
             echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));    
-        }
-    }
-
-
-    public function LdapAction()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') 
-        {
-            $pcView = 'test/ldap';
-            $js = '';
-            $pcData = '';
-            echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'','pcView'=>$pcView, 'pcData'=> $pcData, 'jsScript'=>$js));
-        }
-        else
-        {
-            // Active Directory server
-            $ldap_host = $this->request->getPost('ip');
-         
-            // Active Directory DN
-            $ldap_dn = $this->request->getPost('dn');
-            $user = $this->request->getPost('usuario');
-            $password = $this->request->getPost('password');
-            $ldap_usr_dom = $this->request->getPost('dom');
-            // Active Directory user group
-            $ldap_user_group = "WebUsers";
-         
-            // Active Directory manager group
-            $ldap_manager_group = "WebManagers";
-         
-            // Domain, for purposes of constructing $user
-            $ldap_usr_dom = $this->request->getPost('dom');
-         
-            // connect to active directory
-            $ldap = ldap_connect($ldap_host);
-            if(!$ldap)
-            {
-                echo "<br>Error de conexión a LDAP";
-            }
-            // verify user and password
-            if($bind = @ldap_bind($ldap, $user.$ldap_usr_dom, $password)) {
-                // valid
-                // check presence in groups
-                $filter = "(sAMAccountName=".$user.")";
-                $attr = array("memberof");
-                $result = ldap_search($ldap, $ldap_dn, $filter, $attr) or exit("Unable to search LDAP server");
-                $entries = ldap_get_entries($ldap, $result);
-                ldap_unbind($ldap);
-         
-                // check groups
-                foreach($entries[0]['memberof'] as $grps) {
-                    // is manager, break loop
-                    if(strpos($grps, $ldap_manager_group)) { $access = 2; break; }
-         
-                    // is user
-                    if(strpos($grps, $ldap_user_group)) $access = 1;
-                }
-         
-                if($access != 0) {
-                    // establish session variables
-                    $_SESSION['user'] = $user;
-                    $_SESSION['access'] = $access;
-                    echo "<br>Session variables set";
-                } else {
-                    // user has no rights
-                    echo "<br>User without rights";
-                }
-         
-            } else {
-                // invalid name or password
-                echo "<br>Invalid user or password";
-            }
         }
     }
 

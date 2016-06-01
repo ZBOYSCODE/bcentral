@@ -85,7 +85,7 @@ class SessionController extends ControllerBase
                 } else {
 
                     $this->auth->check(array(
-                        'email' => $this->request->getPost('email'),
+                        'usuario' => $this->request->getPost('usuario'),
                         'password' => $this->request->getPost('password'),
                         'remember' => $this->request->getPost('remember')
                     ));

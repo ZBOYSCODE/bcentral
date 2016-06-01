@@ -21,22 +21,19 @@ class LoginForm extends Form
 
     public function initialize()
     {
-        // Email
-        $email = new Text('email', array(
-            'placeholder'	=> 'Email',
+        // Usuario
+        $usuario = new Text('usuario', array(
+            'placeholder'	=> 'Usuario',
 			"class"			=> "form-control input-lg"
         ));
 
-        $email->addValidators(array(
+        $usuario->addValidators(array(
             new PresenceOf(array(
-                'message' => 'E-mail Requerido'
-            )),
-            new Email(array(
-                'message' => 'E-mail no Valido'
+                'message' => 'Usuario Requerido'
             ))
         ));
 
-        $this->add($email);
+        $this->add($usuario);
 
         // Password
         $password = new Password('password', array(
