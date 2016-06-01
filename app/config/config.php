@@ -36,8 +36,8 @@ return new \Phalcon\Config([
     ],
 	'noAuth' => //noAuth -> configuracion de controller y acciones que no tienen que pasar por la autentificacion
 	array('session'=>array('login'=>true,'logout'=>true/*,'*'=>true*/)//
-	/*,'otro'=>array('login'=>true)*/,'comercio'=>array('*'=>true)
-                                    , 'ajax' => array('*' => true)//
+	/*,'otro'=>array('login'=>true)*///,'comercio'=>array('*'=>true)
+                                    //, 'ajax' => array('*' => true)//
 	/*,'otro'=>array('login'=>true)*/),
 	'appTitle'=>'Portal de Servicios',
 	'appName'=>"Portal de Servicios",

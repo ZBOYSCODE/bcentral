@@ -27,8 +27,8 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-		if($this->config->ldapValida){
-			$ldap = ldap_connect($this->config->ldapHost);
+		if($this->configLdap->ldapValida){
+			$ldap = ldap_connect($this->configLdap->ldapHost);
 			ldap_set_option ($ldap, LDAP_OPT_REFERRALS, 0);
 			ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);			
 			
@@ -37,7 +37,7 @@ class Auth extends Component
                 throw new Exception('Error de conexión a LDAP','usuario');
             }
 			
-            if($bind = @ldap_bind($ldap, $credentials['usuario'].$ldap_usr_dom, $credentials['password'])) {
+            if($bind = @ldap_bind($ldap, $credentials['usuario'].$this->configLdap->ldapUserDom, $credentials['password'])) {
                 // valid
                 ldap_unbind($ldap);
             } else {
@@ -59,7 +59,7 @@ class Auth extends Component
         }
 		
         $this->session->set('auth-identity', array(
-            'id'	=> $user
+            'id'	=> $user,
 			'name'	=> $user
         ));
 
@@ -206,9 +206,6 @@ class Auth extends Component
     {
         if ($this->cookies->has('RMU')) {
             $this->cookies->get('RMU')->delete();
-        }
-        if ($this->cookies->has('RMT')) {
-            $this->cookies->get('RMT')->delete();
         }
 
         $this->session->remove('auth-identity');
