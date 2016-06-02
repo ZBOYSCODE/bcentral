@@ -27,7 +27,7 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-		$user = $this->test-user
+		$user = $this->test-user;
 		
 		
 		if($this->configLdap->ldapValida){
