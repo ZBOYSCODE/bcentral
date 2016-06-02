@@ -27,6 +27,9 @@ class Auth extends Component
      */
     public function check($credentials)
     {
+		$user = $this->test-user
+		
+		
 		if($this->configLdap->ldapValida){
 			$ldap = ldap_connect($this->configLdap->ldapHost);
 			ldap_set_option ($ldap, LDAP_OPT_REFERRALS, 0);
@@ -44,16 +47,19 @@ class Auth extends Component
 				throw new Exception('Combinación Usuario/Password Erronea','usuario');
             }			
 		}
-		$ws = new WebServiceClient();
-		$user = $ws->getUsername($credentials['usuario']);
 		
-		if($user==false){
-			throw new Exception('Usuario no Encontradodo en SM','usuario');
-		}elseif($user==null){
-			throw new Exception('Error de comunicacion con SM','usuario');
+		if($this->configLdap->smValida){
+			$ws = new WebServiceClient();
+			$user = $ws->getUsername($credentials['usuario']);
+			
+			if($user==false){
+				throw new Exception('Usuario no Encontradodo en SM','usuario');
+			}elseif($user==null){
+				throw new Exception('Error de comunicacion con SM','usuario');
+			}
+			
+			$this->createRememberEnvironment($user);
 		}
-		
-        $this->createRememberEnvironment($user);
 		
         $this->session->set('auth-identity', array(
             'id'	=> $user,
