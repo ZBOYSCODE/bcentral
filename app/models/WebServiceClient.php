@@ -7,6 +7,13 @@ use Phalcon\Mvc\Dispatcher\Exception;
 class WebServiceClient extends Model
 {
     private $client;
+	private $auth;
+	
+   public function initialize()
+   {
+		$this->auth = $this->di->get('auth');
+   }   
+	
     public function getFields($catalogItem)
     {
         $this->client = $this->di->get('soapclient-catalog');
