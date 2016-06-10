@@ -12,6 +12,7 @@ class Knowledge extends Model
 		$result = $ws->getKnowledge($id);
 		if($result['returnCode'] == '0')
 		{
+			$result = (array)$result['model'];
 			$result = (array)$result['instance'];
 			$Know['titulo'] = (array)$result['title'];
 			$Know['titulo'] = $Know['titulo']['_'];

@@ -55,7 +55,7 @@ class Catalog extends Model
             $description = $description['_'];
             if(strlen($description)>100)
             {
-                $description = substr($description, 0, 96) . '...';
+                $description = substr($description, 0, 97) . '..';
             }
             array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description));
         }

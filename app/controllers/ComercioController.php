@@ -389,8 +389,8 @@ class ComercioController extends ControllerBase
     public function TestwsAction()
     {
         $ws = new WebServiceClient();
-        $response = $ws->getTicket('SD12544');
-        var_dump($response);
+        $response = $ws->getTicket('SD68332');
+        print_r($response);
         //$tck = new Ticket();
         //$tck->findTicket("SD68157");
         //var_dump($tck);
@@ -399,10 +399,10 @@ class ComercioController extends ControllerBase
     public function Testws2Action()
     {
         $ws = new WebServiceClient();
-        //$km = new Knowledge();
-        $response = $ws->getTicket('SD68157');
-        //$response['ws'] = $ws->getKnowledge('KM0257');
-        //$response['km'] = $km->getKnowledge('KM0257');
+        $km = new Knowledge();
+        //$response = $ws->getTicket('SD68157');
+        $response['ws'] = $ws->getKnowledge('KM0257');
+        $response['response'] = $km->getKnowledge('KM0257');
         var_dump($response);
         //echo "<br><br>";
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
@@ -467,6 +467,173 @@ class ComercioController extends ControllerBase
         $response = $cat->getServiceCatalogSP1('Servicios TI');
         var_dump($response);*/
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+    }
+
+    public function Testws7Action()
+    {
+        $ws = $this->di->get('soapclient-catalog');
+        $dom = new \DomDocument('1.0', 'UTF-8'); 
+        $dom->preserveWhiteSpace = false; 
+        
+        $request = '<?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:com="http://schemas.hp.com/SM/7/Common" xmlns:ns="http://schemas.hp.com/SM/7" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xm="http://localhost/xmlmime.xml">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
+         <ns:model query="">
+            <ns:keys query="" updatecounter="">
+               <ns:CartId mandatory="" readonly="" type="Decimal"/>
+            </ns:keys>
+            <ns:instance query="" recordid="" uniquequery="" updatecounter="">
+               <ns:Service mandatory="" readonly="" type="String"/>
+               <ns:RequestOnBehalf mandatory="" readonly="" type="Boolean"/>
+               <ns:CallbackContactName mandatory="" readonly="" type="String">PEDRON, ALFREDO</ns:CallbackContactName>
+               <ns:CallbackType mandatory="" readonly="" type="String"/>
+               <ns:CartId mandatory="" readonly="" type="Decimal"/>
+               <ns:cartItems type="Array">
+                  <ns:cartItems type="Structure">
+                     <ns:CartItemId mandatory="" readonly="" type="Long"/>
+                     <ns:Delivery mandatory="" readonly="" type="String"/>
+                     <ns:ItemName mandatory="" readonly="" type="String">Habilitar Acceso a Wifi de Visita</ns:ItemName>
+                     <ns:OptionList mandatory="" readonly="" type="String"/>
+                     <ns:Options mandatory="" readonly="" type="String"/>
+                     <ns:Quantity mandatory="" readonly="" type="Decimal">1</ns:Quantity>
+                     <ns:RequestedFor mandatory="" readonly="" type="String">PEDRON, ALFREDO</ns:RequestedFor>
+                     <ns:RequestedForDept mandatory="" readonly="" type="String"/>
+                     <ns:RequestedForType mandatory="" readonly="" type="String">individual</ns:RequestedForType>
+                     <ns:ServiceSLA mandatory="" readonly="" type="Decimal"/>
+                  </ns:cartItems>
+               </ns:cartItems>
+               <ns:ContactName mandatory="" readonly="" type="String">PEDRON, ALFREDO</ns:ContactName>
+               <ns:NeededByTime mandatory="" readonly="" type="DateTime"/>
+               <ns:Other mandatory="" readonly="" type="String"/>
+               <ns:Urgency mandatory="" readonly="" type="String">3</ns:Urgency>
+               <ns:Title mandatory="" readonly="" type="String">Test</ns:Title>
+               <ns:ServiceType mandatory="" readonly="" type="String"/>
+               <ns:SvcSrcXML mandatory="" readonly="" type="String"/>
+               <ns:Purpose type="Array">
+                  <ns:Purpose mandatory="" readonly="" type="String"/>
+               </ns:Purpose>
+               <ns:attachments/>
+            </ns:instance>
+            <ns:messages>
+               <com:message mandatory="" module="" readonly="" severity="" type="String"/>
+            </ns:messages>
+         </ns:model>
+      </ns:CreateSRCInteractionViaOneStepRequest>
+   </soapenv:Body>
+</soapenv:Envelope>';
+        /*
+        '<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://schemas.hp.com/SM/7" xmlns:com="http://schemas.hp.com/SM/7/Common" xmlns:xm="http://localhost/xmlmime.xml">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:CreateSRCInteractionViaOneStepRequest attachmentInfo="" attachmentData="" ignoreEmptyElements="true" updateconstraint="-1">
+         <ns:model query="">
+            <ns:keys query="" updatecounter="">
+               <ns:CartId type="Decimal" mandatory="" readonly=""></ns:CartId>
+            </ns:keys>
+            <ns:instance query="" uniquequery="" recordid="" updatecounter="">
+               <ns:Service type="String" mandatory="" readonly=""></ns:Service>
+               <ns:RequestOnBehalf type="Boolean" mandatory="" readonly=""></ns:RequestOnBehalf>
+               <ns:CallbackContactName type="String" mandatory="" readonly="">PEDRON, ALFREDO</ns:CallbackContactName>
+               <ns:CallbackType type="String" mandatory="" readonly=""></ns:CallbackType>
+               <ns:CartId type="Decimal" mandatory="" readonly=""></ns:CartId>
+               <ns:cartItems type="Array">
+                  <ns:cartItems type="Structure">
+                     <ns:CartItemId type="Long" mandatory="" readonly=""></ns:CartItemId>
+                     <ns:Delivery type="String" mandatory="" readonly=""></ns:Delivery>
+                     <ns:ItemName type="String" mandatory="" readonly="">Habilitar Acceso a Wifi de Visita</ns:ItemName>
+                     <ns:OptionList type="String" mandatory="" readonly=""></ns:OptionList>
+                     <ns:Options type="String" mandatory="" readonly=""></ns:Options>
+                     <ns:Quantity type="Decimal" mandatory="" readonly="">1</ns:Quantity>
+                     <ns:RequestedFor type="String" mandatory="" readonly="">PEDRON, ALFREDO</ns:RequestedFor>
+                     <ns:RequestedForDept type="String" mandatory="" readonly=""></ns:RequestedForDept>
+                     <ns:RequestedForType type="String" mandatory="" readonly="">individual</ns:RequestedForType>
+                     <ns:ServiceSLA type="Decimal" mandatory="" readonly=""></ns:ServiceSLA>
+                  </ns:cartItems>
+               </ns:cartItems>
+               <ns:ContactName type="String" mandatory="" readonly="">PEDRON, ALFREDO</ns:ContactName>
+               <ns:NeededByTime type="DateTime" mandatory="" readonly=""></ns:NeededByTime>
+               <ns:Other type="String" mandatory="" readonly=""></ns:Other>
+               <ns:Urgency type="String" mandatory="" readonly="">2</ns:Urgency>
+               <ns:Title type="String" mandatory="" readonly="">Test</ns:Title>
+               <ns:ServiceType type="String" mandatory="" readonly=""></ns:ServiceType>
+               <ns:SvcSrcXML type="String" mandatory="" readonly=""></ns:SvcSrcXML>
+               <ns:Purpose type="Array">
+                  <ns:Purpose type="String" mandatory="" readonly=""></ns:Purpose>
+               </ns:Purpose>
+               <ns:attachments/>
+            </ns:instance>
+            <ns:messages>
+               <com:message type="String" mandatory="" readonly="" severity="" module=""></com:message>
+            </ns:messages>
+         </ns:model>
+      </ns:CreateSRCInteractionViaOneStepRequest>
+   </soapenv:Body>
+</soapenv:Envelope>';*/
+
+$cadena =  '
+ <CreateSRCInteractionViaOneStepRequest attachmentInfo="" attachmentData="" ignoreEmptyElements="true" updateconstraint="-1">
+         <model query="">
+            <keys query="" updatecounter="">
+               <CartId type="Decimal" mandatory="" readonly=""></CartId>
+            </keys>
+            <instance query="" uniquequery="" recordid="" updatecounter="">
+               <Service type="String" mandatory="" readonly=""></Service>
+               <RequestOnBehalf type="Boolean" mandatory="" readonly=""></RequestOnBehalf>
+               <CallbackContactName type="String" mandatory="" readonly="">PEDRON, ALFREDO</CallbackContactName>
+               <CallbackType type="String" mandatory="" readonly=""></CallbackType>
+               <CartId type="Decimal" mandatory="" readonly=""></CartId>
+               <cartItems type="Array">
+                  <cartItem>
+                     <CartItemId type="Long" mandatory="" readonly=""></CartItemId>
+                     <Delivery type="String" mandatory="" readonly=""></Delivery>
+                     <ItemName type="String" mandatory="" readonly="">Habilitar Acceso a Wifi de Visita</ItemName>
+                     <OptionList type="String" mandatory="" readonly=""></OptionList>
+                     <Options type="String" mandatory="" readonly=""></Options>
+                     <Quantity type="Decimal" mandatory="" readonly="">1</Quantity>
+                     <RequestedFor type="String" mandatory="" readonly="">PEDRON, ALFREDO</RequestedFor>
+                     <RequestedForDept type="String" mandatory="" readonly=""></RequestedForDept>
+                     <RequestedForType type="String" mandatory="" readonly="">individual</RequestedForType>
+                     <ServiceSLA type="Decimal" mandatory="" readonly=""></ServiceSLA>
+                  </cartItem>
+               </cartItems>
+               <ContactName type="String" mandatory="" readonly="">PEDRON, ALFREDO</ContactName>
+               <NeededByTime type="DateTime" mandatory="" readonly=""></NeededByTime>
+               <Other type="String" mandatory="" readonly=""></Other>
+               <Urgency type="String" mandatory="" readonly="">3</Urgency>
+               <Title type="String" mandatory="" readonly="">Test</Title>
+               <ServiceType type="String" mandatory="" readonly=""></ServiceType>
+               <SvcSrcXML type="String" mandatory="" readonly=""></SvcSrcXML>
+               <Purpose type="Array">
+                  <Purpose type="String" mandatory="" readonly=""></Purpose>
+               </Purpose>
+               <attachments/>
+            </instance>
+            <messages>
+               <message type="String" mandatory="" readonly="" severity="" module=""></message>
+            </messages>
+         </model>
+      </CreateSRCInteractionViaOneStepRequest>
+';
+//$xmlr = new \SimpleXMLElement($request);
+//print_r($xmlr);die();
+        if(mb_check_encoding($request, 'UTF-8'))
+        {
+            echo "<h2>El request está en UTF-8</h2>";
+        }
+        else
+        {
+            echo "<h2>El request no cumple el formato UTF-8</h2>";
+        }
+        
+
+        echo "<br><br><br>";
+
+       // $response = $ws->__call('CreateSRCInteractionViaOneStep',array(new \SoapVar($cadena,XSD_ANYXML)));
+        $response = $ws->__doRequest($request, 'http://192.168.5.113:13080/SM/7/ws', 'CreateSRCInteractionViaOneStep', SOAP_1_1);
+        
+        print_r($response);
     }
 
     public function testFormAction(){
@@ -654,7 +821,7 @@ class ComercioController extends ControllerBase
                 $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
                 echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
             }
-            $status = $response['status'];
+            /*$status = $response['status'];
             if(strpos($status, 'FAILURE'))
             {
                 $pcView = 'servicio/servicios_error_page';
@@ -665,7 +832,23 @@ class ComercioController extends ControllerBase
             {
                 var_dump($response);
             }
-            
+            */
+            /*$js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
+            $pcView = 'servicio/servicios_home_page';
+        
+            $tck = new Ticket();
+            $tckList = $tck->getTickestByUser($this->auth->getName());
+            $data = array('tckList' => $tckList);
+            if($tckList == 2)
+            {
+                $pcView = 'servicio/servicios_error_page';
+                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
+            }
+            //$js = $this->getJsEncuesta();
+            $js =$js. " ". $this->getLikeJs();
+            echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));*/
+            var_dump($response['response']);
+            echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
         }
     }
 

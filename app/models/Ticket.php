@@ -515,7 +515,7 @@ class Ticket extends Model
         if(array_key_exists('NextSLABreach', $result))
         {
             $this->NextSLABreach = (array)$result['NextSLABreach'];
-            $this->NextSLABreach = $this->NextSLABreach['_'];
+            $this->NextSLABreach = $this->parseDate($this->NextSLABreach['_']);
         }
         if(array_key_exists('Contact', $result))
         {
@@ -669,29 +669,31 @@ class Ticket extends Model
 
         $tckList = array();
         $count = 1;
-
-        foreach (array_reverse($result['instance']) as $key => $value) 
+        if(count($result['instance'])>0 and is_array($result['instance']))
         {
-            if($count > 30)
+            foreach (array_reverse($result['instance']) as $key => $value) 
             {
-                break;
+                if($count > 30)
+                {
+                    break;
+                }
+                $value = (array)$value;
+                $id = (array)$value['CallID'];
+                $id = $id['_'];
+                $status = (array)$value['Status'];
+                $status = $status['_'];
+                if(array_key_exists('Title', $value))
+                {
+                    $title = (array)$value['Title'];
+                    $title = $title['_'];
+                }
+                else
+                {
+                    $title = "";
+                }
+                array_push($tckList, array('CallID' => $id, 'Status' => $this->statusToEsp($status), 'Title' => $title));
+                $count = 1 + $count;
             }
-            $value = (array)$value;
-            $id = (array)$value['CallID'];
-            $id = $id['_'];
-            $status = (array)$value['Status'];
-            $status = $status['_'];
-            if(array_key_exists('Title', $value))
-            {
-                $title = (array)$value['Title'];
-                $title = $title['_'];
-            }
-            else
-            {
-                $title = "";
-            }
-            array_push($tckList, array('CallID' => $id, 'Status' => $this->statusToEsp($status), 'Title' => $title));
-            $count = 1 + $count;
         }
         return $tckList;
     }

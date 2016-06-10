@@ -438,13 +438,48 @@ class WebServiceClient extends Model
                     'href' => '<![CDATA[<' . $form['fileName'] . '>]]>',
                     'action' => 'add',
                     'name' => $form['fileName']
-                );    
+                );
+            //$attach = '<attachments/>';//'<attachments><attachments href="<![CDATA[<'. $form['fileName'] .'>]]>" action="add" name="'. $form['fileName'] .'">'. $form['fileContent'] .'</attachments></attachments>';
         }
         else
         {
             $attach = '';
         }
         
+        //$param = new \SoapVar('<keys><CartId></CartId></keys><instance><Service>'. $form['ci'] .'</Service><CallbackContactName>'. $form['contact'] .'</CallbackContactName><CallbackType></CallbackType><CartId></CartId><cartItems><cartItems type="Structure"><CartItemId></CartItemId><Delivery></Delivery><ItemName>'. $form['catalog']['subarea'] .'</ItemName><OptionList></OptionList><Options></Options><Quantity>1</Quantity><RequestedFor>'. $this->auth->getName() .'</RequestedFor><RequestedForDept></RequestedForDept><RequestedForType>individual</RequestedForType><ServiceSLA></ServiceSLA></cartItems></cartItems><ContactName>'. $form['contact'] .'</ContactName><NeededByTime></NeededByTime><Other></Other><Urgency>'. $form['urgency'].'</Urgency><Title>'. $form['title'].'</Title><ServiceType></ServiceType><SvcSrcXML></SvcSrcXML><Purpose><Purpose>'. $form['description'] .'</Purpose></Purpose><attachments>'. $attach .'</attachments></instance><messages/>',  XSD_ANYXML, null, null, "model");
+        
+        $cartItems = new \SoapVar('<cartItems type="Array"><cartItems type="Structure"><CartItemId type="Long"></CartItemId><Delivery></Delivery><ItemName>'. $form['catalog']['subarea'] .'</ItemName><OptionList></OptionList><Options></Options><Quantity type="Decimal">1</Quantity><RequestedFor>'. $this->auth->getName() .'</RequestedFor><RequestedForDept></RequestedForDept><RequestedForType>individual</RequestedForType><ServiceSLA type="Decimal"></ServiceSLA></cartItems></cartItems>', XSD_ANYXML);
+        /*$cartItems = array(
+                                'type' => 'Structure',
+                                '_' => array(
+                                    'CartItemId' => '',
+                                    'Delivery' => '',
+                                    'ItemName' => $form['catalog']['subarea'],
+                                    'OptionList' => '',
+                                    'Options' => '',
+                                    'Quantity' => '1',
+                                    'RequestedFor' => $this->auth->getName(),
+                                    'RequestedForDept' => '',
+                                    'RequestedForType' => 'individual',
+                                    'ServiceSLA' => ''
+                                )
+                            );
+        $encoded = new \SoapVar($cartItems, SOAP_ENC_OBJECT);*/
+        $cart = array(
+                    '_' =>array(
+
+                        'Delivery' => '',
+                        'ItemName' => $form['catalog']['subarea'],
+                        'OptionList' => '',
+                        'Options' => '',
+                        'Quantity' => 1,
+                        'RequestedFor' => $this->auth->getName(),
+                        'RequestedForDept' => '',
+                        'RequestedForType' => 'individual',
+
+                    ),
+                    'type' => 'Structure'
+                );
         $param = array(
                 'model' => array(
                     'keys' => array(
@@ -453,32 +488,69 @@ class WebServiceClient extends Model
                     'instance' => array(
                         'Service' => $form['ci'],
                         'CallbackContactName' => $form['contact'],
+                        'CallbackType' => '',
+                        'CartId' => '',
                         'cartItems' => array(
-                            'cartItems' => array(
-                                'type' => 'Structure',
-                                '_' => array(
-                                    'ItemName' => $form['catalog']['subarea'],
-                                    'Quantity' => '1',
-                                    'RequestedFor' => $this->auth->getName(),
-                                    'RequestedForType' => 'individual'
-                                )
-                            )
+                            'cartItems' => $cart
                         ),
                         //'NeededByTime' => $form['hasta'],
                         'ContactName' => $form['contact'],
+                        'NeededByTime' => '',
+                        'Other' => '',
                         'Urgency' => $form['urgency'],
                         'Title' => $form['title'],
+                        'ServiceType' => '',
+                        'SvcSrcXML' => '',
                         'Purpose' => array(
                             'Purpose' => $form['description']
                         ),
                         'attachments' => array(
                             'attachments' => $attach
                         )
+                    ),
+                    'messages' => array(
+                        'messages' => ''
                     )
                 )
             );
-        $response = $this->client->CreateSRCInteractionViaOneStep($param);
-        return (array)$response;
+        /*$param = new \stdClass;
+        $param->model = new \stdClass;
+        $param->model->keys = new \stdClass;
+        $param->model->keys->CartId = '';
+        $param->model->instance = new \stdClass;
+        $param->model->instance->Service = $form['ci'];
+        $param->model->instance->CallbackContactName = $form['contact'];
+        $param->model->instance->CallbackType = '';
+        $param->model->instance->CartId = '';
+        //$param->model->instance->cartItems = new \stdClass;
+        $param->model->instance->cartItems =  array('cartItems' => $cartItems);/*= new \stdClass;
+        $param->model->instance->cartItems->cartItems->CartItemId = '';
+        $param->model->instance->cartItems->cartItems->Delivery = '';
+        $param->model->instance->cartItems->cartItems->ItemName = $form['catalog']['subarea'];
+        $param->model->instance->cartItems->cartItems->OptionList = '';
+        $param->model->instance->cartItems->cartItems->Options = '';
+        $param->model->instance->cartItems->cartItems->Quantity = '1';
+        $param->model->instance->cartItems->cartItems->RequestedFor = $this->auth->getName();
+        $param->model->instance->cartItems->cartItems->RequestedForDept = '';
+        $param->model->instance->cartItems->cartItems->RequestedForType = '';
+        $param->model->instance->cartItems->cartItems->ServiceSLA = '';
+        $param->model->instance->ContactName = $form['contact'];
+        $param->model->instance->NeededByTime = '';
+        $param->model->instance->Other = '';
+        $param->model->instance->Urgency = $form['urgency'];
+        $param->model->instance->Title = $form['title'];
+        $param->model->instance->ServiceType = '';
+        $param->model->instance->SvcSrcXML = '';
+        $param->model->instance->Purpose = new \stdClass;
+        $param->model->instance->Purpose->Purpose = $form['description'];
+        $param->model->instance->attachments = new \stdClass;
+        $param->model->instance->attachments->attachments = $attach;
+        $param->model->messages = new \stdClass;
+        $param->model->messages->messages = '';*/
+
+        $response['response'] = (array)$this->client->CreateSRCInteractionViaOneStep($param);
+        $response['request'] = $this->client->__getLastRequest();
+        return $response;
     }
 
      public function CreateRequestSol($form)
@@ -523,14 +595,13 @@ class WebServiceClient extends Model
                         'ContactFirstName' => $contact->firstname,
                         'ContactLastName' => $contact->lastname,
                         'FailedEntitlement' => $form['interruption'],
-                        'EnteredByESS' => 'true',
+                        'EnteredByESS' => true,
                         'Contact' => $this->auth->getName(),
                         'Update' => '',
                         'Impact' => $form['impact'],
                         'AffectedCI' => $form['ci'],//parte dos de ci
                         'Title' => $form['title'],
                         'ReportedByContact' => $this->auth->getName(),
-                        'EnteredByESS' => 'true',
                         'MetodoOrigen' => 'Autoservicio',
                         'attachments' => array(
                             'attachments' => $attach
@@ -593,7 +664,7 @@ class WebServiceClient extends Model
                         'ContactFirstName' => $contact->firstname,
                         'ContactLastName' => $contact->lastname,
                         'FailedEntitlement' => $caida,
-                        'EnteredByESS' => 'true',
+                        'EnteredByESS' => true,
                         'Contact' => $this->auth->getName(),
                         'Update' => '',
                         'Impact' => $impact,
@@ -621,7 +692,7 @@ class WebServiceClient extends Model
                                     'ConfigurationItem' => ''
                                 ),*/
                             'query' => 'title#"' . $search . '"'
-                        )                    
+                        )
                     );
         $response = (array)$this->client->RetrieveKnowledgeList($param);
         return $response;
@@ -629,11 +700,25 @@ class WebServiceClient extends Model
     public function getKnowledge($id)
     {
         $this->client = $this->di->get('soapclient-knowledge');
-        $param = array('keys' => array(
-                            'id' => $id
-                        )                    
-                    );
-        $response = (array)$this->client->RetrieveKnowledgeList($param);
+        /*$param = array('model' => array(
+                        array(
+                            'keys' => array(
+                                    'id' => $id
+                                ),
+                            'instance' => '',
+                            'messages' => ''
+                            )
+                        );*/
+        $param = '<ns:RetrieveKnowledgeRequest attachmentInfo="" attachmentData="true" ignoreEmptyElements="true" updatecounter="" handle="" count="" start="">
+         <ns:model query="">
+            <ns:keys query="" updatecounter="">
+               <ns:id type="String" mandatory="" readonly="">'. $id .'</ns:id>
+            </ns:keys>
+            <ns:instance/>
+            <ns:messages/>
+         </ns:model>
+      </ns:RetrieveKnowledgeRequest>';
+        $response = (array)$this->client->RetrieveKnowledge($param);
         return $response;
     }
 

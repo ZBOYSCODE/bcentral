@@ -188,7 +188,9 @@ $di->set('soapclient-catalog', function () use ($configWs) {
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
                 'exceptions' => true,
-                'trace' => false
+                'trace' => true,
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
                 )
             );
         return $client;

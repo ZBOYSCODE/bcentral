@@ -68,7 +68,7 @@
                                 <br>
                                 <span ><i class="gi gi-calendar"></i> Fecha Solicitud: <strong><?php echo $pcData['tck']->OpenTime;?></strong></span>
                                 <br> <br>
-                                <span class="label label-bc br-span"><i class="hi hi-time"></i></i>  <strong>Fecha Estimada Resolución: <?php if(isset($pcData['tck']->NextSLABreach)){ echo $pcData['tck']->NextSLABreach; }else{ echo "-"; } ?></strong></span>
+                                <span class="label label-bc br-span"><i class="hi hi-time"></i></i>  <strong>Fecha Estimada Resolución:<br> <?php if(isset($pcData['tck']->NextSLABreach)){ echo $pcData['tck']->NextSLABreach; }else{ echo "-"; } ?></strong></span>
                                 <br>
                                 <span>
                                     <span class="label label-<?php echo $label; ?>"><?php echo $pcData['tck']->Status;?></span>
@@ -105,7 +105,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-center">Servicio Solicitado</td>
-                                        <td >Servicios TI - Correo Electronico - Crear, Eliminar Cuenta </td>
+                                        <td ><?php echo $pcData['tck']->Area . ' - ' . $pcData['tck']->Subarea; ?></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">Destinatario</td>
