@@ -11,7 +11,7 @@ class WebServiceClient extends Model
 	
    public function initialize()
    {
-		$this->auth = $this->di->get('auth');
+		$this->auth = $this->getDi()->getShared('auth');
    }   
 	
     public function getFields($catalogItem)
