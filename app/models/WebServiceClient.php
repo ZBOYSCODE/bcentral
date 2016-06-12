@@ -424,7 +424,25 @@ class WebServiceClient extends Model
         $response = (array)$this->client->RetrieveSvcCatalogKeysList($param);
         return $response;
     }
-    public function CreateRequestInteraction($form)
+
+    public function  CreateRequestInteraction($form)
+    {
+        require_once(APP_DIR . '/library/nusoap-0.9.5/lib/nusoap.php');
+
+        $configWs = $this->di->get('configWs');
+        $client = new \nusoap_client($configWs->wsdlUriCata, false);
+        //Setting credentials for Authentication
+        $client->setCredentials("falcon","","basic");
+
+        $msg = $client->serializeEnvelope($this->getSRCInteractionViaOneStepRequestMsg($form),
+            false,
+            array('ns'=>'http://schemas.hp.com/SM/7',
+                'com'=>'http://schemas.hp.com/SM/7/Common',
+                'xm'=>'http://www.w3.org/2005/05/xmlmime'));
+
+        $result=$client->send($msg, 'Create');
+    }
+    public function CreateRequestInteractionOld($form)
     {
         $this->client = $this->di->get('soapclient-catalog');
         if($this->client == false)
@@ -730,4 +748,63 @@ class WebServiceClient extends Model
         $string = str_replace("[NEWLINE]","\n",$string);
         return $string;
       }
+
+    private function getSRCInteractionViaOneStepRequestMsg($form) {
+        if($form['fileName'] != '')
+        {
+            $attach = '<com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="'. $form['fileName'] .'" type="" upload.by="" upload.date="" xm:contentType="application/?">'. $form['fileContent'] .'</com:attachment>';
+        }
+        else
+        {
+            $attach = '<com:attachment/>';
+        }
+        return '
+<ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
+	<ns:model>
+		<ns:keys>
+			<ns:CartId/>
+		</ns:keys>
+		<ns:instance>
+			<ns:Service>'.$form['ci'].'</ns:Service>
+			<ns:RequestOnBehalf/>
+			<ns:CallbackContactName>'.$form['contact'].'</ns:CallbackContactName>
+			<ns:CallbackType/>
+			<ns:CartId/>
+			<ns:cartItems>
+				<ns:cartItems>
+					<ns:CartItemId
+					<ns:Delivery/>
+					<ns:ItemName>'.$form['catalog']['subarea'].'</ns:ItemName>
+					<ns:OptionList/>
+					<ns:Options/>
+					<ns:Quantity>1</ns:Quantity>
+					<ns:RequestedFor>'.$this->auth->getName().'</ns:RequestedFor>
+					<ns:RequestedForDept/>
+					<ns:RequestedForType>individual</ns:RequestedForType>
+					<ns:ServiceSLA/>
+				</ns:cartItems>
+			</ns:cartItems>
+			<ns:ContactName>'.$form['contact'].'</ns:ContactName>
+			<ns:NeededByTime/>
+			<ns:Other/>
+			<ns:Urgency>'.$form['urgency'].'</ns:Urgency>
+			<ns:Title>'.$form['title'].'</ns:Title>
+			<ns:ServiceType/>
+			<ns:SvcSrcXML/>
+			<ns:Purpose>
+				<ns:Purpose/>
+			</ns:Purpose>
+			<ns:attachments>
+				'.$attach.'
+			</ns:attachments>
+		</ns:instance>
+		<ns:messages>
+		   <com:message mandatory="" module="" readonly="" severity="" type="String"/>
+		</ns:messages>
+	</ns:model>
+</ns:CreateSRCInteractionViaOneStepRequest>';
+
+    }
 }
+
+

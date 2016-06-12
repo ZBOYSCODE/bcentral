@@ -123,14 +123,14 @@ class ComercioController extends ControllerBase
                 if(isset($_POST['is_nodo_hoja']) && $_POST['is_nodo_hoja'] == "false") {
                     $ctlg = new Catalog();
                     $catalogoMenu = $ctlg->getServiceCatalogSP1($catalogoPadre);
-                    array_push($catalogoMenu, array('name' => 'Solucionar Problema', 'icon' => 'fa-check', 'description' => ''));
+                    array_push($catalogoMenu, array('name' => 'Solucionar Problema', 'icon' => 'fa-check', 'description' => '', 'display' => 'Solucionar Problema'));
                     $pcData['catalogo'] = $catalogoMenu;
                     $pcData['styleCssMenu'] = $styleCssMenu;
                     $pcData['catalogoRutaCompleta'] = $catalogoRutaCompleta;
                     //seteamos que será nodo hoja directamente, se supone que el tercer nivel es nodo hoja
                     //si no deberia identificarse mediante logica de la respuesta del web service
                     $pcData['is_nodo_hoja'] = true;
-
+                    
                     //vista a renderizar
                     $pcView = 'servicio/servicios_catalogo_menu';
                 }
@@ -635,13 +635,12 @@ $cadena =  '
         
         print_r($response);
     }
-<<<<<<< HEAD
-    
+
     public function testci()
     {
         
     }
-=======
+
 	
 	public function testMigueloAction(){
 	
@@ -665,7 +664,6 @@ $cadena =  '
 		
 	
 	}
->>>>>>> 0661a6cd2ae675cd674d1985cf5bc6f108340bfd
 
     public function testFormAction(){
         $pcView = 'test/test_validation_form';
