@@ -7678,7 +7678,7 @@ class nusoap_client extends nusoap_base  {
 		if(isset($this->operation)){
 			$parser = new nusoap_parser($data,$this->xml_encoding,$this->operation,$this->decode_utf8);
 		}else{
-			print('*************************<br>');
+			//print('*************************<br>');
 			/*print_r($data);
 			print('*************************<br>');
 			print_r($this->xml_encoding);
@@ -7687,7 +7687,8 @@ class nusoap_client extends nusoap_base  {
 			print('*************************<br>');
 			print_r($this);*/
 		}
-		print_r($data);die();
+		//print_r($data);die();
+		return $data;
 		// add parser debug data to our debug
 		$this->appendDebug($data);//$parser->getDebug());
 		// if parse errors

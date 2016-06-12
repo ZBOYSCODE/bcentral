@@ -441,6 +441,23 @@ class WebServiceClient extends Model
                 'xm'=>'http://www.w3.org/2005/05/xmlmime'));
 
         $result=$client->send($msg, 'Create');
+        if(strpos($result, 'Your request has been submitted'))
+        {
+            $result = explode(' ', $result);
+            foreach($result as $val)
+            {
+                $val = str_replace('.','',$val);
+                if(preg_match("/^SD(\d{1,})/", $val))
+                {
+                    return $val;
+                }
+            }
+        }
+        else
+        {
+            return null;
+        }
+        return $result;
     }
     public function CreateRequestInteractionOld($form)
     {
@@ -772,7 +789,7 @@ class WebServiceClient extends Model
 			<ns:CartId/>
 			<ns:cartItems>
 				<ns:cartItems>
-					<ns:CartItemId
+					<ns:CartItemId/>
 					<ns:Delivery/>
 					<ns:ItemName>'.$form['catalog']['subarea'].'</ns:ItemName>
 					<ns:OptionList/>
@@ -795,7 +812,7 @@ class WebServiceClient extends Model
 				<ns:Purpose/>
 			</ns:Purpose>
 			<ns:attachments>
-				'.$attach.'
+				<com:attachment xm:contentType="application/?" href="" contentId="" action="" name="" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">cid:600603579599</com:attachment>
 			</ns:attachments>
 		</ns:instance>
 		<ns:messages>

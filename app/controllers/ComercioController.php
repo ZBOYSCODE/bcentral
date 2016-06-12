@@ -130,7 +130,7 @@ class ComercioController extends ControllerBase
                     //seteamos que será nodo hoja directamente, se supone que el tercer nivel es nodo hoja
                     //si no deberia identificarse mediante logica de la respuesta del web service
                     $pcData['is_nodo_hoja'] = true;
-                    
+
                     //vista a renderizar
                     $pcView = 'servicio/servicios_catalogo_menu';
                 }
@@ -312,7 +312,7 @@ class ComercioController extends ControllerBase
             {
                 $msg = "Ticket no encontrado, revisar información ingresada.";
             }
-            elseif ($dine == 2) 
+            elseif ($done == 2)
             {
                 $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
             }
@@ -850,34 +850,33 @@ $cadena =  '
                 $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
                 echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
             }
-            /*$status = $response['status'];
-            if(strpos($status, 'FAILURE'))
+            $pcView = 'servicio/servicios_ver_ticket';
+
+            $js = '';
+            $ticket = new Ticket();
+
+            $done = $ticket->findTicket($response);
+            if($done == 0)
             {
-                $pcView = 'servicio/servicios_error_page';
-                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'El WebService entrega respuesta: '.$status.' cuando se intenta crear una interacción.' );
-                echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
+                $data = array('tck' => $ticket);
             }
-            else
-            {
-                var_dump($response);
+            else{
+                $tckList = $ticket->getTickestByUser($this->auth->getName());
+                $data = array('tckList' => $tckList);
+                $pcView = 'servicio/servicios_home_page';
+                $msg = "Algo salió mal, por favor intente más tarde.";
+                if($done == 1)
+                {
+                    $msg = "Ticket no encontrado, revisar información ingresada.";
+                }
+                elseif ($done == 2)
+                {
+                    $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
+                }
+                if($done)
+                    $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
             }
-            */
-            /*$js = "$.bootstrapGrowl('Error Interno. Repita el procedimiento.',{type:\"warning\",align:\"center\"});";
-            $pcView = 'servicio/servicios_home_page';
-        
-            $tck = new Ticket();
-            $tckList = $tck->getTickestByUser($this->auth->getName());
-            $data = array('tckList' => $tckList);
-            if($tckList == 2)
-            {
-                $pcView = 'servicio/servicios_error_page';
-                $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
-            }
-            //$js = $this->getJsEncuesta();
-            $js =$js. " ". $this->getLikeJs();
-            echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));*/
-            var_dump($response['response']);
-            echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
+            echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));
         }
     }
 
