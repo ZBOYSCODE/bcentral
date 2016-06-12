@@ -769,11 +769,12 @@ class WebServiceClient extends Model
     private function getSRCInteractionViaOneStepRequestMsg($form) {
         if($form['fileName'] != '')
         {
-            $attach = '<com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="'. $form['fileName'] .'" type="" upload.by="" upload.date="" xm:contentType="application/?">'. $form['fileContent'] .'</com:attachment>';
+            //$attach = '<com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="'. $form['fileName'] .'" type="" upload.by="" upload.date="" xm:contentType="application/?">'. $form['fileContent'] .'</com:attachment>';
+            $attach = '<com:attachment xm:contentType="application/?" href="" contentId="" action="add" name="'. $form['fileName'] .'" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">'. $form['fileContent'] .'</com:attachment>';
         }
         else
         {
-            $attach = '<com:attachment/>';
+            $attach = '<com:attachment xm:contentType="application/?" href="" contentId="" action="" name="" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">cid:600603579599</com:attachment>';
         }
         return '
 <ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
@@ -812,7 +813,7 @@ class WebServiceClient extends Model
 				<ns:Purpose/>
 			</ns:Purpose>
 			<ns:attachments>
-				<com:attachment xm:contentType="application/?" href="" contentId="" action="" name="" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">cid:600603579599</com:attachment>
+				'. $attach .'
 			</ns:attachments>
 		</ns:instance>
 		<ns:messages>
