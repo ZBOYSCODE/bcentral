@@ -40,4 +40,51 @@ class CI extends Model
                             'servicio afectado 2' => array('ci4','ci5','ci6'),
                             'servicio afectado 3' => array('ci7','ci8','ci9'));*/
 	}
+
+	/**
+	 * @param $area
+	 * @param $subarea
+     */
+	public function getFilteredCIList($area, $subarea)
+	{
+		$configCIList = $this->di->get('ci-config');
+		$ciList = $this->getCompleteCIList();
+		if(isset($area) and array_key_exists($area,$configCIList))
+		{
+			if(isset($subarea) and array_key_exists($subarea, $configCIList[$area]))
+			{
+				$filteredCIList = array();
+				foreach ($configCIList[$area][$subarea] as $key => $value)
+				{
+					if(array_key_exists($key, $ciList))
+					{
+						foreach ($value as $val)
+						{
+							if(in_array($val, $ciList[$key]))
+							{
+								if(array_key_exists($key, $filteredCIList))
+								{
+									array_push($ciList[$key], $val);
+								}
+								else
+								{
+									$ciList[$key] = array();
+									array_push($ciList[$key], $val);
+								}
+							}
+						}
+					}
+				}
+				return $filteredCIList;
+			}
+			else
+			{
+				return = $ciList;
+			}
+		}
+		else
+		{
+			return $ciList;
+		}
+	}
 }

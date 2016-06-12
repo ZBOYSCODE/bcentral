@@ -30,13 +30,21 @@ class Catalog extends Model
                 {
                     $tempIcon = $icons['default'];
                 }
+                if(array_key_exists('DisplayName', $temp))
+                {
+                    $display = (array)$temp['DisplayName'];
+                }
+                else
+                {
+                    $display = $name;
+                }
                 $description = (array)$temp['Description'];
                 $description = $description['_'];
                 if(strlen($description)>100)
                 {
                     $description = substr($description, 0, 96) . '...';
                 }
-                array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description));
+                array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description, 'display' => $display['_']));
             }    
         }
         else
@@ -51,13 +59,21 @@ class Catalog extends Model
             {
                 $tempIcon = $icons['default'];
             }
+            if(array_key_exists('DisplayName', $respnse))
+            {
+                $display = (array)$respnse['DisplayName'];
+            }
+            else
+            {
+                $display = $name;
+            }
             $description = (array)$respnse['Description'];
             $description = $description['_'];
             if(strlen($description)>100)
             {
                 $description = substr($description, 0, 97) . '..';
             }
-            array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description));
+            array_push($result, array('name' => $name['_'], 'icon' => $tempIcon, 'description' => $description, 'display' => $display['_']));
         }
         /*$result = array(
                         array(

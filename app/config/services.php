@@ -210,6 +210,10 @@ $di->set('catalog-icons', function () use ($catalogIcons) {
     return $catalogIcons;
 });
 
+$di->set('ci-config', function () use ($ciConfig) {
+    return $ciConfig;
+});
+
 //http://localhost:8080/raggApi/Servicedesk?wsdl
 //http://192.168.5.113:13080/SM/7/servicedesk.wsdl
 

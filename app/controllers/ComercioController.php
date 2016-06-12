@@ -635,6 +635,11 @@ $cadena =  '
         
         print_r($response);
     }
+    
+    public function testci()
+    {
+        
+    }
 
     public function testFormAction(){
         $pcView = 'test/test_validation_form';
