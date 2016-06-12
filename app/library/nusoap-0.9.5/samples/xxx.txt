@@ -1,0 +1,44 @@
+   <ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
+         <ns:model>
+ <ns:keys>
+ <ns:CartId/>
+ </ns:keys>
+ <ns:instance>
+ <ns:Service/>
+ <ns:RequestOnBehalf/>
+ <ns:CallbackContactName>PEDRON, ALFREDO</ns:CallbackContactName>
+ <ns:CallbackType/>
+ <ns:CartId/>
+ <ns:cartItems>
+ <ns:cartItems>
+ <ns:CartItemId/>
+ <ns:Delivery/>
+ <ns:ItemName>Habilitar Acceso a Wifi de Visita</ns:ItemName>
+ <ns:OptionList/>
+ <ns:Options/>
+ <ns:Quantity>1</ns:Quantity>
+ <ns:RequestedFor>PEDRON, ALFREDO</ns:RequestedFor>
+ <ns:RequestedForDept/>
+ <ns:RequestedForType>individual</ns:RequestedForType>
+ <ns:ServiceSLA/>
+ </ns:cartItems>
+ </ns:cartItems>
+ <ns:ContactName>PEDRON, ALFREDO</ns:ContactName>
+ <ns:NeededByTime/>
+ <ns:Other/>
+ <ns:Urgency>2</ns:Urgency>
+ <ns:Title>Test</ns:Title>
+ <ns:ServiceType/>
+ <ns:SvcSrcXML/>
+ <ns:Purpose>
+ <ns:Purpose/>
+ </ns:Purpose>
+               <ns:attachments>
+                  <com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="test.txt" type="" upload.by="" upload.date="" xm:contentType="application/?">RXN0ZSBlcyBz82xvIHVuIGFyY2hpdm8gZGUgcHJ1ZWJhIQ==</com:attachment>
+               </ns:attachments>
+            </ns:instance>
+            <ns:messages>
+               <com:message mandatory="" module="" readonly="" severity="" type="String"/>
+            </ns:messages>
+         </ns:model>
+      </ns:CreateSRCInteractionViaOneStepRequest>

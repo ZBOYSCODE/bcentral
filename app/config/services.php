@@ -28,6 +28,7 @@ $di = new FactoryDefault();
  */
  $di->set('config', $config);
  $di->set('configLdap', $configLdap);
+ $di->set('configWs', $configWs);
  
  /**
  * The URL component is used to generate all kind of urls in the application
