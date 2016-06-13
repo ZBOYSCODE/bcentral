@@ -151,7 +151,7 @@ class ComercioController extends ControllerBase
                     if($campos['ci'])
                     {
                         $ciItem = new CI();
-                        $listas = $ciItem->getCompleteCIList();
+                        $listas = $ciItem->getFilteredCIList($catalog['area'], $catalog['subarea']);
                     }
                     else
                     {
@@ -403,7 +403,7 @@ class ComercioController extends ControllerBase
         //$response = $ws->getTicket('SD68157');
         $response['ws'] = $ws->getKnowledge('KM0257');
         $response['response'] = $km->getKnowledge('KM0257');
-        var_dump($response);
+        print_r($response);
         //echo "<br><br>";
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }
@@ -429,7 +429,7 @@ class ComercioController extends ControllerBase
         //$ws = new WebServiceClient();
         //$response = $ws->getCIList();
         $ciItem = new CI();
-        $response = $ciItem->getCompleteCIList();
+        $response = $ciItem->getFilteredCIList('Correo Electronico', 'Solucionar Problema');
         var_dump($response);
         //echo '<br/><br/>Request : <br/><xmp>'. $response['request'] . '</xmp>';
     }

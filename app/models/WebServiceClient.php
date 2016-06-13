@@ -734,8 +734,44 @@ class WebServiceClient extends Model
     }
     public function getKnowledge($id)
     {
-        $this->client = $this->di->get('soapclient-knowledge');
-        /*$param = array('model' => array(
+        require_once(APP_DIR . '/library/nusoap-0.9.5/lib/nusoap.php');
+
+        $configWs = $this->di->get('configWs');
+        $client = new \nusoap_client($configWs->wsdlUriCata, false);
+        //Setting credentials for Authentication
+        $client->setCredentials("falcon","","basic");
+
+        $msg = $client->serializeEnvelope($this->getRetrieveKnowledgeMsg($id),
+            false,
+            array('ns'=>'http://schemas.hp.com/SM/7',
+                'com'=>'http://schemas.hp.com/SM/7/Common',
+                'xm'=>'http://www.w3.org/2005/05/xmlmime'));
+        $xml = $client->send($msg, 'Retrieve');
+        $xml = str_replace(' type="String"', '', $xml);
+        $xml = str_replace(' type="DateTime"', '', $xml);
+        $response = array();
+        $response['title'] = explode('title>', $xml);
+        $response['title'] = str_replace('</', '', $response['title'][1]);
+        $response['answer'] = explode('answer>', $xml);
+        $response['answer'] = str_replace('</', '', $response['answer'][1]);
+        $response['id'] = explode('id>', $xml);
+        $response['id'] = str_replace('</', '', $response['id'][1]);
+        $response['creationdate'] = explode('creationdate>', $xml);
+        $response['creationdate'] = str_replace('</', '', $response['creationdate'][1]);
+        $response['attachments'] = array();
+        $attach = explode('attachment ', $xml);
+        foreach ($attach as $val)
+        {
+            if(strpos($val, '"cid:'))
+            {
+                $line = explode('"', $val);
+                array_push($response['attachments'], array('href' => $line[1], 'name' => $line[7]));
+            }
+        }
+        return $response;
+
+        /*$this->client = $this->di->get('soapclient-knowledge');
+        $param = array('model' => array(
                         array(
                             'keys' => array(
                                     'id' => $id
@@ -743,18 +779,10 @@ class WebServiceClient extends Model
                             'instance' => '',
                             'messages' => ''
                             )
-                        );*/
-        $param = '<ns:RetrieveKnowledgeRequest attachmentInfo="" attachmentData="true" ignoreEmptyElements="true" updatecounter="" handle="" count="" start="">
-         <ns:model query="">
-            <ns:keys query="" updatecounter="">
-               <ns:id type="String" mandatory="" readonly="">'. $id .'</ns:id>
-            </ns:keys>
-            <ns:instance/>
-            <ns:messages/>
-         </ns:model>
-      </ns:RetrieveKnowledgeRequest>';
+                        );
+
         $response = (array)$this->client->RetrieveKnowledge($param);
-        return $response;
+        return $response;*/
     }
 
     function f_remove_odd_characters($string){
@@ -821,8 +849,23 @@ class WebServiceClient extends Model
 		</ns:messages>
 	</ns:model>
 </ns:CreateSRCInteractionViaOneStepRequest>';
-
     }
+
+    public function  getRetrieveKnowledgeMsg($id)
+    {
+        return '
+<ns:RetrieveKnowledgeRequest attachmentInfo="true" attachmentData="" ignoreEmptyElements="true" updatecounter="" handle="" count="" start="">
+     <ns:model query="">
+        <ns:keys query="" updatecounter="">
+           <ns:id type="String" mandatory="" readonly="">'.$id.'</ns:id>
+        </ns:keys>
+        <ns:instance query="" uniquequery="" recordid="" updatecounter="">
+        </ns:instance>
+        <ns:messages/>
+     </ns:model>
+</ns:RetrieveKnowledgeRequest>';
+    }
+
 }
 
 

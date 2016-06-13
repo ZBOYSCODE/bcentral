@@ -215,6 +215,11 @@ $di->set('ci-config', function () use ($ciConfig) {
     return $ciConfig;
 });
 
+$di->set('km-config', function () use ($configKM) {
+    $href = $configKM;
+    return 'http://' . $href['ip'] . ':' . $href['port'] . $href['url'];
+});
+
 //http://localhost:8080/raggApi/Servicedesk?wsdl
 //http://192.168.5.113:13080/SM/7/servicedesk.wsdl
 

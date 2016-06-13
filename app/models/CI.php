@@ -47,15 +47,18 @@ class CI extends Model
      */
 	public function getFilteredCIList($area, $subarea)
 	{
-		$configCIList = $this->di->get('ci-config');
+		$configCIList = (array)$this->di->get('ci-config');
 		$ciList = $this->getCompleteCIList();
 		if(isset($area) and array_key_exists($area,$configCIList))
 		{
+			$configCIList[$area] = (array)$configCIList[$area];
 			if(isset($subarea) and array_key_exists($subarea, $configCIList[$area]))
 			{
 				$filteredCIList = array();
+				$configCIList[$area][$subarea] = (array)$configCIList[$area][$subarea];
 				foreach ($configCIList[$area][$subarea] as $key => $value)
 				{
+					$value = (array)$value;
 					if(array_key_exists($key, $ciList))
 					{
 						foreach ($value as $val)
@@ -64,12 +67,12 @@ class CI extends Model
 							{
 								if(array_key_exists($key, $filteredCIList))
 								{
-									array_push($ciList[$key], $val);
+									array_push($filteredCIList[$key], $val);
 								}
 								else
 								{
-									$ciList[$key] = array();
-									array_push($ciList[$key], $val);
+									$filteredCIList[$key] = array();
+									array_push($filteredCIList[$key], $val);
 								}
 							}
 						}
@@ -79,7 +82,7 @@ class CI extends Model
 			}
 			else
 			{
-				return = $ciList;
+				return $ciList;
 			}
 		}
 		else
