@@ -46,8 +46,9 @@ class AjaxController extends ControllerBase
     	$dataView['tck'] = $_POST['tck'];
     	$toRend = $this->view->render('servicio/servicios_modalReiterar',$dataView);
     	$this->mifaces->newFaces();
-    	$this->mifaces->addToRend('modal-reiterar',$toRend);
-    	$this->mifaces->addPreRendEval('$("#modal-reiterar").modal()');
+        $this->mifaces->addToRend('modal-reiterar',$toRend);
+    	$this->mifaces->addPosRendEval($this->getValidacionInsistirJs());
+        $this->mifaces->addPreRendEval('$("#modal-reiterar").modal()');
     	$this->mifaces->run();
     }	
     public function enviarEncuestaAction()
@@ -126,5 +127,32 @@ class AjaxController extends ControllerBase
                        
     	$this->mifaces->run();	
 	}
+
+    private function getValidacionInsistirJs() {
+        $jsScript =
+        '
+            $("#btnGuardar").on(\'click\', function() {
+            var statusForm = 1;
+            $("[id^=input-]").each(function(){
+                var id = $(this).attr(\'id\');
+                var alert = id.split("-")[1];
+                alert = "#alert-"+alert;
+
+                if($(this).val().length === 0) {
+                    statusForm = 0;
+                    $(alert).css(\'display\',\'inline\');
+                }
+                else {
+                    $(alert).css(\'display\',\'none\');
+                }
+            });
+            if(statusForm === 1){
+                $("#insitirForm").submit();
+            }
+        });
+        ';
+
+        return $jsScript;
+    }
 	
 }

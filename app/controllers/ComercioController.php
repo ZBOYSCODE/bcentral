@@ -317,7 +317,7 @@ class ComercioController extends ControllerBase
                 $msg = "Problemas de conexión con el servicio, por favor vuelva a intentar.";
             }
             if($done)
-            $js = $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
+            $js .= $this->getLikeJs() . ' ' . '$.bootstrapGrowl("' . $msg . '", { type: \'danger\', align: \'center\',width: \'auto\' });';
         }
         echo $this->view->render('theme_default', array('lmView'=>'menu/leftMenu', 'menuSel'=>'evaluarSol','pcView'=>$pcView, 'pcData'=> $data, 'jsScript'=>$js));
     }
@@ -1230,6 +1230,36 @@ $cadena =  '
 
         return $jsScript;
     }
+
+
+    private function getValidacionInsistirJs() {
+        $jsScript =
+        '
+            $("#btnGuardar").on(\'click\', function() {
+            var statusForm = 1;
+            $("[id^=input-]").each(function(){
+                var id = $(this).attr(\'id\');
+                var alert = id.split("-")[1];
+                alert = "#alert-"+alert;
+
+                if($(this).val().length === 0) {
+                    statusForm = 0;
+                    $(alert).css(\'display\',\'inline\');
+                }
+                else {
+                    $(alert).css(\'display\',\'none\');
+                }
+            });
+            if(statusForm === 1){
+                $("#insitirForm").submit();
+            }
+        });
+        ';
+
+        return $jsScript;
+    }
+
+
 
     private function getValidationCalendarDesdeHastaJs() {
         $jsScript =

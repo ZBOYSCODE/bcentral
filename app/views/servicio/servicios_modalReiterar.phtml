@@ -1,4 +1,4 @@
-        <form action="<?php print $this->url->get('ajax/reiterarTicket') ?>" class="form-horizontal" data-type="ajax" method="post">
+        <form id="insitirForm" action="<?php print $this->url->get('ajax/reiterarTicket') ?>" class="form-horizontal" data-type="ajax" method="post">
         <div class="modal-dialog " style="width: 70%">
         <div class="modal-content">
             <!-- Updates Title -->
@@ -15,13 +15,14 @@
                             <h3><strong>Ingresar detalle de la Insistencia</strong></h3> <br>
                         </div>
                         <div class="col-lg-6 center-block">
-                           <textarea id="txt" name="txt" rows="5" class="form-control push-bit" placeholder="descripción"></textarea>
+                           <textarea id="input-txt" name="txt" rows="5" class="form-control push-bit" placeholder="descripción"></textarea>
+                           <label id="alert-txt" style="color:red; display: none;" >Campo requerido</label>
                         </div>
                         <div class="col-lg-6 center-block">
 
                             <input type="hidden" value="<?php print($tck) ?>" name="tck">
                             
-                            <input type="submit" value="Insistir"  style="width:100%" class="btn btn-bc">
+                            <a id="btnGuardar" href="javascript:void(0)" style="width:100%" class="btn btn-bc">Insistir</a>
                         </div>                                               
                     </div>
                 </div>                                                                                          
