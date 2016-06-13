@@ -236,8 +236,12 @@ class Ticket extends Model
     public function updateTicket($update)
     {
         $wsClient = new WebServiceClient();
-        $result = $wsClient->updateTicket($this->CallID, $update);
-        return $result;
+        $result = (array)$wsClient->updateTicket($this->CallID, $update);
+        if(array_key_exists('returnCode', $result))
+        {
+            return $result['returnCode'];
+        }
+        return -1;
     }
     
     public function findTicket($tck)

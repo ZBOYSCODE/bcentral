@@ -81,17 +81,22 @@ class AjaxController extends ControllerBase
     	$ticket = new Ticket();
     	$ticket->CallID = $_POST['tck'];
     	$result = $ticket->updateTicket($_POST['txt']);
-		
-        $done = $ticket->findTicket($_POST['tck']);
-		$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
-    	$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
-        if($done == 0)
-        {
-            $data['pcData'] = array('tck' => $ticket);
-			$toRend = $this->view->render('servicio/servicios_ver_ticket_bitacora',$data);
-			$this->mifaces->addToRend('tkt_bitacora',$toRend);			
-        }else{
-			$this->mifaces->addToMsg('warning', 'En estos momentos no es posible actualizar la Bitacora.');		
+		if($result == '0')
+		{
+			$done = $ticket->findTicket($_POST['tck']);
+			$this->mifaces->addPosRendEval('$("#modal-reiterar").modal("hide")');
+			$this->mifaces->addToMsg('success', 'La insistencia se realizó correctamente.');
+			if($done == 0)
+			{
+				$data['pcData'] = array('tck' => $ticket);
+				$toRend = $this->view->render('servicio/servicios_ver_ticket_bitacora',$data);
+				$this->mifaces->addToRend('tkt_bitacora',$toRend);
+			}else{
+				$this->mifaces->addToMsg('warning', 'En estos momentos no es posible actualizar la Bitacora.');
+			}
+		}
+		else{
+			$this->mifaces->addToMsg('warning', 'En estos momentos no es posible actualizar la Bitacora.');
 		}
 		
     	$this->mifaces->run();		

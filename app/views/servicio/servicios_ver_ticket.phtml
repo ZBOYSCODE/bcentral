@@ -50,13 +50,14 @@
                        <strong>Datos del ticket </strong>
                         
                     </h3>
+                    <?php if(strpos($pcData['tck']->Status, 'Cerrado') == false and strpos($pcData['tck']->Status, 'Rechazado') == false) {?>
                     <div class="block-options pull-right">
                         <a href="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-action="<?php print $this->url->get('ajax/loadReiterarTicket') ?>" data-val="tck=<?php print $pcData['tck']->CallID ?>">
                         <span class="label btn-bc"> <i class="gi gi-repeat"></i> Insistir</span>
                         <!--<span class="label btn-bc"> <i class="gi gi-repeat"></i>Evaluar</span>-->
                         </a>
                     </div>
-
+                    <?php } ?>
                 </div>
                 <div class="widget-extra-full catalogo-lista-home">
                     <div class="row ">
