@@ -65,14 +65,12 @@
                 <div class="row block-section">
                 <h4 style="padding: 10px;"> Adjuntos</h4>
 				<?php foreach($pcData['adjunto'] as $item){
-						$nombre = explode('/',$item);
-						$nombre = end($nombre);
 				?>
                     <div class="col-xs-4 col-sm-2 text-center">
-                        <a href="<?php print($item);?>">
-                            <i class="fi fi-<?php $ext=explode('.',$nombre);print(end($ext));?> fa-4x push-bit"></i>
+                        <a href="<?php print($item['href']);?>">
+                            <i class="fi fi-<?php $ext=explode('.',$item['name']);print(end($ext));?> fa-4x push-bit"></i>
                         </a>
-                        <span class="text-muted"><?php print($nombre);?></span>
+                        <span class="text-muted"><?php print($item['name']);?></span>
                     </div>
 				<?php }?>
                 </div>

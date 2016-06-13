@@ -1,6 +1,7 @@
 <?php
 namespace Gabs\Models;
 
+use Gabs\Auth\Exception;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Validator\Uniqueness;
 
@@ -10,21 +11,22 @@ class Knowledge extends Model
 	{
 		$ws = new WebServiceClient();
 		$result = $ws->getKnowledge($id);
-		if($result['returnCode'] == '0')
+		try
 		{
-			$result = (array)$result['model'];
-			$result = (array)$result['instance'];
-			$Know['titulo'] = (array)$result['title'];
-			$Know['titulo'] = $Know['titulo']['_'];
-			$Know['id'] = (array)$result['id'];
-			$Know['id'] = $Know['id']['_'];
-			$Know['fecha_formateada'] = (array)$result['creationdate'];
-			$Know['fecha_formateada'] = $this->dateFormatter($Know['fecha_formateada']['_']);
-			$Know['texto'] = (array)$result['answer'];
-			$Know['texto'] = $Know['texto']['_'];
+			$Know['titulo'] = $result['title'];
+			$Know['id'] = $result['id'];
+			$Know['fecha_formateada'] = $this->dateFormatter($result['creationdate']);
+			$Know['texto'] = $result['answer'];
 			$Know['adjunto'] = array();
+			foreach ($result['attachments'] as $val)
+			{
+				$href = $this->di->get('km-config'); //'http://192.168.5.113:13080/SM/9/rest/knowledges/<km>/attachments/<href>';
+				$href = str_replace('<km>', $Know['id'], $href);
+				$href = str_replace('<href>', $val['href'], $href);
+				array_push($Know['adjunto'], array('href' => $href, 'name' => $val['name']));
+			}
 		}
-		else
+		catch (Exception $e)
 		{
 			$Know = array();
 		}

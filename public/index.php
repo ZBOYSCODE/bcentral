@@ -14,6 +14,7 @@ try {
 	$catalogIcons	= include APP_DIR . '/config/catalogIcons.php';
 	$configLdap		= include APP_DIR . '/config/configLdap.php';
 	$ciConfig		= include APP_DIR . '/config/ciConfig.php';
+	$configKM		= include APP_DIR . '/config/configKM.php';
 	/**
 	 * Read auto-loader
 	 */

@@ -19,7 +19,7 @@
 								<select  data-placeholder="Selecciona un Opción"  id="input-select_dest" name="select_dest" class="select-chosen">
 									<?php 
 										foreach ($pcData['contactos'] as $key => $value) { ?>
-											<option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+											<option value="<?php echo $value; ?>" <?php if(strcmp($this->auth->getName(), $value) == 0){echo ' selected';} ?>><?php echo $value; ?></option>
 									<?php	
 										}
 									 ?>
