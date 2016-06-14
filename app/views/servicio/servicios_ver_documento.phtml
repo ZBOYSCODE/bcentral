@@ -67,7 +67,7 @@
 				<?php foreach($pcData['adjunto'] as $item){
 				?>
                     <div class="col-xs-4 col-sm-2 text-center">
-                        <a href="<?php print($item['href']);?>">
+                        <a href="<?php print($item['href']);?>" target="_blank">
                             <i class="fi fi-<?php $ext=explode('.',$item['name']);print(end($ext));?> fa-4x push-bit"></i>
                         </a>
                         <span class="text-muted"><?php print($item['name']);?></span>

@@ -15,6 +15,7 @@ try {
 	$configLdap		= include APP_DIR . '/config/configLdap.php';
 	$ciConfig		= include APP_DIR . '/config/ciConfig.php';
 	$configKM		= include APP_DIR . '/config/configKM.php';
+	$configFieldOver= include APP_DIR . '/config/fieldOverConfig.php';
 	/**
 	 * Read auto-loader
 	 */

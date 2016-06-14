@@ -29,7 +29,8 @@ $di = new FactoryDefault();
  $di->set('config', $config);
  $di->set('configLdap', $configLdap);
  $di->set('configWs', $configWs);
- 
+ $di->set('configFieldOver', $configFieldOver );
+
  /**
  * The URL component is used to generate all kind of urls in the application
  */

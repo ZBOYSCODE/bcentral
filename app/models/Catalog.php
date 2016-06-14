@@ -15,7 +15,7 @@ class Catalog extends Model
             return false;
         }
         $result = array();
-        $icons = $this->di->get('catalog-icons');
+        $icons = $this->getDi()->getShared('catalog-icons');
         if(array_key_exists('Name', $respnse) == false)
         {
             foreach ($respnse as $key => $value) 
