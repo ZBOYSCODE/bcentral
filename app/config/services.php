@@ -30,7 +30,7 @@ $di = new FactoryDefault();
  $di->set('configLdap', $configLdap);
  $di->set('configWs', $configWs);
  $di->set('configFieldOver', $configFieldOver );
-
+ $di->set('configEvaPath', $configEvaPath );
  /**
  * The URL component is used to generate all kind of urls in the application
  */

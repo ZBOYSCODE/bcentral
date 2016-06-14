@@ -16,6 +16,8 @@ try {
 	$ciConfig		= include APP_DIR . '/config/ciConfig.php';
 	$configKM		= include APP_DIR . '/config/configKM.php';
 	$configFieldOver= include APP_DIR . '/config/fieldOverConfig.php';
+	$configEvaPath	= include APP_DIR . '/config/configEvaPath.php';
+	
 	/**
 	 * Read auto-loader
 	 */

@@ -44,22 +44,19 @@ class Evaluacion extends Model
 
     public function Save($data = NULL, $whiteList = NULL)
     {
-    	if(func_num_args() == 0)
-    	{
-    		$path = "C:\\xampp\\htdocs\\bancocentral\\";
-    	}
-    	else 
-    	{
-    		$path = func_get_args();
-    	}
+		$ep = $this->getDi()->getShared('configEvaPath');
+		$path = $ep->path;
+
         if(empty($this->ticket) or empty($this->conforme) or empty($this->preg1)
             or empty($this->preg2) or empty($this->preg3) or empty($this->preg4)
             or empty($this->preg5))
         {
             return false;
         }
+		
         $fileName = $this->ticket . ".xml";
-        if(strlen($path) == 0 or "\\" != substr($path, -1, 1))
+        
+		if(strlen($path) == 0 or "\\" != substr($path, -1, 1))
         {
             $path = $path . "\\";
         }
@@ -69,7 +66,7 @@ class Evaluacion extends Model
             {
                 unlink($path . $fileName);
             }
-            $file = fopen($path . $fileName, "W");
+            $file = fopen($path . $fileName, "w+");
             $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" 
                     . "<EPA>\n"
                     . "\t<TICKET>" . $this->ticket . "</TICKET>\n"
