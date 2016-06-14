@@ -16,7 +16,7 @@ class WebServiceClient extends Model
 	
     public function getFields($catalogItem)
     {
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         $param = array(
                    'keys' => array(
                         'Name' => $catalogItem
@@ -30,7 +30,7 @@ class WebServiceClient extends Model
     {
         $query = 'callback.contact="' . $usr . '" or contact.name="' . $usr . '"';//"callback.contact=&quot;" . $usr ."&quot; and contact.name=&quot;" . $usr ."&quot;";
         
-        $this->client = $this->di->get('soapclient-servicedesk');
+        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             return null;
@@ -56,7 +56,7 @@ class WebServiceClient extends Model
 
     public function getRequerimentList()
     {
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         /*$param = array(
                 'keys' => array(
                     'name' => ''
@@ -93,7 +93,7 @@ class WebServiceClient extends Model
         $tck = $this->f_remove_odd_characters($tck);
 
         //cargamos el SoapClient desde el injector de dependencia
-        $this->client = $this->di->get('soapclient-servicedesk');
+        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             throw new Exception("Error Processing Request", 2);
@@ -194,7 +194,7 @@ class WebServiceClient extends Model
                         'TheNumber' => ''
                     )
             );
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             throw new Exception("Error Processing Request", 2);
@@ -215,7 +215,7 @@ class WebServiceClient extends Model
     }
     public function getContactList()
     {
-        $this->client = $this->di->get('soapclient-config');
+        $this->client = $this->getDi()->getShared('soapclient-config');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'ContactName' => ''
@@ -234,7 +234,7 @@ class WebServiceClient extends Model
     }
     public function getContact($name)
     {
-        $this->client = $this->di->get('soapclient-config');
+        $this->client = $this->getDi()->getShared('soapclient-config');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'ContactName' => $name
@@ -252,7 +252,8 @@ class WebServiceClient extends Model
 
     public function getUsername($name)
     {
-        $this->client = $this->di->get('soapclient-config');
+        //$this->client = $this->getDi()->getShared('soapclient-config');
+		$this->client = $this->getDi()->getShared('soapclient-config');
         if($this->client == false)
         {
             return null;
@@ -290,7 +291,7 @@ class WebServiceClient extends Model
 
     public function updateTicket($CallID, $Update)
     {
-        $this->client = $this->di->get('soapclient-servicedesk');
+        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'CallID' => $CallID
@@ -375,7 +376,7 @@ class WebServiceClient extends Model
 
     public function getCIList()
     {
-        $this->client = $this->di->get('soapclient-config');
+        $this->client = $this->getDi()->getShared('soapclient-config');
         $param = array('keys' => array(
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''
@@ -389,7 +390,7 @@ class WebServiceClient extends Model
 
     public function getCatalogStepOne($option)
     {
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             return null;
@@ -406,7 +407,7 @@ class WebServiceClient extends Model
     }
     public function getCatalogStepTwo($option)
     {
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         $param = array(
                         'model' => array(
                             'keys' => array(
@@ -436,7 +437,7 @@ class WebServiceClient extends Model
     {
         require_once(APP_DIR . '/library/nusoap-0.9.5/lib/nusoap.php');
 
-        $configWs = $this->di->get('configWs');
+        $configWs = $this->getDi()->getShared('configWs');
         $client = new \nusoap_client($configWs->wsdlUriCata, false);
         //Setting credentials for Authentication
         $client->setCredentials("falcon","","basic");
@@ -468,7 +469,7 @@ class WebServiceClient extends Model
     }
     public function CreateRequestInteractionOld($form)
     {
-        $this->client = $this->di->get('soapclient-catalog');
+        $this->client = $this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             return null;
@@ -597,7 +598,7 @@ class WebServiceClient extends Model
 
      public function CreateRequestSol($form)
     {
-        $this->client = $this->di->get('soapclient-servicedesk');
+        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             return null;
@@ -661,7 +662,7 @@ class WebServiceClient extends Model
 
     public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida, $attach)
     {
-        $this->client = $this->di->get('soapclient-servicedesk');
+        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
         if($caida == 'SI')
         {
             $caida = 'true';
@@ -728,7 +729,7 @@ class WebServiceClient extends Model
 
     public function searchKnowledge($search)
     {
-        $this->client = $this->di->get('soapclient-knowledge');
+        $this->client = $this->getDi()->getShared('soapclient-knowledge');
         $param = array('keys' => array(
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''
@@ -743,7 +744,7 @@ class WebServiceClient extends Model
     {
         require_once(APP_DIR . '/library/nusoap-0.9.5/lib/nusoap.php');
 
-        $configWs = $this->di->get('configWs');
+        $configWs = $this->getDi()->getShared('configWs');
         $client = new \nusoap_client($configWs->wsdlUriCata, false);
         //Setting credentials for Authentication
         $client->setCredentials("falcon","","basic");
@@ -777,7 +778,7 @@ class WebServiceClient extends Model
         }
         return $response;
 
-        /*$this->client = $this->di->get('soapclient-knowledge');
+        /*$this->client = $this->getDi()->getShared('soapclient-knowledge');
         $param = array('model' => array(
                         array(
                             'keys' => array(

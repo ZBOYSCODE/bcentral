@@ -15,7 +15,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-user">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Destinatario:</label>
-							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Destinatario" data-content="Persona a la que se le entregará el servicio.">
+							<div class="col-md-8"<?php if(isset($this->configFieldOver['select_dest'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_dest']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_dest']['descripcion']);?>"<?php }?>>
 								<select  data-placeholder="Selecciona un Opción"  id="input-select_dest" name="select_dest" class="select-chosen">
 									<?php 
 										foreach ($pcData['contactos'] as $key => $value) { ?>
@@ -39,7 +39,7 @@
 						<div class="form-group">
 						<label class="col-md-4 control-label" for="select_sa">
 							<i class="fa fa-cog">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Servicio Afectado:</label>
-						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Servicio Afectado" data-content="Blah Blah">
+						<div class="col-md-8"<?php if(isset($this->configFieldOver['select_sa'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_sa']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_sa']['descripcion']);?>"<?php }?>>
 							<select data-placeholder="Selecciona un Opción"  id="input-select_sa" name="select_sa" class="select-chosen">
                                 <option value=""></option>
                                 <?php foreach ($pcData['listas'] as $key => $value) {?>
@@ -59,7 +59,7 @@
 						<div class="form-group">
 						<label class="col-md-4 control-label" for="scsl_cdg">
 							<i class="fa fa-cogs">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Componente:</label>
-						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Componente" data-content="Componente de Tecnología (Sistema, Hardware, Software)">
+						<div class="col-md-8"<?php if(isset($this->configFieldOver['select_ci'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_ci']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_ci']['descripcion']);?>"<?php }?>>
 							<select data-placeholder="Selecciona un Opción"  id="input-select_ci" name="select_ci" class="select-chosen">
                                 <option value=""></option>
 	                        </select>
@@ -77,7 +77,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="horaInicio">
 						<i class="fa fa-minus">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Descripción Breve:</label>
-					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Descripción Breve" data-content="Blah Blah Blah ..">
+					<div class="col-md-8"<?php if(isset($this->configFieldOver['title'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['title']['titulo']);?>" data-content="<?php print($this->configFieldOver['title']['descripcion']);?>"<?php }?>>
 						<input type="text" id="input-descripcion_breve" name="title" class="form-control" >
 	                        <label id="alert-descripcion_breve" style="color:red; display: none;" >Campo requerido</label>
 						<br>
@@ -87,7 +87,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="horaFin">
 						<i class="fa fa-navicon">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Otros Antecedentes:</label>
-					<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Otros Antecedentes" data-content="Blah Blah Blah ..">
+					<div class="col-md-8"<?php if(isset($this->configFieldOver['description'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['description']['titulo']);?>" data-content="<?php print($this->configFieldOver['description']['descripcion']);?>"<?php }?>>
 						<textarea id="input-description" class="form-control" rows="4" cols="50" name="description"></textarea>
 	                        <label id="alert-description" style="color:red; display: none;" >Campo requerido</label>
 					</div>
@@ -103,7 +103,7 @@
 						<div class="form-group">
 						<label class="col-md-4 control-label" for="scsl_cdg">
 							<i class="fa fa-user">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Hay Interrupción de Servicio ?:</label>
-						<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Interrupción de Servicio" data-content="Blah Blah Blah ..">
+						<div class="col-md-8"<?php if(isset($this->configFieldOver['select_is'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_is']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_is']['descripcion']);?>"<?php }?>>
 							<select data-placeholder="Selecciona un Opción"  id="input-select_is" name="select_is" class="select-chosen">
                                     <option value="SI">SI</option>
                                     <option selected="selected" value="NO">NO</option>
@@ -124,7 +124,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg">
 								<i class="fa fa-line-chart">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Impacto:</label>
-							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Impacto" data-content="Blah Blah Blah ..">
+							<div class="col-md-8"<?php if(isset($this->configFieldOver['select_i'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_i']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_i']['descripcion']);?>"<?php }?>>
 								<select data-placeholder="Selecciona un Opción"  id="input-select_i" name="select_i" class="select-chosen">
 	                                <option value="4">Empresa</option>
 	                                <option value="3">Sitio/Dpto</option>
@@ -145,16 +145,18 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-						<label class="col-md-4 control-label" for="scsl_cdg">
-						<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Urgencia:</label>
-							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Urgencia" data-content="Blah Blah Blah ..">
+							<label class="col-md-4 control-label" for="scsl_cdg">
+								<i class="fa fa-exclamation-circle">&nbsp;&nbsp;</i>
+								<strong style="color:red;">*</strong> Urgencia:
+							</label>
+							<div class="col-md-8"<?php if(isset($this->configFieldOver['select_u'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['select_u']['titulo']);?>" data-content="<?php print($this->configFieldOver['select_u']['descripcion']);?>"<?php }?>>
 								<select data-placeholder="Selecciona un Opción"  id="input-select_u" name="select_u" class="select-chosen">
 	                                <option value="1">Crítica</option>
 	                                <option value="2">Alta</option>
 	                                <option value="3">Media</option>
 	                                <option value="4" selected="selected">Baja</option>
 		                        </select>
-	                        <label id="alert-select_u" style="color:red; display: none;" >Campo requerido</label>
+								<label id="alert-select_u" style="color:red; display: none;" >Campo requerido</label>
 							</div>
 						</div>
 					</div>
@@ -169,7 +171,7 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Desde:</label>
-							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Desde" data-content="Blah Blah Blah ..">
+							<div class="col-md-8"<?php if(isset($this->configFieldOver['desde'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['desde']['titulo']);?>" data-content="<?php print($this->configFieldOver['desde']['descripcion']);?>"<?php }?>>
 								<input id="input-desde" type="text" class="form-control input-datepicker" name="desde" data-date-format="dd/mm/yyyy" readonly="readonly" style="background-color: white;">
 	                        <label id="alert-desde" style="color:red; display: none;" >Campo requerido</label>
 							</div>
@@ -186,7 +188,7 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="scsl_cdg"><i class="fa fa-calendar">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Hasta:</label>
-							<div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Hasta" data-content="Blah Blah Blah ..">
+							<div class="col-md-8"<?php if(isset($this->configFieldOver['hasta'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['hasta']['titulo']);?>" data-content="<?php print($this->configFieldOver['hasta']['descripcion']);?>"<?php }?>>
 								<input id="input-hasta" type="text" class="form-control input-datepicker" name="hasta" data-date-format="dd/mm/yyyy" readonly="readonly" style="background-color: white;">
 	                        <label id="alert-hasta" style="color:red; display: none;" >Campo requerido</label>
 							</div>
@@ -223,7 +225,7 @@
 	                 <?php print($pcData['campos']['autorizacion'] == true? '<strong style="color:red;">*</strong>':''); ?>
 	                 	Información Adicional
 	                 </label>
-	                <div class="col-md-8" data-toggle="popoverhover" data-placement="top" title="Información Adicional" data-content="Blah Blah Blah ..">
+	                <div class="col-md-8"<?php if(isset($this->configFieldOver['file'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['file']['titulo']);?>" data-content="<?php print($this->configFieldOver['file']['descripcion']);?>"<?php }?>>
 	                    <input type="file" id="<?php print($pcData['campos']['autorizacion'] == true?'input-':''); ?>file" name="example-file-multiple-input" multiple="">
 	                    <!-- info alert required -->
 	                    <?php if($pcData['campos']['autorizacion']) { ?>

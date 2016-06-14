@@ -20,7 +20,7 @@ class Knowledge extends Model
 			$Know['adjunto'] = array();
 			foreach ($result['attachments'] as $val)
 			{
-				$href = $this->di->get('km-config'); //'http://192.168.5.113:13080/SM/9/rest/knowledges/<km>/attachments/<href>';
+				$href = $this->getDi()->getShared('km-config'); //'http://192.168.5.113:13080/SM/9/rest/knowledges/<km>/attachments/<href>';
 				$href = str_replace('<km>', $Know['id'], $href);
 				$href = str_replace('<href>', $val['href'], $href);
 				array_push($Know['adjunto'], array('href' => $href, 'name' => $val['name']));

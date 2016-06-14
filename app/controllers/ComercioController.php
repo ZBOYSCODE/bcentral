@@ -846,6 +846,7 @@ $cadena =  '
             $response = $ws->CreateRequestInteraction($form);
             if($response == null)
             {
+				$js='';
                 $pcView = 'servicio/servicios_error_page';
                 $data = array( 'error-number' => '500 - Error interno en el servidor', 'error-description' => 'Problemas al establecer conexión a los web service, por favor revisar permisos de acceso y configuración.' );
                 echo $this->view->render('theme_default' ,array('lmView'=>'menu/leftMenu','menuSel'=>'','pcView'=>$pcView,'pcData'=> $data,'jsScript'=>$js));
@@ -1123,10 +1124,15 @@ $cadena =  '
                         //App.datatables();
 
                         /* Initialize Datatables */
-                        table_.dataTable({
-                           'paging':   true,
-                            columnDefs: [ { orderable: false } ]
-                        });
+						if ( $.fn.dataTable.isDataTable( '#conocimiento-table' ) ) {
+							table_.dataTable();
+						}
+						else {
+							table_.dataTable({
+							   'paging':   true,
+								columnDefs: [ { orderable: false } ]
+							});
+						}
 
                         /* Add placeholder attribute to the search input */
                         $('div.dataTables_length').html('');
