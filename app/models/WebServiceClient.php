@@ -425,7 +425,14 @@ class WebServiceClient extends Model
         $response = (array)$this->client->RetrieveSvcCatalogKeysList($param);
         return $response;
     }
+    function write_log($cadena,$tipo)
+    {
+        $arch = fopen(realpath( '.' )."/logs/milog_".date("Y-m-d").".txt", "a+");
 
+        fwrite($arch, "[".date("Y-m-d H:i:s.u")." ".$_SERVER['REMOTE_ADDR']." ".
+            $_SERVER['HTTP_X_FORWARDED_FOR']." - $tipo ] ".$cadena."\n");
+        fclose($arch);
+    }
     public function  CreateRequestInteraction($form)
     {
         require_once(APP_DIR . '/library/nusoap-0.9.5/lib/nusoap.php');
