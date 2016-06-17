@@ -78,7 +78,7 @@
 					<label class="col-md-4 control-label" for="horaInicio">
 						<i class="fa fa-minus">&nbsp;&nbsp;</i> <strong style="color:red;">*</strong> Descripción Breve:</label>
 					<div class="col-md-8"<?php if(isset($this->configFieldOver['title'])){?> data-toggle="popoverhover" data-placement="top" title="<?php print($this->configFieldOver['title']['titulo']);?>" data-content="<?php print($this->configFieldOver['title']['descripcion']);?>"<?php }?>>
-						<input type="text" id="input-descripcion_breve" name="title" class="form-control" >
+						<input type="text" id="input-descripcion_breve" name="title" class="form-control" maxlength="100">
 	                        <label id="alert-descripcion_breve" style="color:red; display: none;" >Campo requerido</label>
 						<br>
 					</div>
