@@ -114,7 +114,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-center" >Componente</td>
-                                        <td > <?php if(isset($pcData['tck']->AffectedCI)){echo $pcData['tck']->AffectedCI;}else{echo '-';}?></td>
+                                        <td > <?php if(isset($pcData['tck']->AffectedCI)){echo $pcData['tck']->AffectedCI;}else{ if(isset($pcData['tck']->AffectedService)){echo $pcData['tck']->AffectedService;}else{ echo '-';}}?></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center" >Descripción Breve</td>
