@@ -1402,6 +1402,62 @@ $cadena =  '
 	</ns:model>
 </ns:CreateSRCInteractionViaOneStepRequest>';
 	
-	}	
+	}
+    public function TestMiguelo2Action()
+    {
+
+        $param = array(
+            'model' => array(
+                'keys' => array(
+                    'CartId' => ''
+                ),
+                'instance' => array(
+                    'Service' => '',
+                    'CallbackContactName' => 'PEDRON, ALFREDO',
+                    'CallbackType' => '',
+                    'CartId' => '',
+                    'cartItems' => array(
+                        'cartItems' =>  array(
+                            '_' =>array(
+
+                                'Delivery' => '',
+                                'ItemName' => 'Habilitar Acceso a Wifi de Visita',
+                                'OptionList' => '',
+                                'Options' => '',
+                                'Quantity' => 1,
+                                'RequestedFor' => $this->auth->getName(),
+                                'RequestedForDept' => '',
+                                'RequestedForType' => 'individual',
+
+                            ),
+                            'type' => 'Structure'
+                        )
+                    ),
+
+                    'ContactName' => 'PEDRON, ALFREDO',
+                    'NeededByTime' => '',
+                    'Other' => '',
+                    'Urgency' =>'2',
+                    'Title' => 'descripción breve',
+                    'ServiceType' => '',
+                    'SvcSrcXML' => '',
+                    'Purpose' => array(
+                        'Purpose' => 'descripción más larga asd asd asd asdasdaelkdfn nsdfl sndfk'
+                    ),
+                    'attachments' => array(
+                        'attachments' => array(
+                            '_' => '', //Contenido del archivo
+                            'href' => '', //Nombre archivo envuelto en un &le; y un >
+                            'action' => 'add',
+                            'name' => ''
+                        )
+                    )
+                ),
+                'messages' => array(
+                    'messages' => ''
+                )
+            )
+        );
+    }
 	
 }
