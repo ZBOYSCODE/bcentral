@@ -27,8 +27,8 @@ class Auth extends Component
      */
     public function check($credentials)
     {
-		//$user = $this->test-user;
-		$user = $this->di->get('test-user');
+
+		$user    = $this->di->get('defuser');
 		
 		if($this->configLdap->ldapValida){
 			$ldap = ldap_connect($this->configLdap->ldapHost);
@@ -50,20 +50,24 @@ class Auth extends Component
 		
 		if($this->configLdap->smValida){
 			$ws = new WebServiceClient();
-			$user = $ws->getUsername($credentials['usuario']);
+			$user['name']  = $ws->getUsername($credentials['usuario']);
 			
-			if($user==false){
+			if($user['name']==false){
 				throw new Exception('Usuario no Encontradodo en SM','usuario');
-			}elseif($user==null){
-				throw new Exception('Error de comunicacion con SM','usuario');
-			}
+			}elseif($user['name']==$this->di->get('defuser')['name']){
+                throw new Exception('Error de comunicacion con SM','usuario');
+            }elseif($user['name']==null){
+                throw new Exception('Error de comunicacion con SM','usuario');
+            }
 			
+            $user['wsdlUsr'] = $credentials['usuario'];
 			$this->createRememberEnvironment($user);
 		}
-		
+		//print_r($user);die();
         $this->session->set('auth-identity', array(
-            'id'	=> $user,
-			'name'	=> $user
+            'id'	=> $user['name'],
+			'name'	=> $user['name'],
+            'wsUser'=> $user['wsdlUsr']
         ));
 
     }
@@ -152,10 +156,7 @@ class Auth extends Component
     public function loginWithRememberMe()
     {
         $userId = $this->cookies->get('RMU')->getValue();
-		$this->session->set('auth-identity', array(
-			'id'	=> $userId,
-			'name'	=> $userId
-		));
+		$this->session->set('auth-identity', $userId);
 		return $this->response->redirect('');
     }
 
@@ -202,6 +203,16 @@ class Auth extends Component
         return $identity['name'];
     }
 
+    /**
+     * Returns the current identity
+     *
+     * @return string
+     */
+    public function getWsUser()
+    {
+        $identity = $this->session->get('auth-identity');
+        return isset($identity['wsUser'])?$identity['wsUser']:null;
+    }
     /**
      * Removes the user identity information from session
      */

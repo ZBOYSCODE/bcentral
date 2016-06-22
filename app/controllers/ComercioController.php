@@ -843,7 +843,7 @@ $cadena =  '
         }
         else
         {
-            $response = $ws->CreateRequestInteraction($form);
+            $response = $ws->CreateRequestInteractionLast($form);
             if($response == null)
             {
 				$js='';
@@ -1417,21 +1417,22 @@ $cadena =  '
                     'CallbackType' => '',
                     'CartId' => '',
                     'cartItems' => array(
-                        'cartItems' =>  array(
-                            '_' =>array(
+                            '_' =>array('cartItems' =>  array(
+                                '_' =>array(
+                                    'CartItemId'=>'',
+                                    'Delivery' => '',
+                                    'ItemName' => 'Habilitar Acceso a Wifi de Visita',
+                                    'OptionList' => '',
+                                    'Options' => '',
+                                    'Quantity' => 1,
+                                    'RequestedFor' => $this->auth->getName(),
+                                    'RequestedForDept' => '',
+                                    'RequestedForType' => 'individual',
+                                    ),
+                                'type' => 'Structure'
+                            ))
 
-                                'Delivery' => '',
-                                'ItemName' => 'Habilitar Acceso a Wifi de Visita',
-                                'OptionList' => '',
-                                'Options' => '',
-                                'Quantity' => 1,
-                                'RequestedFor' => $this->auth->getName(),
-                                'RequestedForDept' => '',
-                                'RequestedForType' => 'individual',
 
-                            ),
-                            'type' => 'Structure'
-                        )
                     ),
 
                     'ContactName' => 'PEDRON, ALFREDO',
@@ -1458,6 +1459,78 @@ $cadena =  '
                 )
             )
         );
+        print_r($param);
+        $ws = $this->di->get('soapclient-catalog');
+        $response = $ws->CreateSRCInteractionViaOneStep($param);
+        print_r($ws->__getLastRequest());
+        print_r($ws->__getLastRequestHeaders());
+        print_r($response);
+
+
     }
+
+
+    public function migueloLastAction(){
+
+        $request='
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://schemas.hp.com/SM/7" xmlns:com="http://schemas.hp.com/SM/7/Common" xmlns:xm="http://www.w3.org/2005/05/xmlmime">
+   <soapenv:Header/>
+   <soapenv:Body>
+<ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
+    <ns:model>
+        <ns:keys>
+            <ns:CartId/>
+        </ns:keys>
+        <ns:instance>
+            <ns:Service/>
+            <ns:RequestOnBehalf/>
+            <ns:CallbackContactName>PEDRON, ALFREDO</ns:CallbackContactName>
+            <ns:CallbackType/>
+            <ns:CartId/>
+            <ns:cartItems>
+                <ns:cartItems>
+                    <ns:CartItemId/>
+                    <ns:Delivery/>
+                    <ns:ItemName>Habilitar Acceso a Wifi de Visita</ns:ItemName>
+                    <ns:OptionList/>
+                    <ns:Options/>
+                    <ns:Quantity>1</ns:Quantity>
+                    <ns:RequestedFor>PEDRON, ALFREDO</ns:RequestedFor>
+                    <ns:RequestedForDept/>
+                    <ns:RequestedForType>individual</ns:RequestedForType>
+                    <ns:ServiceSLA/>
+                </ns:cartItems>
+            </ns:cartItems>
+            <ns:ContactName>PEDRON, ALFREDO</ns:ContactName>
+            <ns:NeededByTime/>
+            <ns:Other/>
+            <ns:Urgency>2</ns:Urgency>
+            <ns:Title>Test</ns:Title>
+            <ns:ServiceType/>
+            <ns:SvcSrcXML/>
+            <ns:Purpose>
+                <ns:Purpose/>
+            </ns:Purpose>
+            <ns:attachments>
+                <com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="test.txt" type="" upload.by="" upload.date="" xm:contentType="application/?">RXN0ZSBlcyBz82xvIHVuIGFyY2hpdm8gZGUgcHJ1ZWJhIQ==</com:attachment>
+            </ns:attachments>
+        </ns:instance>
+        <ns:messages>
+           <com:message mandatory="" module="" readonly="" severity="" type="String"/>
+        </ns:messages>
+    </ns:model>
+</ns:CreateSRCInteractionViaOneStepRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+        ';
+        $ws = $this->di->get('soapclient-catalog');
+        $response = $ws->__doRequest($request, 'http://192.168.5.113:13080/SM/7/ws', 'Create', SOAP_1_1);
+        print_r($response);
+        print_r($ws->__getLastRequestHeaders());
+        print_r($ws->__getLastRequest());
+        
+    }
+
+
 	
 }

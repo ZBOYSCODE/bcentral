@@ -8,15 +8,22 @@ class WebServiceClient extends Model
 {
     private $client;
 	private $auth;
+    private $conf;
 	
    public function initialize()
    {
 		$this->auth = $this->getDi()->getShared('auth');
+        $this->conf = $this->getDi()->getShared('configWs');
    }   
 	
     public function getFields($catalogItem)
     {
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         $param = array(
                    'keys' => array(
                         'Name' => $catalogItem
@@ -28,9 +35,11 @@ class WebServiceClient extends Model
 
     public function getTicketsByUser($usr)
     {
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
         $query = 'callback.contact="' . $usr . '" or contact.name="' . $usr . '"';//"callback.contact=&quot;" . $usr ."&quot; and contact.name=&quot;" . $usr ."&quot;";
         
-        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
+        $this->client = $this->wsConect($this->conf->wsdlUriServ,array());//$this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             return null;
@@ -56,7 +65,12 @@ class WebServiceClient extends Model
 
     public function getRequerimentList()
     {
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         /*$param = array(
                 'keys' => array(
                     'name' => ''
@@ -87,13 +101,15 @@ class WebServiceClient extends Model
         $proxyusername  = '';
         $proxypassword  = '';
 
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
         
         
         //$this->client = new nusoap_client($wsdl, 'wsdl', $proxyhost, $proxyport, $proxyusername, $proxypassword);
         $tck = $this->f_remove_odd_characters($tck);
 
         //cargamos el SoapClient desde el injector de dependencia
-        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
+        $this->client = $this->wsConect($this->conf->wsdlUriServ,array());//$this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             throw new Exception("Error Processing Request", 2);
@@ -187,6 +203,8 @@ class WebServiceClient extends Model
 
     public function getTicketTrace($tck)
     {
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
         $param = array(
                 'keys' => array(
                         'Number' => $tck,
@@ -194,7 +212,10 @@ class WebServiceClient extends Model
                         'TheNumber' => ''
                     )
             );
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             throw new Exception("Error Processing Request", 2);
@@ -215,7 +236,9 @@ class WebServiceClient extends Model
     }
     public function getContactList()
     {
-        $this->client = $this->getDi()->getShared('soapclient-config');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriConf,array());//$this->getDi()->getShared('soapclient-config');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'ContactName' => ''
@@ -234,7 +257,9 @@ class WebServiceClient extends Model
     }
     public function getContact($name)
     {
-        $this->client = $this->getDi()->getShared('soapclient-config');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriConf,array());//$this->getDi()->getShared('soapclient-config');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'ContactName' => $name
@@ -252,8 +277,11 @@ class WebServiceClient extends Model
 
     public function getUsername($name)
     {
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
         //$this->client = $this->getDi()->getShared('soapclient-config');
-		$this->client = $this->getDi()->getShared('soapclient-config');
+		$this->client = $this->wsConect($this->conf->wsdlUriConf,array());//$this->getDi()->getShared('soapclient-config');
+        
         if($this->client == false)
         {
             return null;
@@ -291,7 +319,9 @@ class WebServiceClient extends Model
 
     public function updateTicket($CallID, $Update)
     {
-        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriServ,array());//$this->getDi()->getShared('soapclient-servicedesk');
         $param = array( 'model' => array(
                             'keys' => array(
                                 'CallID' => $CallID
@@ -376,7 +406,9 @@ class WebServiceClient extends Model
 
     public function getCIList()
     {
-        $this->client = $this->getDi()->getShared('soapclient-config');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriConf,array());//$this->getDi()->getShared('soapclient-config');
         $param = array('keys' => array(
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''
@@ -390,7 +422,12 @@ class WebServiceClient extends Model
 
     public function getCatalogStepOne($option)
     {
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             return null;
@@ -407,7 +444,12 @@ class WebServiceClient extends Model
     }
     public function getCatalogStepTwo($option)
     {
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         $param = array(
                         'model' => array(
                             'keys' => array(
@@ -467,9 +509,45 @@ class WebServiceClient extends Model
         }
         return $result;
     }
+
+    public function  CreateRequestInteractionLast($form)
+    {
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $ws = $this->wsConect($this->conf->wsdlUriCata,array('soap_version'   => SOAP_1_1,
+                'SOAPAction'    =>'Create',
+                'Accept-Encoding' => 'gzip,deflate'
+                ));//$this->getDi()->getShared('soapclient-catalog-alt');
+        $response = $ws->__doRequest($this->getSRCInteractionViaOneStepRequestMsgLast($form), $this->conf->wsUsi, 'Create', SOAP_1_1);
+
+        if(strpos($response, ' SD'))
+        {
+            $response = explode(' ', $response);
+            foreach($response as $val)
+            {
+                $val = str_replace('.','',$val);
+                if(preg_match("/^SD(\d{1,})/", $val))
+                {
+                    return $val;
+                }
+            }
+        }
+        else
+        {
+            return null;
+        }
+        return $response;
+    }
+
+
     public function CreateRequestInteractionOld($form)
     {
-        $this->client = $this->getDi()->getShared('soapclient-catalog');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriCata,array(
+                'use' => SOAP_LITERAL,
+                'style' => SOAP_DOCUMENT
+                ));//$this->getDi()->getShared('soapclient-catalog');
         if($this->client == false)
         {
             return null;
@@ -598,7 +676,9 @@ class WebServiceClient extends Model
 
      public function CreateRequestSol($form)
     {
-        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriServ,array());//$this->getDi()->getShared('soapclient-servicedesk');
         if($this->client == false)
         {
             return null;
@@ -662,7 +742,9 @@ class WebServiceClient extends Model
 
     public function createRequestTicket($recipent, $urgency, $description, $area, $subarea, $contact, $impact, $ci, $title, $servicio, $caida, $attach)
     {
-        $this->client = $this->getDi()->getShared('soapclient-servicedesk');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriServ,array());//$this->getDi()->getShared('soapclient-servicedesk');
         if($caida == 'SI')
         {
             $caida = 'true';
@@ -729,7 +811,9 @@ class WebServiceClient extends Model
 
     public function searchKnowledge($search)
     {
-        $this->client = $this->getDi()->getShared('soapclient-knowledge');
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $this->client = $this->wsConect($this->conf->wsdlUriKnow,array());//$this->getDi()->getShared('soapclient-knowledge');
         $param = array('keys' => array(
                             '_' => '',/*array(
                                     'ConfigurationItem' => ''
@@ -793,6 +877,40 @@ class WebServiceClient extends Model
         return $response;*/
     }
 
+    public function getKnowledgeLast($id)
+    {
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+        $ws = $this->wsConect($this->conf->wsdlUriKnow,array('soap_version'   => SOAP_1_1,
+                'SOAPAction'    =>'Retrieve',
+                'Accept-Encoding' => 'gzip,deflate'
+                ));//$this->getDi()->getShared('soapclient-knowledge-alt');
+        $xml = $ws->__doRequest($this->getRetrieveKnowledgeMsgLast($id), $this->conf->wsUsi, 'Retrieve', SOAP_1_1);
+        //print_r($xml);die();
+        $xml = str_replace(' type="String"', '', $xml);
+        $xml = str_replace(' type="DateTime"', '', $xml);
+        $response = array();
+        $response['title'] = explode('title>', $xml);
+        $response['title'] = str_replace('</', '', $response['title'][1]);
+        $response['answer'] = explode('answer>', $xml);
+        $response['answer'] = str_replace('</', '', $response['answer'][1]);
+        $response['id'] = explode('id>', $xml);
+        $response['id'] = str_replace('</', '', $response['id'][1]);
+        $response['creationdate'] = explode('creationdate>', $xml);
+        $response['creationdate'] = str_replace('</', '', $response['creationdate'][1]);
+        $response['attachments'] = array();
+        $attach = explode('attachment ', $xml);
+        foreach ($attach as $val)
+        {
+            if(strpos($val, '"cid:'))
+            {
+                $line = explode('"', $val);
+                array_push($response['attachments'], array('href' => $line[1], 'name' => $line[7]));
+            }
+        }
+        return $response;
+    }
+
     function f_remove_odd_characters($string){
         $string = str_replace("\n","[NEWLINE]",$string);
         $string=htmlentities($string);
@@ -801,6 +919,68 @@ class WebServiceClient extends Model
         $string = str_replace("[NEWLINE]","\n",$string);
         return $string;
       }
+
+    private function getSRCInteractionViaOneStepRequestMsgLast($form) {
+        if($form['fileName'] != '')
+        {
+            //$attach = '<com:attachment action="add" attachmentType="" charset="" contentId="" href="" len="" name="'. $form['fileName'] .'" type="" upload.by="" upload.date="" xm:contentType="application/?">'. $form['fileContent'] .'</com:attachment>';
+            $attach = '<com:attachment xm:contentType="application/?" href="" contentId="" action="add" name="'. $form['fileName'] .'" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">'. $form['fileContent'] .'</com:attachment>';
+        }
+        else
+        {
+            $attach = '<com:attachment xm:contentType="application/?" href="" contentId="" action="" name="" type="" len="" charset="" upload.by="" upload.date="" attachmentType="">cid:600603579599</com:attachment>';
+        }
+        return '
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://schemas.hp.com/SM/7" xmlns:com="http://schemas.hp.com/SM/7/Common" xmlns:xm="http://www.w3.org/2005/05/xmlmime">
+   <soapenv:Header/>
+   <soapenv:Body>
+<ns:CreateSRCInteractionViaOneStepRequest attachmentData="" attachmentInfo="" ignoreEmptyElements="true" updateconstraint="-1">
+    <ns:model>
+        <ns:keys>
+            <ns:CartId/>
+        </ns:keys>
+        <ns:instance>
+            <ns:Service>'.$form['ci'].'</ns:Service>
+            <ns:RequestOnBehalf/>
+            <ns:CallbackContactName>'.$form['contact'].'</ns:CallbackContactName>
+            <ns:CallbackType/>
+            <ns:CartId/>
+            <ns:cartItems>
+                <ns:cartItems>
+                    <ns:CartItemId/>
+                    <ns:Delivery/>
+                    <ns:ItemName>'.$form['catalog']['subarea'].'</ns:ItemName>
+                    <ns:OptionList/>
+                    <ns:Options/>
+                    <ns:Quantity>1</ns:Quantity>
+                    <ns:RequestedFor>'.$this->auth->getName().'</ns:RequestedFor>
+                    <ns:RequestedForDept/>
+                    <ns:RequestedForType>individual</ns:RequestedForType>
+                    <ns:ServiceSLA/>
+                </ns:cartItems>
+            </ns:cartItems>
+            <ns:ContactName>'.$form['contact'].'</ns:ContactName>
+            <ns:NeededByTime/>
+            <ns:Other/>
+            <ns:Urgency>'.$form['urgency'].'</ns:Urgency>
+            <ns:Title>'.$form['title'].'</ns:Title>
+            <ns:ServiceType/>
+            <ns:SvcSrcXML/>
+            <ns:Purpose>
+                <ns:Purpose/>
+            </ns:Purpose>
+            <ns:attachments>
+                '. $attach .'
+            </ns:attachments>
+        </ns:instance>
+        <ns:messages>
+           <com:message mandatory="" module="" readonly="" severity="" type="String"/>
+        </ns:messages>
+    </ns:model>
+</ns:CreateSRCInteractionViaOneStepRequest>
+   </soapenv:Body>
+</soapenv:Envelope>';
+    }
 
     private function getSRCInteractionViaOneStepRequestMsg($form) {
         if($form['fileName'] != '')
@@ -873,6 +1053,67 @@ class WebServiceClient extends Model
      </ns:model>
 </ns:RetrieveKnowledgeRequest>';
     }
+
+    public function  getRetrieveKnowledgeMsgLast($id)
+    {
+        return '
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://schemas.hp.com/SM/7" xmlns:com="http://schemas.hp.com/SM/7/Common" xmlns:xm="http://www.w3.org/2005/05/xmlmime">
+   <soapenv:Header/>
+   <soapenv:Body>
+<ns:RetrieveKnowledgeRequest attachmentInfo="true" attachmentData="" ignoreEmptyElements="true" updatecounter="" handle="" count="" start="">
+     <ns:model query="">
+        <ns:keys query="" updatecounter="">
+           <ns:id type="String" mandatory="" readonly="">'.$id.'</ns:id>
+        </ns:keys>
+        <ns:instance query="" uniquequery="" recordid="" updatecounter="">
+        </ns:instance>
+        <ns:messages/>
+     </ns:model>
+</ns:RetrieveKnowledgeRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+';
+    }
+
+    private function wsConect($wsdl,$extras){
+
+        if($this->auth==null)
+            $this->auth = $this->getDi()->getShared('auth');
+
+        if($this->conf==null)
+            $this->conf = $this->getDi()->getShared('configWs');
+
+        if($this->auth->getWsUser()!=null)
+            $usr=$this->auth->getWsUser();
+        else
+            $usr=$this->conf->wsdlUsr;
+
+        $params = array(
+                'login' => $usr,
+                'password' => '', 
+                'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+                'soap_version'   => SOAP_1_2,
+                'exceptions' => true,
+                'trace' => false
+                );
+
+        foreach ($extras as $key => $value) {
+            $params[$key] = $value;
+        }
+
+        try
+        {
+            $client = new \SoapClient($wsdl,$params);
+            return $client;
+        }
+        catch (Exception $e)
+        {
+            $client = false;
+        }
+        return $client;
+    }
+
+
 
 }
 

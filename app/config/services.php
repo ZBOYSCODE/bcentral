@@ -58,6 +58,8 @@ $di->set('session', function () {
     $session->start();
     return $session;
 });
+
+
 /**
  * Crypt service
  */
@@ -118,6 +120,10 @@ $di->set('acl', function () {
 /*
 *   Web service component
 */
+
+
+
+
 $di->set('soapclient-servicedesk', function () use ($configWs) { 
      try
     {
@@ -148,9 +154,15 @@ $di->set('soapclient-servicedesk', function () use ($configWs) {
 $di->set('soapclient-config', function () use ($configWs) { 
     try
     {
+
+        if(isset($tmp['wsUser']))
+            $usr=$tmp['wsUser'];
+        else
+            $usr=$configWs->wsdlUsr;
+
         $client = new SoapClient($configWs->wsdlUriConf, 
             array(
-                'login' => $configWs->wsdlUsr, 
+                'login' => $usr, 
                 'password' => $configWs->wsdlPass, 
                 'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
                 'soap_version'   => SOAP_1_2,
@@ -180,6 +192,20 @@ $di->set('soapclient-knowledge', function () use ($configWs) {
         );
 });
 
+$di->set('soapclient-knowledge-alt', function () use ($configWs) { 
+    return new SoapClient($configWs->wsdlUriKnow, 
+        array(
+            'login' => $configWs->wsdlUsr, 
+            'password' => $configWs->wsdlPass, 
+            'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+            'soap_version'   => SOAP_1_1,
+            'SOAPAction'    =>'Retrieve',
+            'Accept-Encoding' => 'gzip,deflate',
+            'exceptions' => true,
+            'trace' => false
+            )
+        );
+});
 $di->set('soapclient-catalog', function () use ($configWs) {
     try
     {
@@ -204,8 +230,36 @@ $di->set('soapclient-catalog', function () use ($configWs) {
     return $client;
 });
 
-$di->set('test-user', function () use ($configWs) {
-    return $configWs->testUser;
+$di->set('soapclient-catalog-alt', function () use ($configWs) {
+    try
+    {
+        $client = new SoapClient($configWs->wsdlUriCata, 
+            array(
+                'login' => $configWs->wsdlUsr, 
+                'password' => $configWs->wsdlPass, 
+                'features' => 'SOAP_WAIT_ONE_WAY_CALLS', 
+                'soap_version'   => SOAP_1_1,
+                'SOAPAction'    =>'Create',
+                'Accept-Encoding' => 'gzip,deflate',
+                'exceptions' => true,
+                'trace' => true,
+//                'use' => SOAP_LITERAL,
+ //               'style' => SOAP_DOCUMENT
+                )
+            );
+        return $client;
+    }
+    catch (Exception $e)
+    {
+        $client = false;
+    }
+    return $client;
+});
+
+$di->set('defuser', function () use ($configWs) {
+    $user['name']    = $configWs->testUser;
+    $user['wsdlUsr'] = $configWs->wsdlUsr;
+    return $user;
 });
 
 $di->set('catalog-icons', function () use ($catalogIcons) {

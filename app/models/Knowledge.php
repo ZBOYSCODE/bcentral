@@ -10,7 +10,7 @@ class Knowledge extends Model
 	public function getKnowledge($id)
 	{
 		$ws = new WebServiceClient();
-		$result = $ws->getKnowledge($id);
+		$result = $ws->getKnowledgeLast($id);
 		try
 		{
 			$Know['titulo'] = $result['title'];
