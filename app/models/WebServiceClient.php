@@ -967,7 +967,7 @@ class WebServiceClient extends Model
             <ns:ServiceType/>
             <ns:SvcSrcXML/>
             <ns:Purpose>
-                <ns:Purpose/>
+                <ns:Purpose>'.$form['description'].'</ns:Purpose>
             </ns:Purpose>
             <ns:attachments>
                 '. $attach .'

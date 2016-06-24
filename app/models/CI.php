@@ -47,7 +47,7 @@ class CI extends Model
      */
 	public function getFilteredCIList($area, $subarea)
 	{
-		$configCIList = (array)$this->di->get('ci-config');
+		$configCIList = (array)$this->getDi()->getShared('ci-config');
 		$ciList = $this->getCompleteCIList();
 		if(isset($area) and array_key_exists($area,$configCIList))
 		{

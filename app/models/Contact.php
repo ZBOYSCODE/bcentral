@@ -54,8 +54,10 @@ class Contact extends Model
 		$this->firstname = $this->firstname['_'];
 		$this->lastname = (array)$response['LastName'];
 		$this->lastname = $this->lastname['_'];
-		$this->email = (array)$response['Email'];
-		$this->email = $this->email ['_'];
+		if(isset($response['Email'])){
+			$this->email = (array)$response['Email'];
+			$this->email = $this->email ['_'];
+		}
 		$this->contact = $name;
 	}
 }

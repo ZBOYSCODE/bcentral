@@ -1128,10 +1128,12 @@ $cadena =  '
 							table_.dataTable();
 						}
 						else {
-							table_.dataTable({
-							   'paging':   true,
-								columnDefs: [ { orderable: false } ]
-							});
+							if($('#conocimiento-tbody').find('tr').length>1){
+								table_.dataTable({
+								   'paging':   true,
+									columnDefs: [ { orderable: false } ]
+								});
+							}
 						}
 
                         /* Add placeholder attribute to the search input */
